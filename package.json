@@ -1,0 +1,22 @@
+{
+  "name": "gratitude-node",
+  "version": "1.0.0",
+  "description": "Gratitude api to use with all applications.",
+  "main": "app.js",
+  "scripts": {
+    "test": "testing 123"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adenadeau/gratitude-node.git"
+  },
+  "author": "Adrian Nadeau",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adenadeau/gratitude-node/issues"
+  },
+  "homepage": "https://github.com/adenadeau/gratitude-node#readme",
+  "dependencies": {
+    "mongodb": "^3.2.7"
+  }
+}
