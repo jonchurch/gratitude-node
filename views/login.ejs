@@ -53,7 +53,7 @@
                      
                      </div>
                      </div>
-                  </div>
+                 </div>
                   </form>
                   
                   
@@ -66,67 +66,6 @@
        <% include partials/scripts %>
       
     </body>
-    <script type="text/javascript">
-       $( document ).ready(function() {
-         // Handler for .ready() called.
-         $(".err-msg").hide();
-      });
-         (function() {
-             'use strict';
-             window.addEventListener('load', function() {
-                 // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                 var forms = document.getElementsByClassName('needs-validation');
-                 // Loop over them and prevent submission
-                 var validation = Array.prototype.filter.call(forms, function(form) {
-                 form.addEventListener('submit', function(event) {
-                 if (form.checkValidity() === false) {
-                    
-                     event.preventDefault();
-                     event.stopPropagation();
-                 }
-                 else{
-                   
-                   var email = $("#email").val();
-                    var password = $("#password").val();
-                   
-                    if( email != "" && password != "" ){
-                        
-                        
-                        
-                  $.ajax({
-                      url:'http://localhost:3000/users/login',
-                      type:'post',
-                      data:{email: email, password: password},
-                      
-                      success: function (result) {//capture sucess calls
-                            //send email confirmation //todo
-                            window.location.href="/gratitude/posts/?id="+result._id;
-                            // window.location.href="/gratitude/userdashboard.jsp?id="+result._id;
-                         },
-                        error: function (xhr, httpStatusMessage, customErrorMessage) {
-                          console.log(xhr.status );
-                          
-                          if (xhr.status === 410) {
-                            
-                          }
-                          else if(xhr.status === 400) {
-                            
-                        }
-            
-                    }
-                  });
-                }
-           
-              }
-                 
-              form.classList.add('was-validated');
-             }, false);
-         });
-         }, false);
-         })();
-      </script>
-   </body>
-</html>  </script>
 </html>
 
 
