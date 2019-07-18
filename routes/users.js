@@ -1,11 +1,6 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
-
 var express = require('express');
 var router = express.Router();
 var User = require("../models/UserModel");
@@ -79,6 +74,25 @@ router.post('/login', function(req, res) {
  });        
 });
 
+////////////////////
+////USER Profile////
+////////////////////
+router.post('/userprofile/:id', function(req, res) {
+    console.log("go to profile page")
+  console.log(req.params.id);
+  if(req.params.id===null || req.params.id=== undefined || req.params.id ===""){
+        //id is not found
+        console.log('Error: '+err.message);
+        console.log(err.message);
+        res.send(req.params.id);
+  }
+  else{
+      //forward to profile with id
+  }
+  
+ });        
+
+
 
 ///////////////////////
 ////CREATE NEW USER////
@@ -88,6 +102,7 @@ router.post('/',function(req,res){
    
   console.log("email: "+req.body.email)
   User.findOne({ email:req.body.email}, function (err, user) {
+      console.log("user exists");
     if (err){ 
       console.log("err:"+err);
       console.log("err:"+err.message);

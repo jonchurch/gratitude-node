@@ -100,8 +100,9 @@
                       
                       success: function (result) {//capture sucess calls
                             //send email confirmation //todo
-                            window.location.href="/gratitude/posts/?id="+result._id;
-                            // window.location.href="/gratitude/userdashboard.jsp?id="+result._id;
+                            alert("send to profile: "+result._id);
+                            window.location.href="http://localhost:3000/users/userprofile/?id="+result._id;
+                           
                          },
                         error: function (xhr, httpStatusMessage, customErrorMessage) {
                           console.log(xhr.status );

@@ -1,5 +1,67 @@
-<h1><%= message %></h1>
-<h2><%= error.status %></h2>
-<pre><%= error.stack %></pre>
+<!DOCTYPE html>
+<html>
+   <head>
+        <% include partials/head %>
+    </head>
+   <body>
+      <section class="pb_cover_v3 cover-bg-opacity text-left pb_gradient_v1">
+         <div class="container">
+            <div class="row align-items-center justify-content-center">
+              
+               
+               <div class="col-md-6 relative align-self-center join-today-index">
+                 
+                  <div class="panel panel-default">
+                     <div class="panel-heading">
+                        <h3 class="panel-title text-center">Sorry!</h3>
+                     </div>
+                     <div class="panel-body">
+                        <form class="needs-validation" novalidate>
+                           
+                              
+                              
+                           <div class="form-row text-center">
+                              <div class="col-md-12 mb-3 text-center">
+                                  <h3>OOPPS! Looks like you found a page that is missing or wasn't typed in properly.</h3>
+                                 
 
-This will look better than this.
+                                 <h4>Please for give us and return home by <a href="/">clicking here.</a></h3>
+                              </div>
+                                 
+                           </div>
+                           <div class="form-row">
+                              <div class="col-md-12 mb-3">
+                                 <label for="email">Password</label>
+                                 <div class="input-group">
+                                    <input type="password" class="form-control" id="password"  value="password" required>
+                                    <div class="invalid-feedback">
+                                       Please enter a valid password.
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <button class="col-md-12 btn btn-primary btn-lg btn-block pb_btn-pill  btn-shadow-blue text-center" type="submit">Login</button><br/>
+                            
+                            <div class="col-md-12 mb-3 md-form text-center" style="padding-top:20px">Not a member? <a style="color:green !important;" href="index.jsp">Register here.</a>
+                             </div>
+                     </div>
+                     
+                     
+                     </div>
+                     </div>
+                 </div>
+                  </form>
+                  
+                  
+               </div>
+            </div>
+         </div>
+         </div>
+      </section>
+      <% include partials/footer %>
+       <% include partials/scripts %>
+      
+   
+</html>
+
+
