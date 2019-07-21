@@ -66,10 +66,11 @@
        <% include partials/scripts %>
       
     </body>
-    <script type="text/javascript">
-       $( document ).ready(function() {
+   <script type="text/javascript">
+      $( document ).ready(function() {
          // Handler for .ready() called. 
          $(".err-msg").hide();
+         
       });
          (function() {
              'use strict';
@@ -85,46 +86,68 @@
                      event.stopPropagation();
                  }
                  else{
-                   
-                   var email = $("#email").val();
-                    var password = $("#password").val();
-                   
-                    if( email != "" && password != "" ){
-                        
-                        
-                        
-                  $.ajax({
-                      url:'http://localhost:3000/users/login',
-                      type:'post',
-                      data:{email: email, password: password},
-                      
-                      success: function (result) {//capture sucess calls
-                            //send email confirmation //todo
-                            alert(result);
-                            window.location.replace("http://stackoverflow.com");
-                        },
-                        error: function (xhr, httpStatusMessage, customErrorMessage) {
-                          console.log(xhr.status );
-                           
-                          if (xhr.status === 410) {
-                            
-                          }
-                          else if(xhr.status === 400) {
-                            
-                        }
-            
-                    }
-                  });
-                }
-           
-              }
+                     var email = $("#email").val();
+                     var password = $("#password").val();
+                     
+                     if( email != "" && password != "" ){
+                        $.ajax({
+                              url: 'http://localhost:3000/users/login',
+                              type: "POST",
+                              dataType: "json",
+                              data: {
+                              email: email,
+                              password: password
+                              },
+
+
+                               /**
+                               * A function to be called if the request succeeds.
+                               */
+                               success: function(data, textStatus, jqXHR) {
+                                console.log("id : "+data._id);
+                                 window.location.assign("http://localhost:3000/profile/?id=345234532453452");
+                                 // alert('jqXHR:');
+                                 // alert(jqXHR);
+                                 // alert('textStatus:');
+                                 // alert(textStatus);
+                                // alert('errorThrown:');
+                                 //alert(errorThrown);
+                                 
+                                //var url = "http://localhost:3000/users/profile/?id="+data.result._id;
+                                 
+                               },
+                              /**
+                               * A function to be called if the request fails. 
+                               */
+                              error: function(jqXHR, textStatus, errorThrown) {
+                                 alert('An error occurred... Look at the console (F12 or Ctrl+Shift+I, Console tab) for more information!');
+                                 alert('jqXHR:');
+                                 alert(jqXHR);
+                                 alert('textStatus:');
+                                 alert(textStatus);
+                                 alert('errorThrown:');
+                                 alert(errorThrown);
+                              }
+
+                             
+                        });
+                     }
+    
+
+
+
+///////////////////////////////////////////////////////////
+
+               }
                  
               form.classList.add('was-validated');
              }, false);
          });
          }, false);
          })();
+        
+         
+
       </script>
 </html>
-
 

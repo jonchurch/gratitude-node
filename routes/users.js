@@ -26,6 +26,7 @@ router.get('/', function(req, res) {
 ////////////////////
 //// GET 1 USER ////
 ////////////////////
+
 router.get('/:id', function(req, res) {
   console.log("id:" +req.params.id);
   //console.log("id:" +id);
@@ -46,8 +47,8 @@ router.get('/:id', function(req, res) {
 ////LOGIN USER////
 //////////////////
 router.post('/login', function(req, res) {
-  console.log(req.body.email);
-  console.log(req.body.password);
+  console.log("Email: "+req.body.email);
+  console.log("Password" +req.body.password);
   
   User.findOne({ email:req.body.email,password:req.body.password}, function (err, user) {
   if (err){ 
@@ -60,7 +61,7 @@ router.post('/login', function(req, res) {
       console.log("user id"+user._id);
       if(user.email===req.body.email && user.password===req.body.password){
            //user exists
-           console.log ("Logged in!");
+          
            res.send(user);
          }
          else{
@@ -77,17 +78,16 @@ router.post('/login', function(req, res) {
 ////////////////////
 ////USER Profile////
 ////////////////////
-router.post('/userprofile/:id', function(req, res) {
+router.post('/profile/:id', function(req, res) {
     console.log("go to profile page")
   console.log(req.params.id);
   if(req.params.id===null || req.params.id=== undefined || req.params.id ===""){
         //id is not found
-        console.log('Error: '+err.message);
-        console.log(err.message);
         res.send(req.params.id);
   }
   else{
       //forward to profile with id
+      console.log("found user!");
   }
   
  });        
@@ -149,4 +149,3 @@ router.post('/',function(req,res){
  
 
 module.exports = router;
-
