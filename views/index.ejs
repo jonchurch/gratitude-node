@@ -159,8 +159,9 @@
                       success: function (result) {//capture sucess calls
                             //send email confirmation //todo
                             alert(JSON.stringify(result));
-                            
+                            alert("forward to profile");
                             window.location.href="/gratitude/posts/?id="+result._id;
+                            alert("after loc href");
                          },
                         error: function (xhr, httpStatusMessage, customErrorMessage) {
                           console.log(xhr.status );
