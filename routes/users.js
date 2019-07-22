@@ -28,27 +28,28 @@ router.get('/', function(req, res) {
 ////////////////////
 
 router.get('/:id', function(req, res) {
-  console.log("id:" +req.params.id);
-  //console.log("id:" +id);
-  User.find({_id:req.body._id}, function (err, users) {
+  console.log(" get 1 user id:" +req.params.id);
+  User.findById(req.params.id, function (err, user) {
+
   if (err){ 
-      console.log("err:"+err);
-      res.send(err.message);
-      res.status(410);
-      next();  
-  }
-    res.json(users);
-          
-  });        
-});
+          console.log('Error: '+err.message);
+          console.log(err.message);
+          //res.send(err.message);
+    }
+    else{
+         res.send(user);
+    }
+    
+   });        
+  
+ });
+
 
 
 //////////////////
 ////LOGIN USER////
 //////////////////
 router.post('/login', function(req, res) {
-  console.log("Email: "+req.body.email);
-  console.log("Password" +req.body.password);
   
   User.findOne({ email:req.body.email,password:req.body.password}, function (err, user) {
   if (err){ 
