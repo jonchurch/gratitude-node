@@ -1,98 +1,31 @@
-Testing AJAX code...
-<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
-<h1>AJAX error handling with jQuery</h1>
+<html>
+	<head>
+		<title>jsonp test</title>
+		<script src="http://code.jquery.com/jquery-1.6.2.min.js"></script>		
+		<script type="text/javascript">
+            $(function(){				
+                $('#select_link').click(function(e){
+                    e.preventDefault();
+                    console.log('select_link clicked');
+                    
+					var data = {};
+					
+					$.ajax({
+						type: 'GET',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: 'http://localhost:3000/users/',						
+                        success: function(data) {
+                            console.log('success');
+                            console.log(JSON.stringify(data));
+                        }
+                    });
 
-<div>
-    <button id="myBtnAjax">AJAX communication with error</button>
-</div>
-
-<div id="result">
-</div>
-
-
-<!-- <script>
-     $( document ).ready(function() {
-         // Handler for .ready() called. 
-         alert("hey whats up");
-     });
-
-    function ajax(options) {
-        return new Promise(function (resolve, reject) {
-            $.ajax(options).done(resolve).fail(reject);
-        });
-    }
-    ajax({
-        url: 'http://localhost:3000/users/login',
-        type: 'post',
-        dataType: 'json',
-        data: {
-        enail: "adrian@adriannadeau.com",
-        password: "password"
-        }
-    }).then(
-        function fulfillHandler(data) {
-        // callback
-        alert("login...");
-        }
-    ).catch(function errorHandler(error) {
-        // error
-        alert("error: "+error.);
-    });
-</script> -->
-<script>
-        $(document).ready(function() {
-
-        $('#myBtnAjax').click(function() {
-
-        /**
-         * http://api.jquery.com/jQuery.ajax/
-         */
-        $.ajax({
-            url: '/non-existent-path-adsasd',
-
-            type: "GET",
-
-            dataType: "json",
-
-            data: {
-                name: "John",
-                location: "Boston"
-            },
-
-            /**
-             * A function to be called if the request fails. 
-             */
-            error: function(jqXHR, textStatus, errorThrown) {
-                alert('An error occurred... Look at the console (F12 or Ctrl+Shift+I, Console tab) for more information!');
-
-                $('#result').html('<p>status code: '+jqXHR.status+'</p><p>errorThrown: ' + errorThrown + '</p><p>jqXHR.responseText:</p><div>'+jqXHR.responseText + '</div>');
-                console.log('jqXHR:');
-                console.log(jqXHR);
-                console.log('textStatus:');
-                console.log(textStatus);
-                console.log('errorThrown:');
-                console.log(errorThrown);
-            },
-
-            /**
-             * A function to be called if the request succeeds.
-             */
-            success: function(data, textStatus, jqXHR) {
-                $('#result').html(data);
-                alert('Load was performed. Look at the console (F12 or Ctrl+Shift+I, Console tab) for more information! ');
-                console.log('jqXHR:');
-                console.log(jqXHR);
-                console.log('textStatus:');
-                console.log(textStatus);
-                console.log('data:');
-                console.log(data);
-            }
-        });
-
-    });
-
-});
-
-///////////////////////////////////////////////////////////
-
-</script>
+                });				
+            });
+        </script>
+    </head>
+    <body>
+        <div id="select_div"><a href="#" id="select_link">Test</a></div>    
+    </body>
+</html>

@@ -19,4 +19,6 @@ router.get('/ajaxtest', function(req, res) {
   res.render('ajaxtest');
 });
 
+
+
 module.exports = router;

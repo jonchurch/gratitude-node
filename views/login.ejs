@@ -86,54 +86,40 @@
                      event.stopPropagation();
                  }
                  else{
-                     var email = $("#email").val();
-                     var password = $("#password").val();
                      
-                     if( email != "" && password != "" ){
-                        $.ajax({
-                              url: 'http://localhost:3000/users/login',
-                              type: "POST",
-                              dataType: "json",
-                              data: {
-                              email: email,
-                              password: password
-                              },
-
-
-                               /**
-                               * A function to be called if the request succeeds.
-                               */
-                               success: function(data, textStatus, jqXHR) {
-                                console.log("id : "+data._id);
-                                 window.location.assign("http://localhost:3000/profile/?id="+data._id);
-                                 
-                                 
-                               },
-                              /**
-                               * A function to be called if the request fails. 
-                               */
-                              error: function(jqXHR, textStatus, errorThrown) {
-                                 alert('An error occurred... Look at the console (F12 or Ctrl+Shift+I, Console tab) for more information!');
-                                 alert('jqXHR:');
-                                 alert(jqXHR);
-                                 alert('textStatus:');
-                                 alert(textStatus);
-                                 alert('errorThrown:');
-                                 alert(errorThrown);
-                              }
-
-                             
-                        });
-                     }
-    
+                       
+                        			
+                            $('#select_link').click(function(e){
+                                e.preventDefault();
+                                console.log('select_link clicked');
+                                
+                                var data = {};
+                                var email = $("#email").val();
+                                var password = $("#password").val();
+                                
+                                if( email != "" && password != "" ){
+                                    $.ajax({
+                                        type: 'GET',
+                                        data: JSON.stringify(data),
+                                        contentType: 'application/json',
+                                        url: 'http://localhost:3000/users/',						
+                                        success: function(data) {
+                                            console.log('success');
+                                            console.log(JSON.stringify(data));
+                                        }
+                                        
+                                    });
+                                }
+                            }
+                            
 
 
 
-///////////////////////////////////////////////////////////
 
-               }
+                 }
                  
-              form.classList.add('was-validated');
+                 
+                   form.classList.add('was-validated');
              }, false);
          });
          }, false);

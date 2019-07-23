@@ -103,18 +103,13 @@ router.post('/',function(req,res){
    
   console.log("email: "+req.body.email)
   User.findOne({ email:req.body.email}, function (err, user) {
-      console.log("user exists");
-    if (err){ 
-      console.log("err:"+err);
-      console.log("err:"+err.message);
-      
-      res.status(410);
-      res.send(err.message);
-      
-      //res.json("Email already in use"); 
-      next();  
-  	}
-  	else{
+       if (user){ 
+            //check to see if email already in db
+            console.log("err:"+err);
+            res.send("User Already Exists");
+            res.status(400);
+        }
+        else{
         //save user  
         console.log("create new user");
         var user = new User({
