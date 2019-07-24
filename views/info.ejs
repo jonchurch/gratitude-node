@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+   <head>
+        <% include partials/head %>
+    </head>
+   <body>
+      <section class="pb_cover_v3 cover-bg-opacity text-left pb_gradient_v1">
+         <div class="container">
+            <div class="row align-items-center justify-content-center">
+              
+               
+               <div class="col-md-6 relative align-self-center join-today-index">
+                   <div class="col-md-12 mb-3 md-form text-center" style="padding-top:20px">Optional, can be updated later</div>
+                  <div class="panel panel-default">
+                     <div class="panel-heading">
+                        <h3 class="panel-title text-center">More about you.</h3>
+                     </div>
+                     <div class="panel-body">
+                        <form class="needs-validation" novalidate>
+                           
+                              
+                              
+                           <div class="form-row">
+                              <div class="col-md-12 mb-3">
+                                
+                                 <div class="input-group">
+                                    <div class="input-group-prepend">
+                                    </div>
+                                    <div class="form-group shadow-textarea">
+                                    <label for="exampleFormControlTextarea6"></label>
+                                    <textarea class="form-control z-depth-1" id="exampleFormControlTextarea6" rows="5" placeholder="Let us know a little about you..."></textarea>
+                                    </div>
+                                    
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="form-row">
+                              <div class="col-md-12 mb-3">
+                                 
+                                 <div class="input-group">
+                                    <input type="text" class="form-control" id="address" placeholder="Address...">
+                                    
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="form-row">
+                              <div class="col-md-12 mb-3">
+                                 
+                               
+                                <img src="/images/coverphotos/profile.jpg" class="rounded-circle z-depth-1-half avatar-pic" alt="example placeholder avatar">
+                                
+                               </div>     
+                                <div class="btn btn-mdb-color btn-rounded float-left">
+                                
+                                <input type="file">
+                            </div>
+                           </div>
+                           <button class="col-md-12 btn btn-primary btn-lg btn-block pb_btn-pill  btn-shadow-blue text-center" id="btn_skip">Skip</button><br/>
+                           <button class="col-md-12 btn btn-primary btn-lg btn-block pb_btn-pill  btn-shadow-blue text-center" type="submit">Save</button><br/>
+                            
+                           
+                     
+                     
+                     </div>
+                     </div>
+                 </div>
+                  </form>
+                  
+                  
+               </div>
+            </div>
+         </div>
+         </div>
+      </section>
+      <% include partials/footer %>
+       <% include partials/scripts %>
+      
+    </body>
+    <script>
+    
+$("#btn_skip").click(function(event) {
+   // Prevent the form from submitting via the browser.
+   event.preventDefault();
+  
+   window.location.assign("/profile/?id="+req.params.id);
+  
+
+});
+</script>
+</html>

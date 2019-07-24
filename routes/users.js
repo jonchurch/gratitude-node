@@ -78,7 +78,7 @@ router.post('/login', function(req, res) {
 ////////////////////
 ////USER Profile////
 ////////////////////
-router.post('/profile/:id', function(req, res) {
+router.get('/profile/:id', function(req, res) {
     console.log("go to profile page")
     console.log(req.params.id);
     if (err){ 
@@ -136,6 +136,21 @@ router.post('/',function(req,res){
         
   });
  });   
- 
+ ////////////////////
+////NEW USER REG////
+////////////////////
+router.get('/info/:id', function(req, res) {
+    console.log("go to register page")
+    console.log(req.params.id);
+    if (err){ 
+      console.log("err:"+err);
+      res.send(err.message);
+      next();  
+    }
+    res.send(req.params.id);
+  
+  
+  
+ });        
 
 module.exports = router;

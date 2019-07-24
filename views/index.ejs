@@ -37,14 +37,14 @@
                            <div class="form-row">
                               <div class="col-md-6 mb-3">
                                  <label for="firstname">First name</label>
-                                 <input type="text" class="form-control" id="firstname" value="Adrian" required>
+                                 <input type="text" class="form-control" id="firstname" required>
                                  <div class="invalid-feedback">
                                     Please enter your firstname.
                                  </div>
                               </div>
                               <div class="col-md-6 mb-3">
                                  <label for="lastname">Last name</label>
-                                 <input type="text" class="form-control" id="lastname" value="Nadeau" required>
+                                 <input type="text" class="form-control" id="lastname" required>
                                  <div class="invalid-feedback">
                                     Please enter your lastname.
                                  </div>
@@ -56,7 +56,7 @@
                                  <div class="input-group">
                                     <div class="input-group-prepend">
                                     </div>
-                                    <input type="email" class="form-control" id="email" value="adrian@adriannadeau.com" required>
+                                    <input type="email" class="form-control" id="email" required>
                                     <div class="invalid-feedback">
                                        Please enter a valid email.
                                     </div>
@@ -135,7 +135,7 @@ $(".err-msg").hide();
 $("#createUserForm").submit(function(event) {
    // Prevent the form from submitting via the browser.
    event.preventDefault();
-   alert("button clicked");
+  
 
 });
 (function() {
@@ -159,6 +159,8 @@ $("#createUserForm").submit(function(event) {
                
            }
          }else{
+            
+             
             // PREPARE FORM DATA
             var formData = {
                firstname : $("#firstname").val(),
@@ -170,25 +172,8 @@ $("#createUserForm").submit(function(event) {
                bio: "",
                avatar: ""
             }
-            // DO POST
-           
-               $.ajax({
-                  type : "POST",
-                  contentType : "application/json",
-                  url : "http//localhost:3000/users/",
-                  data : JSON.stringify(formData),
-                  dataType : 'json',
-                  success : function(customer) {
-                     $(".err-msg").html("<p>" + 
-                        "Post Successfully! <br>" + JSON.stringify(customer)); 
-                        $(".err-msg").show();
-                  },
-                  error : function(e) {
-                     $(".err-msg").html("<p>" + 
-                        "Post Failed! <br>"+e );
-                        $(".err-msg").show(); 
-                  }
-               });
+            ajaxCreateUserPost(formData);
+            
          }
       //call ajax here
      form.classList.add('was-validated');

@@ -1,44 +1,24 @@
-
-	
-	// SUBMIT FORM
-    $("#createUserForm").submit(function(event) {
-		// Prevent the form from submitting via the browser.
-		event.preventDefault();
-		alert("button clicked");
-		
-		//ajaxPost();
-	});
-    
-    
-    function ajaxPost(){
-    	alert("in ajax");
-    	// PREPARE FORM DATA
-    	var formData = {
-    		firstname : $("#firstname").val(),
-    		lastname :  $("#lastname").val()
-    	}
-    	
+//CREATE NEW USER
+function ajaxCreateUserPost(formData){
     	// DO POST
+        
     	$.ajax({
-			type : "POST",
-			contentType : "application/json",
-			url : window.location + "http//localhost:3000/users/",
-			data : JSON.stringify(formData),
-			dataType : 'json',
-			success : function(customer) {
-				$(".err-msg").html("<p>" + 
-					"Post Successfully! <br>" + JSON.stringify(customer)); 
-					$(".err-msg").show();
-			},
-			error : function(e) {
-				$(".err-msg").html("<p>" + 
-					"Post Failed! <br>"+e );
-					$(".err-msg").show(); 
-			}
-			
-		});
-    	
-    	// Reset FormData after Posting
+                  type : "POST",
+                  data : JSON.stringify(formData),
+                  contentType : "application/json",
+                  url : "/users/",
+                  success : function(customer) {
+                      //forward page with id to fill in optional information
+                      console.log("id : "+customer._id);
+                    window.location.assign("/info/?id="+customer._id);
+                    
+                  },
+                  error : function(e) {
+                     $(".err-msg").html("<p>" + 
+                        "Post Failed! <br>"+e );
+                        $(".err-msg").show(); 
+                  }
+               });
     	
 
     }

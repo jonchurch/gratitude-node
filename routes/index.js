@@ -15,6 +15,10 @@ router.get('/profile', function(req, res) {
   res.render('profile');
 });
 
+router.get('/info', function(req, res) {
+  res.render('info');
+});
+
 router.get('/ajaxtest', function(req, res) {
   res.render('ajaxtest');
 });
