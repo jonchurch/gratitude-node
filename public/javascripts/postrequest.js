@@ -9,7 +9,7 @@
     
     
     function ajaxPost(){
-    	
+    	alert("in ajax");
     	// PREPARE FORM DATA
     	var formData = {
     		firstname : $("#firstname").val(),
@@ -24,14 +24,16 @@
 			data : JSON.stringify(formData),
 			dataType : 'json',
 			success : function(customer) {
-				$("#postResultDiv").html("<p>" + 
-					"Post Successfully! <br>" +
-					"--->" + JSON.stringify(customer)+ "</p>"); 
+				$(".err-msg").html("<p>" + 
+					"Post Successfully! <br>" + JSON.stringify(customer)); 
+					$(".err-msg").show();
 			},
 			error : function(e) {
-				alert("Error!")
-				console.log("ERROR: ", e);
+				$(".err-msg").html("<p>" + 
+					"Post Failed! <br>" );
+					$(".err-msg").show(); 
 			}
+			
 		});
     	
     	// Reset FormData after Posting
