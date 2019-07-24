@@ -126,40 +126,76 @@
       
     </body>
     <script type="text/javascript">
-      $( document ).ready(function() {
-         // Handler for .ready() called.
-         $(".err-msg").hide();
-         (function() {
-             'use strict';
-             window.addEventListener('load', function() {
-                 // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                 var forms = document.getElementsByClassName('needs-validation');
-                 // Loop over them and prevent submission
-                 var validation = Array.prototype.filter.call(forms, function(form) {
-                 form.addEventListener('submit', function(event) {
-                 if (form.checkValidity() === false) {
-                   
-                     
-                    // Get the checkbox
-                    if($("#invalidCheck").prop("checked") == false){
-                        $("#checkbox-validate").show();
-                    }
-                    else{
-                        $("#checkbox-validate").hide();
-                    }
-                    
-                   
+$( document ).ready(function() {
+
+$(".err-msg").hide();
+     
+
+});
+$("#createUserForm").submit(function(event) {
+   // Prevent the form from submitting via the browser.
+   event.preventDefault();
+   alert("button clicked");
+
+});
+(function() {
+    'use strict';
+    window.addEventListener('load', function() {
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.getElementsByClassName('needs-validation');
+        // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function(form) {
+        form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          
+            
+           // Get the checkbox
+          
+           if($("#invalidCheck").prop("checked") == false){
+               $("#checkbox-validate").show();
+           }
+           else{
+               $("#checkbox-validate").hide();
                
-                 }
-                 
-                 
-              form.classList.add('was-validated');
-             }, false);
-         });
-         }, false);
-         })();
-      });
-      </script>
+           }
+         }else{
+            // PREPARE FORM DATA
+            var formData = {
+               firstname : $("#firstname").val(),
+               lastname :  $("#lastname").val(),
+               email :  $("#email").val(),
+               password :  $("#password").val(),
+               public :  $("#public").val(),
+               location :  "",
+               bio: "",
+               avatar: ""
+            }
+            // DO POST
+           
+               $.ajax({
+                  type : "POST",
+                  contentType : "application/json",
+                  url : "http//localhost:3000/users/",
+                  data : JSON.stringify(formData),
+                  dataType : 'json',
+                  success : function(customer) {
+                     $(".err-msg").html("<p>" + 
+                        "Post Successfully! <br>" + JSON.stringify(customer)); 
+                        $(".err-msg").show();
+                  },
+                  error : function(e) {
+                     $(".err-msg").html("<p>" + 
+                        "Post Failed! <br>"+e );
+                        $(".err-msg").show(); 
+                  }
+               });
+         }
+      //call ajax here
+     form.classList.add('was-validated');
+    }, false);
+});
+}, false);
+})();
+ 
+</script>
 </html>
-
-

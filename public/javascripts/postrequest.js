@@ -4,7 +4,9 @@
     $("#createUserForm").submit(function(event) {
 		// Prevent the form from submitting via the browser.
 		event.preventDefault();
-		ajaxPost();
+		alert("button clicked");
+		
+		//ajaxPost();
 	});
     
     
@@ -30,7 +32,7 @@
 			},
 			error : function(e) {
 				$(".err-msg").html("<p>" + 
-					"Post Failed! <br>" );
+					"Post Failed! <br>"+e );
 					$(".err-msg").show(); 
 			}
 			
