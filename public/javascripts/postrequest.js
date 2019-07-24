@@ -1,4 +1,4 @@
-$( document ).ready(function() {
+
 	
 	// SUBMIT FORM
     $("#createUserForm").submit(function(event) {
@@ -20,7 +20,7 @@ $( document ).ready(function() {
     	$.ajax({
 			type : "POST",
 			contentType : "application/json",
-			url : window.location + "api/customers/save",
+			url : window.location + "http//localhost:3000/users/",
 			data : JSON.stringify(formData),
 			dataType : 'json',
 			success : function(customer) {
@@ -35,12 +35,7 @@ $( document ).ready(function() {
 		});
     	
     	// Reset FormData after Posting
-    	resetData();
+    	
 
     }
     
-    function resetData(){
-    	$("#firstname").val("");
-    	$("#lastname").val("");
-    }
-})

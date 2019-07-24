@@ -32,7 +32,8 @@
                         <h3 class="panel-title text-center">Join.</h3>
                      </div>
                      <div class="panel-body">
-                        <form class="needs-validation" novalidate>
+                        <form class="needs-validation" id="createUserForm" novalidate>
+                        
                            <div class="form-row">
                               <div class="col-md-6 mb-3">
                                  <label for="firstname">First name</label>
@@ -128,8 +129,6 @@
       $( document ).ready(function() {
          // Handler for .ready() called.
          $(".err-msg").hide();
-         
-      });
          (function() {
              'use strict';
              window.addEventListener('load', function() {
@@ -139,9 +138,8 @@
                  var validation = Array.prototype.filter.call(forms, function(form) {
                  form.addEventListener('submit', function(event) {
                  if (form.checkValidity() === false) {
-                    
-                     event.preventDefault();
-                     event.stopPropagation();
+                   
+                     alert("check box");
                     // Get the checkbox
                     if($("#invalidCheck").prop("checked") == false){
                         $("#checkbox-validate").show();
@@ -149,58 +147,18 @@
                     else{
                         $("#checkbox-validate").hide();
                     }
-                    //confirm passwords
-
+                    
+                   
                
                  }
-                 else{
-                   //check for agreement checked
-                   
-                   var email = $("#email").val();
-                    var password = $("#password").val();
-                    var confirmpassword = $("#password").val();
-                    var firstname = $("#firstname").val();
-                    var lastname = $("#lastname").val();
-                    if( email != "" && password != "" ){
-               
-                  $.ajax({
-                      url:'http://localhost:3000/users/',
-                      type:'post',
-                      data:{firstname: firstname, lastname: lastname, email:email,password:password,confirmpassword:confirmpassword},
-                      
-                    /**
-                    * A function to be called if the request succeeds.
-                    */
-                    success: function(data, textStatus, jqXHR) {
-                        console.log("id : "+data._id);
-                        window.location.assign("http://localhost:3000/profile/?id="+data._id);
-                                 
-                                 
-                    },
-                    /**
-                    * A function to be called if the request fails. 
-                    */
-                    error: function(jqXHR, textStatus, errorThrown) {
-                        alert('An error occurred... Look at the console (F12 or Ctrl+Shift+I, Console tab) for more information!');
-                        alert('jqXHR:');
-                        alert(jqXHR);
-                        alert('textStatus:');
-                        alert(textStatus);
-                        alert('errorThrown:');
-                        alert(errorThrown);
-                    }
-            
-                    
-                  });
-                }
-           
-              }
+                 
                  
               form.classList.add('was-validated');
              }, false);
          });
          }, false);
          })();
+      });
       </script>
 </html>
 
