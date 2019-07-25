@@ -55,7 +55,7 @@
                                 <input type="file">
                             </div>
                            </div>
-                           <button class="col-md-12 btn btn-primary btn-lg btn-block pb_btn-pill  btn-shadow-blue text-center" id="btn_skip">Skip</button><br/>
+                           <button class="col-md-12 btn btn-primary btn-lg btn-block pb_btn-pill  btn-shadow-blue text-center" id="btn_skip">-Skip</button><br/>
                            <button class="col-md-12 btn btn-primary btn-lg btn-block pb_btn-pill  btn-shadow-blue text-center" type="submit">Save</button><br/>
                             
                            
@@ -77,14 +77,84 @@
       
     </body>
     <script>
-    
-$("#btn_skip").click(function(event) {
-   // Prevent the form from submitting via the browser.
-   event.preventDefault();
-  
-   window.location.assign("/profile/?id="+req.params.id);
-  
 
-});
+    $(document).ready(function() {
+     /**
+       * JavaScript Get URL Parameter
+       * 
+       * @param String prop The specific URL parameter you want to retreive the value for
+       * @return String|Object If prop is provided a string value is returned, otherwise an object of all properties is returned
+       */
+      
+      function getUrlParams(id) {
+         var params = {};
+         var search = decodeURIComponent( window.location.href.slice( window.location.href.indexOf( '?' ) + 1 ) );
+         var definitions = search.split( '&' );
+
+         definitions.forEach( function( val, key ) {
+            var parts = val.split( '=', 2 );
+            params[ parts[ 0 ] ] = parts[ 1 ];
+         } );
+
+         return ( prop && prop in params ) ? params[ prop ] : params;
+      }
+      // $.ajax({
+      //     url: '/users/',
+      //     type: "GET",
+      //     dataType: "json",
+      //     data: {_id: req.params.id},
+      //       success: function(data, textStatus, jqXHR) {
+      //              //set first name, lastname, email, avatar 
+      //              alert("success");
+      //              var fName=data.firstname;
+      //              alert(fName);
+      //              var LName=data.lastname;
+      //              alert(LName);
+      //              $("#name").html(fName);
+                   
+                   
+      //       },
+                
+      //       error: function(jqXHR, textStatus, errorThrown) {
+      //               alert('An error occurred!');
+      //               alert('jqXHR:');
+      //               alert(jqXHR);
+      //               alert('textStatus:');
+      //               alert(textStatus);
+      //               alert('errorThrown:');
+      //               alert(errorThrown);
+      //       }
+      //   });
+        
+      // $.ajax({
+      //     url: '/users/5d375a6900d0401c2013d6f6',
+      //     type: "GET",
+      //     dataType: "json",
+      //     data: {},
+      //       success: function(data, textStatus, jqXHR) {
+      //          //console.log("id: "+req.params.id);
+      //              //set first name, lastname, email, avatar 
+      //             //  alert("success");
+      //             //  var fName=data.firstname;
+      //             //  alert(fName);
+      //             //  var LName=data.lastname;
+      //             //  alert(LName);
+      //             //  $("#name").html(fName);
+                   
+                   
+      //       },
+                
+      //       error: function(jqXHR, textStatus, errorThrown) {
+      //               alert('An error occurred!');
+      //               alert('jqXHR:');
+      //               alert(jqXHR);
+      //               alert('textStatus:');
+      //               alert(textStatus);
+      //               alert('errorThrown:');
+      //               alert(errorThrown);
+      //       }
+      //   });
+        
+    });
 </script>
 </html>
