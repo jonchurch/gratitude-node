@@ -156,36 +156,27 @@
     </section>
 
     <% include partials/profile-footer %>
+    <% include partials/scripts %>
 
     <script type = "text/javascript" >
     $(document).ready(function() {
       
       
+      var _id=($.urlParam('id'));
+      console.log(_id);
       $.ajax({
-          url: 'http://localhost:3000/users/',
+          url: '/users/?id='+_id,
           type: "GET",
           dataType: "json",
-          data: {_id: req.params.id},
+          data: {_id: _id},
             success: function(data, textStatus, jqXHR) {
                    //set first name, lastname, email, avatar 
-                   alert("success");
-                   var fName=data.firstname;
-                   alert(fName);
-                   var LName=data.lastname;
-                   alert(LName);
-                   $("#name").html(fName);
                    
-                   
+                   $("#name").html(data.firstname+" "+data.lastname);
             },
-                
             error: function(jqXHR, textStatus, errorThrown) {
                     alert('An error occurred!');
-                    alert('jqXHR:');
-                    alert(jqXHR);
-                    alert('textStatus:');
-                    alert(textStatus);
-                    alert('errorThrown:');
-                    alert(errorThrown);
+                    
             }
         });
         

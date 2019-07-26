@@ -10,10 +10,11 @@
               
                
                <div class="col-md-6 relative align-self-center join-today-index">
-                   <div class="col-md-12 mb-3 md-form text-center" style="padding-top:20px">Optional, can be updated later</div>
+                   
                   <div class="panel panel-default">
                      <div class="panel-heading">
-                        <h3 class="panel-title text-center">More about you.</h3>
+                        <h3 class="text-center">Welcome <span id="name"></span>.</h3>
+                        <h2 class="panel-title text-center">Tell us more about yourself? Don't worry, you can do this later!</h2>
                      </div>
                      <div class="panel-body">
                         <form class="needs-validation" novalidate>
@@ -55,7 +56,7 @@
                                 <input type="file">
                             </div>
                            </div>
-                           <button class="col-md-12 btn btn-primary btn-lg btn-block pb_btn-pill  btn-shadow-blue text-center" id="btn_skip">-Skip</button><br/>
+                           <button class="col-md-12 btn btn-primary btn-lg btn-block pb_btn-pill  btn-shadow-blue text-center" id="btn_skip">Skip</button><br/>
                            <button class="col-md-12 btn btn-primary btn-lg btn-block pb_btn-pill  btn-shadow-blue text-center" type="submit">Save</button><br/>
                             
                            
@@ -79,81 +80,30 @@
     <script>
 
     $(document).ready(function() {
-     /**
-       * JavaScript Get URL Parameter
-       * 
-       * @param String prop The specific URL parameter you want to retreive the value for
-       * @return String|Object If prop is provided a string value is returned, otherwise an object of all properties is returned
-       */
       
-      function getUrlParams(id) {
-         var params = {};
-         var search = decodeURIComponent( window.location.href.slice( window.location.href.indexOf( '?' ) + 1 ) );
-         var definitions = search.split( '&' );
+      var _id=($.urlParam('id'));
+      console.log(_id);
+      $.ajax({
+          url: '/users/'+_id,
+          type: "GET",
+          dataType: "json",
+          data: {_id: _id},
+            success: function(data, textStatus, jqXHR) {
+                   //set first name, lastname, email, avatar 
+                   
+                   $("#name").html(data.firstname+" "+data.lastname);
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                    alert('An error occurred!');
+                    
+            }
+        });
+        $("#btn_skip").submit(function(event) {
+            console.log("id: "+_id)
+            //http://localhost:3000/profile/?id=5d2cc90ed933a51f5c8200e1
+            window.location.assign("/profile/?id="+_id);
 
-         definitions.forEach( function( val, key ) {
-            var parts = val.split( '=', 2 );
-            params[ parts[ 0 ] ] = parts[ 1 ];
-         } );
-
-         return ( prop && prop in params ) ? params[ prop ] : params;
-      }
-      // $.ajax({
-      //     url: '/users/',
-      //     type: "GET",
-      //     dataType: "json",
-      //     data: {_id: req.params.id},
-      //       success: function(data, textStatus, jqXHR) {
-      //              //set first name, lastname, email, avatar 
-      //              alert("success");
-      //              var fName=data.firstname;
-      //              alert(fName);
-      //              var LName=data.lastname;
-      //              alert(LName);
-      //              $("#name").html(fName);
-                   
-                   
-      //       },
-                
-      //       error: function(jqXHR, textStatus, errorThrown) {
-      //               alert('An error occurred!');
-      //               alert('jqXHR:');
-      //               alert(jqXHR);
-      //               alert('textStatus:');
-      //               alert(textStatus);
-      //               alert('errorThrown:');
-      //               alert(errorThrown);
-      //       }
-      //   });
-        
-      // $.ajax({
-      //     url: '/users/5d375a6900d0401c2013d6f6',
-      //     type: "GET",
-      //     dataType: "json",
-      //     data: {},
-      //       success: function(data, textStatus, jqXHR) {
-      //          //console.log("id: "+req.params.id);
-      //              //set first name, lastname, email, avatar 
-      //             //  alert("success");
-      //             //  var fName=data.firstname;
-      //             //  alert(fName);
-      //             //  var LName=data.lastname;
-      //             //  alert(LName);
-      //             //  $("#name").html(fName);
-                   
-                   
-      //       },
-                
-      //       error: function(jqXHR, textStatus, errorThrown) {
-      //               alert('An error occurred!');
-      //               alert('jqXHR:');
-      //               alert(jqXHR);
-      //               alert('textStatus:');
-      //               alert(textStatus);
-      //               alert('errorThrown:');
-      //               alert(errorThrown);
-      //       }
-      //   });
+        });
         
     });
 </script>

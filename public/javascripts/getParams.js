@@ -1,17 +1,9 @@
-function GetURLParameter(sParam)
-{
-    var sPageURL = window.location.search.substring(1);
-    var sURLVariables = sPageURL.split('&');
-    for (var i = 0; i < sURLVariables.length; i++)
-    {
-        var sParameterName = sURLVariables[i].split('=');
+// method to get param(s) and return to call
 
-        if (sParameterName[0] == sParam){
-
-            return sParameterName[1];
-
-        }
-
-    }
-
-}​
+$.urlParam = function(name){
+    console.log("param: "+name);
+    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    console.log(window.location.href);
+    console.log("value:"+results);
+    return results[1] || 0;
+}
