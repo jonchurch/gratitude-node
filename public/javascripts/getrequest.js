@@ -1,28 +1,18 @@
-$( document ).ready(function() {
-	
-	// GET REQUEST
-	$("#allCustomers").click(function(event){
-		event.preventDefault();
-		ajaxGet();
-	});
-	
-	// DO GET
-	function ajaxGet(){
+// DO GET USER BY ID
+function ajaxGetUser(userId){
 		$.ajax({
-			type : "GET",
-			url : window.location + "api/customers/all",
-			success: function(result){
-				$('#getResultDiv ul').empty();
-				var custList = "";
-				$.each(result, function(i, customer){
-					$('#getResultDiv .list-group').append(customer.firstname + " " + customer.lastname + "<br>")
-				});
-				console.log("Success: ", result);
-			},
-			error : function(e) {
-				$("#getResultDiv").html("<strong>Error</strong>");
-				console.log("ERROR: ", e);
-			}
-		});	
-	}
-})
+          url: '/users/'+userId,
+          type: "GET",
+          dataType: "json",
+          data: {id: userId},
+            success: function(data, textStatus, jqXHR) {
+                   //set first name, lastname, email, avatar 
+                   return data;
+                   
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                    alert('An error occurred!');
+                    
+            }
+        }); 
+}

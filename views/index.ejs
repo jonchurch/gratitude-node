@@ -159,8 +159,6 @@ $("#createUserForm").submit(function(event) {
                
            }
          }else{
-            
-             
             // PREPARE FORM DATA
             var formData = {
                firstname : $("#firstname").val(),
@@ -172,7 +170,25 @@ $("#createUserForm").submit(function(event) {
                bio: "",
                avatar: ""
             }
-            ajaxCreateUserPost(formData);
+            $.ajax({
+                  type : "POST",
+                  data : JSON.stringify(formData),
+                  contentType : "application/json",
+                  url : "/users/",
+                  success : function(customer) {
+                      //forward page with id to fill in optional information
+                      console.log("id : "+customer._id);
+                    window.location.assign("/info/?id="+customer._id);
+                    
+                  },
+                  error : function(error) {
+                     $(".err-msg").html("<p>" + 
+                        "Registration Failed <br>");
+                        $(".err-msg").show(); 
+                  }
+               });
+    	
+
             
          }
       //call ajax here

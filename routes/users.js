@@ -61,12 +61,14 @@ router.post('/login', function(req, res) {
       console.log("user id"+user._id);
       if(user.email===req.body.email && user.password===req.body.password){
            //user exists
+           console.log('user exists');
           res.send(user);
 
          }
          else{
             //login failed
             console.log('does not');
+            res.send(user);
 
          }
          
@@ -87,9 +89,6 @@ router.get('/profile/:id', function(req, res) {
       next();  
     }
     res.send(req.params.id);
-  
-  
-  
  });        
 
 
@@ -103,9 +102,9 @@ router.post('/',function(req,res){
   console.log("email: "+req.body.email)
   User.findOne({ email:req.body.email}, function (error, user) {
       if(user){
-      //throw new Error('User Exists');
-      console.log("users exists");
-      //return something here.
+        
+        res.status(500).send('User Exists');
+        
     }
     else{
           //save user  
@@ -140,7 +139,7 @@ router.post('/',function(req,res){
 ////NEW USER REG////
 ////////////////////
 router.get('/info/:id', function(req, res) {
-    console.log("go to register page")
+    
     console.log(req.params.id);
     if (err){ 
       console.log("err:"+err);
@@ -148,9 +147,6 @@ router.get('/info/:id', function(req, res) {
       next();  
     }
     res.send(req.params.id);
-  
-  
-  
- });        
+});        
 
 module.exports = router;

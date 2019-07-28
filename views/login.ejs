@@ -81,17 +81,18 @@
                  var validation = Array.prototype.filter.call(forms, function(form) {
                  form.addEventListener('submit', function(event) {
                  if (form.checkValidity() === false) {
-                    
-                     event.preventDefault();
-                     event.stopPropagation();
+                    event.preventDefault();
+                     
                  }
                  else{
+                     event.preventDefault();
                      var email = $("#email").val();
+                     console.log(email);
                      var password = $("#password").val();
                      
-                     if( email != "" && password != "" ){
+                    if( email != "" && password != "" ){
                         $.ajax({
-                              url: 'http://localhost:3000/users/login',
+                              url: '/users/login',
                               type: "POST",
                               dataType: "json",
                               data: {
@@ -105,13 +106,7 @@
                                */
                                success: function(data, textStatus, jqXHR) {
                                 console.log("id : "+data._id);
-                                 window.location.assign("http://localhost:3000/profile/?id=345234532453452");
-                                 // alert('jqXHR:');
-                                 // alert(jqXHR);
-                                 // alert('textStatus:');
-                                 // alert(textStatus);
-                                // alert('errorThrown:');
-                                 //alert(errorThrown);
+                                 window.location.assign("/profile/?id=+data.result._id");
                                  
                                 //var url = "http://localhost:3000/users/profile/?id="+data.result._id;
                                  
@@ -120,13 +115,10 @@
                                * A function to be called if the request fails. 
                                */
                               error: function(jqXHR, textStatus, errorThrown) {
-                                 alert('An error occurred... Look at the console (F12 or Ctrl+Shift+I, Console tab) for more information!');
-                                 alert('jqXHR:');
-                                 alert(jqXHR);
-                                 alert('textStatus:');
-                                 alert(textStatus);
-                                 alert('errorThrown:');
-                                 alert(errorThrown);
+                                  $(".err-msg").html('Error logging in, please confirm username and password are correct');
+                                  $(".err-msg").show();
+                                 //alert('An error occurred');
+                            
                               }
 
                              

@@ -2,6 +2,12 @@
 function ajaxCreateUserPost(formData){
     	// DO POST
         
+    	
+    }
+//Update User Details
+function ajaxUserUserPost(formData){
+    	// DO POST
+        
     	$.ajax({
                   type : "POST",
                   data : JSON.stringify(formData),
@@ -22,4 +28,5 @@ function ajaxCreateUserPost(formData){
     	
 
     }
+    
     

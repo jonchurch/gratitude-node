@@ -55,14 +55,15 @@
                                 
                                 <input type="file">
                             </div>
+                            <p></p>
                            </div>
-                           <button class="col-md-12 btn btn-primary btn-lg btn-block pb_btn-pill  btn-shadow-blue text-center" id="btn_skip">Skip</button><br/>
-                           <button class="col-md-12 btn btn-primary btn-lg btn-block pb_btn-pill  btn-shadow-blue text-center" type="submit">Save</button><br/>
+                           <div class="col-md-12 mb-3">
+                               <div class="col-md-6"><button class="btn btn-primary btn-lg btn-block pb_btn-pill  btn-shadow-blue text-center" id="btn_skip">Skip</button></div>
+                               <div class="col-md-6"><button class="btn btn-primary btn-lg btn-block pb_btn-pill  btn-shadow-blue text-center" id="btn_save" type="submit">Save</button></div>
                             
                            
-                     
-                     
-                     </div>
+                            </div>
+                        </div>
                      </div>
                  </div>
                   </form>
@@ -80,30 +81,39 @@
     <script>
 
     $(document).ready(function() {
-      
-      var _id=($.urlParam('id'));
+    var _id=($.urlParam('id'));
+     var passId;
       console.log(_id);
+      //call get user
       $.ajax({
           url: '/users/'+_id,
           type: "GET",
           dataType: "json",
-          data: {_id: _id},
+          data: {id: _id},
             success: function(data, textStatus, jqXHR) {
                    //set first name, lastname, email, avatar 
+                    $("#name").html(data.firstname+" "+data.lastname);
+                    passId=data._id;
                    
-                   $("#name").html(data.firstname+" "+data.lastname);
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                    alert('An error occurred!');
+                    console.log('Error occurred on info.ejs');
                     
             }
+        }); 
+        $("#btn_skip").click(function() {
+            event.preventDefault();
+            
+            console.log('idpass'+passId);
+            window.location.assign("/profile/?id="+passId);
+            
         });
-        $("#btn_skip").submit(function(event) {
-            console.log("id: "+_id)
-            //http://localhost:3000/profile/?id=5d2cc90ed933a51f5c8200e1
-            window.location.assign("/profile/?id="+_id);
+        // $("#btn_save").submit(function(event) {
+        //     event.preventDefault();
+        //     //http://localhost:3000/profile/?id=5d2cc90ed933a51f5c8200e1
+        //     window.location.assign("/profile/?id="+_id);
 
-        });
+        // });
         
     });
 </script>
