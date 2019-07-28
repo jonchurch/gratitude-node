@@ -4,7 +4,7 @@ var router = express.Router();
 var express = require('express');
 var router = express.Router();
 var User = require("../models/UserModel");
-var userNotFound = require('../UserNotFoundError');
+
 
 router.use(express.json());
 
@@ -106,6 +106,7 @@ router.post('/',function(req,res){
        const error = new Error('User Exists');
         res.setHeader('Content-Type', 'application/json');
         res.status(410);
+        //console.log(error.response)
         res.send(JSON.stringify(error));
         
     }

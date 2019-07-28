@@ -184,7 +184,7 @@ $("#createUserForm").submit(function(event) {
                   error : function(error) {
                       console.log(error);
                       if(error.status==410){
-                         $(".err-msg").html(error.status);
+                         $(".err-msg").html("Email already in use.");
                         $(".err-msg").show(); 
                       }
                   }
