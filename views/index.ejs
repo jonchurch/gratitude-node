@@ -182,9 +182,11 @@ $("#createUserForm").submit(function(event) {
                     
                   },
                   error : function(error) {
-                     $(".err-msg").html("<p>" + 
-                        "Registration Failed <br>");
+                      console.log(error);
+                      if(error.status==410){
+                         $(".err-msg").html(error.status);
                         $(".err-msg").show(); 
+                      }
                   }
                });
     	

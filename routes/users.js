@@ -4,6 +4,7 @@ var router = express.Router();
 var express = require('express');
 var router = express.Router();
 var User = require("../models/UserModel");
+var userNotFound = require('../UserNotFoundError');
 
 router.use(express.json());
 
@@ -102,8 +103,10 @@ router.post('/',function(req,res){
   console.log("email: "+req.body.email)
   User.findOne({ email:req.body.email}, function (error, user) {
       if(user){
-        
-        res.status(500).send('User Exists');
+       const error = new Error('User Exists');
+        res.setHeader('Content-Type', 'application/json');
+        res.status(410);
+        res.send(JSON.stringify(error));
         
     }
     else{

@@ -8,6 +8,9 @@ var mongoose=require('mongoose');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+const { AssertionError } = require('assert');
+const { MongoError } = require('mongodb');
+
 var app = express();
 console.log("get DB Connection....");
 fs.readFile('dbConfig.txt', function (err, data) {
