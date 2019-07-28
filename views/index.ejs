@@ -147,18 +147,15 @@ $("#createUserForm").submit(function(event) {
         var validation = Array.prototype.filter.call(forms, function(form) {
         form.addEventListener('submit', function(event) {
         if (form.checkValidity() === false) {
-          
-            
-           // Get the checkbox
-          
-           if($("#invalidCheck").prop("checked") == false){
+          // Get the checkbox
+          if($("#invalidCheck").prop("checked") == false){
                $("#checkbox-validate").show();
-           }
+            }
            else{
                $("#checkbox-validate").hide();
-               
-           }
+            }
          }else{
+             event.preventDefault();
             // PREPARE FORM DATA
             var formData = {
                firstname : $("#firstname").val(),
