@@ -18,6 +18,18 @@ router.get('/profile', function(req, res) {
 router.get('/info', function(req, res) {
   res.render('info');
 });
+router.get('/account', function(req, res) {
+    res.render('account');
+});
+
+router.get('/journal', function(req, res) {
+    res.render('journal');
+});
+
+router.get('/support', function(req, res) {
+    res.render('support');
+});
+
 
 router.get('/ajaxtest', function(req, res) {
   res.render('ajaxtest');

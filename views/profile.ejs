@@ -11,7 +11,7 @@
     <a class="navbar-brand js-scroll-trigger" href="#page-top">
       <span class="d-block d-lg-none"><div id="name"></div></span>
       <span class="d-none d-lg-block">
-        <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="/profile-styles/img/profile.jpg" alt="">
+        <img class="img-fluid img-profile rounded-circle mx-auto mb-2"  id = "avatar" alt="">
       </span>
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,13 +23,13 @@
           <a class="nav-link js-scroll-trigger" href="#home">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#posts">My Account</a>
+          <a class="nav-link js-scroll-trigger" href="/account/">My Account</a>
         </li>
          <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#posts">My Journal</a>
+          <a class="nav-link js-scroll-trigger" href="/journal/">My Journal</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#support">Support</a>
+          <a class="nav-link js-scroll-trigger" href="/support">Support</a>
         </li>
         <li class="nav-item">
           <a class="nav-link js-scroll-trigger" href="/">Logout</a>
@@ -153,6 +153,8 @@
                     $("#firstname").html(data.firstname)
                     $("#lastname").html(data.lastname)
                     $("#email").html(data.email);
+                    $("#avatar").attr("src","../"+data.avatar);
+                    
                     
                     emailAddress= data.email;
                 },
