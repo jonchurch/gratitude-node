@@ -45,7 +45,7 @@
         <h1 class="mb-0"><span id="firstname"></span>
           <span class="text-primary" id="lastname"></span></span>
         </h1>
-        <div class="subheading mb-5"><span id="address"></span>
+        <div class="subheading mb-5"><span id="location"></span>
          <a href="#" id="email-link"><span id="email"></span></a>
         </div>
         <div class="form-group">
@@ -154,6 +154,8 @@
                     $("#lastname").html(data.lastname)
                     $("#email").html(data.email);
                     $("#avatar").attr("src","../"+data.avatar);
+                    $("#bio").html(data.bio);
+                    $("#location").html(data.location);
                     
                     
                     emailAddress= data.email;

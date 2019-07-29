@@ -16,17 +16,31 @@
                         <h3 class="panel-title text-center">My Account.</h3>
                      </div>
                      <div class="panel-body">
-                        <form class="needs-validation" novalidate>
-                           
-                              
-                              
+                         <form class="needs-validation" id="createUserForm" novalidate>
+                        
+                           <div class="form-row">
+                              <div class="col-md-6 mb-3">
+                                 <label for="firstname">First name</label>
+                                 <input type="text" class="form-control" id="firstname" required>
+                                 <div class="invalid-feedback">
+                                    Please enter your firstname.
+                                 </div>
+                              </div>
+                              <div class="col-md-6 mb-3">
+                                 <label for="lastname">Last name</label>
+                                 <input type="text" class="form-control" id="lastname" required>
+                                 <div class="invalid-feedback">
+                                    Please enter your lastname.
+                                 </div>
+                              </div>
+                           </div>
                            <div class="form-row">
                               <div class="col-md-12 mb-3">
                                  <label for="email">Email</label>
                                  <div class="input-group">
                                     <div class="input-group-prepend">
                                     </div>
-                                    <input type="email" class="form-control" value="adrian@adriannadeau.com" id="email" required>
+                                    <input type="email" class="form-control" id="email" required>
                                     <div class="invalid-feedback">
                                        Please enter a valid email.
                                     </div>
@@ -37,21 +51,68 @@
                               <div class="col-md-12 mb-3">
                                  <label for="email">Password</label>
                                  <div class="input-group">
-                                    <input type="password" class="form-control" id="password"  value="password" required>
+                                    <input type="password" class="form-control" id="password" value="password" required>
                                     <div class="invalid-feedback">
                                        Please enter a valid password.
                                     </div>
                                  </div>
                               </div>
                            </div>
-                           <button class="col-md-12 btn btn-primary btn-lg btn-block pb_btn-pill  btn-shadow-blue text-center" type="submit">Login</button><br/>
+                           <div class="form-row">
+                              <div class="col-md-12 mb-3">
+                                 <label for="email">Confirm Password</label>
+                                 <div class="input-group">
+                                    <input type="password" class="form-control" id="confirmpassword" value="password"  required>
+                                    <div class="invalid-feedback">
+                                       Please enter a valid password.
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                     </div>
+                     <div class="form-row">
+                              <div class="col-md-12 mb-3">
+                                
+                                 <div class="input-group">
+                                    <div class="input-group-prepend">
+                                    </div>
+                                    <div class="form-group shadow-textarea">
+                                    <label for="exampleFormControlTextarea6"></label>
+                                    <textarea class="form-control z-depth-1" id="exampleFormControlTextarea6" rows="5" placeholder="Let us know a little about you..."></textarea>
+                                    </div>
+                                    
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="form-row">
+                              <div class="col-md-12 mb-3">
+                                 
+                                 <div class="input-group">
+                                    <input type="text" class="form-control" id="address" placeholder="Address...">
+                                    
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="form-row">
+                              <div class="col-md-12 mb-3">
+                                 
+                               
+                                <img src="/images/coverphotos/profile.jpg" class="rounded-circle z-depth-1-half avatar-pic" alt="example placeholder avatar">
+                                
+                               </div>     
+                                <div class="btn btn-mdb-color btn-rounded float-left">
+                                
+                                <input type="file">
+                            </div>
+                            <p></p>
+                           </div>
+                           <div class="col-md-12 mb-3">
+                               <div class="col-md-6"><button class="btn btn-primary btn-lg btn-block pb_btn-pill  btn-shadow-blue text-center" id="btn_skip">Skip</button></div>
+                               <div class="col-md-6"><button class="btn btn-primary btn-lg btn-block pb_btn-pill  btn-shadow-blue text-center" id="btn_save" type="submit">Save</button></div>
                             
-                            <div class="col-md-12 mb-3 md-form text-center" style="padding-top:20px">Not a member? <a style="color:green !important;" href="index.jsp">Register here.</a>
-                             </div>
-                     </div>
-                     
-                     
-                     </div>
+                           
+                            </div>
+                        </div>
                      </div>
                  </div>
                   </form>
