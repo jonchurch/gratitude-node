@@ -8,21 +8,27 @@
          <div class="container">
             <div class="row align-items-center justify-content-center">
                <div class="col-md-6" style="margin-top:-200px;">
-                  <h2 class="heading text-left">GratitudeToday.io</h2>
-                  <div class="sub-heading text-left">
-                     <p class="mb-4">See what people are being grateful around the world right now</p>
-                  </div>
-                  <div class="sub-heading text-left">
-                     <p class="mb-4">Gratitude makes us happier.</p>
-                  </div>
-                  <div class="sub-heading text-left">
-                       
-                     <p class="mb-4">Gratitude makes us healthier.</p>
-                  </div>
-                  <div class="sub-heading text-left">
-                     <p class="mb-4">Join the Gratitude Community.</p>
-                  </div>
-               </div>
+                     <h2 class="heading text-left">GratitudeToday.io</h2>
+                     <div class="sub-heading text-left" style="padding-bottom:30px !important">
+                         <p class="mb-12">See what people aroud the World are grateful for right now.</p>
+ 
+                     </div>
+ 
+                     <div class="row col-md-12">
+ 
+                         <div class="sub-heading text-left">
+                             <p class="mb-4"><i class="far fa-smile"></i>&nbsp;Gratitude makes us happier.</p>
+                         </div>
+                         <div class="sub-heading text-left">
+ 
+                             <p class="mb-4"><i class="fas fa-heart"></i>&nbsp;Gratitude makes us healthier.</p>
+                         </div>
+                         <div class="sub-heading text-left">
+                             <p class="mb-4"><i class="fas fa-users"></i>&nbsp;Join the Gratitude Community.</p>
+                         </div>
+                         
+                     </div>
+                 </div>
                <div class="col-md-1">
                </div>
                <div class="col-md-5 relative align-self-center join-today-index">
@@ -65,11 +71,15 @@
                            </div>
                            <div class="form-row">
                               <div class="col-md-12 mb-3">
-                                 <label for="email">Password</label>
+                                 <label for="email">Password</label><i class="optional">&nbsp;(Must be between 6-20 chars)</i>
                                  <div class="input-group">
-                                    <input type="password" class="form-control" id="password" value="password" required>
-                                    <div class="invalid-feedback">
-                                       Please enter a valid password.
+                                    <input type="password" class="form-control" id="password" minlength="6" maxlength="20" required>
+                                    <div class="invalid-feedback valid-password">
+                                          Please enter a valid password.
+                                    </div>
+                                    <div class="invalid-feedback lengthcheck">
+                                          Passwords must be at least 6 characters
+                                          
                                     </div>
                                  </div>
                               </div>
@@ -78,9 +88,12 @@
                               <div class="col-md-12 mb-3">
                                  <label for="email">Confirm Password</label>
                                  <div class="input-group">
-                                    <input type="password" class="form-control" id="confirmpassword" value="password"  required>
-                                    <div class="invalid-feedback">
-                                       Please enter a valid password.
+                                    <input type="password" class="form-control" id="confirmpassword" minlength="6" maxlength="20" required>
+                                    <div class="invalid-feedback password-confirm">
+                                          Confirm Password
+                                     </div>
+                                    <div class="invalid-feedback passwords-not-equal">
+                                          Passwords must be same
                                     </div>
                                  </div>
                               </div>
@@ -89,8 +102,8 @@
                      <div class="form-group">
                      <div class="form-check">
                      <input class="form-check-input" type="checkbox" checked id="public">
-                     <label class="form-check-label" for="public">
-                     <span style="padding-left:20px;">Share posts with public.</span>
+                     <label class="form-check-label" for="publicBoolean">
+                     <span style="padding-left:20px;">Share posts with public</span>&nbsp;<i class="optional">(Optional)</i>
                      </label>
                      </div>
                      </div>
@@ -101,7 +114,7 @@
                      <span style="padding-left:20px;">Agree to terms and conditions</span>
                      </label>
                      <div class="invalid-feedback" id="checkbox-validate" required>
-                     You must agree before submitting.
+                     You must agree before submitting
                      </div>
                      </div>
                      </div>
@@ -127,8 +140,12 @@
     </body>
     <script type="text/javascript">
 $( document ).ready(function() {
-
+   
 $(".err-msg").hide();
+ $(".lengthcheck").hide();
+ $(".passwords-not-equal").hide();
+ $(".lengthcheck").hide();
+ 
      
 
 });
@@ -147,6 +164,31 @@ $("#createUserForm").submit(function(event) {
         var validation = Array.prototype.filter.call(forms, function(form) {
         form.addEventListener('submit', function(event) {
         if (form.checkValidity() === false) {
+           //confirm  password are equal
+           if($('#password').val().length<6){
+            $(".valid-password").hide();
+            $(".lengthcheck").show();
+            
+
+           }else{
+            $(".valid-password").hide();
+            $(".lengthcheck").hide();
+
+           }
+           console.log($("#password").val());
+           console.log($("#confirmpassword").val());
+            if($("#password").val()!= $("#confirmpassword").val()){
+              console.log("not equal");
+              $(".password-confirm").hide();
+               $(".passwords-not-equal").show();
+           }
+           
+         //   var publicValue=true;
+         //   if($("#publicBoolean").prop("checked") == false){
+         //    publicValue=false;
+         //   }
+         //   console.log("pub: "+publicValue);    
+           
           // Get the checkbox
           if($("#invalidCheck").prop("checked") == false){
                $("#checkbox-validate").show();
@@ -154,8 +196,10 @@ $("#createUserForm").submit(function(event) {
            else{
                $("#checkbox-validate").hide();
             }
+            
          }else{
              event.preventDefault();
+             //console.log("public:"+$("#public").val())
             // PREPARE FORM DATA
             var formData = {
                firstname : $("#firstname").val(),

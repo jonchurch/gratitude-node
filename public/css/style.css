@@ -1018,7 +1018,9 @@ html {
   font-size: 1em; }
 
 body {
-  font-family: "Montserrat", Arial, sans-serif; }
+  font-family: "Montserrat", Arial, sans-serif; 
+  
+}
 
 input, textarea, p {
   font-weight: 300; }
@@ -1746,4 +1748,5 @@ margin-top: 0;
     font-size: 16px;
     color: red !important;
 }
+
 

@@ -10,59 +10,100 @@
               
                
                <div class="col-md-6 relative align-self-center join-today-index">
-                  <div class="text-center err-msg">Message</div>
+                  <div class="text-center err-msg"></div>
                   <div class="panel panel-default">
-                     <div class="panel-heading">
-                        <h3 class="panel-title text-center">Support.</h3>
-                     </div>
+                        <div class="panel-heading">
+                              <h3 class="panel-title text-center">Contact Us.</h3>
+                           </div>
                      <div class="panel-body">
-                        <form class="needs-validation" novalidate>
+                        
                            
-                              
-                              
-                           <div class="form-row">
-                              <div class="col-md-12 mb-3">
-                                 <label for="email">Email</label>
-                                 <div class="input-group">
-                                    <div class="input-group-prepend">
-                                    </div>
-                                    <input type="email" class="form-control" value="adrian@adriannadeau.com" id="email" required>
-                                    <div class="invalid-feedback">
-                                       Please enter a valid email.
-                                    </div>
+               <!--Section description-->
+               <p class="text-center w-responsive mx-auto mb-5">
+                  Questions or concerns? If so, don't be shy to send us a message.
+                  <br/>Heck, getting together for a coffee is awesome too!</p>
+               
+
+               <div class="row">
+
+                  <!--Grid column-->
+                  <div class="col-md-12 mb-md-0 mb-5">
+                     <form id="contact-form" name="contact-form" action="#" method="POST">
+
+                           <!--Grid row-->
+                           <div class="row">
+
+                              <!--Grid column-->
+                              <div class="col-md-12">
+                                 <div class="md-form mb-0">
+                                       <label for="name" class="">Your name</label>
+                                       <input type="text" id="name" name="name" class="form-control">
+                                       
+                                 </div>
+                              </div>
+                              <!--Grid column-->
+
+                              <!--Grid column-->
+                              <div class="col-md-12">
+                                 <div class="md-form mb-0">
+                                       <label for="email" class="">Your email</label>
+                                       <input type="text" id="email" name="email" class="form-control">
+                                       
+                                 </div>
+                              </div>
+                              <!--Grid column-->
+
+                           </div>
+                           <!--Grid row-->
+
+                           <!--Grid row-->
+                           <div class="row">
+                              <div class="col-md-12">
+                                 <div class="md-form mb-0">
+                                       <label for="subject" class="">Subject</label>
+                                       <input type="text" id="subject" name="subject" class="form-control">
+                                       
                                  </div>
                               </div>
                            </div>
-                           <div class="form-row">
-                              <div class="col-md-12 mb-3">
-                                 <label for="email">Password</label>
-                                 <div class="input-group">
-                                    <input type="password" class="form-control" id="password"  value="password" required>
-                                    <div class="invalid-feedback">
-                                       Please enter a valid password.
-                                    </div>
+                           
+                           <div class="row">
+
+                              <!--Grid column-->
+                              <div class="col-md-12">
+
+                                 <div class="md-form">
+                                       <label for="message">Your message</label>
+                                       <textarea type="textarea" id="message" name="message" rows="5" class="form-control md-textarea"></textarea>
+                                       
                                  </div>
+
                               </div>
                            </div>
-                           <button class="col-md-12 btn btn-primary btn-lg btn-block pb_btn-pill  btn-shadow-blue text-center" type="submit">Login</button><br/>
-                            
-                            <div class="col-md-12 mb-3 md-form text-center" style="padding-top:20px">Not a member? <a style="color:green !important;" href="index.jsp">Register here.</a>
-                             </div>
-                     </div>
-                     
-                     
-                     </div>
-                     </div>
-                 </div>
+                           <!--Grid row-->
+
                   </form>
                   
-                  
+                  <div class="text-center text-md-left">
+                        <a class="btn btn-primary" onclick="document.getElementById('contact-form').submit();">Send</a>
+                  </div>
+                  <div class="col-md-12 text-center">
+                     
+                        <div style="font-size:10px;">
+                              <i class="fas fa-phone mt-4 fa-2x"></i>Saint John, New Brunswick, Canada
+                              <i class="fas fa-phone-square"></i>(506) 6393357
+                              <i class="fas fa-envelope mt-4 fa-2x"></i>adrian@adriannadeau.com
+                        </div>
+                        
                </div>
-            </div>
-         </div>
-         </div>
-      </section>
-      <% include partials/footer %>
+                  <div class="status"></div>
+               </div>
+               
+               </div>
+
+            </section>
+         
+      
        <% include partials/scripts %>
       
     </body>

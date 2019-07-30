@@ -108,7 +108,10 @@ router.post('/',function(req,res){
     else{
           //save user  
             console.log("create new user");
-            
+            console.log(req.body.public);
+            var publicValue = Boolean(req.body.public);
+            console.log("publicValie: ")+publicValue;
+           
             var hash = bcrypt.hashSync(req.body.password, saltRounds);
                 console.log("password successful");
                 var user = new User({
@@ -117,7 +120,7 @@ router.post('/',function(req,res){
                 lastname : req.body.lastname,
                 email :req.body.email,
                 password : hash,
-                public :true,
+                public :publicValue,
                 admin: false,
                 bio : "",
                 location : "",

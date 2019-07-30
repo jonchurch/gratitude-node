@@ -23,13 +23,13 @@
           <a class="nav-link js-scroll-trigger" href="#home">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="/account/">My Account</a>
+          <a class="nav-link js-scroll-trigger" id="account-link" href="/account/">My Account</a>
         </li>
          <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="/journal/">My Journal</a>
+          <a class="nav-link js-scroll-trigger" id="journal-link" href="/journal/">My Journal</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="/support">Support</a>
+          <a class="nav-link js-scroll-trigger" id="support-link" href="/support/">Support</a>
         </li>
         <li class="nav-item">
           <a class="nav-link js-scroll-trigger" href="/">Logout</a>
@@ -67,7 +67,7 @@
         </div>
     </section>
 
-    <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="posts">
+    <!-- <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="posts">
       <div class="w-100">
         
         
@@ -118,63 +118,80 @@
 
       </div>
 
-    </section>
+    </section> -->
 
     <hr class="m-0">
 
-    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="support">
+    <!-- <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="support">
       <div class="w-100">
         <h2 class="mb-5">Support</h2>
 
         contact form
       </div>
-    </section>
+    </section> -->
 
-    <% include partials/profile-footer %>
+    <!-- <% include partials/profile-footer %> -->
     <% include partials/scripts %>
 
-    <script type = "text/javascript" >
-    $(document).ready(function() {
-        
-        
-        emailAddress="";
-        
-        var _id=($.urlParam('id'));
-        console.log("param value: "+_id);
-        $.ajax({
-            url: '/users/'+_id,
-            type: "GET",
-            dataType: "json",
-            data: {_id: _id},
-                success: function(data, textStatus, jqXHR) {
-                    //set first name, lastname, email, avatar 
-                    
-                    $("#name").html(data.firstname+" "+data.lastname);
-                    $("#firstname").html(data.firstname)
-                    $("#lastname").html(data.lastname)
-                    $("#email").html(data.email);
-                    $("#avatar").attr("src","../"+data.avatar);
-                    $("#bio").html(data.bio);
-                    $("#location").html(data.location);
-                    
-                    
-                    emailAddress= data.email;
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                        alert('An error occurred!');
-                        
-                }
-            });
-            $("#email-link").click(function() {
-            event.preventDefault();
+    <script type = "text/javascript" > 
+    var Id;
+      $(document).ready(function() {
+          
+          
+          emailAddress="";
+          
+          var _id=($.urlParam('id'));
+          console.log("param value: "+_id);
+          Id = _id;
+          $.ajax({
+              url: '/users/'+_id,
+              type: "GET",
+              dataType: "json",
+              data: {_id: _id},
+                  success: function(data, textStatus, jqXHR) {
+                      //set first name, lastname, email, avatar 
+                      
+                      $("#name").html(data.firstname+" "+data.lastname);
+                      $("#firstname").html(data.firstname)
+                      $("#lastname").html(data.lastname)
+                      $("#email").html(data.email);
+                      $("#avatar").attr("src","../"+data.avatar);
+                      $("#bio").html(data.bio);
+                      $("#location").html(data.location);
+                      $("account-link").attr("href","/account/?id="+_id);
+                      $("support-link").attr("href","/support/?id="+_id);
+                      $("journal-link").attr("href","/journal/?id="+_id);
+                      
+                      
+                      
+                      emailAddress= data.email;
+                  },
+                  error: function(jqXHR, textStatus, errorThrown) {
+                          alert('An error occurred!');
+                          
+                  }
+  
             
-            
-            window.location.assign("mailto:"+emailAddress);
-            
-        });
-       
-    });
-</script>
+          });
+          
+      });
+      $( "#account-link" ).click(function() {
+        event.preventDefault();
+        window.location.assign("/account/?id="+Id)
+
+      });
+      $( "#journal-link" ).click(function() {
+        event.preventDefault();
+        window.location.assign("/journal/?id="+Id)
+      });
+      $( "#support-link" ).click(function() {
+        event.preventDefault();
+        window.location.assign("/support/?id="+Id)
+      });
+      
+          
+      
+    </script>
   </div>
 
 
