@@ -96,6 +96,7 @@ router.get('/profile/:id', function(req, res) {
 router.post('/',function(req,res){
    
   console.log("email: "+req.body.email)
+  //console.log("public-checked "+req.params.public-checked);
   User.findOne({ email:req.body.email}, function (error, user) {
       if(user){
         const error = new Error('User email account already exists.');
@@ -107,17 +108,8 @@ router.post('/',function(req,res){
     }
     else{
           //save user  
-         console.log("create new user");
-            
-        // let checkedValue = req.body['public-checkbox']; // This will have one of two values, 'undefined' if it wasn't checked, or 'on' if it is checked
-        // if(checkedValue) { // Runs if the box is not undefined
-        //   output += 'the box WAS checked';
-        // } else {
-        //   output += 'the box was NOT checked';
-        // }
-
-        // res.json({message: output});
-
+         console.log("create new user : "+req.body.email);
+        
             var hash = bcrypt.hashSync(req.body.password, saltRounds);
                 
                 var user = new User({
@@ -163,18 +155,12 @@ router.get('/info/:id', function(req, res) {
  ////////////////////
 ////UPDATE DETAILS//
 ////////////////////
-router.post('/info/', function(req, res) {
-  //userid
-  console.log("submit info")
-  User.findOne({ _id:_id}, function (err, user) {
-    console.log(_id);
-  //   if (err){ 
-  //     console.log("err:"+err);
-  //     res.send(err.message);
-  //     next();  
-  //   }
-  //   res.send(req.params.id);
-  });  
-});        
-
+router.post('/info/',function(req,res){
+   console('in the stupid post');
+  
+                
+                    res.send("hey")
+                    
+    
+ });   
 module.exports = router;

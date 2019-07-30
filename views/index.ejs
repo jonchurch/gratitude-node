@@ -39,7 +39,7 @@
                      </div>
                      <div class="panel-body">
                         <form class="needs-validation" id="createUserForm" novalidate>
-                        
+                           <input type="hidden" id="public-checked" value="true">
                            <div class="form-row">
                               <div class="col-md-6 mb-3">
                                  <label for="firstname">First name</label>
@@ -101,7 +101,7 @@
                      </div>
                      <div class="form-group">
                      <div class="form-check">
-                     <input class="form-check-input" type="checkbox" checked id="public-checkbox">
+                     <input class="form-check-input"  type="checkbox" checked id="public-checkbox">
                      <label class="form-check-label" for="public-checkbox">
                      <span style="padding-left:20px;">Share posts with public</span>&nbsp;<i class="optional">(Optional)</i>
                      </label>
@@ -128,6 +128,7 @@
                   </div>
                   </form>
                   <br/>
+                  <span id="checked_yn"></span>
                   
                </div>
             </div>
@@ -149,12 +150,12 @@ $(".err-msg").hide();
      
 
 });
+
 $("#createUserForm").submit(function(event) {
    // Prevent the form from submitting via the browser.
    event.preventDefault();
-  
-
 });
+ 
 (function() {
     'use strict';
     window.addEventListener('load', function() {
@@ -182,7 +183,9 @@ $("#createUserForm").submit(function(event) {
               $(".password-confirm").hide();
                $(".passwords-not-equal").show();
            }
-          
+           
+           var checkValue = $('#check_id').is(":checked");
+           console.log(checkValue);
           // Get the checkbox
           if($("#invalidCheck").prop("checked") == false){
                $("#checkbox-validate").show();
@@ -200,11 +203,13 @@ $("#createUserForm").submit(function(event) {
                lastname :  $("#lastname").val(),
                email :  $("#email").val(),
                password :  $("#password").val(),
-               public :  $("#public-checkbox").val(),
+               public :  checkValue,
                location :  "",
                bio: "",
                avatar: ""
             }
+            var publicYN=$('#public-checkbox').is(':checked');
+                      
             $.ajax({
                   type : "POST",
                   data : JSON.stringify(formData),
@@ -213,7 +218,8 @@ $("#createUserForm").submit(function(event) {
                   success : function(customer) {
                       //forward page with id to fill in optional information
                       console.log("id : "+customer._id);
-                    window.location.assign("/info/?id="+customer._id);
+                      
+                     window.location.assign("/info/?id="+customer._id);
                     
                   },
                   error : function(error) {
@@ -234,6 +240,6 @@ $("#createUserForm").submit(function(event) {
 });
 }, false);
 })();
- 
+
 </script>
 </html>

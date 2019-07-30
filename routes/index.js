@@ -18,6 +18,8 @@ router.get('/profile', function(req, res) {
 router.get('/info', function(req, res) {
   res.render('info');
 });
+
+
 router.get('/account', function(req, res) {
     res.render('account');
 });

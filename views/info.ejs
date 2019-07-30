@@ -28,8 +28,8 @@
                                     <div class="input-group-prepend">
                                     </div>
                                     <div class="form-group shadow-textarea">
-                                    <label for="exampleFormControlTextarea6"></label>
-                                    <textarea class="form-control z-depth-1" id="exampleFormControlTextarea6" rows="5" placeholder="Let us know a little about you..."></textarea>
+                                    <label for="bio">Let us know a little about you</label>
+                                    <textarea class="form-control z-depth-1" id="exampleFormControlTextarea6" rows="5"></textarea>
                                     </div>
                                     
                                  </div>
@@ -37,9 +37,9 @@
                            </div>
                            <div class="form-row">
                               <div class="col-md-12 mb-3">
-                                 
+                                 <label for="bio">Address</label>
                                  <div class="input-group">
-                                    <input type="text" class="form-control" id="address" placeholder="Address...">
+                                    <input type="text" class="form-control" id="address" >
                                     
                                  </div>
                               </div>
@@ -82,8 +82,11 @@
     <script>
 
     $(document).ready(function() {
+      
     var _id=($.urlParam('id'));
-     var passId;
+    
+   var passId;
+
       console.log("id: "+_id);
       //call get user
       $.ajax({
@@ -109,19 +112,23 @@
         });
         $("#btn_save").click(function() {
             event.preventDefault();
-             //console.log("public:"+$("#public").val())
+             
             // PREPARE FORM DATA
+            console.log('create form data: '+passId);
             var formData = {
-               _id: passId,
-              location :  $("#location").val(),
+               
+               
+               location :  $("#location").val(),
                bio: $("#location").val(),
                avatar:"/images/coverphotos/profile.jpg"
             }
+            console.log('call ajax');
+            
             $.ajax({
                   type : "POST",
                   data : JSON.stringify(formData),
                   contentType : "application/json",
-                  url : "/info/",
+                  url : "/info/?id="+passId,
                   success : function(customer) {
                       //forward page with id to fill in optional information
                       console.log("id : "+customer._id);
@@ -131,11 +138,12 @@
                   error : function(error) {
                       console.log(error);
                       if(error.status==410){
-                         $(".err-msg").html("Email already in use.");
+                         $(".err-msg").html("Error.");
                         $(".err-msg").show(); 
                       }
                   }
                });
+               console.log('past ajax');
     	
 
             
