@@ -102,7 +102,7 @@
                      <div class="form-group">
                      <div class="form-check">
                      <input class="form-check-input" type="checkbox" checked id="public">
-                     <label class="form-check-label" for="publicBoolean">
+                     <label class="form-check-label" for="public">
                      <span style="padding-left:20px;">Share posts with public</span>&nbsp;<i class="optional">(Optional)</i>
                      </label>
                      </div>
@@ -182,13 +182,7 @@ $("#createUserForm").submit(function(event) {
               $(".password-confirm").hide();
                $(".passwords-not-equal").show();
            }
-           
-         //   var publicValue=true;
-         //   if($("#publicBoolean").prop("checked") == false){
-         //    publicValue=false;
-         //   }
-         //   console.log("pub: "+publicValue);    
-           
+          
           // Get the checkbox
           if($("#invalidCheck").prop("checked") == false){
                $("#checkbox-validate").show();

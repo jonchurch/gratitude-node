@@ -107,11 +107,22 @@ router.post('/',function(req,res){
     }
     else{
           //save user  
-            console.log("create new user");
-            console.log(req.body.public);
-            var publicValue = Boolean(req.body.public);
-            console.log("publicValie: ")+publicValue;
-           
+            // console.log("create new user");
+            // console.log(req.body.public);
+            // var publicValue = Boolean(req.body.public);
+            //console.log("publicValie: ")+publicValue;
+            let checkedValue = req.body['public'];
+            let publicBool;
+            if(checkedValue) { // Runs if the box is not undefined
+              console.log('the box WAS checked');
+              publicBool=true;
+              
+            } else {
+                output += '';
+                console.log('the box was NOT checked');
+                publicBool=true;
+            }
+
             var hash = bcrypt.hashSync(req.body.password, saltRounds);
                 console.log("password successful");
                 var user = new User({
@@ -120,7 +131,7 @@ router.post('/',function(req,res){
                 lastname : req.body.lastname,
                 email :req.body.email,
                 password : hash,
-                public :publicValue,
+                public :publicBool,
                 admin: false,
                 bio : "",
                 location : "",
