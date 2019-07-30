@@ -107,31 +107,26 @@ router.post('/',function(req,res){
     }
     else{
           //save user  
-            // console.log("create new user");
-            // console.log(req.body.public);
-            // var publicValue = Boolean(req.body.public);
-            //console.log("publicValie: ")+publicValue;
-            let checkedValue = req.body['public'];
-            let publicBool;
-            if(checkedValue) { // Runs if the box is not undefined
-              console.log('the box WAS checked');
-              publicBool=true;
-              
-            } else {
-                output += '';
-                console.log('the box was NOT checked');
-                publicBool=true;
-            }
+         console.log("create new user");
+            
+        // let checkedValue = req.body['public-checkbox']; // This will have one of two values, 'undefined' if it wasn't checked, or 'on' if it is checked
+        // if(checkedValue) { // Runs if the box is not undefined
+        //   output += 'the box WAS checked';
+        // } else {
+        //   output += 'the box was NOT checked';
+        // }
+
+        // res.json({message: output});
 
             var hash = bcrypt.hashSync(req.body.password, saltRounds);
-                console.log("password successful");
+                
                 var user = new User({
                 
                 firstname:req.body.firstname,
                 lastname : req.body.lastname,
                 email :req.body.email,
                 password : hash,
-                public :publicBool,
+                public :true,
                 admin: false,
                 bio : "",
                 location : "",
@@ -163,6 +158,23 @@ router.get('/info/:id', function(req, res) {
       next();  
     }
     res.send(req.params.id);
+});        
+
+ ////////////////////
+////UPDATE DETAILS//
+////////////////////
+router.post('/info/', function(req, res) {
+  //userid
+  console.log("submit info")
+  User.findOne({ _id:_id}, function (err, user) {
+    console.log(_id);
+  //   if (err){ 
+  //     console.log("err:"+err);
+  //     res.send(err.message);
+  //     next();  
+  //   }
+  //   res.send(req.params.id);
+  });  
 });        
 
 module.exports = router;

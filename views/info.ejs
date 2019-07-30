@@ -14,7 +14,7 @@
                   <div class="panel panel-default">
                      <div class="panel-heading">
                         <h3 class="text-center">Welcome <span id="name"></span>.</h3>
-                        <h2 class="panel-title text-center">Tell us more about yourself? Don't worry, you can do this later!</h2>
+                        <p class="text-center">Don't worry, this can be done later!</p>
                      </div>
                      <div class="panel-body">
                         <form class="needs-validation" novalidate>
@@ -59,7 +59,8 @@
                            </div>
                            <div class="col-md-12 mb-3">
                                <div class="col-md-6"><button class="btn btn-primary btn-lg btn-block pb_btn-pill  btn-shadow-blue text-center" id="btn_skip">Skip</button></div>
-                               <div class="col-md-6"><button class="btn btn-primary btn-lg btn-block pb_btn-pill  btn-shadow-blue text-center" id="btn_save" type="submit">Save</button></div>
+                               <div class="col-md-6"><button class="btn btn-primary btn-lg btn-block pb_btn-pill  btn-shadow-blue text-center" id="btn_save">Save</button></div>
+                               
                             
                            
                             </div>
@@ -83,7 +84,7 @@
     $(document).ready(function() {
     var _id=($.urlParam('id'));
      var passId;
-      console.log(_id);
+      console.log("id: "+_id);
       //call get user
       $.ajax({
           url: '/users/'+_id,
@@ -103,17 +104,42 @@
         }); 
         $("#btn_skip").click(function() {
             event.preventDefault();
-            
-            console.log('idpass'+passId);
             window.location.assign("/profile/?id="+passId);
             
         });
-        // $("#btn_save").submit(function(event) {
-        //     event.preventDefault();
-        //     //http://localhost:3000/profile/?id=5d2cc90ed933a51f5c8200e1
-        //     window.location.assign("/profile/?id="+_id);
+        $("#btn_save").click(function() {
+            event.preventDefault();
+             //console.log("public:"+$("#public").val())
+            // PREPARE FORM DATA
+            var formData = {
+               _id: passId,
+              location :  $("#location").val(),
+               bio: $("#location").val(),
+               avatar:"/images/coverphotos/profile.jpg"
+            }
+            $.ajax({
+                  type : "POST",
+                  data : JSON.stringify(formData),
+                  contentType : "application/json",
+                  url : "/info/",
+                  success : function(customer) {
+                      //forward page with id to fill in optional information
+                      console.log("id : "+customer._id);
+                    window.location.assign("/info/?id="+customer._id);
+                    
+                  },
+                  error : function(error) {
+                      console.log(error);
+                      if(error.status==410){
+                         $(".err-msg").html("Email already in use.");
+                        $(".err-msg").show(); 
+                      }
+                  }
+               });
+    	
 
-        // });
+            
+         });
         
     });
 </script>
