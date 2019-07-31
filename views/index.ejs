@@ -99,25 +99,23 @@
                               </div>
                            </div>
                      </div>
-                     <div class="form-group">
-                     <div class="form-check">
-                     <input class="form-check-input" type="checkbox" checked id="public-checkbox">
-                     <label class="form-check-label" for="public-checkbox">
-                     <span style="padding-left:20px;">Share posts with public</span>&nbsp;<i class="optional">(Optional)</i>
-                     </label>
-                     </div>
-                     </div>
-                     <div class="form-group">
-                     <div class="form-check">
-                     <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-                     <label class="form-check-label" for="invalidCheck">
-                     <span style="padding-left:20px;">Agree to terms and conditions</span>
-                     </label>
-                     <div class="invalid-feedback" id="checkbox-validate" required>
-                     You must agree before submitting
-                     </div>
-                     </div>
-                     </div>
+                     
+                     <!-- Default switch -->
+                    <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input .big-checkbox" id="public-checkbox" checked>
+                    <label class="custom-control-label" for="public-checkbox">Share posts with public</label></span>&nbsp;<i class="optional">(Optional)</i>
+                    </div>
+
+                    <!-- Default switch -->
+                    <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" id="invalidCheck" >
+                    <label class="custom-control-label" for="invalidCheck">Agree to terms and conditions</label>
+                    </div>
+                                    <div class="invalid-feedback" id="checkbox-validate" style="padding-left:30px;" required>
+                                       You must agree to the terms.
+                                    </div>
+                     
+                     <br/>
                      <div class="row text-center">
                      <div class="col-md-12 mb-3 md-form ">
                         <button class="btn btn-primary btn-lg btn-block pb_btn-pill  btn-shadow-blue text-center" type="submit">Register</button>
@@ -190,6 +188,7 @@ $("#createUserForm").submit(function(event) {
            else{
                $("#checkbox-validate").hide();
             }
+            
             
          }else{
              event.preventDefault();
