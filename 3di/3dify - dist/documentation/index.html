@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>3Dify Documentation</title>
+	<link href="https://fonts.googleapis.com/css?family=Lato:100,300i,400,900" rel="stylesheet">
+	<link rel="stylesheet" href="css/themify-icons.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel='stylesheet' href='css/perfect-scrollbar.min.css' />
+    <link rel="stylesheet" type="text/css" href="css/elastic_grid.min.css" />
+	<link rel="stylesheet" href="css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="css/buttons.css"/>
+	<link rel="stylesheet" href="css/animate.css"/>
+	<link rel="stylesheet" href="css/tooltip.css"/>
+	<link rel="stylesheet" href="css/style.css"/>
+	<link rel="stylesheet" href="css/main.css"/>
+	
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<script>
+		var tdMobile = false;
+		if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+			$('<link rel="stylesheet" type="text/css" href="css/responsive-style.css" >').appendTo("head");
+			tdMobile = true;
+		}
+	</script>
+</head>
+<body>
+	<div class="td-preloading">
+		<span class="fa fa-spinner fa-spin"></span>
+	</div>
+	<div class="td-container">
+		<div class="td-menu">
+		</div>
+		<div class="td-sheets-container td-hide td-sheet-active-1">
+			<div id="scrollbar-container" class="td-sheet active">
+				<div class="td-sheet-icon">
+					<i class="ti-package"></i>
+				</div>
+				<div class="td-sheet-title">Welcome</div>
+				
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12 text-center">
+							<h1>Documentation</h1>
+						</div>
+					</div>
+					<div class="row text-center">
+						<div class="col-md-12">
+							<h2><strong>Thank you</strong> for purchasing this theme!</h2>
+							<p>That means a lot to me, I have spent long hours of hard work and a lot of coffee in order to make this theme as <strong>simple and amazing</strong> for you as possible!</p>
+							<p>With my limited english, in the next pages I'll explain briefly how can you get the most of it, <strong>it's very easy!</strong></p>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			
+			<div class="td-sheet">
+				<div class="td-sheet-icon">
+					<i class="ti-layers "></i>
+				</div>
+				<div class="td-sheet-title">Sheets</div>
+				
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12 text-center">
+							<h1>Sheets</h1>
+						</div>
+					</div>
+					<div class="row text-center">
+						<div class="col-md-12">
+							<h2><strong>What</strong> is a Sheet?</h2>
+							<p>We call "Sheet" to every page of this template, for example you have seen the "Documentation" sheet, and now you're watching the "Sheets" sheet.</p>
+							<p>Every sheet has a button in the right-side menu.</p>
+							
+							<h2><strong>How to create</strong> a Sheet?</h2>
+							<p>The main structure of this template is a container div with the class <strong>td-container</strong>. Inside you have the <strong>td-sheets-container</strong> div, there's where you are going to create your sheets!</p>
+							<p>The structure of a Sheet is the following:</p>
+						</div>
+						<div class="col-md-6 col-md-offset-3 panel panel-default text-left">
+							<div class="panel-body">
+								&lt;div class="td-sheet"&gt;<br>
+								&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="td-sheet-icon"&gt;&lt;/div&gt;<br>
+								&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="td-sheet-title"&gt;&lt;/div&gt;<br>
+								&lt;/div&gt;
+							</div>
+						</div>
+						<div class="col-md-12">
+							<h2><strong>3 Elements:</strong></h2>
+								<ul>
+									<li>"TD-SHEET" contains all the code of the sheet.</li>
+									<li>"TD-SHEET-ICON" goes first inside, and inside this you add the code of the icon for that sheet in the menu.</li>
+									<li>"TD-SHEET-TITLE" in second place. Inside this div add the title of the sheet that will appear on the menu.</li>
+								</ul>
+							<p>
+								After the Title, you can add the remaining code of the sheet and content in whatever way you like.
+							</p>
+							<h2><strong>Navigation</strong></h2>
+							<p>You can use the right menu to navigate through the sheets, or use the keyboard arrows.</p>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			
+			<div class="td-sheet">
+				<div class="td-sheet-icon">
+					<i class="ti-settings"></i>
+				</div>
+				<div class="td-sheet-title">Set-Up</div>
+				
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12 text-center">
+							<h1>SET-UP</h1>
+						</div>
+						<div class="col-md-12 text-center">
+							<p>The main configurations of the theme are inside <strong>js/script.js</strong>
+							</p>
+							<p>
+							You can configurate the orientation, size, shape, and more of the sheets in the first lines of scripts.js
+							</p>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			
+			<div class="td-sheet">
+				<div class="td-sheet-icon">
+					<i class="ti-wand"></i>
+				</div>
+				<div class="td-sheet-title">Elements</div>
+				
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12 text-center">
+							<h1>Elements</h1>
+						</div>
+						<div class="col-md-12 text-center">
+							<h2><strong>Icons</strong></h2>
+							<p>This theme is completly compatible with external resources, so you might use any Icon Font of your choice.</p>
+							<p>There are 3 types of Icons Fonts included already, <strong><a href="http://getbootstrap.com/components/#glyphicons">Bootstrap Glyphicons</a></strong>, <strong><a href="https://themify.me/themify-icons">Themify Icons</a></strong>, and <strong><a href="http://fontawesome.io/icons/">Font Awesome</a></strong></p>
+							<h2><strong>Bootstrap</strong></h2>
+							<p>This template is fully compatible with the last version of Bootstrap, so you might use it without any problems.</p>
+							<h2><strong>Services</strong></h2>
+							<p>To create a <strong>Services</strong> section with icons and descriptions, you have to follow the next steps:</p>
+							<p>For each item, you need to add a <strong>div</strong> with the class <strong>td-aboutus</strong>, containing another div with the class <strong>td-aboutus-header</strong> and inside it, a <strong>span</strong> with the font-icon, and after it a <strong>H3</strong> with its title. After "td-aboutus-header" you'll add a <strong>P</strong> element with the description.</p>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			
+			<div class="td-sheet">
+				<div class="td-sheet-icon">
+					<i class="ti-direction-alt"></i>
+				</div>
+				<div class="td-sheet-title">Animations</div>
+				
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12 text-center">
+							<h1>Animations</h1>
+						</div>
+						<div class="col-md-12 text-center">
+							<p><a href="http://daneden.github.io/animate.css/">Animate.CSS</a> plugin has been chosen as the animation source. In its website you'll find all the animations.
+							</p>
+							<p>In order to add an animation to an element, you have to add <strong>data-animation="fadeIn"</strong> (change "fadein" for whatever animation you want to use).</p>
+							<p>If you wish to delay the animation, you can also add to the element <strong>data-animation-delay="300"</strong> with that number being the delay time in miliseconds.</p>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			
+			<div class="td-sheet">
+				<div class="td-sheet-icon">
+					<i class="ti-star"></i>
+				</div>
+				<div class="td-sheet-title">Thank you</div>
+				
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12 text-center">
+							<h1>Thank you</h1>
+						</div>
+						<div class="col-md-12 text-center">
+							<h2>Thank you again for purchasing this theme.</h2>
+							<p>I wish you the best and a lot of fun and success with your projects!</p>
+							<p>If you find it useful and like it, please take a minute and rate it in ThemeForest, that would be very priceless for my.</p>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+
+	<script src="js/perfect-scrollbar.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.visible.min.js"></script>
+	<script src="js/script.js"></script>
+	<script src="js/classie.js"></script>
+	<script src="js/detectanimation.js"></script>
+	<script src="js/modernizr.custom.js"></script>
+</body>
+</html>

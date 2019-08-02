@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>3Dify</title>
+	<link href="css/lato.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/themify-icons.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel='stylesheet' href='css/perfect-scrollbar.min.css' />
+	<link rel="stylesheet" href="css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="css/buttons.css"/>
+	<link rel="stylesheet" href="css/animate.css"/>
+	<link rel="stylesheet" href="css/tooltip.css"/>
+	<link rel="stylesheet" href="css/style.css"/>
+	<link rel="stylesheet" href="css/demo2.css"/>
+</head>
+<body>
+	<div class="td-preloading">
+		<span class="fa fa-spinner fa-spin"></span>
+	</div>
+	<div class="td-container">
+		<div class="td-menu">
+		</div>
+		<div class="td-sheets-container td-hide td-sheet-active-1">
+			<div id="scrollbar-container" class="td-sheet active">
+				<div class="td-sheet-icon">
+					<i class="ti-home"></i>
+				</div>
+				<div class="td-sheet-title">Landing</div>
+				<div class="container-fluid">
+					<div class="row homepage">
+						<div class="col-md-6 col-md-offset-3 text-center homepageleft">
+							<img src="img/logo.png" alt="Logo" data-animation="fadeInDown" data-animation-delay="100"/>
+							<div class="text-uppercase" data-animation="fadeIn" data-animation-delay="200">Silver Wolf</div>
+							<div data-animation="fadeInUp" data-animation-delay="500" data-tdchangetext="2.5" >
+								<span>Welcome to the next dimension</span>
+								<span>The ultimate in website</span>
+								<span>Go beyond the second dimension</span>
+							</div>
+							<div data-animation="fadeInDown" data-animation-delay="1500"><span onclick="tdNextPage();" class="ti-angle-down"></span></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="td-sheet">
+				<div class="td-sheet-icon">
+					<i class="ti-user"></i>
+				</div>
+				<div class="td-sheet-title">About Us</div>
+				
+				<div class="container">
+					<div class="row">
+						<div class="col-md-4 text-center td-aboutus" data-animation="zoomIn" data-animation-delay="200" data-animation-instant=true >
+							<div class="td-aboutus-header">
+								<span class="fa fa-desktop"></span>
+								<h3>Web Design</h3>
+							</div>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer justo arcu, consequat ut tempor vitae, tincidunt quis augue. Sed id libero purus.
+								<br><span class="ti-line-double"></span>
+							</p>
+						</div>
+						<div class="col-md-4 text-center td-aboutus" data-animation="zoomIn" data-animation-delay="400">
+							<div class="td-aboutus-header">
+								<span class="fa fa-diamond"></span>
+								<h3>Quality</h3>
+							</div>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer justo arcu, consequat ut tempor vitae, tincidunt quis augue. Sed id libero purus.
+								<br><span class="ti-line-double"></span>
+							</p>
+						</div>
+						<div class="col-md-4 text-center td-aboutus" data-animation="zoomIn" data-animation-delay="600">
+							<div class="td-aboutus-header">
+								<span class="fa fa-tv"></span>
+								<h3>Retina Ready</h3>
+							</div>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer justo arcu, consequat ut tempor vitae, tincidunt quis augue. Sed id libero purus.
+								<br><span class="ti-line-double"></span>
+							</p>
+						</div>
+						<div class="col-md-4 text-center td-aboutus" data-animation="zoomIn" data-animation-delay="800">
+							<div class="td-aboutus-header">
+								<span class="fa fa-mobile"></span>
+								<h3>Responsive</h3>
+							</div>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer justo arcu, consequat ut tempor vitae, tincidunt quis augue. Sed id libero purus.
+								<br><span class="ti-line-double"></span>
+							</p>
+						</div>
+						<div class="col-md-4 text-center td-aboutus" data-animation="zoomIn" data-animation-delay="1000">
+							<div class="td-aboutus-header">
+								<span class="fa fa-star-o"></span>
+								<h3>Web Design</h3>
+							</div>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer justo arcu, consequat ut tempor vitae, tincidunt quis augue. Sed id libero purus.
+								<br><span class="ti-line-double"></span>
+							</p>
+						</div>
+						<div class="col-md-4 text-center td-aboutus" data-animation="zoomIn" data-animation-delay="1200">
+							<div class="td-aboutus-header">
+								<span class="fa fa-heart-o"></span>
+								<h3>Web Design</h3>
+							</div>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer justo arcu, consequat ut tempor vitae, tincidunt quis augue. Sed id libero purus.
+								<br><span class="ti-line-double"></span>
+							</p>
+						</div>
+					</div>
+				</div>	
+			</div>
+			
+			<div class="td-sheet">
+				<div class="td-sheet-icon">
+					<i class="ti-panel"></i>
+				</div>
+				<div class="td-sheet-title">Demos</div>
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12 text-center">
+							<div class="page-header">
+								<h1>See some Demos</h1>
+							</div>
+						</div>
+					</div>
+					<div class="row text-center">
+						<div class="col-md-8 col-md-offset-2">
+							<h4>
+								These are only some examples of what you can accomplish with 3Dify, you'll be able to modify the template at your will!
+							</h4>
+						</div>
+					</div>
+					<div class="row text-center whitelinks">
+						<div class="col-md-3" data-animation="fadeIn" data-animation-delay="100">
+							<a href="index.html">
+								<img class="img-responsive" src="img/demo/demo1.jpg" alt="Vertical Demo" />
+								<h2>Vertical</h2>
+							</a>
+						</div>
+						<div class="col-md-3" data-animation="fadeIn" data-animation-delay="300">
+							<a href="demo2.html">
+								<img class="img-responsive" src="img/demo/demo2.jpg" alt="Vertical FullPage" />
+								<h2>FullPage Vertical</h2>
+							</a>
+						</div>
+						<div class="col-md-3" data-animation="fadeIn" data-animation-delay="500">
+							<a href="demo3.html">
+								<img class="img-responsive" src="img/demo/demo3.jpg" alt="Horizontal" />
+								<h2>Horizontal</h2>
+							</a>
+						</div>
+						<div class="col-md-3" data-animation="fadeIn" data-animation-delay="700">
+							<a href="demo4.html">
+								<img class="img-responsive" src="img/demo/demo4.jpg" alt="Horizontal FullPage" />
+								<h2>FullPage Horizontal</h2>
+							</a>
+						</div>
+						<div class="col-md-3" data-animation="fadeIn" data-animation-delay="900">
+							<a href="creativeagency/index.html">
+								<img class="img-responsive" src="img/demo/demo5.jpg" alt="Creative Demo" />
+								<h2>Creative Agency</h2>
+							</a>
+						</div>
+						<div class="col-md-3" data-animation="fadeIn" data-animation-delay="1100">
+							<a href="creativeforest/index.html">
+								<img class="img-responsive" src="img/demo/demo6.jpg" alt="Creative Green" />
+								<h2>Creative Green</h2>
+							</a>
+						</div>
+						<div class="col-md-3" data-animation="fadeIn" data-animation-delay="1300">
+							<a href="creativeroses/index.html">
+								<img class="img-responsive" src="img/demo/demo7.jpg" alt="Creative Pink" />
+								<h2>Creative Pink</h2>
+							</a>
+						</div>
+						<div class="col-md-3" data-animation="fadeIn" data-animation-delay="1500">
+							<a href="creativewater/index.html">
+								<img class="img-responsive" src="img/demo/demo8.jpg" alt="Creative Blue" />
+								<h2>Creative Blue</h2>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="td-sheet">
+				<div class="td-sheet-icon">
+					<i class="ti-email"></i>
+				</div>
+				<div class="td-sheet-title">Contact</div>
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12 text-center">
+							<div class="page-header">
+								<h1>Contact</h1>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<form>
+							  <div class="form-group" data-animation="fadeInLeft" data-animation-delay="100">
+								<label for="exampleInputName1">Name</label>
+								<input type="text" class="form-control" id="exampleInputName1" placeholder="Name">
+							  </div>
+							  <div class="form-group" data-animation="fadeInLeft" data-animation-delay="300">
+								<label for="exampleInputEmail1">Email address</label>
+								<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+							  </div>
+							  <div class="form-group" data-animation="fadeInLeft" data-animation-delay="500">
+								<label for="exampleInputMessage1">Message</label>
+								<textarea id="exampleInputMessage1" class="form-control" rows="3"></textarea>
+							  </div>
+							  <button type="submit" class="btn btn-default" data-animation="fadeInLeft" data-animation-delay="700">Submit</button>
+							</form>
+						</div>
+						<div class="col-md-6 contactdata">
+							<img class="img-responsive" src="http://placehold.it/960x640" alt="Headquarters"/>
+							<address>
+							  <strong>SilverWolf, Inc.</strong><br>
+							  1234 Fake Street, Office 600<br>
+							  Planet Earth, CP <br>
+							  <abbr title="Phone">P:</abbr> (123) 456-7890
+							  <br><strong>Email</strong><br>
+							  <a href="mailto:#">first.last@example.com</a>
+							</address>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Modals -->
+	<div class="modal fade" id="modalSuccess" tabindex="-1" role="dialog">
+	  <div class="modal-dialog" role="document">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<h4 class="modal-title">Modal title</h4>
+		  </div>
+		  <div class="modal-body">
+			...
+		  </div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			<button type="button" class="btn btn-success">Save changes</button>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	
+	<div class="modal fade" id="modalInfo" tabindex="-1" role="dialog">
+	  <div class="modal-dialog" role="document">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<h4 class="modal-title">Modal title</h4>
+		  </div>
+		  <div class="modal-body">
+			...
+		  </div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			<button type="button" class="btn btn-info">Save changes</button>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	
+	<div class="modal fade" id="modalWarning" tabindex="-1" role="dialog">
+	  <div class="modal-dialog" role="document">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<h4 class="modal-title">Modal title</h4>
+		  </div>
+		  <div class="modal-body">
+			...
+		  </div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			<button type="button" class="btn btn-warning">Save changes</button>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	
+	<div class="modal fade" id="modalDanger" tabindex="-1" role="dialog">
+	  <div class="modal-dialog" role="document">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<h4 class="modal-title">Modal title</h4>
+		  </div>
+		  <div class="modal-body">
+			...
+		  </div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			<button type="button" class="btn btn-danger">Save changes</button>
+		  </div>
+		</div>
+	  </div>
+	</div>
+    <script src="js/jquery.min.js"></script>
+	<script src="js/responsive.js"></script>
+	<script src="js/perfect-scrollbar.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.visible.min.js"></script>
+	<script src="js/scriptdemo2.js"></script>
+	<script src="js/classie.js"></script>
+	<script src="js/detectanimation.js"></script>
+	<script src="js/modernizr.custom.js"></script>
+</body>
+</html>
