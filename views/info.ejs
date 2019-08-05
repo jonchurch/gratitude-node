@@ -10,14 +10,14 @@
               
                
                <div class="col-md-6 relative align-self-center join-today-index">
-                   
+                   <!-- <div class="alert alert-danger err-msg" role="alert"></div> -->
                   <div class="panel panel-default">
                      <div class="panel-heading">
                         <h3 class="text-center">Welcome <span id="name"></span>.</h3>
                         <p class="text-center">Don't worry, this can be done later!</p>
                      </div>
                      <div class="panel-body">
-                        <form class="needs-validation" novalidate>
+                        <form id="moreInfoForm">
                            
                               
                               
@@ -29,7 +29,7 @@
                                     </div>
                                     <div class="form-group shadow-textarea">
                                     <label for="bio">Let us know a little about you</label>
-                                    <textarea class="form-control z-depth-1" id="exampleFormControlTextarea6" rows="5"></textarea>
+                                    <textarea class="form-control z-depth-1" id="bio" rows="5"></textarea>
                                     </div>
                                     
                                  </div>
@@ -37,14 +37,14 @@
                            </div>
                            <div class="form-row">
                               <div class="col-md-12 mb-3">
-                                 <label for="bio">Address</label>
+                                 <label for="location">Address</label>
                                  <div class="input-group">
-                                    <input type="text" class="form-control" id="address" >
+                                    <input type="text" class="form-control" id="location" >
                                     
                                  </div>
                               </div>
                            </div>
-                           <div class="form-row">
+                           <!-- <div class="form-row">
                               <div class="col-md-12 mb-3">
                                  
                                
@@ -54,10 +54,12 @@
                                 <div class="btn btn-mdb-color btn-rounded float-left">
                                 
                                 <input type="file">
-                            </div>
-                            <p></p>
+                            </div> -->
+                            
                            </div>
+                           
                            <div class="col-md-12 mb-3">
+                               <br/><br/>
                                <div class="col-md-6"><button class="btn btn-primary btn-lg btn-block pb_btn-pill  btn-shadow-blue text-center" id="btn_skip">Skip</button></div>
                                <div class="col-md-6"><button class="btn btn-primary btn-lg btn-block pb_btn-pill  btn-shadow-blue text-center" id="btn_save">Save</button></div>
                                
@@ -83,10 +85,9 @@
 
     $(document).ready(function() {
       
-    var _id=($.urlParam('id'));
+        var _id=($.urlParam('id'));
+        var passId;
     
-   var passId;
-
       console.log("id: "+_id);
       //call get user
       $.ajax({
@@ -107,48 +108,67 @@
         }); 
         $("#btn_skip").click(function() {
             event.preventDefault();
+            console.log("pass:"+passId);
+            
             window.location.assign("/profile/?id="+passId);
             
         });
         $("#btn_save").click(function() {
+            console.log("save info")
+            var _id=($.urlParam('id'));
+          console.log("param value: "+_id);
             event.preventDefault();
              
             // PREPARE FORM DATA
-            console.log('create form data: '+passId);
-            var formData = {
+            console.log("start ajax...");
+             $.ajax({
+                url: '/info/',
+                type: "PUT",
+                dataType: "json",
+                data: {
+                    _id:_id,
+                    bio: $("#bio").val(),
+                    location: $("#location").val()
+                },
                
-               
-               location :  $("#location").val(),
-               bio: $("#location").val(),
-               avatar:"/images/coverphotos/profile.jpg"
-            }
-            console.log('call ajax');
-            
-            $.ajax({
-                  type : "POST",
-                  data : JSON.stringify(formData),
-                  contentType : "application/json",
-                  url : "/info/?id="+passId,
-                  success : function(customer) {
-                      //forward page with id to fill in optional information
-                      console.log("id : "+customer._id);
-                    window.location.assign("/info/?id="+customer._id);
-                    
-                  },
-                  error : function(error) {
-                      console.log(error);
-                      if(error.status==410){
-                         $(".err-msg").html("Error.");
+                success: function(data, textStatus, jqXHR) {
+                    console.log("id : "+data._id);
+                    window.location.assign("/profile/?id="+data._id);
+                },
+                error : function(error) {
+                    console.log(error);
+                    if(error.status==500){
+                        $(".err-msg").html("Error logging again, please try again.");
                         $(".err-msg").show(); 
-                      }
-                  }
-               });
-               console.log('past ajax');
+                    }
+                }
+            });
+
+            // $.ajax({
+            //       type : "POST",
+            //       data : JSON.stringify(formData),
+            //       contentType : "application/json",
+            //       url : "/info/"+passId,
+            //       success : function(customer) {
+            //           //forward page with id to fill in optional information
+            //           console.log("id : "+customer._id);
+            //         window.location.assign("/profile/?id="+customer._id);
+                    
+            //       },
+            //       error : function(error) {
+            //           console.log(error);
+            //           if(error.status==500){
+            //              $(".err-msg").html("Error.");
+            //             $(".err-msg").show(); 
+            //           }
+            //       }
+            //    });
+               
     	
 
             
          });
         
-    });
+  });  
 </script>
 </html>

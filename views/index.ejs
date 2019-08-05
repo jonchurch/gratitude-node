@@ -9,7 +9,7 @@
             <div class="row align-items-center justify-content-center">
                <div class="col-md-6" style="margin-top:-200px;">
                   <!-- Rotate and make smaller... slide in? -->
-                  
+                  <div id="slide-right">
                      <h2 class="heading text-left">GratitudeToday.io</h2>
                      <div class="sub-heading text-left" style="padding-bottom:30px !important">
                         
@@ -20,7 +20,7 @@
                      <div class="row col-md-12">
 
                          <div class="sub-heading text-left">
-                             <p class="mb-4"><i class="far fa-smile"></i>&nbsp;Gratitude makes us happier.</p>
+                             <p class="mb-4 title-slide"><i class="far fa-smile"></i>&nbsp;Gratitude makes us happier.</p>
                          </div>
                          <div class="sub-heading text-left">
  
@@ -32,10 +32,11 @@
                          
                      </div>
                  </div>
+                 </div>
                <div class="col-md-1">
                </div>
                <div class="col-md-5 relative align-self-center join-today-index">
-                  <div class="text-center err-msg">Message</div>
+                  <div class="alert alert-danger err-msg" role="alert"> </div>
                   <div class="panel panel-default">
                      <div class="panel-heading">
                         <h3 class="panel-title text-center">Join.</h3>
@@ -144,11 +145,18 @@
     </body>
     <script type="text/javascript">
 $( document ).ready(function() {
-   
-$(".err-msg").hide();
- $(".lengthcheck").hide();
- $(".passwords-not-equal").hide();
- $(".lengthcheck").hide();
+         
+        
+        $(".err-msg").hide();
+        $(".lengthcheck").hide();
+        $(".passwords-not-equal").hide();
+        $(".lengthcheck").hide();
+        $("slide-right");
+        console.log("slide title panel");
+        //slideElement($("slide-right"), 2000, 'r');
+        //$("#slide-right").slideDown("slow");
+        $(".title-slide").slideDown("slow");
+        
  
      
 
@@ -179,16 +187,15 @@ $("#createUserForm").submit(function(event) {
             $(".lengthcheck").hide();
 
            }
-           console.log($("#password").val());
-           console.log($("#confirmpassword").val());
+           
             if($("#password").val()!= $("#confirmpassword").val()){
-              console.log("not equal");
+              
               $(".password-confirm").hide();
                $(".passwords-not-equal").show();
            }
            
            var checkValue = $('#check_id').is(":checked");
-           console.log(checkValue);
+          
           // Get the checkbox
           if($("#invalidCheck").prop("checked") == false){
                $("#checkbox-validate").show();

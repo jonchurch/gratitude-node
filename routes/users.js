@@ -54,24 +54,33 @@ router.get('/:id', function(req, res) {
 //////////////////
 router.post('/login', function(req, res) {
    // bcrypt.compare(password, user.password);
+   console.log("login users....")
     User.findOne({ email:req.body.email}, function (err, user) {
-    if (err){ 
-      console.log("err:"+err);
-      res.send(err.message);
-      next();  
-    }
-    console.log("user email: "+user.email);
-    console.log("user id"+user._id);
-
-    if(bcrypt.compareSync(req.body.password, user.password)){
-        // res == true
-        console.log('user exists');
-        res.send(user);
+    
+    if (!user){ 
+         //not there
+            console.log('not there');
+            const error = new Error('User not found');
+            res.status(500);
+            console.log(error.response)
+            res.send(JSON.stringify(error.message));
+       
     }else{
-        //not there
-        console.log('is not there')
-
-    }
+        console.log("found user...");
+        console.log(req.body.password);
+        console.log(user.password);
+        if(req.body.password == user.password){
+            // res == true
+            res.send(user);
+        }
+        else{
+            //incorrect password
+            const error = new Error('Login Failed. Cofirm Email and Password are correct.');
+            res.status(500);
+            console.log(error.response)
+            res.send(JSON.stringify(error.message));
+        }
+    } 
 });        
 });
 
@@ -110,14 +119,14 @@ router.post('/',function(req,res){
           //save user  
          console.log("create new user : "+req.body.email);
         
-            var hash = bcrypt.hashSync(req.body.password, saltRounds);
+           // var hash = bcrypt.hashSync(req.body.password, saltRounds);
                 
                 var user = new User({
                 
                 firstname:req.body.firstname,
                 lastname : req.body.lastname,
                 email :req.body.email,
-                password : hash,
+                password : req.body.password,
                 public :true,
                 admin: false,
                 bio : "",
@@ -155,11 +164,46 @@ router.get('/info/:id', function(req, res) {
  ////////////////////
 ////UPDATE DETAILS//
 ////////////////////
-router.post('/info/',function(req,res){
-   console('in the stupid post');
-  
+router.put('/info',function(req,res){
+
+    //console.log("in the put method : "+req.body._id);
+    console.log("IN PUT");
+    res.send('Got a PUT request at /user');
+//     User.findById(_id, function (err, user) {
+//     if(!user){
+//         const error = new Error('Something went wrong, please try again.');
+        
+//         res.status(500);
+//         console.log(error.response)
+//         res.send(JSON.stringify(error.message));
+        
+//     }
+//     else{
+//           //save user  
+//          console.log("save details: "+_id);
+        
+//            // var hash = bcrypt.hashSync(req.body.password, saltRounds);
                 
-                    res.send("hey")
+//                 var user = new User({
+                
+              
+//                 bio : req.body.bio,
+//                 location : "",
+//                 avatar: ""
+//                 });
+//                 user.save(function (error, user) {
+//                     if (error){ 
+//                     console.log("err:"+error);
+//                     res.send(error.message);
+//                     next();  
+//                     }
+                
+//                     res.send(user)
+                    
+//                 });
+//     }
+        
+//   });
                     
     
  });   

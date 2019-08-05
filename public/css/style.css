@@ -1743,10 +1743,12 @@ a {
   
 }
 .err-msg{
-margin-top: 0;
+    margin-top: 0;
     margin-bottom: 0;
     font-size: 16px;
     color: red !important;
+    text-align: center;
+    
 }
 
 
