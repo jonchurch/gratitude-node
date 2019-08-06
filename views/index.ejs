@@ -4,13 +4,14 @@
         <% include partials/head %>
     </head>
     <body>
+        <div class="test-slider">Sliding Down</div>
         <section class="pb_cover_v3 cover-bg-opacity text-left pb_gradient_v1">
          <div class="container">
             <div class="row align-items-center justify-content-center">
                <div class="col-md-6" style="margin-top:-200px;">
                   <!-- Rotate and make smaller... slide in? -->
                   <div id="slide-right">
-                     <h2 class="heading text-left">GratitudeToday.io</h2>
+                     <h2 class="heading text-left title-slide">GratitudeToday.io</h2>
                      <div class="sub-heading text-left" style="padding-bottom:30px !important">
                         
                          <p class="mb-12">See what people aroud the World are grateful for right now.</p>
@@ -153,9 +154,8 @@ $( document ).ready(function() {
         $(".lengthcheck").hide();
         $("slide-right");
         console.log("slide title panel");
-        //slideElement($("slide-right"), 2000, 'r');
-        //$("#slide-right").slideDown("slow");
-        $(".title-slide").slideDown("slow");
+        
+        $(".test-slider").slideDown("slow");
         
  
      
