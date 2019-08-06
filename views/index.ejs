@@ -4,13 +4,13 @@
         <% include partials/head %>
     </head>
     <body>
-        <div class="test-slider">Sliding Down</div>
+       
         <section class="pb_cover_v3 cover-bg-opacity text-left pb_gradient_v1">
          <div class="container">
             <div class="row align-items-center justify-content-center">
-               <div class="col-md-6" style="margin-top:-200px;">
+               <div class="col-md-6 " id="main-left" style="margin-top:-200px;">
                   <!-- Rotate and make smaller... slide in? -->
-                  <div id="slide-right">
+                  
                      <h2 class="heading text-left title-slide">GratitudeToday.io</h2>
                      <div class="sub-heading text-left" style="padding-bottom:30px !important">
                         
@@ -33,10 +33,10 @@
                          
                      </div>
                  </div>
-                 </div>
+                 
                <div class="col-md-1">
                </div>
-               <div class="col-md-5 relative align-self-center join-today-index">
+               <div class="col-md-5 relative align-self-center join-today-index main-right">
                   <div class="alert alert-danger err-msg" role="alert"> </div>
                   <div class="panel panel-default">
                      <div class="panel-heading">
@@ -128,12 +128,16 @@
                         <button class="btn btn-primary btn-lg btn-block pb_btn-pill  btn-shadow-blue text-center" type="submit">Register</button>
                         <br/><div class="col-md-12 mb-3 md-form text-center">Already a member? <a style="color:green !important;" href="/login/">Login here.</a>
                         </div>
+                        
                      </div>
                      </div>
                   </div>
                   </form>
                   <br/>
                   <span id="checked_yn"></span>
+                   
+
+                   
                   
                </div>
             </div>
@@ -144,7 +148,50 @@
        <% include partials/scripts %>
       
     </body>
+    <style>
+       /* slide in main left text */
+      #main-left {
+     
+      height: 0;
+      width: 0;
+      z-index: 3;
+      position:absolute;
+      top:300px;
+      right:20px; 
+      }
+      #main-right {
+     
+     height: 0;
+     width: 0;
+     z-index: 3;
+     position:absolute;
+     top:300px;
+     right:20px; 
+     }
+   
+    </style>
     <script type="text/javascript">
+$(function() {
+   $( "#main-left" ).animate({
+    width: "70%",
+    left:"-100px",
+    height:"200px",
+    //opacity: 0.4,
+    marginLeft: "0.6in",
+    fontSize: "3em",
+    borderWidth: "10px"
+  }, 1500 );
+  $( "#main-right" ).animate({
+    width: "70%",
+    left:"-100px",
+    height:"200px",
+    //opacity: 0.4,
+    marginLeft: "0.6in",
+    fontSize: "3em",
+    borderWidth: "10px"
+  }, 1500 );
+   //$('#main-left').animate({ left: '0px', height: '681px', width: '467px' }, 1000, 'linear');
+});
 $( document ).ready(function() {
          
         
@@ -152,15 +199,11 @@ $( document ).ready(function() {
         $(".lengthcheck").hide();
         $(".passwords-not-equal").hide();
         $(".lengthcheck").hide();
-        $("slide-right");
-        console.log("slide title panel");
-        
-        $(".test-slider").slideDown("slow");
-        
- 
+       
      
 
 });
+
 
 $("#createUserForm").submit(function(event) {
    // Prevent the form from submitting via the browser.
