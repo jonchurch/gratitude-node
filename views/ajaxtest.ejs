@@ -1,31 +1,17 @@
-<html>
-	<head>
-		<title>jsonp test</title>
-		<script src="http://code.jquery.com/jquery-1.6.2.min.js"></script>		
-		<script type="text/javascript">
-            $(function(){				
-                $('#select_link').click(function(e){
-                    e.preventDefault();
-                    console.log('select_link clicked');
-                    
-					var data = {};
-					
-					$.ajax({
-						type: 'GET',
-						data: JSON.stringify(data),
-				        contentType: 'application/json',
-                        url: 'http://localhost:3000/users/',						
-                        success: function(data) {
-                            console.log('success');
-                            console.log(JSON.stringify(data));
-                        }
-                    });
 
-                });				
-            });
-        </script>
-    </head>
-    <body>
-        <div id="select_div"><a href="#" id="select_link">Test</a></div>    
-    </body>
-</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<input type="button" class="submit_wide" value="Submit"/>
+
+<script>
+$( document ).ready(function() {
+        alert("set it");
+        var $this = $(this);
+        $this.val('Please wait..');
+        $this.attr('disabled', true);
+        setTimeout(function() { 
+            $this.attr('disabled', false);
+            $this.val('Submit');
+        }, 2000);
+});
+
+</script>

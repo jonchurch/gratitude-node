@@ -696,27 +696,29 @@
 .cover-bg-green:before {
   background: #00ca4c; }
 
-.cover-bg-cyan:before {
-  background: #a5e9db; }
+/* .cover-bg-cyan:before {
+  background: #a5e9db; } */
 
-.pb_gradient_v1:before {
-  background:#dd1818;
+/* .pb_gradient_v1:before {
+  background-image:'../images/3d-heart.png';
+  background:black !important; */
   /* Old browsers */
-  background: -moz-linear-gradient(45deg,#aa1501 0%,#8E2323 100%);
+  /* background: -moz-linear-gradient(45deg,#aa1501 0%,#8E2323 100%); */
   /* FF3.6-15 */
-  background: -webkit-linear-gradient(45deg, #aa1501 0%, #8E2323 100%);
+  /* background: -webkit-linear-gradient(45deg, #aa1501 0%, #8E2323 100%); */
   /* Chrome10-25,Safari5.1-6 */
-  background: -o-linear-gradient(45deg,#aa1501 0%, #8E2323 100%);
-  background: linear-gradient(45deg, #aa1501 0%, #8E2323 100%);
+  /* background: -o-linear-gradient(45deg,#aa1501 0%, #8E2323 100%); */
+  /* background: linear-gradient(45deg, #aa1501 0%, #8E2323 100%); */
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#aa1501', endColorstr='#8E2323',GradientType=1 );
+  /* filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#aa1501', endColorstr='#8E2323',GradientType=1 ); */
   /* IE6-9 fallback on horizontal gradient */
-  content: "";
+  /* content: "";
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
-  right: 0; }
+  right: 0;  */
+/* } */
 
 .overlay {
   position: absolute;
@@ -1018,7 +1020,8 @@ html {
   font-size: 1em; }
 
 body {
-  font-family: "Montserrat", Arial, sans-serif; }
+  font-family: "Montserrat", Arial, sans-serif; 
+background-color:black !important}
 
 input, textarea, p {
   font-weight: 300; }
@@ -1726,6 +1729,7 @@ a {
 }
 .pb_cover_v3 {
   margin-top: 0px !important;
+  background-color:black;
 }
 .post-submit-button{
   width:20% !important;
@@ -1746,4 +1750,9 @@ margin-top: 0;
     font-size: 16px;
     color: red !important;
 }
-
+.section-background{
+  background:red !important;
+}
+.sub-heading{
+  color:white !important;
+}

@@ -3,16 +3,16 @@
    <head>
         <% include partials/head %>
     </head>
-    <body>
+    <body style="background-color:#a11201">
        
-        <section class="pb_cover_v3 cover-bg-opacity text-left pb_gradient_v1">
+        <section class="text-left">
          <div class="container">
             <div class="row align-items-center justify-content-center">
                <div class="col-md-6 " id="main-left" style="margin-top:-200px;">
                   <!-- Rotate and make smaller... slide in? -->
                   
-                     <h2 class="heading text-left title-slide">GratitudeToday.io</h2>
-                     <div class="sub-heading text-left" style="padding-bottom:30px !important">
+                     <h2 class="heading2" style="color:white;">GratitudeToday.io</h2>
+                     <div class="sub-heading text-left" style="padding-bottom:30px !important;color:white;">
                         
                          <p class="mb-12">See what people aroud the World are grateful for right now.</p>
  
@@ -36,9 +36,9 @@
                  
                <div class="col-md-1">
                </div>
-               <div class="col-md-5 relative align-self-center join-today-index main-right">
+               <div class="col-md-5 relative align-self-center join-today-index" id="main-right">
                   <div class="alert alert-danger err-msg" role="alert"> </div>
-                  <div class="panel panel-default">
+                  <div class="panel panel-default" id=" main-right">
                      <div class="panel-heading">
                         <h3 class="panel-title text-center">Join.</h3>
                      </div>
@@ -151,57 +151,33 @@
     <style>
        /* slide in main left text */
       #main-left {
-     
-      height: 0;
-      width: 0;
-      z-index: 3;
-      position:absolute;
-      top:300px;
-      right:20px; 
+         display: none;
       }
       #main-right {
+         display: none;
+      }
+
      
-     height: 0;
-     width: 0;
-     z-index: 3;
-     position:absolute;
-     top:300px;
-     right:20px; 
-     }
    
     </style>
     <script type="text/javascript">
-$(function() {
-   $( "#main-left" ).animate({
-    width: "70%",
-    left:"-100px",
-    height:"200px",
-    //opacity: 0.4,
-    marginLeft: "0.6in",
-    fontSize: "3em",
-    borderWidth: "10px"
-  }, 1500 );
-  $( "#main-right" ).animate({
-    width: "70%",
-    left:"-100px",
-    height:"200px",
-    //opacity: 0.4,
-    marginLeft: "0.6in",
-    fontSize: "3em",
-    borderWidth: "10px"
-  }, 1500 );
-   //$('#main-left').animate({ left: '0px', height: '681px', width: '467px' }, 1000, 'linear');
-});
+
+
 $( document ).ready(function() {
-         
-        
+      
+      setTimeout(function() { 
+         $("#main-left").slideDown("slow");
+         $("#main-right").slideDown("slow");
+         },
+      1000);
+     
+       
+      
         $(".err-msg").hide();
         $(".lengthcheck").hide();
         $(".passwords-not-equal").hide();
         $(".lengthcheck").hide();
-       
-     
-
+        
 });
 
 

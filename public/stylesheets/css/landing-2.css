@@ -63,12 +63,12 @@ margin-top:-60px !important}
 }
 .heading{
   font-size:30px !important;
-  color:#a11201;
+  color:white !important;
   
 }
 .subpage-heading{
   font-size:40px !important;
-  color:#a11201;
+  color:white !important;
 }
 .sub_heading{
   font-size:18px !important;
@@ -122,4 +122,10 @@ margin-top:-60px !important}
   margin-bottom: 0;
   font-size: 16px;
   color: white !important;
+}
+.heading2{
+  color:white !important;
+}
+.h2{
+  color:white !important;
 }
