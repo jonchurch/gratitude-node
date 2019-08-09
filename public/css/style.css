@@ -493,16 +493,20 @@
     font-size: 62px;
     color: white;
     font-weight: 300;
-    /* margin-top: -200px; */
+    
+   
     
     }
     @media (max-width: 767px) {
+     
       .pb_cover .heading,
       .pb_cover_v1 .heading,
       .pb_cover_v2 .heading,
       .pb_cover_v3 .heading,
       .pb_cover_v4 .heading {
-        font-size: 42px; } }
+      
+        /* font-size: 42px;  */
+    } }
   .pb_cover .sub-heading,
   .pb_cover_v1 .sub-heading,
   .pb_cover_v2 .sub-heading,
@@ -1749,6 +1753,11 @@ a {
     color: red !important;
     text-align: center;
     
+}
+.quote-title{
+  font-weight: 700 !important;
+
+
 }
 
 
