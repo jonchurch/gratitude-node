@@ -1730,3 +1730,7 @@ a {
     font-weight: 900;
     color: #28a745 !important;
 }
+
+.sub-button{
+  width:25%;
+}
