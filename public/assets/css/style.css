@@ -1383,8 +1383,7 @@ a {
       font-style: normal;
       color: #868e96; }
 
-.pb_footer {
-  padding: 5em 0; }
+.pb_footer {}
   .pb_footer .list-unstyled li {
     margin-bottom: 10px;
     line-height: 1.5; }
