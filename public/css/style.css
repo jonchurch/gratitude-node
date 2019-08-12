@@ -491,6 +491,7 @@
   .pb_cover_v3 .heading,
   .pb_cover_v4 .heading {
     font-size: 62px;
+    font-size: 4em !important;
     color: white;
     font-weight: 300;
     
@@ -1756,8 +1757,11 @@ a {
 }
 .quote-title{
   font-weight: 700 !important;
-
-
+}
+.sub-page-quote{
+  font-size: 2.5em !important; 
+  font-weight:300 !important;
+  padding-top:130px !important;
 }
 
 

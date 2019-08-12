@@ -164,10 +164,10 @@ router.get('/info/:id', function(req, res) {
  ////////////////////
 ////UPDATE DETAILS//
 ////////////////////
-router.put('/info',function(req,res){
+router.put('/info:id',function(req,res){
 
-    //console.log("in the put method : "+req.body._id);
-    console.log("IN PUT");
+   
+    console.log("IN PUT: "+console.log(req.params.id));
     res.send('Got a PUT request at /user');
 //     User.findById(_id, function (err, user) {
 //     if(!user){

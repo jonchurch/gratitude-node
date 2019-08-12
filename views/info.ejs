@@ -15,10 +15,7 @@
           <ul class="navbar-nav ml-auto">
             <li class="nav-item"><a class="nav-link" href="#section-home">Home</a></li>
             <li class="nav-item"><a class="nav-link" href="#recent-posts">Recent Posts</a></li>
-            <!-- <li class="nav-item"><a class="nav-link" href="#section-reviews">Reviews</a></li>
-            <li class="nav-item"><a class="nav-link" href="#section-pricing">Pricing</a></li>
-            <li class="nav-item"><a class="nav-link" href="#section-faq">FAQ</a></li>
-            <li class="nav-item cta-btn ml-xl-2 ml-lg-2 ml-md-0 ml-sm-0 ml-0"><a class="nav-link" href="https://uicookies.com/" target="_blank"><span class="pb_rounded-4 px-4">Get Started</span></a></li> -->
+            
           </ul>
         </div>
       </div>
@@ -32,158 +29,166 @@
       <div class="container">
         <div class="row align-items-center justify-content-center">
             <div class="row align-items-center justify-content-center"></div>
+            <div class="col-md-6">
+                <div class="wrapper"  id="slide">
+                  <h2 class="heading mb-3 quote-title main-title" style="padding-top:130px !important">“Gratitude turns what we have into enough.” ~ Anonymous</h2>
+                   
+                  </div>
+           
             
-          <div class="col-md-12 relative align-self-center" style="padding-top:100px !important;">
+        
+          </div>
+          <div class="col-md-5 relative align-self-center" style="padding-top:100px !important;">
               
-                <div class="err-msg"></div>
-                <form class="needs-validation" id="createUserForm" novalidate>
-                     <div class="form-group shadow-textarea">
-                           <label for="bio">Let us know a little about you</label>
-                           <textarea class="form-control z-depth-1" id="bio" rows="5"></textarea>
-                           </div>
-                           
-                  <div class="form-group">
-                    <input type="text" class="form-control pb_height-50 reverse" id="firstname" placeholder="First Name..." required>
-                    <div class="invalid-feedback">
-                      Please enter your firstname.
-                  </div>
-                  </div>
-                  <div class="form-group">
-                    <input type="text" class="form-control pb_height-50 reverse" id="lastname" placeholder="Last Name..."  required>
-                    <div class="invalid-feedback">
-                      Please enter your lastname.
-                  </div>
-                  </div>
-                  <div class="form-group">
-                    <input type="email" class="form-control pb_height-50 reverse" id="email" placeholder="Email Address..."required>
-                    <div class="invalid-feedback">
-                      Please enter a valid email.
-                  </div>
-                  </div>
-                  <div class="form-group">
-                    <input type="password" class="form-control pb_height-50 reverse" id="password" placeholder="Password...">
-                    <div class="invalid-feedback lengthcheck">
-                      Passwords must be at least 6 characters
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <input type="password" class="form-control pb_height-50 reverse" id="confirmpassword" placeholder="Confirm Password...">
-                    <div class="invalid-feedback password-confirm">
-                      Confirm Password
-                    </div>
-                    <div class="invalid-feedback passwords-not-equal">
-                          Passwords must be same
-                    </div>
-                  </div>
-                  <div class="form-group">
-                      <div class="form-check text-left">
-                        <input class="form-check-input"  type="checkbox" checked id="public-checkbox">
-                        <label class="form-check-label" for="public-checkbox">
-                        <span style="padding-left:20px;">Share posts with public</span>&nbsp;<i class="optional">(Optional)</i>
-                        </label>
-                      </div>
-                  </div>
-                  <div class="form-group">
-                      <div class="form-check text-left">
-                          <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-                          <label class="form-check-label" for="invalidCheck">
-                          <span style="padding-left:20px;">Agree to terms and conditions</span>
-                          </label>
-                          <div class="invalid-feedback" id="checkbox-validate" required>
-                              You must agree before submitting
-                              </div>
-                      </div>
-                  </div>
             
-                  <div class="form-group">
-                    <input type="submit" class="btn btn-primary btn-lg btn-block pb_btn-pill  btn-shadow-red" value="Register">
-                    <p class="text-center" style="padding-top:15px;">Already a member? <a href="/login/">Click here to login</a></p>
-                  </div>
-                </form>
+            <form class="needs-validation bg-white rounded pb_form_v1" id="updateUserInfo" novalidate>
+            
+              <h2 class="mb-4 mt-0 text-center">Welcome <span id="name"></span>!</h2><p class="text-center">Don't worry, you can do this later.</p>
+             
+              
+              <div class="form-group">
 
-        </div>
+                <textarea class="form-control z-depth-1" id="bio" rows="5" placeholder="Tell us a little about yourself..."></textarea>
+                
+              </div>
+              <div class="form-group">
+                  <input type="text" class="form-control" id="address" placeholder="Address..." >
+                
+              </div>
+              
+        
+              
+                  <div class="form-group">
+                      <input type="submit" class="btn btn-info" id="btn_skip" value="Skip">
+                      <input type="submit" class="btn btn-success" value="Update">
+                      
+                     
+                    </div>
+              
+               
+            </form>
+
+    </div>
+  </div>
       </div>
     </section>
     <!-- END section -->
-    
-    
+      
     <% include partials/footer %>
-    <% include partials/scripts %>
 
-    <script type="text/javascript"> 
+    <% include partials/scripts %>
     
+    <style>
+        .wrapper {
+   position: relative;
+   /* overflow: hidden; */
+   width: 100px;
+   height: 100px; 
+   margin-top:-250px;
+   padding-top: 50px;
+    /* border: 1px solid black;  */
+}
+
+#slide {
+   position: absolute;
+   left: -800px;
+   width: 100%;
+   height: 100px;
+   
+   -webkit-animation: slide 0.5s forwards;
+   -webkit-animation-delay: 2s;
+   animation: slide 0.5s forwards;
+   animation-delay: 2s;
+}
+
+@-webkit-keyframes slide {
+   100% { left: 0; }
+}
+
+@keyframes slide {
+   100% { left: 0; }
+}
+   </style> 
+<script>
     $(document).ready(function() {
       
-      var _id=($.urlParam('id'));
-      var passId;
-  
-    console.log("id: "+_id);
-    //call get user
-    $.ajax({
-        url: '/users/'+_id,
-        type: "GET",
-        dataType: "json",
-        data: {id: _id},
-          success: function(data, textStatus, jqXHR) {
-                 //set first name, lastname, email, avatar 
-                  $("#name").html(data.firstname+" "+data.lastname);
-                  passId=data._id;
-                 
-          },
-          error: function(jqXHR, textStatus, errorThrown) {
-                  console.log('Error occurred on info.ejs');
-                  
-          }
-      }); 
-      $("#btn_skip").click(function() {
+    var _id=($.urlParam('id'));
+    
+   var passId;
+      console.log("id: "+_id);
+      //call get user
+      $.ajax({
+          url: '/users/'+_id,
+          type: "GET",
+          dataType: "json",
+          data: {id: _id},
+            success: function(data, textStatus, jqXHR) {
+                   //set first name, lastname, email, avatar 
+                   
+                    $("#name").html(data.firstname+" "+data.lastname);
+                    passId=data._id;
+                   
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                    console.log('Error occurred on info.ejs');
+                    
+            }
+        }); 
+        $("#btn_skip").click(function() {
+            event.preventDefault();
+            window.location.assign("/profile/?id="+passId);
+            
+        });
+        $("#updateUserInfo").submit(function(event) {
+          // Prevent the form from submitting via the browser.
+          console.log("update button clicked");
           event.preventDefault();
-          console.log("pass:"+passId);
-          
-          window.location.assign("/profile/?id="+passId);
-          
-      });
-      $("#btn_save").click(function() {
-          console.log("save info")
-          var _id=($.urlParam('id'));
-        console.log("param value: "+_id);
-          event.preventDefault();
-           
+
           // PREPARE FORM DATA
-          console.log("start ajax...");
-           $.ajax({
-              url: '/info/',
-              type: "PUT",
-              dataType: "json",
-              data: {
-                  _id:_id,
-                  bio: $("#bio").val(),
-                  location: $("#location").val()
-              },
-             
-              success: function(data, textStatus, jqXHR) {
-                  console.log("id : "+data._id);
-                  window.location.assign("/profile/?id="+data._id);
-              },
-              error : function(error) {
-                  console.log(error);
-                  if(error.status==500){
-                      $(".err-msg").html("Error logging again, please try again.");
-                      $(".err-msg").show(); 
+          console.log('create form data: '+passId);
+            var formData = {
+               
+               
+               location :  $("#location").val(),
+               bio: $("#location").val(),
+               avatar:"/images/coverphotos/profile.jpg"
+            }
+            console.log('call ajax');
+            
+            $.ajax({
+                  type : "PUT",
+                  data : {location:location,bio:bio,avatar:'/images/coverphotos/profile.jpg'},
+                  contentType : "application/json",
+                  url : "/info/?id="+passId,
+                  success : function(customer) {
+                      //forward page with id to fill in optional information
+                      console.log("id : "+customer._id);
+                    window.location.assign("/info/?id="+customer._id);
+                    
+                  },
+                  error : function(error) {
+                      console.log(error);
+                      if(error.status==410){
+                         $(".err-msg").html("Error.");
+                        $(".err-msg").show(); 
+                      }
                   }
-              }
-          });
+               });
+               console.log('past ajax');
+    	
+            
+         });
+        
+        });
+            
+    
+</script>
 
-          
-             
-     
-
-          
-       });
-      
-});  
-
-  </script>
     
 	</body>
 </html>
+
+
+
+
 
