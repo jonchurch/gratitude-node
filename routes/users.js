@@ -117,8 +117,12 @@ router.post('/',function(req,res){
     }
     else{
           //save user  
+          var encryptedPassword;
          console.log("create new user : "+req.body.email);
-        
+            bcrypt.hash('myPassword', 10, function(err, hash) {
+                encryptedPassword =hash;
+
+        });
            // var hash = bcrypt.hashSync(req.body.password, saltRounds);
                 
                 var user = new User({
@@ -126,7 +130,7 @@ router.post('/',function(req,res){
                 firstname:req.body.firstname,
                 lastname : req.body.lastname,
                 email :req.body.email,
-                password : req.body.password,
+                password : encryptedPassword,
                 public :true,
                 admin: false,
                 bio : "",
@@ -137,7 +141,7 @@ router.post('/',function(req,res){
                     if (error){ 
                     console.log("err:"+error);
                     res.send(error.message);
-                    next();  
+                    //next();  
                     }
                 
                     res.send(user)
