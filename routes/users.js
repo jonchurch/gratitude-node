@@ -54,7 +54,7 @@ router.get('/:id', function(req, res) {
 //////////////////
 router.post('/login', function(req, res) {
    // bcrypt.compare(password, user.password);
-   console.log("login users....")
+   console.log("login user....")
     User.findOne({ email:req.body.email}, function (err, user) {
     
     if (!user){ 
@@ -66,20 +66,30 @@ router.post('/login', function(req, res) {
             res.send(JSON.stringify(error.message));
        
     }else{
-        console.log("found user...");
-        console.log(req.body.password);
-        console.log(user.password);
-        if(req.body.password == user.password){
-            // res == true
-            res.send(user);
-        }
-        else{
-            //incorrect password
-            const error = new Error('Login Failed. Cofirm Email and Password are correct.');
+      console.log("in else:"+user.password);
+      bcrypt.compare(req.body.password, user.password, function (err, result) {
+        if (result == true) {
+          console.log("login pass");
+          res.send(user);
+        } else {
+          
+          const error = new Error('Login Failed. Cofirm Email and Password are correct.');
             res.status(500);
             console.log(error.response)
             res.send(JSON.stringify(error.message));
+          
         }
+      });
+        // console.log(req.body.password);
+        // console.log(user.password);
+        // if(req.body.password == user.password){
+        //     // res == true
+        //     res.send(user);
+        // }
+        // else{
+            //incorrect password
+           
+        //}
     } 
 });        
 });
@@ -117,36 +127,60 @@ router.post('/',function(req,res){
     }
     else{
           //save user  
-          var encryptedPassword;
-         console.log("create new user : "+req.body.email);
-            bcrypt.hash('myPassword', 10, function(err, hash) {
-                encryptedPassword =hash;
+          console.log("bcrypt it: "+req.body.password);
+          
 
-        });
-           // var hash = bcrypt.hashSync(req.body.password, saltRounds);
+          var pwd = req.body.password;
+
+          bcrypt.genSalt(10, function(err, salt) {
+              if (err) {
+                  console.log('1: ' + err.message);
+              } else {
+                  //console.log('Salt: ' + salt);
+                  bcrypt.hash(pwd, salt, function (err, hash) {
+                      if (err) {
+                          //console.log('2: ' + err.message);
+                      } else {
+                        var user = new User({
                 
-                var user = new User({
+                          firstname:req.body.firstname,
+                          lastname : req.body.lastname,
+                          email :req.body.email,
+                          password : hash,
+                          public :true,
+                          admin: false,
+                          bio : "",
+                          location : "",
+                          avatar: ""
+                          });
+                          user.save(function (error, user) {
+                              if (error){ 
+                              console.log("err:"+error);
+                              res.send(error.message);
+                              next();  
+                              }
+                          
+                              res.send(user)
+                              
+                          });
+                      }
+                  });
+              }
+          });
+          // bcrypt.hash(encryptedPassword, 10, function(err, hash) {
+          //   if (err) {
+          //     console.log(err.message);
+          //     res.json({ success: false, msg: err.message });
+          // } else {
+          //   // Store hash in database
+          //   console.log("hash: "+hash);
+          //   encryptedPassword=hash;
+          //   console.log("pass"+encryptedPassword);
+          // }
+          // });
+         
                 
-                firstname:req.body.firstname,
-                lastname : req.body.lastname,
-                email :req.body.email,
-                password : encryptedPassword,
-                public :true,
-                admin: false,
-                bio : "",
-                location : "",
-                avatar: ""
-                });
-                user.save(function (error, user) {
-                    if (error){ 
-                    console.log("err:"+error);
-                    res.send(error.message);
-                    //next();  
-                    }
                 
-                    res.send(user)
-                    
-                });
     }
         
   });
