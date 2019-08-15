@@ -409,7 +409,7 @@
 .pb_cover_v3,
 .pb_cover_v4 {
   position: relative;
-  height: 95vh; }
+  height: 100vh; }
   @media (max-width: 767px) {
     .pb_cover,
     .pb_cover_v1,
@@ -494,6 +494,7 @@
     font-size: 4em !important;
     color: white;
     font-weight: 300;
+    height: 100vn !important;
     
    
     
