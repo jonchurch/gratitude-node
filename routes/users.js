@@ -32,7 +32,7 @@ router.get('/', function(req, res) {
 ////////////////////
 
 router.get('/:id', function(req, res) {
- 
+ console.log("get user info ...");
   User.findById(req.params.id, function (err, user) {
 
     if (err){ 
