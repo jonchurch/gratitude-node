@@ -495,6 +495,7 @@
     color: white;
     font-weight: 300;
     height: 100vn !important;
+    padding-top: 100px !important;
     
    
     
@@ -1759,11 +1760,11 @@ a {
 .quote-title{
   font-weight: 700 !important;
 }
-.sub-page-quote{
+/* .sub-page-quote{
   font-size: 2.5em !important; 
-  font-weight:300 !important;
+  font-weight:900 !important;
   padding-top:130px !important;
-}
+} */
 
 
 
