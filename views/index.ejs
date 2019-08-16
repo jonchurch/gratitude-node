@@ -33,7 +33,10 @@
           </div>
           <div class="col-md-5 relative align-self-center" style="padding-top:100px !important;">
               
-                <div class="err-msg"></div>
+                 <div class="alert alert-danger text-center err-container">
+                <span class="err-msg"></span>
+                
+            </div>
                 <form class="needs-validation bg-white rounded pb_form_v1" id="createUserForm" novalidate>
                 <form action="#" >
                   <h2 class="mb-4 mt-0 text-center">Sign Up for Free</h2>
@@ -141,6 +144,7 @@
 <script type="text/javascript">
   $( document ).ready(function() {
       $(".err-msg").hide();
+      $(".err-container").hide();
       $(".lengthcheck").hide();
       $(".passwords-not-equal").hide();
       $(".lengthcheck").hide();
