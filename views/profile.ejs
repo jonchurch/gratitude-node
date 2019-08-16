@@ -20,6 +20,7 @@
 
   <!-- Custom styles for this template -->
   <link href="/assets/css/resume.min.css" rel="stylesheet">
+  <link rel="icon" href="/assets/images/favicon.png" type="image/x-icon"/>
 
 </head>
 
@@ -29,7 +30,7 @@
     <a class="navbar-brand js-scroll-trigger" href="#page-top">
       <span class="d-block d-lg-none" id="name"></span>
       <span class="d-none d-lg-block">
-        <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="img/profile.jpg" alt="">
+        <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="" alt="">
       </span>
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -63,13 +64,14 @@
 
     <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="about">
       <div class="w-100">
-        <h1 class="mb-0">Clarence
-          <span class="text-primary">Taylor</span>
+        <h1 class="mb-0"><span id="firstname"></span>
+          <span class="text-primary"><span id="lastname"></span>
         </h1>
-        <div class="subheading mb-5">3542 Berry Street · Cheyenne Wells, CO 80810 · (317) 585-8468 ·
-          <a href="mailto:name@email.com">name@email.com</a>
+        <div class="subheading mb-5"><span id="location"></span>
+               
+          <span id="email"></span>
         </div>
-        <p class="lead mb-5">I am experienced in leveraging agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.</p>
+        <p class="lead mb-5" id="bio"></p>
         <div class="social-icons">
           <a href="#">
             <i class="fab fa-linkedin-in"></i>
@@ -97,30 +99,29 @@
   <% include partials/scripts %>
 </body>
 <script type = "text/javascript" > 
-    var Id;
+    
       $(document).ready(function() {
-          
-          
-          emailAddress="";
-          
-          var _id=($.urlParam('id'));
-          console.log("param value: "+_id);
-          Id = _id;
-          $.ajax({
-              url: '/users/'+_id,
-              type: "GET",
-              dataType: "json",
-              data: {_id: _id},
-                  success: function(data, textStatus, jqXHR) {
-                      //set first name, lastname, email, avatar 
+        var _id= getUrlParameter("id");
+      $.ajax({
+          url: '/users/'+_id,
+          type: "GET",
+          dataType: "json",
+          data: {id: _id},
+            success: function(data, textStatus, jqXHR) {
+                   //set first name, lastname, email, avatar 
+                   
+                    
+                     $("#name").html(data.firstname+" "+data.lastname);
                       
-                      $("#name").html(data.firstname+" "+data.lastname);
+                    
                       $("#firstname").html(data.firstname)
                       $("#lastname").html(data.lastname)
                       $("#email").html(data.email);
+                      
                       $("#avatar").attr("src","../"+data.avatar);
                       $("#bio").html(data.bio);
                       $("#location").html(data.location);
+                      console.log("location"+data.location);
                       $("account-link").attr("href","/account/?id="+_id);
                       $("support-link").attr("href","/support/?id="+_id);
                       $("journal-link").attr("href","/journal/?id="+_id);

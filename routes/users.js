@@ -15,6 +15,7 @@ router.use(express.json());
 ///////////////////////
 router.get('/', function(req, res) {
   //get all users and return for admin
+  console.log("get them all");
   User.find({}, function (err, users) {
     
     if (err){ 
@@ -32,7 +33,8 @@ router.get('/', function(req, res) {
 ////////////////////
 
 router.get('/:id', function(req, res) {
- console.log("get user info ...");
+ console.log("get user info ..."+req.params.id);
+ 
   User.findById(req.params.id, function (err, user) {
 
     if (err){ 
@@ -40,6 +42,7 @@ router.get('/:id', function(req, res) {
       res.send(err.message);
       next();  
     }
+    console.log("send info back");
     res.send(user);
    
     
