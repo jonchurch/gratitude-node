@@ -57,42 +57,33 @@ router.get('/:id', function(req, res) {
 //////////////////
 router.post('/login', function(req, res) {
    // bcrypt.compare(password, user.password);
-   console.log("login user....")
+   
     User.findOne({ email:req.body.email}, function (err, user) {
     
     if (!user){ 
          //not there
-            console.log('not there');
+            
             const error = new Error('User not found');
             res.status(500);
             console.log(error.response)
             res.send(JSON.stringify(error.message));
        
     }else{
-      console.log("in else:"+user.password);
+      
       bcrypt.compare(req.body.password, user.password, function (err, result) {
         if (result == true) {
-          console.log("login pass");
+          
           res.send(user);
         } else {
-          
-          const error = new Error('Login Failed. Cofirm Email and Password are correct.');
+            const error = new Error('Login Failed. Cofirm Email and Password are correct.');
+
             res.status(500);
             console.log(error.response)
             res.send(JSON.stringify(error.message));
           
         }
       });
-        // console.log(req.body.password);
-        // console.log(user.password);
-        // if(req.body.password == user.password){
-        //     // res == true
-        //     res.send(user);
-        // }
-        // else{
-            //incorrect password
-           
-        //}
+       
     } 
 });        
 });
@@ -134,7 +125,7 @@ router.post('/',function(req,res){
           
 
           var pwd = req.body.password;
-
+         
           bcrypt.genSalt(10, function(err, salt) {
               if (err) {
                   console.log('1: ' + err.message);
@@ -170,20 +161,7 @@ router.post('/',function(req,res){
                   });
               }
           });
-          // bcrypt.hash(encryptedPassword, 10, function(err, hash) {
-          //   if (err) {
-          //     console.log(err.message);
-          //     res.json({ success: false, msg: err.message });
-          // } else {
-          //   // Store hash in database
-          //   console.log("hash: "+hash);
-          //   encryptedPassword=hash;
-          //   console.log("pass"+encryptedPassword);
-          // }
-          // });
          
-                
-                
     }
         
   });

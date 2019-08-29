@@ -108,6 +108,7 @@ p.lead {
     flex-direction: column;
     width: 17rem;
     height: 100vh;
+    background-color:#a11201 !important ;
   }
   #sideNav .navbar-brand {
     display: -webkit-box;
@@ -180,7 +181,7 @@ section.resume-section .resume-item .resume-date {
 }
 
 .text-primary {
-  color: #BD5D38 !important;
+  color: #a11201 !important;
 }
 
 a {

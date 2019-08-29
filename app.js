@@ -7,9 +7,7 @@ var path=require('path');
 var mongoose=require('mongoose');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
-// const { AssertionError } = require('assert');
-// const { MongoError } = require('mongodb');
+var postsRouter = require('./routes/posts');
 
 var app = express();
 console.log("get DB Connection....");
@@ -39,6 +37,7 @@ app.use('/', express.static(__dirname + '/public'));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/posts', postsRouter);
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");

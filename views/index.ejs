@@ -75,8 +75,8 @@
                   </div>
                   <div class="form-group">
                       <div class="form-check text-left">
-                        <input class="form-check-input"  type="checkbox" checked id="public-checkbox">
-                        <label class="form-check-label" for="public-checkbox">
+                        <input class="form-check-input"  type="checkbox" value="" checked id="public-checkbox">
+                        <label class="form-check-label" for="checkbox-public">
                         <span style="padding-left:20px;">Share posts with public</span>&nbsp;<i class="optional">(Optional)</i>
                         </label>
                       </div>
@@ -151,7 +151,15 @@
           
   });
   
-  
+   $('input[name="public-checkbox"]').click(function(){
+            if($(this).is(":checked")){
+                alert("Checkbox is checked.");
+            }
+            else if($(this).is(":not(:checked)")){
+                alert("Checkbox is unchecked.");
+            }
+    });
+
   $("#createUserForm").submit(function(event) {
      // Prevent the form from submitting via the browser.
      event.preventDefault();
@@ -220,7 +228,7 @@
                         //forward page with id to fill in optional information
                         console.log("id : "+customer._id);
                         
-                       window.location.assign("/info/"+customer._id);
+                       window.location.assign("/info/?id="+customer._id);
                        //users/5d547ba6a0c3950a78636fc4
                       
                     },
