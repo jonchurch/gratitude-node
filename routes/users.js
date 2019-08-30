@@ -183,47 +183,18 @@ router.get('/info/:id', function(req, res) {
  ////////////////////
 ////UPDATE DETAILS//
 ////////////////////
-router.put('/info:id',function(req,res){
 
-   
-    console.log("IN PUT: "+console.log(req.params.id));
-    res.send('Got a PUT request at /user');
-//     User.findById(_id, function (err, user) {
-//     if(!user){
-//         const error = new Error('Something went wrong, please try again.');
-        
-//         res.status(500);
-//         console.log(error.response)
-//         res.send(JSON.stringify(error.message));
-        
-//     }
-//     else{
-//           //save user  
-//          console.log("save details: "+_id);
-        
-//            // var hash = bcrypt.hashSync(req.body.password, saltRounds);
-                
-//                 var user = new User({
-                
-              
-//                 bio : req.body.bio,
-//                 location : "",
-//                 avatar: ""
-//                 });
-//                 user.save(function (error, user) {
-//                     if (error){ 
-//                     console.log("err:"+error);
-//                     res.send(error.message);
-//                     next();  
-//                     }
-                
-//                     res.send(user)
-                    
-//                 });
-//     }
-        
-//   });
-                    
-    
- });   
+
+router.put('/users/:id',function(req,res){
+  console.log("IN PUT: "+console.log(req.params.id));
+	User.findById(_id, function (err, user) {
+     if(!user){
+     }
+     else{
+
+     }
+    })
+});   
+
+
 module.exports = router;

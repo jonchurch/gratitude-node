@@ -17,7 +17,7 @@
             <div class="row align-items-center justify-content-center"></div>
             <div class="col-md-6">
                 <div class="wrapper"  id="slide">
-                  <h2 class="heading mb-3 quote-title main-title" style="font-size: 4em; font-weight:900 !important;" >grat·i·tude: the quality of being thankful;</h2>
+                  <h2 class="heading mb-3 quote-title main-title" style="font-size: 3em; font-weight:900 !important;" >grat·i·tude: the quality of being thankful;</h2>
                     <div class="sub-heading">
                         <p class="mb-4"><i class="fas fa-smile"></i>&nbsp;Gratitude makes us happier.</p>
                         <p class="mb-4"><i class="fas fa-heart"></i>&nbsp;Gratitude makes us healthier.</p>
@@ -31,7 +31,7 @@
           </div>
           <div class="col-md-1">
           </div>
-          <div class="col-md-5 relative align-self-center" style="padding-top:100px !important;">
+          <div class="col-md-5 relative align-self-center" style="padding-top:80px !important;">
               
                  <div class="alert alert-danger text-center err-container">
                 <span class="err-msg"></span>
@@ -39,7 +39,7 @@
             </div>
                 <form class="needs-validation bg-white rounded pb_form_v1" id="createUserForm" novalidate>
                 <form action="#" >
-                  <h2 class="mb-4 mt-0 text-center">Sign Up for Free</h2>
+                  <h2 class="mb-4 mt-0 text-center form-header">Sign Up for Free</h2>
                   <div class="form-group">
                     <input type="text" class="form-control pb_height-50 reverse" id="firstname" placeholder="First Name..." required>
                     <div class="invalid-feedback">
@@ -218,7 +218,7 @@
                  avatar: ""
               }
               var publicYN=$('#public-checkbox').is(':checked');
-                        
+              
               $.ajax({
                     type : "POST",
                     data : JSON.stringify(formData),
@@ -236,7 +236,8 @@
                         console.log(error);
                         if(error.status==410){
                            $(".err-msg").html("Email already in use.");
-                          $(".err-msg").show(); 
+                           $(".err-msg").show();
+                          $(".err-container").show();
                         }
                     }
                  });

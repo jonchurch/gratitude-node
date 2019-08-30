@@ -726,7 +726,7 @@ background-color:white !important;
   background: rgba(0, 0, 0, 0.7); }
 
 .pb_form_v1 {
-  padding: 50px;
+  padding: 20px;
   -webkit-box-shadow: 1px 11px 68px -20px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 1px 11px 68px -20px rgba(0, 0, 0, 0.75);
   box-shadow: 1px 11px 68px -20px rgba(0, 0, 0, 0.75); }
@@ -1733,4 +1733,12 @@ a {
 
 .sub-button{
   width:25%;
+}
+
+.form-header{
+  font-size: 1.5em !important;
+}
+
+.form-box-pad{
+  padding-bottom:200px !important;
 }
