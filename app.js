@@ -1,26 +1,28 @@
-var createError = require('http-errors');
-var express = require('express');
-var cookieParser = require('cookie-parser');
-//var logger = require('morgan');
-var fs = require('fs');
-var path=require('path');
-var mongoose=require('mongoose');
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var postsRouter = require('./routes/posts');
+var createError = require('http-errors'),
+  express = require('express'),
+  cookieParser = require('cookie-parser'),
+  express = require("express"),
+  logger = require('./logger/logger'),
+  dbPort = 27017, 
+  fs = require('fs'),
+  path=require('path'),
+  mongoose=require('mongoose'),
+  indexRouter = require('./routes/index'),
+  usersRouter = require('./routes/users'),
+  postsRouter = require('./routes/posts');
 
 var app = express();
-console.log("get DB Connection....");
+
 fs.readFile('dbConfig.txt', function (err, data) {
   if (err) {
-     console.log("err: "+err);
+      logger.error("Error starting DB:::::::" + dbPort);
      return console.error(err);
 
   }
-  console.log("Asynchronous read: " + data.toString());
+  
   mongoose.connect(data.toString(), { useNewUrlParser: true });
   var db = mongoose.connection;
-   console.log("DB running...");
+   logger.info("DB Running server on from port:::::::" + dbPort);
   
 });
 // view engine setup

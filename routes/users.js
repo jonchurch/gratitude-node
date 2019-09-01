@@ -1,8 +1,12 @@
-var express = require('express'),
-router = express.Router(),
+var express = require('express');
+var router = express.Router();
 
-User = require("../models/UserModel"),
-bcrypt = require('bcrypt');
+var express = require('express');
+var router = express.Router();
+var User = require("../models/UserModel");
+
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 router.use(express.json());
 
@@ -11,11 +15,11 @@ router.use(express.json());
 ///////////////////////
 router.get('/', function(req, res) {
   //get all users and return for admin
-  
+  console.log("get them all");
   User.find({}, function (err, users) {
     
     if (err){ 
-        logger.error("Error finding users");
+        console.log("err:"+err);
         res.send(err.message);
         next();  
     }
@@ -29,54 +33,59 @@ router.get('/', function(req, res) {
 ////////////////////
 
 router.get('/:id', function(req, res) {
+ console.log("get user info ..."+req.params.id);
+ 
   User.findById(req.params.id, function (err, user) {
 
     if (err){ 
-      logger.error("Error finding user");
+      console.log("err:"+err);
       res.send(err.message);
       next();  
     }
-    logger.info("Logging in user");
+    console.log("send info back");
     res.send(user);
-  });        
+   
+    
+   });        
   
  });
 
- //////////////////
+
+
+//////////////////
 ////LOGIN USER////
 //////////////////
 router.post('/login', function(req, res) {
-      User.findOne({ email:req.body.email}, function (error, user) {
-      if (error){ 
-        logger.error("Login failed, try again.");
-        res.send(error.message);
-        next();  
-      }
-      if (!user){ 
-          //not there
-          logger.debug("Failed to find user for login.");
-           error = new Error("Failed to find user for login.")
-          res.send(JSON.stringify(error.message));
-          next();  
-        
-      }else{
-          bcrypt.compare(req.body.password, user.password, function (err, result) {
-            if (err){ 
-              logger.error('Login Failed, bcrypt did not work');
-              res.send(err.message);
-              next();  
-            }
-            if (result == true) {
-            res.send(user);
-          } else {
-              const error = new Error('Login Failed. Cofirm Email and Password are correct.');
-              res.status(500);
-              console.log(error.response)
-              res.send(JSON.stringify(error.message));
+   // bcrypt.compare(password, user.password);
+   
+    User.findOne({ email:req.body.email}, function (err, user) {
+    
+    if (!user){ 
+         //not there
             
-          }
-        });
-      }  
+            const error = new Error('User not found');
+            res.status(500);
+            console.log(error.response)
+            res.send(JSON.stringify(error.message));
+       
+    }else{
+      
+      bcrypt.compare(req.body.password, user.password, function (err, result) {
+        if (result == true) {
+          
+          res.send(user);
+        } else {
+            const error = new Error('Login Failed. Cofirm Email and Password are correct.');
+
+            res.status(500);
+            console.log(error.response)
+            res.send(JSON.stringify(error.message));
+          
+        }
+      });
+       
+    } 
+});        
 });
 
 ////////////////////
@@ -97,13 +106,22 @@ router.get('/profile/:id', function(req, res) {
 ////CREATE NEW USER////
 ///////////////////////
 
-/*router.post('/',function(req,res){
-   User.findOne({ email:req.body.email}, function (error, user) {
-
-    if (user) {
-      throw new Error('Email already used.') // Express will catch this on its own.
-    
-         
+router.post('/',function(req,res){
+   
+  console.log("email: "+req.body.email)
+  //console.log("public-checked "+req.params.public-checked);
+  User.findOne({ email:req.body.email}, function (error, user) {
+      if(user){
+        const error = new Error('User email account already exists.');
+        //throw new Error('User email account already exists.');
+        res.status(410);
+        console.log(error.response)
+        res.send(JSON.stringify(error.message));
+        
+    }
+    else{
+          //save user  
+          console.log("bcrypt it: "+req.body.password);
           
 
           var pwd = req.body.password;
@@ -146,8 +164,8 @@ router.get('/profile/:id', function(req, res) {
          
     }
         
-  });*/ 
- });  
+  });
+ });   
  ////////////////////
 ////NEW USER REG////
 ////////////////////
@@ -165,52 +183,47 @@ router.get('/info/:id', function(req, res) {
  ////////////////////
 ////UPDATE DETAILS//
 ////////////////////
+router.put('/info:id',function(req,res){
 
-
-router.put('/users/:id',function(req,res){
-  console.log("IN PUT: "+console.log(req.params.id));
-	User.findById(_id, function (err, user) {
-     if(!user){
-     }
-     else{
-
-     }
-    })
-});   
-
-
+   
+    console.log("IN PUT: "+console.log(req.params.id));
+    res.send('Got a PUT request at /user');
+//     User.findById(_id, function (err, user) {
+//     if(!user){
+//         const error = new Error('Something went wrong, please try again.');
+        
+//         res.status(500);
+//         console.log(error.response)
+//         res.send(JSON.stringify(error.message));
+        
+//     }
+//     else{
+//           //save user  
+//          console.log("save details: "+_id);
+        
+//            // var hash = bcrypt.hashSync(req.body.password, saltRounds);
+                
+//                 var user = new User({
+                
+              
+//                 bio : req.body.bio,
+//                 location : "",
+//                 avatar: ""
+//                 });
+//                 user.save(function (error, user) {
+//                     if (error){ 
+//                     console.log("err:"+error);
+//                     res.send(error.message);
+//                     next();  
+//                     }
+                
+//                     res.send(user)
+                    
+//                 });
+//     }
+        
+//   });
+                    
+    
+ });   
 module.exports = router;
-
-
-// var express = require("express"),
-//     bodyParser = require("body-parser"),
-//     logger = require('../logger/logger'),
-//     app = express();
-
-// // array to hold users
-// const users = [{firstName:"fnam1",lastName:"lnam1",userName:"username1"}];
-
-// // request to get all the users
-// app.get("/users", function(req, res) {
-//     logger.info("users route");
-//     res.json(users);
-// })
-
-// // request to get all the users by userName
-// app.get("/users/:userName", function(req, res) {
-//     logger.info("filter users by username:::::"+req.params.userName);
-//     let user = users.filter(function(user){
-//         if(req.params.userName === user.userName){
-//             return user;
-//         }
-//     })
-//     res.json(user);
-// })
-
-// // request to post the user
-// //req.body has object of type {firstName:"fnam1",lastName:"lnam1",userName:"username1"}
-// app.post("/user", function(req, res) {
-//     users.push(req.body);
-//     res.json(users);
-// })
-
