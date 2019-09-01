@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-
+var logger = require('../logger/logger');
 var express = require('express');
 var router = express.Router();
 var User = require("../models/UserModel");
@@ -21,7 +21,7 @@ router.get('/', function(req, res) {
     if (err){ 
         console.log("err:"+err);
         res.send(err.message);
-        next();  
+        
     }
     res.json(users);
           
@@ -33,14 +33,14 @@ router.get('/', function(req, res) {
 ////////////////////
 
 router.get('/:id', function(req, res) {
- console.log("get user info ..."+req.params.id);
+ 
  
   User.findById(req.params.id, function (err, user) {
 
     if (err){ 
       console.log("err:"+err);
       res.send(err.message);
-      next();  
+      
     }
     console.log("send info back");
     res.send(user);
@@ -57,22 +57,25 @@ router.get('/:id', function(req, res) {
 //////////////////
 router.post('/login', function(req, res) {
    // bcrypt.compare(password, user.password);
-   
-    User.findOne({ email:req.body.email}, function (err, user) {
+    logger.debug("User: "+req.body.email);
+    User.findOne({ email:req.body.email}, function (error, user) {
     
+    if (error) {
+        logger.error("Error Logging");
+        const err = new Error('Error Logging in.');
+        res.send(JSON.stringify(err.message));
+    }
     if (!user){ 
          //not there
+            logger.debug("User Not Found");
+            const err = new Error('Login Failed. Cofirm Email and Password are correct.');
+            res.send(JSON.stringify(err.message));
             
-            const error = new Error('User not found');
-            res.status(500);
-            console.log(error.response)
-            res.send(JSON.stringify(error.message));
        
     }else{
       
       bcrypt.compare(req.body.password, user.password, function (err, result) {
         if (result == true) {
-          
           res.send(user);
         } else {
             const error = new Error('Login Failed. Cofirm Email and Password are correct.');

@@ -15,7 +15,7 @@ var app = express();
 
 fs.readFile('dbConfig.txt', function (err, data) {
   if (err) {
-      logger.error("Error starting DB:::::::" + dbPort);
+      logger.error("Error starting DB:::::::" + dbPort );
      return console.error(err);
 
   }
