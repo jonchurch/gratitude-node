@@ -31,12 +31,11 @@
           </div>
           <div class="col-md-1">
           </div>
-          <div class="col-md-5 relative align-self-center" style="padding-top:80px !important;">
+          <div class="col-md-5 relative align-self-center" >
               
                  <div class="alert alert-danger text-center err-container">
-                <span class="err-msg"></span>
-                
-            </div>
+                    <span class="err-msg"></span>
+                </div>
                 <form class="needs-validation bg-white rounded pb_form_v1" id="createUserForm" novalidate>
                 <form action="#" >
                   <h2 class="mb-4 mt-0 text-center form-header">Sign Up for Free</h2>
@@ -96,6 +95,8 @@
                   <div class="form-group">
                     <input type="submit" class="btn btn-success" value="Register"> Already a member? <a href="/login/">Click here to login</a></p>
                    
+
+                
                   </div>
                 </form>
 
@@ -108,7 +109,6 @@
       
     <% include partials/scripts %>
 
-    <% include partials/footer %>
     
     <style>
         .wrapper {
@@ -148,6 +148,8 @@
       $(".lengthcheck").hide();
       $(".passwords-not-equal").hide();
       $(".lengthcheck").hide();
+    
+      
           
   });
   
@@ -228,16 +230,18 @@
                         window.location.assign("/info/?id="+customer._id);
                     },
                     error : function(error) {
-                        console.log(error);
+                       
                         if(error.status==410){
-                           $(".err-msg").html("Email already in use.");
+                            $(".err-container").show();
+                            $(".err-msg").html("Email already in use. Try again");
                            $(".err-msg").show();
-                          $(".err-container").show();
+                          
                         }
-                        else if(error.status==420){
+                        else{
+                            $(".err-container").show();
                            $(".err-msg").html("Error registering. Please try again later.");
                            $(".err-msg").show();
-                          $(".err-container").show();
+                           
                         }
                     }
                  });
@@ -253,6 +257,9 @@
   })();
   
   </script>
-    
-	</body>
+  
+
+
+
+</body>
 </html>

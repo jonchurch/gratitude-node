@@ -102057,7 +102057,7 @@
 .relative {
     position: relative;
     padding-top: 60px !important;
-    
+    margin-top:-50px !important;
 }
 
 .absolute {

@@ -109,6 +109,7 @@ router.post('/',function(req,res){
     logger.info("email: "+req.body.email);
     User.findOne({ email:req.body.email}, function (error, user) {
       if(user){
+        logger.error("User email account already exists.");
         const error = new Error('User email account already exists.');
         //throw new Error('User email account already exists.');
         res.status(410);
