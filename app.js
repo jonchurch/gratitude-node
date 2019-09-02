@@ -50,12 +50,20 @@ app.enable('etag');
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  next(createError(404));
+  const error=new Error("Not found");
+  error.status(404);
+  next(error);
 });
 
 app.use((err, req, res, next) => {
   // log the error...
-  res.sendStatus(err.httpStatusCode).json(err)
+  res.status(err.status || 500);
+  res.json({
+      error:{
+          message:error.message
+      }
+
+  });
 })
 
 // error handler

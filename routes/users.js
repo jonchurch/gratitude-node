@@ -1,12 +1,11 @@
-var express = require('express');
-var router = express.Router();
-var logger = require('../logger/logger');
-var express = require('express');
-var router = express.Router();
-var User = require("../models/UserModel");
-
-const bcrypt = require('bcrypt');
-const saltRounds = 10;
+var express = require('express'),
+    router = express.Router(),
+    express = require('express'),
+    logger = require('../logger/logger'),
+    router = express.Router(),
+    User = require("../models/UserModel"),
+    bcrypt = require('bcrypt');
+    
 
 router.use(express.json());
 
@@ -19,9 +18,9 @@ router.get('/', function(req, res) {
   User.find({}, function (err, users) {
     
     if (err){ 
-        console.log("err:"+err);
+        logger.error("Could not get all users");
         res.send(err.message);
-        
+        next();  
     }
     res.json(users);
           
@@ -31,18 +30,16 @@ router.get('/', function(req, res) {
 ////////////////////
 //// GET 1 USER ////
 ////////////////////
-
 router.get('/:id', function(req, res) {
- 
- 
-  User.findById(req.params.id, function (err, user) {
+    logger.info("get user info: "+req.params.id);
+    User.findById(req.params.id, function (err, user) {
 
     if (err){ 
-      console.log("err:"+err);
+     logger.error("Error: "+err.message);
       res.send(err.message);
-      
+      next();  
     }
-    console.log("send info back");
+    logger.info("Return User");
     res.send(user);
    
     
@@ -57,31 +54,29 @@ router.get('/:id', function(req, res) {
 //////////////////
 router.post('/login', function(req, res) {
    // bcrypt.compare(password, user.password);
-    logger.debug("User: "+req.body.email);
-    User.findOne({ email:req.body.email}, function (error, user) {
+   
+    User.findOne({ email:req.body.email}, function (err, user) {
     
-    if (error) {
-        logger.error("Error Logging");
-        const err = new Error('Error Logging in.');
-        res.send(JSON.stringify(err.message));
-    }
     if (!user){ 
          //not there
-            logger.debug("User Not Found");
-            const err = new Error('Login Failed. Cofirm Email and Password are correct.');
-            res.send(JSON.stringify(err.message));
             
+            const error = new Error('Login Failed. Cofirm Email and Password are correct.');
+            res.status(500);
+            logger.error("User not found");
+            res.send(JSON.stringify(error.message));
        
     }else{
       
       bcrypt.compare(req.body.password, user.password, function (err, result) {
         if (result == true) {
+          
           res.send(user);
         } else {
+            
             const error = new Error('Login Failed. Cofirm Email and Password are correct.');
 
             res.status(500);
-            console.log(error.response)
+            logger.error("User not found");
             res.send(JSON.stringify(error.message));
           
         }
@@ -95,10 +90,11 @@ router.post('/login', function(req, res) {
 ////USER Profile////
 ////////////////////
 router.get('/profile/:id', function(req, res) {
-    console.log("go to profile page")
-    console.log(req.params.id);
+    logger.info("Load profile page");
+    logger.info(req.params.id);
     if (err){ 
-      console.log("err:"+err);
+      
+      logger.error("err:"+err);
       res.send(err.message);
       next();  
     }
@@ -110,33 +106,37 @@ router.get('/profile/:id', function(req, res) {
 ///////////////////////
 
 router.post('/',function(req,res){
-   
-  console.log("email: "+req.body.email)
-  //console.log("public-checked "+req.params.public-checked);
-  User.findOne({ email:req.body.email}, function (error, user) {
+    logger.info("email: "+req.body.email);
+    User.findOne({ email:req.body.email}, function (error, user) {
       if(user){
         const error = new Error('User email account already exists.');
         //throw new Error('User email account already exists.');
         res.status(410);
-        console.log(error.response)
         res.send(JSON.stringify(error.message));
         
     }
     else{
           //save user  
-          console.log("bcrypt it: "+req.body.password);
-          
-
+          logger.info("bcrypt it: "+req.body.password);
           var pwd = req.body.password;
          
           bcrypt.genSalt(10, function(err, salt) {
               if (err) {
-                  console.log('1: ' + err.message);
+                logger.error("BCrype issue");
+                const error = new Error("Unable to register, please try again.");
+                //throw new Error('User email account already exists.');
+                res.status(420);
+                res.send(JSON.stringify(error.message));
+        
               } else {
                   //console.log('Salt: ' + salt);
                   bcrypt.hash(pwd, salt, function (err, hash) {
                       if (err) {
-                          //console.log('2: ' + err.message);
+                         logger.error("ERROR! users bcrypt");
+                        const error = new Error("Unable to register, please try again.");
+                        
+                        res.status(420);
+                        res.send(JSON.stringify(error.message));
                       } else {
                         var user = new User({
                 

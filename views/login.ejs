@@ -15,9 +15,9 @@
 						<div class="alert alert-danger text-center err-container">
 							<span class="err-msg"></span>
 						</div>
-						<form class="needs-validation bg-white rounded pb_form_v1" id="createUserForm" novalidate>
+						<form class="needs-validation bg-white rounded sub-pb_form_v1" id="createUserForm" novalidate>
 							
-								<h2 class="mb-4 mt-0 text-center">Login</h2>
+								<h2 class="mb-4 mt-0 text-center form-header">Login</h2>
 								<div class="form-group">
 									<input type="email" class="form-control pb_height-50 reverse" id="email" placeholder="Email Address..." required>
 										<div class="invalid-feedback">
@@ -121,6 +121,7 @@
                             * A function to be called if the request succeeds.
                             */
                             success: function(data, textStatus, jqXHR) {
+                                
                                  console.log("id : "+data._id);
                               window.location.assign("/profile/?id="+data._id);
                               
