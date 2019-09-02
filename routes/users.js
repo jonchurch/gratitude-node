@@ -47,8 +47,6 @@ router.get('/:id', function(req, res) {
   
  });
 
-
-
 //////////////////
 ////LOGIN USER////
 //////////////////
@@ -118,7 +116,7 @@ router.post('/',function(req,res){
     }
     else{
           //save user  
-          logger.info("bcrypt it: "+req.body.password);
+         
           var pwd = req.body.password;
          
           bcrypt.genSalt(10, function(err, salt) {
@@ -187,11 +185,29 @@ router.get('/info/:id', function(req, res) {
  ////////////////////
 ////UPDATE DETAILS//
 ////////////////////
-router.put('/info:id',function(req,res){
 
-   
-    console.log("IN PUT: "+console.log(req.params.id));
-    res.send('Got a PUT request at /user');
+router.put('/:id', function(req, res) {
+    logger.info("IN PUT: id: "+req.params.id);
+    const user = User.findById(req.params.id, function (err, user) {
+        if (err){ 
+            logger.error("Error: "+err.message);
+            const error = new Error('Something went wrong, please try again.');
+            
+            res.status(500);
+            console.log(error.response)
+            res.send(JSON.stringify(error.message));
+        }
+       
+        logger.info("Update: "+user._id);
+        user.updateOne({   
+            bio:'Hey this is me',
+            location: "here",
+            avatar : "none"
+        });
+        logger.info("Updated?");
+        res.send(user);
+    });
+});        
 //     User.findById(_id, function (err, user) {
 //     if(!user){
 //         const error = new Error('Something went wrong, please try again.');
@@ -229,5 +245,5 @@ router.put('/info:id',function(req,res){
 //   });
                     
     
- });   
+ //});   
 module.exports = router;
