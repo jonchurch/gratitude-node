@@ -207,7 +207,7 @@
               
            }else{
                event.preventDefault();
-               //console.log("public:"+$("#public").val())
+              
               // PREPARE FORM DATA
               var formData = {
                  firstname : $("#firstname").val(),
@@ -220,13 +220,14 @@
                  avatar: ""
               }
               var publicYN=$('#public-checkbox').is(':checked');
-              
+              console.log("try to save user");
               $.ajax({
                     type : "POST",
                     data : JSON.stringify(formData),
                     contentType : "application/json",
                     url : "/users/",
                     success : function(customer) {
+                        
                         window.location.assign("/info/?id="+customer._id);
                     },
                     error : function(error) {
@@ -244,7 +245,9 @@
                            
                         }
                     }
+                    
                  });
+                 console.log('past call');
         
   
               

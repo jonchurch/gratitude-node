@@ -20,7 +20,7 @@ fs.readFile('dbConfig.txt', function (err, data) {
 
   }
   
-  mongoose.connect(data.toString(), { useNewUrlParser: true });
+mongoose.createConnection(data.toString(), {useNewUrlParser: true });
   var db = mongoose.connection;
    logger.info("DB Running server on from port:::::::" + dbPort);
   
