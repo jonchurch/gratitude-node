@@ -6,6 +6,7 @@
 	<body data-spy="scroll" data-target="#pb-navbar" data-offset="200">
 
     <% include partials/nav %>
+    
     <!-- END nav -->
 
 
@@ -37,6 +38,7 @@
                     <span class="err-msg"></span>
                 </div>
                 <form class="needs-validation bg-white rounded pb_form_v1" id="createUserForm" novalidate>
+                    <!-- <input type="hidden" id="publicBool" value="true"> -->
                 <form action="#" >
                   <h2 class="mb-4 mt-0 text-center form-header">Sign Up for Free</h2>
                   <div class="form-group">
@@ -72,14 +74,14 @@
                           Passwords must be same
                     </div>
                   </div>
-                  <div class="form-group">
+                  <!-- <div class="form-group">
                       <div class="form-check text-left">
-                        <input class="form-check-input"  type="checkbox" value="" checked id="public-checkbox">
+                        <input class="form-check-input"  type="checkbox" value="" checked id="public-checkbox" name="public-checkbox[]">
                         <label class="form-check-label" for="checkbox-public">
                         <span style="padding-left:20px;">Share posts with public</span>&nbsp;<i class="optional">(Optional)</i>
                         </label>
                       </div>
-                  </div>
+                  </div> -->
                   <div class="form-group">
                       <div class="form-check text-left">
                           <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
@@ -91,7 +93,7 @@
                               </div>
                       </div>
                   </div>
-            
+                  
                   <div class="form-group">
                     <input type="submit" class="btn btn-success" value="Register"> Already a member? <a href="/login/">Click here to login</a></p>
                    
@@ -108,8 +110,6 @@
     <!-- END section -->
       
     <% include partials/scripts %>
-
-    
     <style>
         .wrapper {
    position: relative;
@@ -152,20 +152,21 @@
       
           
   });
-  
-   $('input[name="public-checkbox"]').click(function(){
-            if($(this).is(":checked")){
-                alert("Checkbox is checked.");
-            }
-            else if($(this).is(":not(:checked)")){
-                alert("Checkbox is unchecked.");
-            }
-    });
 
   $("#createUserForm").submit(function(event) {
      // Prevent the form from submitting via the browser.
      event.preventDefault();
   });
+// $("#public-checkbox").click(function(event) {
+//       if($("#publicBool").val()=="true"){
+//             $("#publicBool").val("false");
+//      }
+//      else{
+//          $("#publicBool").val("true");
+//      }
+     
+//   });
+  
    
   (function() {
       'use strict';
@@ -194,8 +195,10 @@
                  $(".passwords-not-equal").show();
              }
              
+                
              var checkValue = $('#check_id').is(":checked");
             
+
             // Get the checkbox
             if($("#invalidCheck").prop("checked") == false){
                  $("#checkbox-validate").show();
@@ -207,24 +210,46 @@
               
            }else{
                event.preventDefault();
-              
+            //    var publicBool;
+            //    if($("#public-checkbox").prop("checked") == false){
+            //         publicBool=false;
+            //    }else{
+            //         publicBool=true;
+            //     }
+                //  alert("publicBool :"+$("#publicBool").val());
+                
               // PREPARE FORM DATA
-              var formData = {
-                 firstname : $("#firstname").val(),
-                 lastname :  $("#lastname").val(),
-                 email :  $("#email").val(),
-                 password :  $("#password").val(),
-                 public :  checkValue,
-                 location :  "",
-                 bio: "",
-                 avatar: ""
-              }
-              var publicYN=$('#public-checkbox').is(':checked');
-              console.log("try to save user");
+            //   var formData = {
+            //      firstname : $("#firstname").val(),
+            //      lastname :  $("#lastname").val(),
+            //      email :  $("#email").val(),
+            //      password :  $("#password").val(),
+            //      public :  publicBool,
+            //      location :  "",
+            //      bio: "",
+            //      avatar: ""
+            //   }
+
+            var firstname = $("#firstname").val();
+            var lastname = $("#lastname").val();
+            var email = $("#email").val();
+            var password = $("#password").val();
+            var publicBool = $("#publicBool").val();
+            
+              console.log("try to save user:"+publicBool);
               $.ajax({
                     type : "POST",
-                    data : JSON.stringify(formData),
-                    contentType : "application/json",
+                    data: {
+                           firstname: firstname,
+                           lastname: lastname,
+                           email :  email,
+                           password : password,
+                          
+                            location :  "",
+                            bio: "",
+                            avatar: ""
+                           },
+                    
                     url : "/users/",
                     success : function(customer) {
                         
@@ -247,7 +272,7 @@
                     }
                     
                  });
-                 console.log('past call');
+                 
         
   
               

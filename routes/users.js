@@ -47,6 +47,8 @@ router.get('/:id', function(req, res) {
   
  });
 
+
+
 //////////////////
 ////LOGIN USER////
 //////////////////
@@ -107,7 +109,6 @@ router.post('/',function(req,res){
     logger.info("email: "+req.body.email);
     User.findOne({ email:req.body.email}, function (error, user) {
       if(user){
-        logger.error("User email account already exists.");
         const error = new Error('User email account already exists.');
         //throw new Error('User email account already exists.');
         res.status(410);
@@ -116,7 +117,7 @@ router.post('/',function(req,res){
     }
     else{
           //save user  
-         
+          
           var pwd = req.body.password;
          
           bcrypt.genSalt(10, function(err, salt) {
@@ -137,13 +138,14 @@ router.post('/',function(req,res){
                         res.status(420);
                         res.send(JSON.stringify(error.message));
                       } else {
+                        
                         var user = new User({
-                
+                            
                           firstname:req.body.firstname,
                           lastname : req.body.lastname,
                           email :req.body.email,
                           password : hash,
-                          public :true,
+                          
                           admin: false,
                           bio : "",
                           location : "",
@@ -185,30 +187,53 @@ router.get('/info/:id', function(req, res) {
  ////////////////////
 ////UPDATE DETAILS//
 ////////////////////
-
-router.put('/:id', function(req, res) {
-    logger.info("IN PUT: id: "+req.params.id);
-    const user = User.findById(req.params.id, function (err, user) {
-        if (err){ 
-            logger.error("Error: "+err.message);
-            const error = new Error('Something went wrong, please try again.');
+router.put('/:id',function(req,res){
+   
+        // if(req.params.id!=null){
+        //     User.findOneAndUpdate(req.params.id,{$set:{bio:req.body.bio}},{new:true}).then((docs)=>{
+        //     if(docs) {
+        //        // res.send(docs);
+        //        next();
+        //     } else {
+        //         logger.error("1");
+        //         next();
+        //     }
+        //     }).catch((err)=>{
+        //         logger.error("2");
+        //         next();
+        //     })
+        //     } else {
             
-            res.status(500);
-            console.log(error.response)
-            res.send(JSON.stringify(error.message));
-        }
-       
-        logger.info("Update: "+user._id);
-        user.updateOne({   
-            bio:'Hey this is me',
-            location: "here",
-            avatar : "none"
+        //     }
+
+    logger.info("input : "+req.params.id);
+    logger.info("bio : "+req.body.bio);
+    logger.info("loc : "+req.body.location);
+     
+    try{
+        User.findOneAndUpdate(
+            {_id: req.params.id},
+            {$set: {bio: req.body.bio, location: req.body.location}},
+            function(err, doc) {
+                logger.debug("error : "+err);
+                logger.debug("doc : "+doc);
+                res.send(doc);
+                
+            
+            
         });
-        logger.info("Updated?");
-        res.send(user);
-    });
-});        
-//     User.findById(_id, function (err, user) {
+        
+    }catch(err){ 
+        logger.error(err.message);
+         logger.error(doc);
+    }
+
+    
+
+    
+
+        
+    
 //     if(!user){
 //         const error = new Error('Something went wrong, please try again.');
         
@@ -245,5 +270,5 @@ router.put('/:id', function(req, res) {
 //   });
                     
     
- //});   
+ });   
 module.exports = router;

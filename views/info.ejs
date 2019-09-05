@@ -16,10 +16,7 @@
         <div class="row align-items-center justify-content-center">
             <div class="row align-items-center justify-content-center"></div>
             <div class="col-md-3">
-                <!-- <div class="wrapper"  id="slide">
-                  <h2 class="heading mb-3 main-title" style="padding-top:130px;">“Gratitude turns what we have into enough.” ~ Anonymous</h2>
-                   
-                  </div> -->
+               
           </div>
           <div class="col-md-6 relative align-self-center form-box-pad">
               
@@ -36,7 +33,7 @@
                 
               </div>
               <div class="form-group">
-                  <input type="text" class="form-control" id="address" placeholder="Address..." >
+                  <input type="text" class="form-control" id="location" placeholder="Address..." >
                 
               </div>
               
@@ -62,38 +59,7 @@
     <% include partials/footer %>
 
     <% include partials/scripts %>
-    
-    <!-- <style>
-        .wrapper {
-   position: relative;
-   /* overflow: hidden; */
-   width: 100px;
-   height: 100px; 
-   margin-top:-250px;
-   padding-top: 50px;
-    /* border: 1px solid black;  */
-}
 
-#slide {
-   position: absolute;
-   left: -800px;
-   width: 100%;
-   height: 100px;
-   
-   -webkit-animation: slide 0.5s forwards;
-   -webkit-animation-delay: 2s;
-   animation: slide 0.5s forwards;
-   animation-delay: 2s;
-}
-
-@-webkit-keyframes slide {
-   100% { left: 0; }
-}
-
-@keyframes slide {
-   100% { left: 0; }
-}
-   </style>  -->
 <script>
     $(document).ready(function() {
      var _id= getUrlParameter("id");
@@ -107,7 +73,9 @@
                    //set first name, lastname, email, avatar 
                    
                     $("#name").html(data.firstname+" "+data.lastname);
+                    $("#bio").html(data.bio);
                     
+                    $("#location").val(data.location);
                    
             },
             error: function(jqXHR, textStatus, errorThrown) {
@@ -122,26 +90,24 @@
         });
         $("#updateUserInfo").submit(function(event) {
           // Prevent the form from submitting via the browser.
-          
-          event.preventDefault();
-
+          console.log('in function');
+         
           // PREPARE FORM DATA
-          console.log('get data for route: '+_id);
-          var formData = {
-                 bio : $("#bio").val(),
-                 location :  $("#location").val(),
-                 avatar: ""
-              }
-           
+           var bio = $("#bio").val();
+            var location = $("#location").val();
+            
               $.ajax({
                 type : "PUT",
-                data : JSON.stringify(formData),
-                contentType : "application/json",
+                data: {
+                    bio: bio,
+                    location: location
+                },
                 url : "/users/",
               
               success : function(customer) {
                       //forward page with id to fill in optional information
-                      console.log("id : "+customer._id);
+                      
+                    console.log("id : "+customer._id);
                     window.location.assign("/profile/?id="+customer._id);
                     
               },

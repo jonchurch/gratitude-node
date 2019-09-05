@@ -20,11 +20,12 @@ fs.readFile('dbConfig.txt', function (err, data) {
 
   }
   
-mongoose.createConnection(data.toString(), {useNewUrlParser: true });
+   mongoose.connect(data.toString(), { useNewUrlParser: true });
   var db = mongoose.connection;
    logger.info("DB Running server on from port:::::::" + dbPort);
-  
+  mongoose.set('useFindAndModify', false);
 });
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
