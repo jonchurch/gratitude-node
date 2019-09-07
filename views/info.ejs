@@ -22,7 +22,7 @@
               
             
             <form class="needs-validation bg-white rounded sub-pb_form_v1" id="updateUserInfo" novalidate>
-            
+                <input type="hidden" id="id" value="">
             
               <h2 class="mb-4 mt-0 text-center form-header">Welcome <span id="name"></span>!</h2><p class="text-center">Don't worry, you can do this later.</p>
              
@@ -62,8 +62,8 @@
 
 <script>
     $(document).ready(function() {
-     var _id= getUrlParameter("id");
-     
+    var _id= getUrlParameter("id");
+     var passId=_id;
       $.ajax({
           url: '/users/'+_id,
           type: "GET",
@@ -76,6 +76,7 @@
                     $("#bio").html(data.bio);
                     
                     $("#location").val(data.location);
+                    $("id").val(data._id);
                    
             },
             error: function(jqXHR, textStatus, errorThrown) {
@@ -90,7 +91,7 @@
         });
         $("#updateUserInfo").submit(function(event) {
           // Prevent the form from submitting via the browser.
-          console.log('in function');
+          console.log('in function: '+_id);
          
           // PREPARE FORM DATA
            var bio = $("#bio").val();
@@ -102,7 +103,7 @@
                     bio: bio,
                     location: location
                 },
-                url : "/users/",
+                url : "/users/"+_id,
               
               success : function(customer) {
                       //forward page with id to fill in optional information

@@ -37,7 +37,7 @@ router.get('/:id', function(req, res) {
     if (err){ 
      logger.error("Error: "+err.message);
       res.send(err.message);
-      next();  
+      //next();  
     }
     logger.info("Return User");
     res.send(user);
@@ -155,7 +155,7 @@ router.post('/',function(req,res){
                               if (error){ 
                               console.log("err:"+error);
                               res.send(error.message);
-                              next();  
+                              //next();  
                               }
                           
                               res.send(user)
@@ -189,49 +189,23 @@ router.get('/info/:id', function(req, res) {
 ////////////////////
 router.put('/:id',function(req,res){
    
-        // if(req.params.id!=null){
-        //     User.findOneAndUpdate(req.params.id,{$set:{bio:req.body.bio}},{new:true}).then((docs)=>{
-        //     if(docs) {
-        //        // res.send(docs);
-        //        next();
-        //     } else {
-        //         logger.error("1");
-        //         next();
-        //     }
-        //     }).catch((err)=>{
-        //         logger.error("2");
-        //         next();
-        //     })
-        //     } else {
-            
-        //     }
-
     logger.info("input : "+req.params.id);
     logger.info("bio : "+req.body.bio);
     logger.info("loc : "+req.body.location);
      
-    try{
+    
         User.findOneAndUpdate(
-            {_id: req.params.id},
+            {_id: mongoose.Types.ObjectId(req.body.id)},
             {$set: {bio: req.body.bio, location: req.body.location}},
             function(err, doc) {
                 logger.debug("error : "+err);
                 logger.debug("doc : "+doc);
-                res.send(doc);
-                
-            
-            
+            });
+            res.send(doc);
         });
+
         
-    }catch(err){ 
-        logger.error(err.message);
-         logger.error(doc);
-    }
-
     
-
-    
-
         
     
 //     if(!user){
@@ -270,5 +244,5 @@ router.put('/:id',function(req,res){
 //   });
                     
     
- });   
+ 
 module.exports = router;
