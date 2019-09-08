@@ -3,7 +3,6 @@ var createError = require('http-errors'),
   cookieParser = require('cookie-parser'),
   express = require("express"),
   logger = require('./logger/logger'),
-  dbPort = 27017, 
   fs = require('fs'),
   path=require('path'),
   mongoose=require('mongoose'),
@@ -11,20 +10,21 @@ var createError = require('http-errors'),
   usersRouter = require('./routes/users'),
   postsRouter = require('./routes/posts');
 
+// environment variables
+process.env.NODE_ENV = 'development';
+// uncomment below line to test this code against ystaging environment
+// process.env.NODE_ENV = 'production';
+// config variables
+const config = require('./config/config.js');
+
 var app = express();
 
-fs.readFile('dbConfig.txt', function (err, data) {
-  if (err) {
-      logger.error("Error starting DB:::::::" + dbPort );
-     return console.error(err);
 
-  }
-  
-   mongoose.connect(data.toString(), { useNewUrlParser: true });
+   mongoose.connect(`${global.gConfig.database}`, { useNewUrlParser: true });
   var db = mongoose.connection;
-   logger.info("DB Running server on from port:::::::" + dbPort);
+   logger.info("DB Running server on from port:::::::" + `${global.gConfig.db_port}`);
   mongoose.set('useFindAndModify', false);
-});
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -76,6 +76,10 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+});
+
+app.listen(global.gConfig.node_port, () => {
+    console.log(`${global.gConfig.app_name} listening on port ${global.gConfig.node_port}`);
 });
 
 module.exports = app;
