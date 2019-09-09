@@ -9,7 +9,8 @@
 /node_modules
 
 #config
-/config
+/config/config.json
+/config/config.js
 
 
 # IDEs and editors
