@@ -6,7 +6,7 @@
         "node_port": 3000,
         "json_indentation": 4,
         "db_port": 27017,
-        "database": "mongodb://localhost:27017/gratitude-appsp-db-dev"
+        "database": "mongodb://localhost:27017/gratitude-apps"
     },
    
     "production": {
