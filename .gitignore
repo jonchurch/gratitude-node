@@ -12,6 +12,8 @@
 /config/config.json
 /config/config.js
 
+#package json
+package.json
 
 # IDEs and editors
 /.idea
