@@ -1,146 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-    <% include partials/head %>
-	</head>
-	<body data-spy="scroll" data-target="#pb-navbar" data-offset="200">
 
-    <% include partials/nav %>
-    
-    <!-- END nav -->
+<head>
+  <% include partials/head %>
+</head>
 
+<body>
+  <header></header>
+  
+  <div class="overlay"></div>
+  <!-- <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
+    <source src="mp4/bg.mp4" type="video/mp4">
+  </video> -->
 
-
-
-    <section class="pb_cover_v3 text-left"  id="section-home">
-      <div class="container">
-        <div class="row align-items-center justify-content-center">
-            <div class="row align-items-center justify-content-center"></div>
-            <div class="col-md-6">
-                <div class="wrapper"  id="slide">
-                  <h2 class="heading mb-3 quote-title main-title" style="font-size: 2em; font-weight:900 !important;" >grat·i·tude: the quality of being thankful;</h2>
-                    <div class="sub-heading">
-                        <p class="mb-4"><i class="fas fa-smile"></i>&nbsp;Gratitude makes us happier.</p>
-                        <p class="mb-4"><i class="fas fa-heart"></i>&nbsp;Gratitude makes us healthier.</p>
-                        <p class="mb-4"><i class="fas fa-user-friends"></i>&nbsp;Join the Gratitude Evolution.</p>
-                        
-                      </div>
-                  </div>
+  <div class="masthead">
+    <div class="masthead-bg"></div>
+    <div class="container h-100">
+      <div class="row h-100">
+        <div class="col-12 my-auto">
            
-            
-        
-          </div>
-          <div class="col-md-1">
-          </div>
-          <div class="col-md-5 relative align-self-center" >
-              
-                 <div class="alert alert-danger text-center err-container">
-                    <span class="err-msg"></span>
-                </div>
-                <form class="needs-validation bg-white rounded pb_form_v1" id="createUserForm" novalidate>
-                    <!-- <input type="hidden" id="publicBool" value="true"> -->
-                <form action="#" >
-                  <h2 class="mb-4 mt-0 text-center form-header">Sign Up for Free</h2>
-                  <div class="form-group">
-                    <input type="text" class="form-control pb_height-50 reverse" id="firstname" placeholder="First Name..." required>
+              <div class="masthead-content text-white py-5 py-md-0">
+                  <div id="elementToMove"><h1 class="mb-3">GratitudeToday.io</h1>
+                    <p class="mb-5">grat·i·tude: the quality of being thankful;</p>
+                  </div>
+              <div class="alert alert-danger text-center err-container">
+                  <span class="err-msg"></span>
+              </div>
+              <div id="elementToMove2">
+              <p>Join Now.</p>
+                <form action="#" class="needs-validation " id="createUserForm" novalidate >
+                  <div class="input-group input-group-newsletter">
+                        <input type="text" class="form-control" placeholder="First Name..." id="firstname" aria-label="Enter First Name..." aria-describedby="basic-addon">
                     <div class="invalid-feedback">
-                      Please enter your firstname.
-                  </div>
-                  </div>
-                  <div class="form-group">
-                    <input type="text" class="form-control pb_height-50 reverse" id="lastname" placeholder="Last Name..."  required>
-                    <div class="invalid-feedback">
-                      Please enter your lastname.
-                  </div>
-                  </div>
-                  <div class="form-group">
-                    <input type="email" class="form-control pb_height-50 reverse" id="email" placeholder="Email Address..." required>
-                    <div class="invalid-feedback">
-                      Please enter a valid email.
-                  </div>
-                  </div>
-                  <div class="form-group">
-                    <input type="password" class="form-control pb_height-50 reverse" id="password" placeholder="Password...">
-                    <div class="invalid-feedback lengthcheck">
-                      Passwords must be at least 6 characters
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <input type="password" class="form-control pb_height-50 reverse" id="confirmpassword" placeholder="Confirm Password...">
-                    <div class="invalid-feedback password-confirm">
-                      Confirm Password
-                    </div>
-                    <div class="invalid-feedback passwords-not-equal">
-                          Passwords must be same
-                    </div>
-                  </div>
-                  <!-- <div class="form-group">
-                      <div class="form-check text-left">
-                        <input class="form-check-input"  type="checkbox" value="" checked id="public-checkbox" name="public-checkbox[]">
-                        <label class="form-check-label" for="checkbox-public">
-                        <span style="padding-left:20px;">Share posts with public</span>&nbsp;<i class="optional">(Optional)</i>
-                        </label>
+                          Please enter your firstname.
                       </div>
-                  </div> -->
-                  <div class="form-group">
-                      <div class="form-check text-left">
-                          <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-                          <label class="form-check-label" for="invalidCheck">
-                          <span style="padding-left:20px;">Agree to terms and conditions</span>
-                          </label>
-                          <div class="invalid-feedback" id="checkbox-validate" required>
-                              You must agree before submitting
-                              </div>
+                    </div>
+                    <div class="input-group ">
+                        <input type="text" class="form-control" placeholder="Last Name..." id="lastname" aria-label="Enter name..." aria-describedby="basic-addon">
+                    <div class="invalid-feedback">
+                          Please enter your lastname.
                       </div>
-                  </div>
-                  
-                  <div class="form-group">
-                    <input type="submit" class="btn btn-success" value="Register"> Already a member? <a href="/login/">Click here to login</a></p>
-                   
-
-                
-                  </div>
-                </form>
-
+                    </div>
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Enter email..." id="email" aria-label="Enter Email..." aria-describedby="basic-addon">
+                    <div class="invalid-feedback">
+                          Please enter valid.
+                      </div>
+                    </div>
+                    <div class="input-group ">
+                        <input type="password" class="form-control" placeholder="Password..." id="password" aria-label="Enter email..." aria-describedby="basic-addon">
+                    <div class="invalid-feedback">
+                          Passwords must be at least 6 characters
+                      </div>
+                    </div>
+                    <div class="input-group ">
+                        <input type="password" class="form-control" placeholder="Confirm Password..." id="confirmpassword" aria-label="Enter email..." aria-describedby="basic-addon">
+                    <div class="invalid-feedback">
+                          Passwords confirm password
+                      </div>
+                    </div>
+                    <div class="input-group ">
+                        <input type="checkbox" id="invalidCheck"><span class="small-text">Agree to terms and conditions</span>
+                        <div class="invalid-feedback" id="checkbox-validate" required>
+                                You must agree before submitting
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <input type="submit" class="btn btn-success" value="Register">
+                        <p><span class="small-text"> Already a member?</span> <a href="/login/">Click here</a></p>
+                    <!-- <button type="submit" id="createUserForm" class="btn btn-success">Register</button> -->
+                    
+                    </div>
+              </form> 
+            </div>    
+		  </div>
         </div>
       </div>
-      
-    </section>
-    
-    <!-- END section -->
-      
-    <% include partials/scripts %>
-    <style>
-        .wrapper {
-   position: relative;
-   /* overflow: hidden; */
-   width: 100px;
-   height: 100px; 
-   margin-top:-250px;
-   padding-top: 50px;
-    /* border: 1px solid black;  */
-}
+    </div>
+  </div>
 
-#slide {
-   position: absolute;
-   left: -800px;
-   width: 100%;
-   height: 100px;
-   
-   -webkit-animation: slide 0.5s forwards;
-   -webkit-animation-delay: 2s;
-   animation: slide 0.5s forwards;
-   animation-delay: 2s;
-}
+  
+  
+  <% include partials/scripts %>
 
-@-webkit-keyframes slide {
-   100% { left: 0; }
-}
 
-@keyframes slide {
-   100% { left: 0; }
-}
-   </style> 
+</body>
+
 <script type="text/javascript">
   $( document ).ready(function() {
       $(".err-msg").hide();
@@ -148,10 +94,9 @@
       $(".lengthcheck").hide();
       $(".passwords-not-equal").hide();
       $(".lengthcheck").hide();
-    
+      document.getElementById('elementToMove').style.left = '50px'; // new left position is 50px
       
-          
-  });
+ });
 
   $("#createUserForm").submit(function(event) {
      // Prevent the form from submitting via the browser.
@@ -210,26 +155,7 @@
               
            }else{
                event.preventDefault();
-            //    var publicBool;
-            //    if($("#public-checkbox").prop("checked") == false){
-            //         publicBool=false;
-            //    }else{
-            //         publicBool=true;
-            //     }
-                //  alert("publicBool :"+$("#publicBool").val());
-                
-              // PREPARE FORM DATA
-            //   var formData = {
-            //      firstname : $("#firstname").val(),
-            //      lastname :  $("#lastname").val(),
-            //      email :  $("#email").val(),
-            //      password :  $("#password").val(),
-            //      public :  publicBool,
-            //      location :  "",
-            //      bio: "",
-            //      avatar: ""
-            //   }
-
+            
             var firstname = $("#firstname").val();
             var lastname = $("#lastname").val();
             var email = $("#email").val();
@@ -283,13 +209,6 @@
   });
   }, false);
   })();
-  
   </script>
-  
-  <% include partials/footer %>
-  
 
-
-
-</body>
 </html>

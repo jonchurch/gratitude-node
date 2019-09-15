@@ -1,84 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head><% include partials/head %>
-	</head>
-	<body data-spy="scroll" data-target="#pb-navbar" data-offset="200"><% include partials/nav %>
-		<!-- END nav -->
-	<section class="pb_cover_v3 overflow-hidden text-left"  id="section-home">
-			<div class="container">
-				<div class="row align-items-center justify-content-center">
-					<div class="row align-items-center justify-content-center"></div>
-					<!-- <div class="col-md-6"><div class="wrapper"  id="slide"><h2 class="heading mb-3 main-title" style="padding-top:130px;">"Gratitude is a powerful catalyst for happiness. It’s the spark that lights a fire of joy in your soul."</h2></div></div> -->
-                    
-                    <div class="col-md-3"></div>
-					<div class="col-md-6 relative align-self-center form-box-pad">
-						<div class="alert alert-danger text-center err-container">
-							<span class="err-msg"></span>
-						</div>
-						<form class="needs-validation bg-white rounded sub-pb_form_v1" id="createUserForm" novalidate>
-							
-								<h2 class="mb-4 mt-0 text-center form-header">Login</h2>
-								<div class="form-group">
-									<input type="email" class="form-control pb_height-50 reverse" id="email" placeholder="Email Address..." required>
-										<div class="invalid-feedback">
-                                    Please enter a valid email.
-                                </div>
-								</div>
-									<div class="form-group">
-										<input type="password" class="form-control pb_height-50 reverse" id="password" placeholder="Password..." required>
-											<div class="invalid-feedback lengthcheck">
-                                        Passwords must be entered
-                                        </div>
-										</div>
-										<div class="form-group">
-											<button class="btn btn-success" type="submit">Login</button>
-											<div class="col-md-12 mb-3 md-form text-left" style="padding-top:20px">Not a member? 
-												<a style="color:green !important;" href="/">Register here.</a>
-											</div>
-										</div>
-									</form>
-                                   
-                                </div>
-                                <div class="col-md-3"></div>
-							</div>
-						</div>
-                    </div>
+
+<head>
+    <% include partials/head %>
+</head>
+
+<body>
+    <header></header>
+  <!-- <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
+    <source src="mp4/bg.mp4" type="video/mp4">
+  </video> -->
+
+  <div class="masthead-sub">
+    <div class="masthead-bg"></div>
+    <div class="container h-100">
+      <div class="row h-100">
+          <div class="col-3"></div>
+        <div class="col-6">
+          <div class="masthead-content sub-title-font py-5 py-md-0">
+            <h1 class="mb-3" style="padding-top:15px;">GratitudeToday.io</h1>
+            
+            <div class="alert alert-danger text-center err-container">
+                    <span class="err-msg"></span>
                 </div>
-            </div>
-	</section>
-    <% include partials/footer %><% include partials/scripts %>
-					<!-- END section -->
-					<!-- <style>
-        .wrapper {
-   position: relative;
-   /* overflow: hidden; */
-   width: 100px;
-   height: 100px; 
-   margin-top:-250px;
-   padding-top: 50px;
-    /* border: 1px solid black;  */
-}
-
-#slide {
-   position: absolute;
-   left: -800px;
-   width: 100%;
-   height: 100px;
-   
-   -webkit-animation: slide 0.5s forwards;
-   -webkit-animation-delay: 2s;
-   animation: slide 0.5s forwards;
-   animation-delay: 2s;
-}
-
-@-webkit-keyframes slide {
-   100% { left: 0; }
-}
-
-@keyframes slide {
-   100% { left: 0; }
-}
-</style> -->
+			       <p>Login.</p>
+            <form action="#" class="needs-validation " id="createUserForm" novalidate >
+               <div class="input-group input-group-newsletter">
+                    <input type="email" class="form-control" placeholder="Email Address..." id="email" aria-label="Enter First Name..." aria-describedby="basic-addon">
+                <div class="invalid-feedback">
+                      Please enter your Email Address.
+                  </div>
+                </div>
+                <div class="input-group ">
+                    <input type="password" class="form-control" placeholder="Enter Password" id="password" aria-label="Enter password..." aria-describedby="basic-addon">
+                <div class="invalid-feedback">
+                      Please enter your lastname.
+                  </div>
+                </div>
+                
+                <div class="input-group">
+                    <input type="submit" class="btn btn-success" value="Login">
+                    <p><span class="small-text"> Not a member?</span> <a href="/login/">Register here</a></p>
+                <!-- <button type="submit" id="createUserForm" class="btn btn-success">Register</button> -->
+                
+                </div>
+           </form>     
+		  </div>
+      <div class="col-3"></div>
+      <div class="row col-12 font-family: 'Roboto', sans-serif text-center quote-text">“Gratitude is a powerful catalyst for happiness. It’s the spark that lights a fire of joy in your soul.” – Amy Collette</div>
+      </div>
+    </div>
+  </div>
+  
+  <% include partials/scripts %>
+</body>
 <script type="text/javascript">
       
    $( document ).ready(function() {
@@ -152,5 +127,5 @@
       }, false);
       })();
 </script>
-    </body>
+
 </html>
