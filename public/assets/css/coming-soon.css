@@ -299,4 +299,6 @@ header{
  
   font-size: 20px !important;
 }
-
+.err-msg{
+  font-size: 1.3rem  !important;
+}
