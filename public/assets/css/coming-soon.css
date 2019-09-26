@@ -24,6 +24,7 @@ h5,
 h6 {
   font-family: 'Merriweather';
   font-weight: 700;
+  color:black;
 }
 /* 
 video {
@@ -247,6 +248,7 @@ video {
     padding-bottom:10px;
     margin-top:-6px;
     padding-left:5px;
+    
 }
 a {
   color: #a11201 !important;
@@ -302,3 +304,20 @@ header{
 .err-msg{
   font-size: 1.3rem  !important;
 }
+.h2{
+  color:black !important;
+}
+.reg-form{
+  padding-left: 30px !important;
+  width: 70% !important;
+  border-radius: .25rem!important;
+  padding-top: 20px !important;
+  background-color:#f8f9fa !important;
+}
+.invalid-feedback {
+
+  font-size: 1.5em !important;
+}
+/* p{
+  font-size: 1.3em !important;
+} */

@@ -1,206 +1,91 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
-  <% include partials/head %>
-</head>
+    <title>Login/Register Modal by Creative Tim</title>
+
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <head>
+      <% include partials/head %>
+    </head>
+
 
 <body>
-  <header></header>
-  
-  <div class="overlay"></div>
-  <!-- <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
-    <source src="mp4/bg.mp4" type="video/mp4">
-  </video> -->
-
-  <div class="masthead">
-    <div class="masthead-bg"></div>
-    <div class="container h-100">
-      <div class="row h-100">
-        <div class="col-12 my-auto">
-           
-              <div class="masthead-content text-white py-5 py-md-0">
-                  <div id="elementToMove"><h1 class="mb-3">GratitudeToday.io</h1>
-                    <p class="mb-5">grat·i·tude: the quality of being thankful;</p>
-                  </div>
-                
-              
-              <div id="elementToMove2">
-              <p>Join Now.</p>
-                <form action="#" class="needs-validation " id="createUserForm" novalidate >
-                  <div class="input-group input-group-newsletter">
-                        <input type="text" class="form-control" placeholder="First Name..." id="firstname" aria-label="Enter First Name..." aria-describedby="basic-addon">
-                    <div class="invalid-feedback">
-                          Please enter your firstname.
-                      </div>
-                    </div>
-                    <div class="input-group ">
-                        <input type="text" class="form-control" placeholder="Last Name..." id="lastname" aria-label="Enter name..." aria-describedby="basic-addon">
-                    <div class="invalid-feedback">
-                          Please enter your lastname.
-                      </div>
-                    </div>
-                    <div class="input-group">
-                        <input type="email" class="form-control" placeholder="Enter email..." id="email" aria-label="Enter Email..." aria-describedby="basic-addon">
-                    <div class="invalid-feedback">
-                          Please enter valid.
-                      </div>
-                    </div>
-                    <div class="input-group ">
-                        <input type="password" class="form-control" placeholder="Password..." id="password" aria-label="Enter email..." aria-describedby="basic-addon">
-                    <div class="invalid-feedback">
-                          Passwords must be at least 6 characters
-                      </div>
-                    </div>
-                    <div class="input-group ">
-                        <input type="password" class="form-control" placeholder="Confirm Password..." id="confirmpassword" aria-label="Enter email..." aria-describedby="basic-addon">
-                    <div class="invalid-feedback">
-                          Passwords confirm password
-                      </div>
-                    </div>
-                    <div class="input-group ">
-                        <input type="checkbox" id="invalidCheck"><span class="small-text">Agree to terms and conditions</span>
-                        <div class="invalid-feedback" id="checkbox-validate" required>
-                                You must agree before submitting
-                        </div>
-                    </div>
-                    
-                    <div class="input-group">
-                        <input type="submit" class="btn btn-success" value="Register">
-                        <p><span class="small-text"> Already a member?</span> <a href="/login/">Click here</a></p>
-                    <!-- <button type="submit" id="createUserForm" class="btn btn-success">Register</button> -->
-                    
-                    </div>
-                    <div class="alert alert-danger text-center err-container">
-                      <span class="err-msg"></span>
-                  </div>
-              </form> 
-            </div>    
-		  </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  
-  
-  <% include partials/scripts %>
-
-
-</body>
-
-<script type="text/javascript">
-  $( document ).ready(function() {
-      $(".err-msg").hide();
-      $(".err-container").hide();
-      $(".lengthcheck").hide();
-      $(".passwords-not-equal").hide();
-      $(".lengthcheck").hide();
-      document.getElementById('elementToMove').style.left = '50px'; // new left position is 50px
+    <div class="container">
+        <div class="row"><h1 >GratitudeToday.io</h1></div>
+    
+    <div class="container">
       
- });
-
-  $("#createUserForm").submit(function(event) {
-     // Prevent the form from submitting via the browser.
-     event.preventDefault();
-  });
-  (function() {
-    alert("check form");
-      'use strict';
-      window.addEventListener('load', function() {
-          // Fetch all the forms we want to apply custom Bootstrap validation styles to
-          var forms = document.getElementsByClassName('needs-validation');
-          // Loop over them and prevent submission
-          var validation = Array.prototype.filter.call(forms, function(form) {
-          form.addEventListener('submit', function(event) {
-          if (form.checkValidity() === false) {
-             //confirm  password are equal
-             if($('#password').val().length<6){
-              $(".valid-password").hide();
-              $(".lengthcheck").show();
-              
-  
-             }else{
-              $(".valid-password").hide();
-              $(".lengthcheck").hide();
-  
-             }
-             
-              if($("#password").val()!= $("#confirmpassword").val()){
-                
-                $(".password-confirm").hide();
-                 $(".passwords-not-equal").show();
-             }
-             
-                
-             var checkValue = $('#check_id').is(":checked");
-            
-
-            // Get the checkbox
-            if($("#invalidCheck").prop("checked") == false){
-                 $("#checkbox-validate").show();
-              }
-             else{
-                 $("#checkbox-validate").hide();
-              }
-              
-              
-           }else{
-               event.preventDefault();
-            
-            var firstname = $("#firstname").val();
-            var lastname = $("#lastname").val();
-            var email = $("#email").val();
-            var password = $("#password").val();
-            var publicBool = $("#publicBool").val();
-            
-              
-              $.ajax({
-                    type : "POST",
-                    data: {
-                           firstname: firstname,
-                           lastname: lastname,
-                           email :  email,
-                           password : password,
-                          
-                            location :  "",
-                            bio: "",
-                            avatar: ""
-                           },
-                    
-                    url : "/users/",
-                    success : function(customer) {
-                        
-                        window.location.assign("/info/?id="+customer._id);
-                    },
-                    error : function(error) {
-                       
-                        if(error.status==410){
-                            $(".err-container").show();
-                            $(".err-msg").html("Email already in use. Try again");
-                           $(".err-msg").show();
-                          
-                        }
-                        else{
-                            $(".err-container").show();
-                           $(".err-msg").html("Error registering. Please try again later.");
-                           $(".err-msg").show();
-                           
-                        }
-                    }
-                    
-                 });
-                 
-        
-  
-              
-           }
-        
-       form.classList.add('was-validated');
-      }, false);
-  });
-  }, false);
-  })();
-  </script>
-
+            <div class="modal fade login" id="loginModal">
+                 <div class="modal-dialog login animated">
+                     <div class="modal-content">
+                        <div class="modal-header">
+                               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                               <h4 class="modal-title">Login with</h4>
+                           </div>
+                           <div class="modal-body">
+                               <div class="box">
+                                    <div class="content">
+                                       <div class="social">
+                                           <a class="circle github" href="#">
+                                               <i class="fa fa-github fa-fw"></i>
+                                           </a>
+                                           <a id="google_login" class="circle google" href="#">
+                                               <i class="fa fa-google-plus fa-fw"></i>
+                                           </a>
+                                           <a id="facebook_login" class="circle facebook" href="#">
+                                               <i class="fa fa-facebook fa-fw"></i>
+                                           </a>
+                                       </div>
+                                       <div class="division">
+                                           <div class="line l"></div>
+                                             <span>or</span>
+                                           <div class="line r"></div>
+                                       </div>
+                                       <div class="error"></div>
+                                       <div class="form loginBox">
+                                           <form method="" action="" accept-charset="UTF-8">
+                                           <input id="email" class="form-control" type="text" placeholder="Email" name="email">
+                                           <input id="password" class="form-control" type="password" placeholder="Password" name="password">
+                                           <input class="btn btn-default btn-login" type="button" value="Login" onclick="loginAjax()">
+                                           </form>
+                                       </div>
+                                    </div>
+                               </div>
+                               <div class="box">
+                                   <div class="content registerBox" style="display:none;">
+                                    <div class="form">
+                                       <form method="" html="{:multipart=>true}" data-remote="true" action="" accept-charset="UTF-8">
+                                       <input id="email" class="form-control" type="text" placeholder="Email" name="email">
+                                       <input id="password" class="form-control" type="password" placeholder="Password" name="password">
+                                       <input id="password_confirmation" class="form-control" type="password" placeholder="Repeat Password" name="password_confirmation">
+                                       <input class="btn btn-default btn-register" type="button" value="Create account" name="commit">
+                                       </form>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                           <div class="modal-footer">
+                               <div class="forgot login-footer">
+                                   <span>Looking to
+                                        <a href="javascript: showRegisterForm();">create an account</a>
+                                   ?</span>
+                               </div>
+                               <div class="forgot register-footer" style="display:none">
+                                    <span>Already have an account?</span>
+                                    <a href="javascript: showLoginForm();">Login</a>
+                               </div>
+                           </div>
+                     </div>
+                 </div>
+             </div>
+           </div>
+           <% include partials/scripts %>
+       <script type="text/javascript">
+           $(document).ready(function(){
+               openLoginModal();
+           });
+       </script>
+   
+</body>
 </html>
