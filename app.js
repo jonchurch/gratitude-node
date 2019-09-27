@@ -9,6 +9,7 @@ var createError = require('http-errors'),
   indexRouter = require('./routes/index'),
   usersRouter = require('./routes/users'),
   postsRouter = require('./routes/posts');
+  jqueryValidator = require("jquery-validation");
 
 // environment variables
 process.env.NODE_ENV = 'development';
