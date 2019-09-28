@@ -531,7 +531,7 @@ select.selectmenu {
 .nivo-caption {
   position: absolute;
   left: 80px;
-  bottom: 20px;
+  bottom: 60px;
   background: #000;
   color: #fff;
   width: 30%;
@@ -2716,3 +2716,36 @@ article img.pull-right, article .align-right {
 }
 
 /* Theme Styler :: End */
+/* Custom changes */
+.btn-success {
+  background: #28a745 !important;
+}
+.btn-success:hover,
+.btn-success:focus,
+.btn-success:active,
+.btn-success.active,
+.btn-success.disabled,
+.btn-success[disabled] {
+  color: #ffffff;
+  background-color: #28a745 !important;
+  border-color: #28a745 !important;
+  *background-color: #28a745 !important;
+}
+
+.btn-success:active,
+.btn-success.active {
+  background-color: #408140 \9 !important;
+}
+.btn-success:hover {
+  background:green !important;
+}
+.small-text {
+  font-size: .5em;
+  font-weight: 600;
+}
+
+.pass-err-msg{
+  font-size: .5em;
+  font-weight: 600;
+  color:red;
+}

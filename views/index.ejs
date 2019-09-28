@@ -83,19 +83,22 @@
                 <div>
                   <h2>Gratitude improves <strong>physical health.</strong></h2>
                   <p>
-                    Grateful people experience fewer aches and pains and report feeling healthier than other people.<br/><br/>Not surprisingly, grateful people are also more likely to take care of their health. They exercise more often and are more likely to attend regular check-ups, which is likely to contribute to further longevity.
+                    Grateful people experience fewer aches and pains and report feeling healthier than other people.
+                    <br/><br/>Not surprisingly, grateful people are also more likely to take care of their health. They exercise more often and are more likely to attend regular check-ups, which is likely to contribute to further longevity.
                   </p>
-                  <a id="register-btn1" class="btn btn-theme">Register</a>
+                  <!-- <a id="register-btn1" class="btn btn-theme">Register</a> -->
                 </div>
               </div>
               <!-- Slide #2 caption -->
               <div class="nivo-caption" id="caption-2">
                 <div>
                   <h2>Grateful people <strong>sleep better.</strong></h2>
-                  <p>
-                    "Count blessings, not sheep." Research has found that feeling grateful helps people sleep better and longer. That’s likely because "you have more positive thoughts before you go to sleep," which may soothe the nervous system.<br/><br/>If you’re going to make a daily gratitude list, it is recommended to write it before bed.
+                    <p>
+                    "Count blessings, not sheep." Research has found that feeling grateful helps people sleep better and longer. 
+                    <br/><br/>That’s likely because "you have more positive thoughts before you go to sleep," which may soothe the nervous system.<br/>
+                    If you’re going to make a daily gratitude list, it is recommended to write it before bed.
                     </p>
-                    <a id="register-btn2" class="btn btn-theme">Register</a>
+                    <!-- <a id="register-btn2" class="btn btn-theme">Register</a> -->
                 </div>
               </div>
               <!-- Slide #3 caption -->
@@ -105,7 +108,7 @@
                   <p>
                     For years, research has shown gratitude not only reduces stress, but it may also play a major role in overcoming trauma. <br/><br/>Higher levels of gratitude experienced lower rates of post-traumatic stress disorder and recognizes all that you have to be thankful even during the worst times.
                   </p>
-                  <a id="register-btn3" class="btn btn-theme">Register</a>
+                  <!-- <a id="register-btn3" class="btn btn-theme">Register</a> -->
                 </div>
               </div>
             </div>
@@ -411,62 +414,58 @@
           <h4 id="mySignupModalLabel">Create an <strong>account</strong></h4>
         </div>
         <div class="modal-body">
-          <form class="form-horizontal">
+          <form class="form-horizontal" id="createUserForm" >
               <div class="control-group">
+                  <label class="control-label" for="inputEmail">Email *</label>
+                  <div class="controls">
+                      <input type="email" id="email"  required>
+                  </div>
+                </div>
+              <!-- <div class="control-group">
                   <label class="control-label" for="inputFirst">First Name</label>
                   <div class="controls">
-                    <input type="text" id="firstname">
-                    <div class="invalid-feedback" id="checkbox-validate" required>
-                      You must enter first name.
-                  </div>
+                    <input type="text" id="firstname" required>
+                   
                   </div>
                   
               </div>
               <div class="control-group">
                   <label class="control-label" for="inputLast">Last Name</label>
                   <div class="controls">
-                    <input type="text" id="lastname">
+                    <input type="text" id="lastname" required>
                   </div>
-                  <div class="invalid-feedback" id="checkbox-validate" required>
-                      You must enter last name.
-                  </div>
-              </div>
+                  
+              </div> -->
+            
             <div class="control-group">
-              <label class="control-label" for="inputEmail">Email</label>
-              <div class="invalid-feedback" id="checkbox-validate" required>
-                  You must enter a valid email.
+              <label class="control-label" for="inputSignupPassword">Password *</label>
+              <div class="controls">
+                <input type="password" id="password" required minlength="6"><br/>
+                <span class="small-text">Must be at least 6 chars</span>
               </div>
+              
             </div>
             <div class="control-group">
-              <label class="control-label" for="inputSignupPassword">Password</label>
+              <label class="control-label" for="inputSignupPassword2">Confirm Password *</label>
               <div class="controls">
-                <input type="password" id="password" placeholder="Password">
+                <input type="password" id="confirmpassword" minlength="6" required><br/>
+                <span class="small-text pass-msg">Must equal password entered</span>
+                <span class="small-text pass-err-msg">Passwords are not equal</span>
               </div>
-              <div class="invalid-feedback" id="checkbox-validate" required>
-                  You must enter a valid password.
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label" for="inputSignupPassword2">Confirm Password</label>
-              <div class="controls">
-                <input type="password" id="confirmpassword" placeholder="Password">
-              </div>
-              <div class="invalid-feedback" id="checkbox-validate" required>
-                  Both passwords must be equal.
-              </div>
+              
             </div>
             <div class="control-group text-center">
-                <input type="checkbox" id="invalidCheck">Agree to terms and conditions
-                <div class="invalid-feedback" id="checkbox-validate" required>
-                        You must agree before submitting
-                </div>
+                <input type="checkbox" id="invalidCheck" required>&nbsp;<span class="small-text">Agree to terms and conditions</span>
+                
             </div>
             <div class="control-group">
               <div class="controls">
-                <button type="submit" class="btn">Sign up</button>
+                  <input type="submit" class="btn btn-success" value="Sign up">
+                  <!-- <button type="submit" class="btn btn-success">Sign up</button> -->
+                
               </div>
               <p class="aligncenter margintop20">
-                Already have an account? <a href="#mySignin" data-dismiss="modal" aria-hidden="true" id="signin-open" data-toggle="modal">Sign in</a>
+                  <span class="small-text">Already have an account?</span> <a href="#mySignin" data-dismiss="modal" aria-hidden="true" id="signin-open" data-toggle="modal">Sign in</a>
               </p>
             </div>
           </form>
@@ -481,21 +480,22 @@
         </div>
         <div class="modal-body">
           <form class="form-horizontal">
-            <div class="control-group">
-              <label class="control-label" for="inputText">Username</label>
+            <div class="control-group" id="login-form">
+              <label class="control-label" for="inputText">Email Address:</label>
               <div class="controls">
-                <input type="text" id="inputText" placeholder="Username">
+                <input type="email"  id = "loginemail" required>
               </div>
             </div>
             <div class="control-group">
               <label class="control-label" for="inputSigninPassword">Password</label>
               <div class="controls">
-                <input type="password" id="inputSigninPassword" placeholder="Password">
+                <input type="password" id="loginpassword" minlength="6" required>
               </div>
             </div>
             <div class="control-group">
               <div class="controls">
-                <button type="submit" class="btn">Sign in</button>
+                  <button type="submit" class="btn btn-success">Sign in</button>
+                
               </div>
               <p class="aligncenter margintop20">
                   Don't already have an account? <a href="#mySignup" data-dismiss="modal" aria-hidden="true" id="signup-open" data-toggle="modal">Sign up</a>
@@ -535,38 +535,12 @@
       </div>
       <!-- end reset modal -->
       <% include partials/scripts %>
-  
-      <script type="text/javascript">
-        $(document).ready(function(){
-            $('#signin-open').click();
-            
-            $("#register-btn1").click(function() {
-               $("#signup-open").click();
-            });
-            $("#register-btn2").click(function() {
-                alert("button 2");
-               $("#signup-open").click();
-            });
-            $("#register-btn3").click(function() {
-               $("#signup-open").click();
-            });
-        });
+<script>
+      $(document).ready(function(){
+         $('#signup-open').click();
         
-        $("#myForm").validate({
-          rules: {
-              username: {
-                  required: true,
-                  // Using the normalizer to trim the value of the element
-                  // before validating it.
-                  //
-                  // The value of `this` inside the `normalizer` is the corresponding
-                  // DOMElement. In this example, `this` references the `username` element.
-                  normalizer: function(value) {
-                      return $.trim(value);
-                  }
-              }
-          }
-        });
-    </script>
+    });
+</script>    
+      
 </body>
 </html>
