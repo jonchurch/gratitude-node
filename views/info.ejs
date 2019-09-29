@@ -1,139 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-    <% include partials/head %>
-	</head>
-	<body data-spy="scroll" data-target="#pb-navbar" data-offset="200">
 
-    <% include partials/nav %>
-    <!-- END nav -->
+<head>
+  <% include partials/head %>
+</head>
 
-
-
-
-    <section class="pb_cover_v3 overflow-hidden text-left"  id="section-home">
-      <div class="container">
-        <div class="row align-items-center justify-content-center">
-            <div class="row align-items-center justify-content-center"></div>
-            <div class="col-md-3">
-               
-          </div>
-          <div class="col-md-6 relative align-self-center form-box-pad">
-              
-            
-            <form class="needs-validation bg-white rounded sub-pb_form_v1" id="updateUserInfo" novalidate>
-                <input type="hidden" id="id" value="">
-            
-              <h2 class="mb-4 mt-0 text-center form-header">Welcome <span id="name"></span>!</h2><p class="text-center">Don't worry, you can do this later.</p>
-             
-              
-              <div class="form-group">
-
-                <textarea class="form-control z-depth-1" id="bio" rows="5" placeholder="Tell us a little about yourself..."></textarea>
-                
-              </div>
-              <div class="form-group">
-                  <input type="text" class="form-control" id="location" placeholder="Address..." >
-                
-              </div>
-              
-        
-              
-                  <div class="form-group">
-                      <input type="button" class="btn btn-info" id="btn_skip" value="Skip">
-                      <input type="submit" class="btn btn-success" id ="updateUserInfo" value="Update">
-                      
+<body>
+ 
+    
+    <!-- start header -->
+    <header>
+        <section id="inner-headline">
+            <div class="container">
+              <div class="row">
+                <div class="span4">
+                  <div class="inner-heading">
                      
-                    </div>
-              
-               
-            </form>
-            
-    </div>
-    <div class="col-md-3"></div>
-  </div>
-      </div>
-    </section>
-    <!-- END section -->
-      
-    <% include partials/footer %>
-
-    <% include partials/scripts %>
-
-<script>
-    $(document).ready(function() {
-    var _id= getUrlParameter("id");
-     var passId=_id;
-      $.ajax({
-          url: '/users/'+_id,
-          type: "GET",
-          dataType: "json",
-          data: {id: _id},
-            success: function(data, textStatus, jqXHR) {
-                   //set first name, lastname, email, avatar 
-                   
-                    $("#name").html(data.firstname+" "+data.lastname);
-                    $("#bio").html(data.bio);
-                    
-                    $("#location").val(data.location);
-                    $("id").val(data._id);
-                   
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                    console.log('Error occurred on info.ejs');
-                    
-            }
-        }); 
-        $("#btn_skip").click(function() {
-            event.preventDefault();
-            window.location.assign("/profile/?id="+ _id);
-            
-        });
-        $("#updateUserInfo").submit(function(event) {
-          // Prevent the form from submitting via the browser.
-          console.log('in function: '+_id);
-         
-          // PREPARE FORM DATA
-           var bio = $("#bio").val();
-            var location = $("#location").val();
-            
-              $.ajax({
-                type : "PUT",
-                data: {
-                    bio: bio,
-                    location: location
-                },
-                url : "/users/"+passId,
-              
-              success : function(customer) {
-                      //forward page with id to fill in optional information
-                      
-                    console.log("id : "+customer._id);
-                    window.location.assign("/profile/?id="+customer._id);
-                    
-              },
-                  error : function(error) {
-                      console.log(error);
-                      // if(error.status==410){
-                      //    $(".err-msg").html("Error.");
-                      //   $(".err-msg").show(); 
-                      // }
-              }
-            });
-              
-    	
-            
-         });
+                  </div>
+                </div>
+                <div class="span8">
+                 
+              </div>
+            </div>
+          </section>
+      <div class="container ">
         
-        });
+        <div class="row nomargin">
+          <div class="span4">
+            <div class="headnav">
+             <ul>
+               
+              </ul>
+            </div>
             
+          </div>
+        </div>
+        
+        <div class="row">
+            <% include partials/logo %>
+          </div>
+          <div class="span8">
+            <div class="navbar navbar-static-top">
+              
+              </div>
+              <!-- end navigation -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- end header -->
     
-</script>
+    <section id="content">
+      <div class="container">
+        <div class="row">
+          <div class="span12 text-center">
+              <h2 class="info-header">Welcome <strong><span class="info-header" id="name"></span>.</strong></h2>
+              <h3 class="info-header">Complete your profile.</h3>
+          
+            <p>
+              Don't worry, you can do this later.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+        <div class="row">
+          <div class="span12">
+          
+              <div class="span9">
+              <form class="form-horizontal" id="createUserForm" >
+                  <div class="control-group">
+                    
+                      <div class="controls">
+                          <strong>Tell us a little more about you</strong><textarea rows="3" type="text" id="bio"></textarea>
+                      </div>
+                    </div>
+                  
+                  <div class="controls">
+                      
+                      <strong></stron>Address</strong><input type="text" class="form-control" id="location" >
+                    
+                  </div>
+                
+                
+                  
+                <div class="control-group">
+                  <div class="controls text-center">
+                      <br/><input type="button" class="btn btn-default" id="btn_skip" value="Skip">
+                      <input type="submit" class="btn btn-success" id ="updateUserInfo" value="Update">
+                    
+                  </div>
+                </form>
+              
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
 
-    
-	</body>
+  <% include partials/footer %>
+  <% include partials/scripts %>
+
+</body>
+
 </html>
-
-
-
-

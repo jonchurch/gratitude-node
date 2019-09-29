@@ -109,6 +109,7 @@ router.post('/',function(req,res){
     logger.info("email: "+req.body.email);
     User.findOne({ email:req.body.email}, function (error, user) {
       if(user){
+        console.log("user exists");
         const error = new Error('User email account already exists.');
         //throw new Error('User email account already exists.');
         res.status(410);
@@ -117,7 +118,7 @@ router.post('/',function(req,res){
     }
     else{
           //save user  
-          
+          console.log("register user")
           var pwd = req.body.password;
          
           bcrypt.genSalt(10, function(err, salt) {
@@ -132,7 +133,7 @@ router.post('/',function(req,res){
                   //console.log('Salt: ' + salt);
                   bcrypt.hash(pwd, salt, function (err, hash) {
                       if (err) {
-                         logger.error("ERROR! users bcrypt");
+                        logger.error("ERROR! users bcrypt");
                         const error = new Error("Unable to register, please try again.");
                         
                         res.status(420);
@@ -142,10 +143,9 @@ router.post('/',function(req,res){
                         var user = new User({
                             
                           firstname:req.body.firstname,
-                          lastname : req.body.lastname,
+                          lastname :req.body.lastname,
                           email :req.body.email,
                           password : hash,
-                          
                           admin: false,
                           bio : "",
                           location : "",
