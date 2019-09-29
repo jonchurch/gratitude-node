@@ -13,8 +13,7 @@
 /config/config.js
 
 #package json
-package.json
-package-lock.json
+
 
 # IDEs and editors
 /.idea
