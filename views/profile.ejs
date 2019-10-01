@@ -13,24 +13,18 @@
         <section id="inner-headline">
             <div class="container">
               <div class="row">
-                <div class="span4">
-                  <div class="inner-heading">
-                     
-                  </div>
+                
                 </div>
-                <div class="span8">
-                 
-              </div>
+                <div class="span12">
+               </div>
             </div>
           </section>
       <div class="container ">
         
         <div class="row nomargin">
-          <div class="span4">
+          <div class="span12">
             <div class="headnav">
-             <ul>
-               
-              </ul>
+            
             </div>
             
           </div>
@@ -55,15 +49,15 @@
     <section id="content">
       <div class="container">
         <div class="row">
-          <div class="span2">
+          <div class="span3">
             <aside class="left-sidebar">
               
               <div class="widget">
-                
+                <h5><span id="name"></span></h5>
                 <ul class="cat">
-                  <li><a href="#">My Journal</a></li>
-                  <li><a href="#">My Account</a></li>
-                  <li></i><a href="#">Sign out</a></li>
+                  <li><a href="/journal/?id=">My Journal</a></li>
+                  <li><a id="account-link" href="/account/">My Account</a></li>
+                  <li></i><a href="/">Sign out</a></li>
                   
                 </ul>
               </div>
@@ -71,70 +65,32 @@
             </aside>
           </div>
         
-        <div class="span8">
+        <div class="span9">
             <form class="form-horizontal" id="postMsgForm" > 
-                
-                    <p><strong>What are you grateful for today...</strong></p><textarea rows="3" type="text" id="postMsg"></textarea>
+                <input type="hidden" id="id" value="">
+                   <h3>What are you grateful for today...</h3><textarea rows="3" type="text" id="postMsg" required></textarea>
                    
                         <br/><br/>
                           <input type="submit" class="btn btn-success" id ="updateUserInfo" value="Post">
                             
                       
-                    
-          </form>
-          </div>
-          <div class="span4"></div>
-        
-          <!-- <div class="span8">
-              <form class="form-horizontal" id="postMsgForm" >
-                        <div class="control-group">
-                          
-                            <div class="controls">
-                                <strong>What are you grateful for today...</strong><textarea rows="3" type="text" id="postMsg"></textarea>
-                            </div>
-                        </div>
                       
-                        
-              </form>
-                  </div>
-                </div> -->
-
-          </div>
-        </div>
-          <!-- <div class="span8">
-            <article>
-              <div class="row">
-                <div class="span8">
-                  <div class="post-image">
-                    <div class="post-heading">
-                      <h3>This is an example of standard post format</h3>
-                    </div>
-                    
-                  </div>
-                  <p>
-                    Qui ut ceteros comprehensam. Cu eos sale sanctus eligendi, id ius elitr saperet, ocurreret pertinacia pri an. No mei nibh consectetuer, semper laoreet perfecto ad qui, est rebum nulla argumentum ei. Fierent adipisci iracundia est ei, usu timeam persius
-                    ea. Usu ea justo malis, pri quando everti electram ei, ex homero omittam salutatus sed.
+                        <p><strong>I am grateful for my 3 cats</strong></p>
+                       They make me laugh all the time!
                   </p>
-                  <div class="bottom-article">
                     <ul class="meta-post">
                       <li><i class="icon-calendar"></i><a href="#"> Mar 13, 2019</a></li>
                       <li><i class="icon-user"></i><a href="#"> Adrian Nadeau</a></li>
                       
                     </ul>
-                   
-                  </div>
-                </div>
-              </div>
-            </article>
-           
-             -->
-           
-            <!-- <div id="pagination">
-              <span class="all">Page 1 of 3</span>
-              <span class="current">1</span>
-              <a href="#" class="inactive">2</a>
-              <a href="#" class="inactive">3</a>
-            </div> -->
+                        
+                      
+                    
+          </form>
+          </div>
+        
+          </div>
+        </div>
           
     </section>
     <% include partials/footer %>
@@ -143,6 +99,26 @@
   <!-- javascript
     ================================================== -->
     <% include partials/scripts %>
+
+      <script>
+  $(document).ready(function() {
+        getUserInfo('info');
+        $( "#account-link" ).click(function() {
+        event.preventDefault();
+        window.location.assign("/account/?id="+Id)
+      });
+      $( "#journal-link" ).click(function() {
+        event.preventDefault();
+        window.location.assign("/journal/?id="+Id)
+      });
+      $( "#support-link" ).click(function() {
+        event.preventDefault();
+        window.location.assign("/support/?id="+Id)
+      });
+      
+          
+  });
+  </script>
 </body>
 
 </html>

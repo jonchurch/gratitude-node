@@ -3,10 +3,7 @@ $(".pass-err-msg").hide();
 $("#createUserForm").submit(function(event) {
     // Prevent the form from submitting via the browser.
     event.preventDefault();
-    var email = $("#email").val();
-    var firstname = $("#firstname").val();
-    var lastname = $("#lastname").val();
-    var password = $("#password").val();
+   
     if($("#password").val()!= $("#confirmpassword").val()){
          
         $(".pass-msg").hide(); 
@@ -20,12 +17,11 @@ $("#createUserForm").submit(function(event) {
         $.ajax({
          type : "POST",
          data: {
-                firstname: firstname,
-                lastname: lastname,
-                email :  email,
-                password : password,
-               
-                 location :  "",
+                firstname: $("#firstname").val(),
+                lastname: $("#lastname").val(),
+                email :  $("#email").val(),
+                password : $("#password").val(),
+                location :  "",
                  bio: "",
                  avatar: ""
                 },

@@ -80,7 +80,7 @@
                   
                   <div class="controls">
                       
-                      <strong></stron>Address</strong><input type="text" class="form-control" id="location" >
+                      <strong>Address</strong><br/><input type="text" class="form-control" id="location" >
                     
                   </div>
                 
@@ -103,6 +103,11 @@
 
   <% include partials/footer %>
   <% include partials/scripts %>
+  <script>
+  $(document).ready(function() {
+        getUserInfo('info');
+  });
+  </script>
 
 </body>
 

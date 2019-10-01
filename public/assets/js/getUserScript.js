@@ -1,6 +1,4 @@
-
-    $(document).ready(function() {
-        
+function getUserInfo(location){
     var _id= getUrlParameter("id");
      var passId=_id;
       $.ajax({
@@ -9,13 +7,29 @@
           dataType: "json",
           data: {id: _id},
             success: function(data, textStatus, jqXHR) {
-                   //set first name, lastname, email, avatar 
+                   //set data for specifice page
+                   $("#name").html(data.firstname+" "+data.lastname);
+                   if(type=='info'){
+                         $("#name").html(data.firstname+" "+data.lastname);
+                        $("#bio").html(data.bio);
+                        
+                        $("#location").val(data.location);
+                        $("id").val(data._id);
+                   }else if(type=='profile'){
+                        $("#firstname").html(data.firstname)
+                      $("#lastname").html(data.lastname)
+                      $("#email").html(data.email);
+                      
+                      $("#avatar").attr("src","../"+data.avatar);
+                      $("#bio").html(data.bio);
+                      $("#location").html(data.location);
+                      
+                      $("account-link").attr("href","/account/?id="+_id);
+                      $("support-link").attr("href","/support/?id="+_id);
+                      $("journal-link").attr("href","/journal/?id="+_id);
+                      emailAddress= data.email;
+                   }
                    
-                    $("#name").html(data.firstname+" "+data.lastname);
-                    $("#bio").html(data.bio);
-                    
-                    $("#location").val(data.location);
-                    $("id").val(data._id);
                    
             },
             error: function(jqXHR, textStatus, errorThrown) {
@@ -64,5 +78,6 @@
             
          });
         
-        });
+    
+}
         
