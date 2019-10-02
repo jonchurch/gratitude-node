@@ -111,14 +111,13 @@ router.post('/',function(req,res){
       if(user){
         console.log("user exists");
         const error = new Error('User email account already exists.');
-        //throw new Error('User email account already exists.');
         res.status(410);
         res.send(JSON.stringify(error.message));
         
     }
     else{
           //save user  
-          console.log("register user")
+          
           var pwd = req.body.password;
          
           bcrypt.genSalt(10, function(err, salt) {

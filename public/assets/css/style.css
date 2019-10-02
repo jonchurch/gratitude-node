@@ -2774,6 +2774,10 @@ img.rounded-corners{
 form{
   margin:0px;
 }
-
+.alert {
+    
+    border-radius: 6px !important;
+    font-weight: 700;
+}
 
 

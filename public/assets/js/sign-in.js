@@ -1,18 +1,17 @@
-$(".pass-msg").show(); 
-$(".pass-err-msg").hide();
+
+$('.alert').hide();
+$('.login-alert').hide();
 $("#createUserForm").submit(function(event) {
     // Prevent the form from submitting via the browser.
     event.preventDefault();
    
     if($("#password").val()!= $("#confirmpassword").val()){
          
-        $(".pass-msg").hide(); 
-        $(".pass-err-msg").show();
+        $(".alert").hide(); 
+        $("..alert").html('Password and Confirm Password must be same.');
      }
      else{
         //register user
-        $(".pass-msg").hide(); 
-        $(".pass-err-msg").hide();
         
         $.ajax({
          type : "POST",
@@ -34,17 +33,14 @@ $("#createUserForm").submit(function(event) {
          error : function(error) {
             
              if(error.status==410){
-                alert("email exists");
-                 $(".err-container").show();
-                 $(".err-msg").html("Email already in use. Try again");
-                $(".err-msg").show();
-               
+                
+                $(".alert").html("Email already in use. Try again");
+                $(".alert").show();
+                
              }
              else{
-               alert("error");  
-               $(".err-container").show();
-                $(".err-msg").html("Error registering. Please try again later.");
-                $(".err-msg").show();
+                $(".alert").html("Error registering. Please try again later.");
+                $(".alert").show();
                 
              }
          }
@@ -53,4 +49,36 @@ $("#createUserForm").submit(function(event) {
         
      }
  });
+ $("#loginUserForm").submit(function(event) {
+       
+        // Prevent the form from submitting via the browser.
+        event.preventDefault();
+        var email = $("#loginemail").val();
+        var password = $("#loginpassword").val();
+        console.log("password: "+password);
+        console.log("email: "+email);
+        if( email != "" && password != "" ){
+            $.ajax({
+                url: '/users/login',
+                type: "POST",
+                dataType: "json",
+                data: {
+                    email: email,
+                    password: password
+                },
+                /**
+                * A function to be called if the request succeeds.
+                */
+                success: function(data, textStatus, jqXHR) {
+                    window.location.assign("/profile/?id="+data._id);
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    $(".alert").html('Error logging in, please confirm username and password are correct');
+                    $(".alert").show();
+                }
+            });
+        }
+    
 
+       
+     });

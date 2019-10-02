@@ -269,7 +269,9 @@
   
 <!-- Signup Modal -->
 <div id="mySignup" class="modal styled hide fade" tabindex="-1" role="dialog" aria-labelledby="mySignupModalLabel" aria-hidden="true">
+    
         <div class="modal-header">
+            <div class="alert alert-danger text-center" role="alert"></div>
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
           <h4 id="mySignupModalLabel">Create an <strong>account</strong></h4>
         </div>
@@ -335,11 +337,12 @@
       <!-- Sign in Modal -->
       <div id="mySignin" class="modal styled hide fade" tabindex="-1" role="dialog" aria-labelledby="mySigninModalLabel" aria-hidden="true">
         <div class="modal-header">
+            <div class="alert alert-danger text-center login-alert" role="alert">Danger</div>
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
           <h4 id="mySigninModalLabel">Login to your <strong>account</strong></h4>
         </div>
         <div class="modal-body">
-          <form class="form-horizontal">
+          <form class="form-horizontal" id="loginUserForm" >
             <div class="control-group" id="login-form">
               <label class="control-label" for="inputText">Email Address:</label>
               <div class="controls">
@@ -358,7 +361,7 @@
                 
               </div>
               <p class="aligncenter margintop20">
-                  Don't already have an account? <a href="#mySignup" data-dismiss="modal" aria-hidden="true" id="signup-open" data-toggle="modal">Sign up</a>
+                  Don't have an account? <a href="#mySignup" data-dismiss="modal" aria-hidden="true" id="signup-open" data-toggle="modal">Sign up</a>
                 </p>
               <p class="aligncenter margintop20">
                 Forgot password? <a href="#myReset" data-dismiss="modal" aria-hidden="true" data-toggle="modal">Reset</a>
@@ -399,7 +402,8 @@
       <script src="/assets/js/sign-in.js"></script>
 <script>
       $(document).ready(function(){
-         $('#signup-open').click();
+         $('#signin-open').click();
+         
         
     });
 </script>    
