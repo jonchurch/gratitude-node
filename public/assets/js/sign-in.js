@@ -1,14 +1,16 @@
 
 $('.alert').hide();
 $('.login-alert').hide();
+$('.pass-err-msg').hide();
+
 $("#createUserForm").submit(function(event) {
     // Prevent the form from submitting via the browser.
     event.preventDefault();
    
     if($("#password").val()!= $("#confirmpassword").val()){
-         
-        $(".alert").hide(); 
-        $("..alert").html('Password and Confirm Password must be same.');
+         $(".alert").html('Password and Confirm Password must be same.');
+        $(".alert").show();
+
      }
      else{
         //register user

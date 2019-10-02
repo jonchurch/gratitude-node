@@ -1,4 +1,5 @@
-function getUserInfo(location){
+function getUserInfo(page){
+    
     var _id= getUrlParameter("id");
      var passId=_id;
       $.ajax({
@@ -9,13 +10,13 @@ function getUserInfo(location){
             success: function(data, textStatus, jqXHR) {
                    //set data for specifice page
                    $("#name").html(data.firstname+" "+data.lastname);
-                   if(type=='info'){
+                   if(page=='page'){
                          $("#name").html(data.firstname+" "+data.lastname);
                         $("#bio").html(data.bio);
                         
                         $("#location").val(data.location);
                         $("id").val(data._id);
-                   }else if(type=='profile'){
+                   }else if(page=='profile'){
                         $("#firstname").html(data.firstname)
                       $("#lastname").html(data.lastname)
                       $("#email").html(data.email);
