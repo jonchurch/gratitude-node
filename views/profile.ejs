@@ -2,123 +2,110 @@
 <html lang="en">
 
 <head>
-    <% include partials/head %>
+ <% include partials/head %>
 </head>
 
 <body>
-  <!-- <div id="wrapper" class="boxed"> -->
+  <div id="wrapper">
     
-    <!-- start header -->
-    <header>
-        <section id="inner-headline">
-            <div class="container">
-              <div class="row">
-                
-                </div>
-                <div class="span12">
-               </div>
-            </div>
-          </section>
-      <div class="container ">
-        
-        <div class="row nomargin">
-          <div class="span12">
-            <div class="headnav">
-            
-            </div>
-            
-          </div>
-        </div>
-        
+    
+    <section id="inner-headline">
+      <div class="container">
         <div class="row">
-            <% include partials/logo %>
-          </div>
-          <div class="span8">
-            <div class="navbar navbar-static-top">
-              
-              </div>
-              <!-- end navigation -->
+          <div class="span12">
+            <div class="inner-heading">
+              <h3><span id="name"></span>.</strong></h3>
             </div>
           </div>
+          
         </div>
       </div>
-    </header>
-    
-    <!-- end header -->
-    
+    </section>
     <section id="content">
       <div class="container">
         <div class="row">
-          <div class="span3">
-            <aside class="left-sidebar">
-              
+             <div class="span4">
+            <aside class="right-sidebar">
               <div class="widget">
-                <h5><span id="name"></span></h5>
-                <ul class="cat">
-                  <li><a href="/journal/?id=">My Journal</a></li>
-                  <li><a id="account-link" href="/account/">My Account</a></li>
-                  <li></i><a href="/">Sign out</a></li>
-                  
+                <h5 class="widgetheading">Adrian Nadeau</h5>
+                <ul class="folio-detail">
+                <li><label>avatar</label></li>
+                 <li><label>Registraion Date</label> 26 March, 2013</li>
+                  <li><label>Website</label><a href="#">www.projectsiteurl.com</a></li>
+                  <li><label>My Account</label></li>
+                  <li><label>My Journal</label></li>
                 </ul>
               </div>
-              
+              <div class="widget">
+                <h5 class="widgetheading">Bio</h5>
+                <p>
+                  Lorem ipsum dolor sit amet, unum suscipiantur te cum, vide magna ea eam. At eos wisi tractatos temporibus. Ne has omnis harum. Ei mea graece delenit nominati. Ut dolore albucius torquatos vel, choro gubergren no mel.
+                </p>
+              </div>
             </aside>
           </div>
-        
-        <div class="span9">
-            <form class="form-horizontal" id="postMsgForm" > 
-                <input type="hidden" id="id" value="">
-                   <h3>What are you grateful for today...</h3><textarea rows="3" type="text" id="postMsg" required></textarea>
+          <div class="span8">
+            <article>
+              <div class="top-wrapper">
+                <div class="post-heading">
+                    <form class="form-horizontal" id="postMsgForm" > 
+                        <input type="hidden" id="id" value="">
+                   <h4>What are you grateful for today...</h4><textarea rows="3" type="text" id="postMsg" required></textarea>
                    
                         <br/><br/>
                           <input type="submit" class="btn btn-success" id ="updateUserInfo" value="Post">
                             
-                      
-                      
-                        <p><strong>I am grateful for my 3 cats</strong></p>
-                       They make me laugh all the time!
+                   
                   </p>
-                    <ul class="meta-post">
-                      <li><i class="icon-calendar"></i><a href="#"> Mar 13, 2019</a></li>
-                      <li><i class="icon-user"></i><a href="#"> Adrian Nadeau</a></li>
-                      
-                    </ul>
+                    
                         
                       
                     
           </form>
+                  <h4>Recent Posts</h4>
+                </div>
+                <!-- start flexslider -->
+                <!-- <div class="flexslider">
+                  <ul class="slides">
+                    <li>
+                      <img src="/assets/img/works/full/image-01-full.jpg" alt="" />
+                    </li>
+                    <li>
+                      <img src="/assets/img/works/full/image-02-full.jpg" alt="" />
+                    </li>
+                    <li>
+                      <img src="/assets/img/works/full/image-03-full.jpg" alt="" />
+                    </li>
+                  </ul>
+                </div> -->
+                <!-- end flexslider -->
+              </div>
+              <p>
+                Qui ut ceteros comprehensam. Cu eos sale sanctus eligendi, id ius elitr saperet, ocurreret pertinacia pri an. No mei nibh consectetuer, semper laoreet perfecto ad qui, est rebum nulla argumentum ei. Fierent adipisci iracundia est ei, usu timeam persius
+                ea. Usu ea justo malis, pri quando everti electram ei, ex homero omittam salutatus sed.
+                <ul class="meta-post">
+                      <li><i class="icon-calendar"></i><a href="#"> Mar 13, 2019</a></li>
+                      <li><i class="icon-user"></i><a href="#"> Adrian Nadeau</a></li>
+                      
+                    </ul>
+              </p>
+            </article>
           </div>
-        
-          </div>
+         
         </div>
-          
+      </div>
     </section>
-    <% include partials/footer %>
+ <% include partials/footer %>
   </div>
   <a href="#" class="scrollup"><i class="icon-chevron-up icon-square icon-32 active"></i></a>
-  <!-- javascript
-    ================================================== -->
-    <% include partials/scripts %>
+  <% include partials/scripts %>
 
-      <script>
+  <script>
   $(document).ready(function() {
-        getUserInfo('info');
-        $( "#account-link" ).click(function() {
-        event.preventDefault();
-        window.location.assign("/account/?id="+Id)
-      });
-      $( "#journal-link" ).click(function() {
-        event.preventDefault();
-        window.location.assign("/journal/?id="+Id)
-      });
-      $( "#support-link" ).click(function() {
-        event.preventDefault();
-        window.location.assign("/support/?id="+Id)
-      });
-      
-          
+        getUserInfo('profile');
   });
   </script>
+
 </body>
 
 </html>
