@@ -5,6 +5,7 @@ var express = require('express'),
     router = express.Router(),
     User = require("../models/UserModel"),
     bcrypt = require('bcrypt');
+    Nylas = require('nylas');
     
 
 router.use(express.json());
@@ -152,12 +153,26 @@ router.post('/',function(req,res){
                           });
                           user.save(function (error, user) {
                               if (error){ 
-                              console.log("err:"+error);
-                              res.send(error.message);
-                              //next();  
+                                console.log("err:"+error);
+                                res.send(error.message);
+                              //send email
                               }
+                              else{
+                                    const nylas = Nylas.with('yCe3ohYdcfoCOqbA8vR0ZOFDTkAFvB');
+
+                                    const draft = nylas.drafts.build({
+                                        //from: 'GratitudeToday.io',
+                                        subject: 'Welcome to GratitudeToday.io!',
+                                        body:`<strong>It's great to have you join the community.</strong>  ` ,
+                                        to: [{ name: 'GratitudeToday.io', email: 'adriannadeau.art@gmail.com' }]
+                                    });
+                                    draft.send().then(message => {
+                                        console.log(`${message.id} was sent`);
+                                    });
+                               res.send(user)
+                            }
                           
-                              res.send(user)
+                             
                               
                           });
                       }

@@ -2824,3 +2824,7 @@ margin-left:-20px;
 .form-horizontal .controls{
     margin-left:0px !important;
 }
+.form-horizontal .control-label {
+   
+    padding-right: 5px !important;
+}

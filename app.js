@@ -10,13 +10,14 @@ var createError = require('http-errors'),
   usersRouter = require('./routes/users'),
   postsRouter = require('./routes/posts');
 
+
+
 // environment variables
 process.env.NODE_ENV = 'development';
 // uncomment below line to test this code against ystaging environment
 // process.env.NODE_ENV = 'production';
 // config variables
 const config = require('./config/config.js');
-
 var app = express();
 
 

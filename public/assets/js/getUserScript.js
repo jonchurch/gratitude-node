@@ -10,6 +10,7 @@ function getUserInfo(page){
             success: function(data, textStatus, jqXHR) {
                    //set data for specifice page
                    $("#name").html(data.firstname+" "+data.lastname);
+                   $("#website").html(data.website);
                    if(page=='page'){
                          $("#name").html(data.firstname+" "+data.lastname);
                         $("#bio").html(data.bio);
@@ -28,6 +29,8 @@ function getUserInfo(page){
                       $("account-link").attr("href","/account/?id="+_id);
                       $("support-link").attr("href","/support/?id="+_id);
                       $("journal-link").attr("href","/journal/?id="+_id);
+                      $("reg-date").html(data.createDate);
+                      console.log("date:"+data.createDate);
                       emailAddress= data.email;
                    }
                    
