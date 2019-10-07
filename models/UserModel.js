@@ -12,7 +12,7 @@ var mongoose = require('mongoose');
         location: String,
         bio: String,
         avatar: String,
-        website: String,
+        url: String,
         createDate: {
             type: Date,
             default: Date.now

@@ -149,8 +149,9 @@ router.post('/',function(req,res){
                           admin: false,
                           bio : "",
                           location : "",
-                          avatar: ""
-                          });
+                          avatar: "",
+                          url: ""
+                        });
                           user.save(function (error, user) {
                               if (error){ 
                                 console.log("err:"+error);
@@ -166,9 +167,9 @@ router.post('/',function(req,res){
                                         body:`<strong>It's great to have you join the community.</strong>  ` ,
                                         to: [{ name: 'GratitudeToday.io', email: 'adriannadeau.art@gmail.com' }]
                                     });
-                                    draft.send().then(message => {
-                                        console.log(`${message.id} was sent`);
-                                    });
+                                    // draft.send().then(message => {
+                                    //     console.log(`${message.id} was sent`);
+                                    // });
                                res.send(user)
                             }
                           
@@ -219,44 +220,5 @@ router.put('/:id',function(req,res){
         });
 
         
-    
-        
-    
-//     if(!user){
-//         const error = new Error('Something went wrong, please try again.');
-        
-//         res.status(500);
-//         console.log(error.response)
-//         res.send(JSON.stringify(error.message));
-        
-//     }
-//     else{
-//           //save user  
-//          console.log("save details: "+_id);
-        
-//            // var hash = bcrypt.hashSync(req.body.password, saltRounds);
-                
-//                 var user = new User({
-                
-              
-//                 bio : req.body.bio,
-//                 location : "",
-//                 avatar: ""
-//                 });
-//                 user.save(function (error, user) {
-//                     if (error){ 
-//                     console.log("err:"+error);
-//                     res.send(error.message);
-//                     next();  
-//                     }
-                
-//                     res.send(user)
-                    
-//                 });
-//     }
-        
-//   });
-                    
-    
- 
+  
 module.exports = router;

@@ -11,20 +11,9 @@
   <div id="wrapper">
     
     <!-- start header -->
-    <header>
+    <header class="home-header">
       <div class="container ">
         
-        <!-- <div class="row nomargin">
-          <div class="span12 top-bar">
-            <div class="headnav">
-              <ul>
-                <li><a href="#mySignup" class="signup-2" data-toggle="modal"><i class="icon-user"></i> Sign up</a></li>
-                <li><a href="#mySignin" class="signin-2" data-toggle="modal">Sign in</a></li>
-              </ul>
-            </div>
-            
-          </div>
-        </div> -->
         <div class="row">
           <% include partials/logo %>
           <div class="span8">
@@ -34,24 +23,24 @@
                                 <!-- <a href="#" class="scrollup">-->
                               <ul class="nav topnav">
                                 <li class="dropdown">
-                                  <a href="#mySignup" class="signup-2" data-toggle="modal"><i class="icon-user"></i>Sign Up</i></a>
+                                  <a href="#mySignup" class="signup-2 nav-sign-up" data-toggle="modal"><i class="icon-user"></i>Sign Up</i></a>
                                   
                                 </li>
                                
                                 <li class="dropdown">
-                                  <a href="#mySignin" class="signin-2" data-toggle="modal">Sign in</a></a>
+                                  <a href="#mySignin" class="signin-2 nav-sign-up" data-toggle="modal">Sign in</a></a>
                                 
                                 </li>
                                 
                                 
                               </ul>
                             </nav>
-                          </div>
+                      </div>
               
+                  </div>
+                 </div>
             </div>
-          </div>
         </div>
-      </div>
     </header>
     <!-- end header -->
     <section id="featured">
@@ -60,11 +49,11 @@
       <div id="nivo-slider">
         <div class="nivo-slider">
           <!-- Slide #1 image -->
-          <img src="/assets/img/slides/nivo/bg-1.jpg" alt="" title="#caption-1" />
+          <img src="/assets/img/slides/nivo/bg-3.jpg" alt="" title="#caption-1" />
           <!-- Slide #2 image -->
           <img src="/assets/img/slides/nivo/bg-2.jpg" alt="" title="#caption-2" />
           <!-- Slide #3 image -->
-          <img src="/assets/img/slides/nivo/bg-3.jpg" alt="" title="#caption-3" />
+          <img src="/assets/img/slides/nivo/bg-1.jpg" alt="" title="#caption-3" />
         </div>
         <div class="container">
           <div class="row">
@@ -72,13 +61,12 @@
               <!-- Slide #1 caption -->
               <div class="nivo-caption" id="caption-1">
                 <div>
-                  <h2>Gratitude improves <strong>physical health.</strong></h2>
-                  <!-- <p>
-                    Grateful people experience fewer aches and pains and report feeling healthier than other people.
-                    <br/><br/>Not surprisingly, grateful people are also more likely to take care of their health. They exercise more often and are more likely to attend regular check-ups, which is likely to contribute to further longevity.
-                  </p> -->
+                  <h2>Gratitude increases <strong>mental strength.</strong></h2>
+                  <!-- <p> -->
+                    <!-- For years, research has shown gratitude not only reduces stress, but it may also play a major role in overcoming trauma. <br/><br/>Higher levels of gratitude experienced lower rates of post-traumatic stress disorder and recognizes all that you have to be thankful even during the worst times. -->
+                  <!-- </p> -->
+                  <!-- <a id="register-btn3" class="btn btn-theme">Register</a> -->
                   <br/>
-                  <!-- <a id="register-btn|" class="btn btn-theme">Register</a> -->
                 </div>
               </div>
               <!-- Slide #2 caption -->
@@ -91,18 +79,23 @@
                     If you’re going to make a daily gratitude list, it is recommended to write it before bed.
                     </p> -->
                     <!-- <a id="register-btn2" class="btn btn-theme">Register</a> -->
+                    <br/>
                 </div>
               </div>
-              <!-- Slide #3 caption -->
               <div class="nivo-caption" id="caption-3">
                 <div>
-                  <h2>Gratitude increases <strong>mental strength.</strong></h2>
-                  <!-- <p> -->
-                    <!-- For years, research has shown gratitude not only reduces stress, but it may also play a major role in overcoming trauma. <br/><br/>Higher levels of gratitude experienced lower rates of post-traumatic stress disorder and recognizes all that you have to be thankful even during the worst times. -->
-                  <!-- </p> -->
-                  <!-- <a id="register-btn3" class="btn btn-theme">Register</a> -->
+                  <h2>Gratitude improves <strong>physical health.</strong></h2>
+                  <!-- <p>
+                    Grateful people experience fewer aches and pains and report feeling healthier than other people.
+                    <br/><br/>Not surprisingly, grateful people are also more likely to take care of their health. They exercise more often and are more likely to attend regular check-ups, which is likely to contribute to further longevity.
+                  </p> -->
+                  <br/>
+                  <!-- <a id="register-btn|" class="btn btn-theme">Register</a> -->
                 </div>
               </div>
+              
+              <!-- Slide #3 caption -->
+              
             </div>
           </div>
         </div>
@@ -110,19 +103,45 @@
       <!-- end slider -->
     </section>
     <section class="callaction">
+        <div class="container">
+          <div class="row text-center">
+            <div class="span12">
+              <div class="big-cta">
+                <div class="cta-text">
+                    <h3 class="index-h3">More than<span class="highlight"><strong> 100 posts </strong></span>and counting this year!</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row text-center">
+              <div class="span12">
+                <div class="big-cta">
+                    <div class="cta text-center">
+                        <a href="#mySignup" class="btn btn-large btn-theme btn-rounded" data-dismiss="modal" aria-hidden="true" id="signup-open-btn" data-toggle="modal">Register for Free</a></href>
+                        
+                    </div>
+                </div>
+              </div>
+          </div>
+          </div>
+          
+         
+        </div>
+      </section>
+    <!-- <section class="callaction">
       <div class="container">
         <div class="row">
           <div class="span12">
             <div class="big-cta">
               <div class="cta-text text-center">
-                <h3>More <span class="highlight"><strong>100 posts</strong></span>  and counting this year!</h3>
+                
               </div>
               
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
     <section id="content">
       <div class="container">
         <div class="row">
@@ -135,73 +154,15 @@
         </div>
         
         
-        <!-- Portfolio Projects -->
-        <div id="posts">
-        <div class="row">
-          <div class="span12">
-            <h4 class="heading">Recent <strong>posts</strong></h4>
-            <div class="row">
-              <section id="projects">
-                <ul id="thumbs" class="portfolio">
-                  <!-- Item Project and Filter Name -->
-                  <li class="item-thumbs span3 design" data-id="id-0" data-type="web">
-                    <!-- Fancybox - Gallery Enabled - Title - Full Image -->
-                    <a class="hover-wrap fancybox" data-fancybox-group="gallery" title="The City" href="/assets/img/works/full/image-01-full.jpg">
-						<span class="overlay-img"></span>
-						<span class="overlay-img-thumb font-icon-plus"></span>
-						</a>
-                    <!-- Thumb Image and Description -->
-                    <img src="/assets/img/works/thumbs/image-01.jpg" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
-                  </li>
-                  <!-- End Item Project -->
-                  <!-- Item Project and Filter Name -->
-                  <li class="item-thumbs span3 design" data-id="id-1" data-type="icon">
-                    <!-- Fancybox - Gallery Enabled - Title - Full Image -->
-                    <a class="hover-wrap fancybox" data-fancybox-group="gallery" title="The Office" href="/assets/img/works/full/image-02-full.jpg">
-						<span class="overlay-img"></span>
-						<span class="overlay-img-thumb font-icon-plus"></span>
-						</a>
-                    <!-- Thumb Image and Description -->
-                    <img src="/assets/img/works/thumbs/image-02.jpg" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
-                  </li>
-                  <!-- End Item Project -->
-                  <!-- Item Project and Filter Name -->
-                  <li class="item-thumbs span3 photography" data-id="id-2" data-type="illustrator">
-                    <!-- Fancybox - Gallery Enabled - Title - Full Image -->
-                    <a class="hover-wrap fancybox" data-fancybox-group="gallery" title="The Mountains" href="/assets/img/works/full/image-03-full.jpg">
-						<span class="overlay-img"></span>
-						<span class="overlay-img-thumb font-icon-plus"></span>
-						</a>
-                    <!-- Thumb Image and Description -->
-                    <img src="/assets/img/works/thumbs/image-03.jpg" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
-                  </li>
-                  <!-- End Item Project -->
-                  <!-- Item Project and Filter Name -->
-                  <li class="item-thumbs span3 photography" data-id="id-2" data-type="illustrator">
-                    <!-- Fancybox - Gallery Enabled - Title - Full Image -->
-                    <a class="hover-wrap fancybox" data-fancybox-group="gallery" title="The Mountains" href="/assets/img/works/full/image-04-full.jpg">
-						<span class="overlay-img"></span>
-						<span class="overlay-img-thumb font-icon-plus"></span>
-						</a>
-                    <!-- Thumb Image and Description -->
-                    <img src="/assets/img/works/thumbs/image-04.jpg" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis elementum odio. Curabitur pellentesque, dolor vel pharetra mollis.">
-                  </li>
-                  </ul>
-            </div>
-          </div>
-        </div>
-    </div>
+        <!--Recent posts -->
+      
       </section>
         <!-- End Portfolio Projects -->
         <!-- divider -->
-        <div class="row">
-          <div class="span12">
-            <div class="solidline">
-            </div>
-          </div>
-        </div>
+        
         
     <section id="bottom">
+      
       <div class="container">
         <div class="row">
           <div class="span12">
@@ -380,7 +341,7 @@
     $( "#signup-2" ).click(function() {
         $(".alert").hide();
         $(".login-alert").hide();
-    });$( "#register-btn" ).click(function() {
+    });$( "#signup-open-btn" ).click(function() {
         $(".alert").hide();
         $(".login-alert").hide();
     });

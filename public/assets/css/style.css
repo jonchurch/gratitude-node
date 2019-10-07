@@ -89,7 +89,7 @@ a:active {
 }
 
 .row, .row-fluid {
-  margin-bottom: 30px;
+  /* margin-bottom: 30px; */
 }
 
 .row .row, .row-fluid .row-fluid {
@@ -372,7 +372,7 @@ header ul.nav li ul li ul {
 ul.nav li.dropdown a {
   z-index: 1000;
   display: block;
-  color: #cb1103 !important;
+  color:white !important;
 }
 ul.nav li.dropdown a:hover {
   z-index: 1000;
@@ -700,7 +700,7 @@ a.nivo-prevNav:before {
 
 section.callaction {
   background: #f9f9f9;
-  padding: 50px 0 0 0;
+  padding: 0px 0px 40px 0;
 }
 
 /* ===================================
@@ -2808,7 +2808,7 @@ h4 {
     margin-top:-20px;
 }
 .navbar .nav {
-    margin-top: 10px !important;
+    margin-top: 30px !important;
 }
 .pull-logo-up{
 
@@ -2827,4 +2827,13 @@ margin-left:-20px;
 .form-horizontal .control-label {
    
     padding-right: 5px !important;
+}
+.home-header{
+  background-color: #cb1103;
+}
+.nav-sign-up a{
+  color:white;
+}
+.index-h3{
+    color:#353535 !important;
 }

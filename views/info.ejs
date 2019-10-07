@@ -14,8 +14,8 @@
         <div class="row">
           <div class="span12">
             <div class="inner-heading">
-                
-              <h3>Welcome <strong><span id="name"></span>.</strong></h3>
+                <% include partials/logo %>
+              &nbsp;
             </div>
           </div>
           
@@ -25,7 +25,7 @@
       <div class="container">
         <div class="row">
           <div class="span6">
-            <h4>Complete your profile.</h4>
+            <h4>Welcome <strong><span id="name"></span>.</strong></h4>
 
             <form class="form-horizontal" id="createUserForm" >
                   <div class="control-group">
@@ -41,8 +41,8 @@
                     
                   </div>
                   <div class="controls">
-                      
-                      <strong></stron>Website</strong><input type="url" class="form-control" id="website" >
+                      <strong></stron>Website</strong><input type="url" class="form-control" id="location">
+                      <!-- <strong></stron>Website</strong><input type="url" class="form-control" id="website" > -->
                     
                   </div>
                 
@@ -75,13 +75,7 @@
             </div>
          
         </div>
-        <!-- divider -->
-        <div class="row">
-          <div class="span12">
-            <div class="solidline">
-            </div>
-          </div>
-        </div>
+       
        
     </section>
     <% include partials/footer %>

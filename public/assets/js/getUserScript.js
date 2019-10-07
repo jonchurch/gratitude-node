@@ -18,7 +18,7 @@ function getUserInfo(page){
                         $("#location").val(data.location);
                         $("id").val(data._id);
                    }else if(page=='profile'){
-                        $("#firstname").html(data.firstname)
+                      $("#firstname").html(data.firstname)
                       $("#lastname").html(data.lastname)
                       $("#email").html(data.email);
                       
@@ -26,11 +26,15 @@ function getUserInfo(page){
                       $("#bio").html(data.bio);
                       $("#location").html(data.location);
                       
-                      $("account-link").attr("href","/account/?id="+_id);
-                      $("support-link").attr("href","/support/?id="+_id);
-                      $("journal-link").attr("href","/journal/?id="+_id);
-                      $("reg-date").html(data.createDate);
+                      $("#account-link").attr("href","/account/?id="+_id);
+                      $("#support-link").attr("href","/support/?id="+_id);
+                      $("#journal-link").attr("href","/journal/?id="+_id);
+                      var d = new Date(data.createDate);
                       console.log("date:"+data.createDate);
+                      //2019-10-07T21:01:40.436Z
+                      //$("#reg-date").html(data.createDate);
+                      $("#url").html(data.url);
+                      
                       emailAddress= data.email;
                    }
                    
