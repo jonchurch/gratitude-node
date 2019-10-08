@@ -700,7 +700,7 @@ a.nivo-prevNav:before {
 
 section.callaction {
   background: #f9f9f9;
-  padding: 0px 0px 40px 0;
+  padding: 0px 0px 0px 0;
 }
 
 /* ===================================
@@ -726,7 +726,7 @@ section.callaction {
 }
 
 .big-cta .cta {
-  margin-top: 10px;
+  /* margin-top: 10px; */
 }
 
 /* ===================================
