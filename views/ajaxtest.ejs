@@ -1,107 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-  <% include partials/head %>
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/quote-style.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/fdw-demo.css" media="all" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700' rel='stylesheet' type='text/css'>
 </head>
 
+        <!-- stylesheets -->
+        
+        <!-- js files -->
+        <script src="/assets/js/jquery.js"></script>
+        <script src="/assets/js/jquery-tweetscroll.js"></script> <!-- jQuery tweetscroll plugin -->
+        <script src="/assets//js/caroufredsel-carousel.js"></script><!-- CarouFredSel carousel plugin -->
+
 <body>
- 
-    
-    <!-- start header -->
-    <header>
-        <section id="inner-headline">
-            <div class="container">
-              <div class="row">
-                <div class="span12">
-                  <div class="inner-heading">
-                     <!-- Needed for red bar -->
-                  </div>
-                </div>
-               
-            </div>
-          </section>
-      <div class="container ">
-        
-        <div class="row nomargin">
-          <div class="span4">
-           <% include partials/logo %>
-          </div>
-        </div>
-        
-        <div class="row">
+  <!-- slider text article start -->
+  <div class="freshdesignweb">
+                <article class="grid_3  carousel-article">
+                    
+
+                    <div style="display: block; text-align: start; position: relative; top: auto; right: auto; bottom: auto; left: auto; width: 220px; height: 90px; margin: 0px; overflow: hidden;" class="caroufredsel_wrapper">
+                    <ul style="text-align: left; float: none; position: absolute; top: 0px; right: auto; bottom: auto; left: 0px; margin: 0px; width: 1540px; height: 90px;" id="foo3" class="carousel-li">
+
+                    <li>
+                            <p>
+                                Slider1, welcome to freshdesignweb blog, here is useful slider text example tutorial with demo and download link, hope you can learn more about web design. Regard, Graham Bill 
+                            </p>
+                        </li><li>
+                            <p>
+                               Slider2, welcome to freshdesignweb blog, here is useful slider text example tutorial with demo and download link, hope you can learn more about web design. Regard, Graham Bill 
+                            </p>
+                        </li><li>
+                            <p>
+                               Slider3, welcome to freshdesignweb blog, here is useful slider text example tutorial with demo and download link, hope you can learn more about web design.Regard, Graham Bill 
+                            </p>
+                        </li></ul></div>
+
+                    <div class="clearfix"></div>
+
+                    
+
+                </article><!-- slider text article end -->
+
+        <script>
+            $("#foo3").carouFredSel({
+                items: 1,
+                auto: true,
+                scroll: 1,
+                pagination  : "#foo3_pag"
+            });
+        </script>
+</div>  </div>  
+<div class="clr"></div>
+           
             
-          </div>
-          <div class="span8">
-            <div class="navbar navbar-static-top">
-              
-              </div>
-              <!-- end navigation -->
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
-    <!-- end header -->
-    
-    <section id="content">
-      <div class="container">
-        <div class="row">
-          <div class="span12 text-center">
-              <h2 class="info-header">Welcome <strong><span class="info-header" id="name"></span>.</strong></h2>
-              <h3 class="info-header">Complete your profile.</h3>
-          
-            <p>
-              Don't worry, you can do this later.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="container">
-        <div class="row">
-          <div class="span12">
-          
-              <div class="span9">
-              <form class="form-horizontal" id="createUserForm" >
-                  <div class="control-group">
-                    
-                      <div class="controls">
-                          <strong>Tell us a little more about you</strong><textarea rows="3" type="text" id="bio"></textarea>
-                      </div>
-                    </div>
-                  
-                  <div class="controls">
-                      
-                      <strong>Address</strong><br/><input type="text" class="form-control" id="location" >
-                    
-                  </div>
-                
-                
-                  
-                <div class="control-group">
-                  <div class="controls text-center">
-                      <br/><input type="button" class="btn btn-default" id="btn_skip" value="Skip">
-                      <input type="submit" class="btn btn-success" id ="updateUserInfo" value="Update">
-                    
-                  </div>
-                </form>
-              
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  
-
-  <% include partials/footer %>
-  <% include partials/scripts %>
-  <script>
-  $(document).ready(function() {
-        getUserInfo('info');
-  });
-  </script>
-
+<script type="text/javascript">
+    var get_height = window.innerHeight; 
+    var get_height1 =  get_height - 25;
+    var get_container = document.getElementById('container');
+    get_container.style.height =  get_height1 + 'px';
+</script>
 </body>
-
 </html>
