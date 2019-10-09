@@ -7,7 +7,7 @@ var mongoose = require('mongoose');
         password: { type: String, required: true },
         firstname: String,
         lastname: String,
-        public: Boolean,
+        public: Number,
         admin: Boolean,
         location: String,
         bio: String,

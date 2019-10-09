@@ -146,6 +146,7 @@ router.post('/',function(req,res){
                           lastname :req.body.lastname,
                           email :req.body.email,
                           password : hash,
+                          public:1,
                           admin: false,
                           bio : "",
                           location : "",

@@ -25,18 +25,20 @@
              <div class="span4">
             <aside class="right-sidebar">
                 <div class="widget">
-                <h5 class="widgetheading" style="padding-top:20px;" id="name"></h5>
-                <span id="Avatar"><img src="/assets/img/avatar.png"></span><br/>
+                  id: <span id="id"></span>
+                <h5 class="widgetheading" style="padding-top:30px;" id="name"></h5>
+                <span id="Avatar" style="padding-top:20px;"><img id="avatar-img" src="/assets/img/avatar.png" style="padding-bottom: 10px;"></span><br/>
+                
                 <span id="email"></span><br/>
                 <span id="url"></span><br/>
-                Member Since: <span id="reg-date"></span>
+                Joined: <span id="reg-date"></span>
                 </div>
              
-              <div>Quick Links</div>
+              
               <div class="widget">
                 <h5 class="widgetheading">Bio</h5>
-                <p>
-                  Lorem ipsum dolor sit amet, unum suscipiantur te cum, vide magna ea eam. At eos wisi tractatos temporibus. Ne has omnis harum. Ei mea graece delenit nominati. Ut dolore albucius torquatos vel, choro gubergren no mel.
+                <p id="bio">
+                  
                 </p>
               </div>
             </aside>
@@ -45,12 +47,16 @@
             <article>
               <div class="top-wrapper">
                 <div class="post-heading">
+                    
                     <form class="form-horizontal" id="postMsgForm" > 
+                        <div class="alert alert-success text-center hidden" style="width:85%;" role="alert">This is a success alert—check it out!</div>
+                        <div class="alert alert-danger text-center hidden" style="width:85%;" role="alert">Eror posting, please try again.</div>
                         <input type="hidden" id="id" value="">
-                        <h4>What are you grateful for today...</h4><textarea rows="3" type="text" id="postMsg" required></textarea>
+                        <h4 class="post-header">What are you grateful for today...</h4><textarea rows="3" type="text" id="postMsg" required></textarea>
                    
                         <br/><br/>
-                          <input type="submit" class="btn btn-success" id ="updateUserInfo" value="Post">
+                          <input type="submit" class="btn btn-success" value="Post">
+                          
                     </form>
                     <h4>Recent Posts</h4>
                 </div>
@@ -75,11 +81,16 @@
   </div>
   <a href="#" class="scrollup"><i class="icon-chevron-up icon-square icon-32 active"></i></a>
   <% include partials/scripts %>
+  <script  src="/assets/js/postFunctions.js"></script>
 
   <script>
   $(document).ready(function() {
+        // $(".alert").hide();
         getUserInfo('profile');
   });
+  
+  
+  
   </script>
 
 </body>

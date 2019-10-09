@@ -23,15 +23,19 @@ router.get('/', function(req, res) {
           
   });        
 });
+
+///////////////////////
+//// CREATE POST////
+///////////////////////
 router.post('/',function(req,res){      
-    console.log("user: "+req.body._id);
-    console.log("user: "+req.body.postMsg)
+    console.log("user: "+req.body.id);
+    console.log("msg: "+req.body.postMsg)
   
     var post = new Post({
-            userid: req.body._id,
+            userid: req.body.id,
             postMsg: req.body.postMsg,
-            postMediaType:"n",
-            postMedia:""
+            postMediaType :  "",
+            postMedia :   ""
         });
         post.save(function (error, post) {
             if (error){ 

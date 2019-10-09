@@ -9,6 +9,9 @@ function getUserInfo(page){
           data: {id: _id},
             success: function(data, textStatus, jqXHR) {
                    //set data for specifice page
+                   $("#id").html(data._id); 
+                   $("#uid").html(data._id); 
+                   
                    $("#name").html(data.firstname+" "+data.lastname);
                    $("#website").html(data.website);
                    if(page=='page'){
@@ -29,19 +32,36 @@ function getUserInfo(page){
                       $("#account-link").attr("href","/account/?id="+_id);
                       $("#support-link").attr("href","/support/?id="+_id);
                       $("#journal-link").attr("href","/journal/?id="+_id);
-                      var d = new Date(data.createDate);
-                      console.log("date:"+data.createDate);
-                      //2019-10-07T21:01:40.436Z
-                      //$("#reg-date").html(data.createDate);
-                      $("#url").html(data.url);
                       
+                      $("#url").html(data.url);
+                      $("#bio").html(data.bio);
+                      if(data.avatar==null){
+                        //user default avatar
+                       
+                        $("avatar").html('<img src="/assets/img/avatar.png>');
+                      }
+                      else{
+                        //show uploaded avatar
+                       $("#avatar-img").attr("src",data.avatar);
+                      }
+                        
                       emailAddress= data.email;
+
+
+                      //jquery datepicker plugin
+                      var dateFormat = data.createDate;
+                      var dateFormat = $.datepicker.formatDate('MM dd, yy', new Date(dateFormat));
+                      //alert(dateFormat);
+                      $("#reg-date").html(dateFormat);
                    }
+                        
+                        
+                    
                    
                    
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                    console.log('Error occurred on info.ejs');
+                    console.log('Error occurred');
                     
             }
         }); 
