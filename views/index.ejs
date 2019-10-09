@@ -4,7 +4,7 @@
 <head>
 
         <% include partials/head %>
-  
+        <link rel="stylesheet" href="/assets/css/slider-style.css">
 </head>
 
 <body>
@@ -49,11 +49,11 @@
       <div id="nivo-slider">
         <div class="nivo-slider">
           <!-- Slide #1 image -->
-          <img src="/assets/img/slides/nivo/bg-3.jpg" alt="" title="#caption-1" />
+          <img src="/assets/img/slides/nivo/bg-3.jpg" alt="" class="img-header" title="#caption-1" />
           <!-- Slide #2 image -->
-          <img src="/assets/img/slides/nivo/bg-2.jpg" alt="" title="#caption-2" />
+          <img src="/assets/img/slides/nivo/bg-2.jpg" alt="" class="img-header" title="#caption-2" />
           <!-- Slide #3 image -->
-          <img src="/assets/img/slides/nivo/bg-1.jpg" alt="" title="#caption-3" />
+          <img src="/assets/img/slides/nivo/bg-1.jpg" alt="" class="img-header" title="#caption-3" />
         </div>
         <div class="container">
           <div class="row">
@@ -103,30 +103,40 @@
       <!-- end slider -->
     </section>
     <section class="callaction">
-        <div class="container">
-          <div class="row text-center">
-            <div class="span12">
-              <div class="big-cta">
-                <div class="cta-text">
-                    <h3 class="index-h3">More than<span class="highlight"><strong> 100 posts </strong></span>and counting this year!</h3>
-                </div>
-              </div>
-            </div>
+      <div id="carousel">
+        <div class="btn-bar hidden">
+          <div id="buttons"><a id="prev" href="#"><</a><a id="next" href="#">></a> </div></div>
+          <div id="slides">
+              <ul>
+                  <li class="slide">
+                      <div class="quoteContainer">
+                          <p class="quote-phrase">I was literally BLOWN AWAY by Company A's work! They went above and beyond all of our expectations with design, usability. and branding, I will reccommend them to everyone I know!<class="quote-marks">"</span>
+      
+                          </p>
+                      </div>
+                    
+                  </li>
+                  <li class="slide">
+                      <div class="quoteContainer">
+                          <p class="quote-phrase"><span class="quote-marks">"</span>
+                            I could not stop staring! Company A's Web Solutions are by far the most elegant solutions, you can't beat their quality and attention to detail!
+                          <span class="quote-marks">"</span>
+      
+                          </p>
+                      </div>
+                    
+                  </li>
+                  <li class="slide">
+                      <div class="quoteContainer">
+                          <p class="quote-phrase"><span class="quote-marks">"</span>Carl Fakeguy, was the most helpful designer I've ever hired. He listened to my ideas and advised against things that could negatively affect my CEO. Company A is by far the most generous and helpful company, 5/5!<span class="quote-marks">"</span>
+      
+                          </p>
+                      </div>
+                     
+                  </li>
+              </ul>
           </div>
-          <div class="row text-center">
-              <div class="span12">
-                <div class="big-cta">
-                    <div class="cta text-center">
-                        <a href="#mySignup" class="btn btn-large btn-theme btn-rounded" data-dismiss="modal" aria-hidden="true" id="signup-open-btn" data-toggle="modal">Register for Free</a></href>
-                        
-                    </div>
-                </div>
-              </div>
-          </div>
-          </div>
-          
-         
-        </div>
+        
       </section>
     <!-- <section class="callaction">
       <div class="container">
@@ -142,7 +152,7 @@
         </div>
       </div>
     </section> -->
-    <section id="content" style="background-color:#f9f9f9;">
+    <section id="content" style="display:none;">
       <div class="container">
         <div class="row">
           <div class="span12">
@@ -311,9 +321,11 @@
         </div>
       </div>
       <!-- end reset modal -->
-      
+      <% include partials/footer %>     
       <% include partials/scripts %>
       <script src="/assets/js/sign-in.js"></script>
+      <script  src="/assets/js/slider-script.js"></script>
+      
 <script>
       $(document).ready(function(){
         //  $('#signin-open').click();
@@ -347,7 +359,8 @@
     });
    
 </script>    
-      <% include partials/footer %>
+      
+      
      <link rel="stylesheet" type="text/css" href="//wpcc.io/lib/1.0.2/cookieconsent.min.css"/><script src="//wpcc.io/lib/1.0.2/cookieconsent.min.js"></script><script>window.addEventListener("load", function(){window.wpcc.init({"border":"thin","corners":"small","colors":{"popup":{"background":"#491b1b","text":"#ffffff","border":"#e6b3b3"},"button":{"background":"#e6b3b3","text":"#000000"}},"position":"bottom"})});</script>
 
 </body>

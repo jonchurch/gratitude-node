@@ -1,65 +1,51 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" >
 <head>
-
-    <link rel="stylesheet" type="text/css" href="/assets/css/quote-style.css" media="all" />
-    <link rel="stylesheet" type="text/css" href="/assets/css/fdw-demo.css" media="all" />
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700' rel='stylesheet' type='text/css'>
+  <meta charset="UTF-8">
+  <title>Simple jQuery Text Slider</title>
+  <link rel="stylesheet" href="/assets/css/slider-style.css">
+  <link rel="stylesheet" href="/assets/css/slider-style.css">
 </head>
-
-        <!-- stylesheets -->
-        
-        <!-- js files -->
-        <script src="/assets/js/jquery.js"></script>
-        <script src="/assets/js/jquery-tweetscroll.js"></script> <!-- jQuery tweetscroll plugin -->
-        <script src="/assets//js/caroufredsel-carousel.js"></script><!-- CarouFredSel carousel plugin -->
-
 <body>
-  <!-- slider text article start -->
-  <div class="freshdesignweb">
-                <article class="grid_3  carousel-article">
-                    
+<!-- partial:index.partial.html -->
+<body>
+<div id="carousel">
+  <div class="btn-bar">
+    <div id="buttons"><a id="prev" href="#"><</a><a id="next" href="#">></a> </div></div>
+    <div id="slides">
+        <ul>
+            <li class="slide">
+                <div class="quoteContainer">
+                    <p class="quote-phrase"><span class="quote-marks">"</span> I was literally BLOWN AWAY by Company A's work! They went above and beyond all of our expectations with design, usability. and branding, I will reccommend them to everyone I know!<class="quote-marks">"</span>
 
-                    <div style="display: block; text-align: start; position: relative; top: auto; right: auto; bottom: auto; left: auto; width: 220px; height: 90px; margin: 0px; overflow: hidden;" class="caroufredsel_wrapper">
-                    <ul style="text-align: left; float: none; position: absolute; top: 0px; right: auto; bottom: auto; left: 0px; margin: 0px; width: 1540px; height: 90px;" id="foo3" class="carousel-li">
+                    </p>
+                </div>
+              
+            </li>
+            <li class="slide">
+                <div class="quoteContainer">
+                    <p class="quote-phrase"><span class="quote-marks">"</span>
+                      I could not stop staring! Company A's Web Solutions are by far the most elegant solutions, you can't beat their quality and attention to detail!
+                    <span class="quote-marks">"</span>
 
-                    <li>
-                            <p>
-                                Slider1, welcome to freshdesignweb blog, here is useful slider text example tutorial with demo and download link, hope you can learn more about web design. Regard, Graham Bill 
-                            </p>
-                        </li><li>
-                            <p>
-                               Slider2, welcome to freshdesignweb blog, here is useful slider text example tutorial with demo and download link, hope you can learn more about web design. Regard, Graham Bill 
-                            </p>
-                        </li><li>
-                            <p>
-                               Slider3, welcome to freshdesignweb blog, here is useful slider text example tutorial with demo and download link, hope you can learn more about web design.Regard, Graham Bill 
-                            </p>
-                        </li></ul></div>
+                    </p>
+                </div>
+              
+            </li>
+            <li class="slide">
+                <div class="quoteContainer">
+                    <p class="quote-phrase"><span class="quote-marks">"</span>Carl Fakeguy, was the most helpful designer I've ever hired. He listened to my ideas and advised against things that could negatively affect my CEO. Company A is by far the most generous and helpful company, 5/5!<span class="quote-marks">"</span>
 
-                    <div class="clearfix"></div>
+                    </p>
+                </div>
+               
+            </li>
+        </ul>
+    </div>
+  </body>
+<!-- partial -->
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script  src="/assets/js/slider-script.js"></script>
 
-                    
-
-                </article><!-- slider text article end -->
-
-        <script>
-            $("#foo3").carouFredSel({
-                items: 1,
-                auto: true,
-                scroll: 1,
-                pagination  : "#foo3_pag"
-            });
-        </script>
-</div>  </div>  
-<div class="clr"></div>
-           
-            
-<script type="text/javascript">
-    var get_height = window.innerHeight; 
-    var get_height1 =  get_height - 25;
-    var get_container = document.getElementById('container');
-    get_container.style.height =  get_height1 + 'px';
-</script>
 </body>
 </html>

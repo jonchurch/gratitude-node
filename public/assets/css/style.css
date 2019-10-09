@@ -493,6 +493,8 @@ select.selectmenu {
   top: 0px;
   left: 0px;
   max-width: none;
+  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%);
 }
 
 .nivo-main-image {
@@ -2836,4 +2838,9 @@ margin-left:-20px;
 }
 .index-h3{
     color:#353535 !important;
+    font-size:2rem;
+    font-weight:300;
+    /* margin-top: -9px !important; */
+    padding-top: 5px !important;
+    padding-bottom: 10px !important;
 }
