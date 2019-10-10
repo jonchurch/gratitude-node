@@ -88,11 +88,9 @@ $("#sendRestForm").submit(function(event) {
        
         // Prevent the form from submitting via the browser.
         event.preventDefault();
-        var email = $("#resetemail").val();
+        var email = $("#resetEmail").val();
+         console.log("email: "+email);
         
-        
-        console.log("email: "+email);
-        if( email != "" && password != "" ){
             $.ajax({
                 url: '/users/reset',
                 type: "POST",
@@ -105,6 +103,7 @@ $("#sendRestForm").submit(function(event) {
                 * A function to be called if the request succeeds.
                 */
                 success: function(data, textStatus, jqXHR) {
+                    
                     //success - email user with instructions
                     const nylas = Nylas.with('yCe3ohYdcfoCOqbA8vR0ZOFDTkAFvB');
 
@@ -116,11 +115,14 @@ $("#sendRestForm").submit(function(event) {
                                     });
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
-                    $(".alert").html('Error);
+                    
+                    $(".alert").html('Error');
                     $(".alert").show();
                 }
+                
             });
-        }
+            console.log("past ajax");
+        
     
 
        

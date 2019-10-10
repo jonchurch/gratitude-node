@@ -211,7 +211,7 @@
 <div id="mySignup" class="modal styled hide fade" tabindex="-1" role="dialog" aria-labelledby="mySignupModalLabel" aria-hidden="true">
     
         <div class="modal-header">
-            <div class="alert alert-danger text-center" role="alert"></div>
+            <div class="alert alert-danger text-center hidden" role="alert"></div>
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
           <h4 id="mySignupModalLabel">Create an <strong>account</strong></h4>
         </div>
@@ -282,7 +282,7 @@
       <!-- Sign in Modal -->
       <div id="mySignin" class="modal styled hide fade" tabindex="-1" role="dialog" aria-labelledby="mySigninModalLabel" aria-hidden="true">
         <div class="modal-header">
-            <div class="alert alert-danger text-center login-alert" role="alert">Danger</div>
+            <div class="alert alert-danger text-center hidden" role="alert">Danger</div>
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
           <h4 id="mySigninModalLabel">Login to your <strong>account</strong></h4>
         </div>
@@ -309,7 +309,7 @@
                   Don't have an account? <a href="#mySignup" data-dismiss="modal" aria-hidden="true" id="signup-open" data-toggle="modal">Sign up</a>
                 </p>
               <p class="aligncenter margintop20">
-                Forgot password? <a href="#myReset" data-dismiss="modal" aria-hidden="true" data-toggle="modal">Reset</a>
+                Forgot password? <a href="#myReset" data-dismiss="modal" aria-hidden="true" id="reset-open" data-toggle="modal">Reset</a>
               </p>
             </div>
           </form>
@@ -327,7 +327,7 @@
             <div class="control-group">
               <label class="control-label" for="resetEmail">Email</label>
               <div class="controls">
-                <input type="text" id="resetEmail" required>
+                <input type="email" id="resetEmail" required>
               </div>
             </div>
             <div class="control-group text-center">
@@ -350,34 +350,8 @@
       
 <script>
       $(document).ready(function(){
-        //  $('#signin-open').click();
+          $('#reset-open').click();
         
-    });
-    $( "#signin-open" ).click(function() {
-        $(".alert").hide();
-        $(".login-alert").hide();
-        $("#loginemail").val("");
-        $("#loginpassword").val("");
-        
-
-    });
-    $( "#signup-open" ).click(function() {
-        $(".alert").hide();
-        $(".login-alert").hide();
-    });
-    $( "#signin-2" ).click(function() {
-        $(".alert").hide();
-        $(".login-alert").hide();
-       
-        $("#loginemail").val("");
-        $("#loginpassword").val("");
-    });
-    $( "#signup-2" ).click(function() {
-        $(".alert").hide();
-        $(".login-alert").hide();
-    });$( "#signup-open-btn" ).click(function() {
-        $(".alert").hide();
-        $(".login-alert").hide();
     });
    
 </script>    

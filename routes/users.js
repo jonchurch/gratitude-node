@@ -5,7 +5,8 @@ var express = require('express'),
     router = express.Router(),
     User = require("../models/UserModel"),
     bcrypt = require('bcrypt');
-    Nylas = require('nylas');
+    nodeMailer = require('nodeMailer');
+
     
 
 router.use(express.json());
@@ -160,14 +161,14 @@ router.post('/',function(req,res){
                               //send email
                               }
                               else{
-                                    const nylas = Nylas.with('yCe3ohYdcfoCOqbA8vR0ZOFDTkAFvB');
+                                    // const nylas = Nylas.with('yCe3ohYdcfoCOqbA8vR0ZOFDTkAFvB');
 
-                                    const draft = nylas.drafts.build({
-                                        //from: 'GratitudeToday.io',
-                                        subject: 'Welcome to GratitudeToday.io!',
-                                        body:`<strong>It's great to have you join the community.</strong>  ` ,
-                                        to: [{ name: 'GratitudeToday.io', email: 'adriannadeau.art@gmail.com' }]
-                                    });
+                                    // const draft = nylas.drafts.build({
+                                    //     //from: 'GratitudeToday.io',
+                                    //     subject: 'Welcome to GratitudeToday.io!',
+                                    //     body:`<strong>It's great to have you join the community.</strong>  ` ,
+                                    //     to: [{ name: 'GratitudeToday.io', email: 'adriannadeau.art@gmail.com' }]
+                                    // });
                                     // draft.send().then(message => {
                                     //     console.log(`${message.id} was sent`);
                                     // });
@@ -214,12 +215,66 @@ router.put('/:id',function(req,res){
             {_id: mongoose.Types.ObjectId(req.body.id)},
             {$set: {bio: req.body.bio, location: req.body.location}},
             function(err, doc) {
-                logger.debug("error : "+err);
-                logger.debug("doc : "+doc);
+                logger.error("error : "+err);
+                logger.error("doc : "+doc);
             });
             res.send(doc);
         });
 
         
- reset 
+//  reset 
+ ////////////////////
+////SEND EMAIL Reset//
+////////////////////
+router.post('/reset',function(req,res){
+  var emailAddress=req.body.email;
+  logger.debug("send email to reset email:"+req.body.email+"get request now...");
+  
+  //console.log("session: " + JSON.stringify(req));
+  User.findOne({ email:req.body.email}, function (error, user) {
+  if(user){
+
+    //create guid to send to user with id in url
+    let transporter = nodeMailer.createTransport({
+        host: 'smtp.gmail.com',
+        port: 465,
+        secure: true,
+        auth: {
+            user: 'adriannadeau.artgmail.com',
+            pass: 'Asialouie!123'
+        }
+    });
+    logger.info("transporter"+transporter);
+    let mailOptions = {
+        from: '"Adrian Nadeau" <adrian@adriannadeau.com>', // sender address
+        to: "adrian@adriannadeau.com", // list of receivers
+        subject: "hey", // Subject line
+        text: "hey text", // plain text body
+        html: '<b>NodeJS Email Tutorial</b>' // html body
+    };
+    logger.info("options"+mailOptions);
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            return console.log(error);
+        }
+        console.log('Message %s sent: %s', info.messageId, info.response);
+            //res.render('index');
+    });
+  }else{
+    logger.log("Email not found, no user?");
+  }
+  });
+});
+        
+      // const nylas = Nylas.with('yCe3ohYdcfoCOqbA8vR0ZOFDTkAFvB');
+      // const draft = nylas.drafts.build({
+      //   //from: 'GratitudeToday.io',
+      //   subject: 'GratitudeToday.io password reset',
+      //   body:`Click the following link to reset your password. ` ,
+      //   to: [{ name: 'GratitudeToday.io', email: 'adriannadeau.art@gmail.com' }]
+      // });
+      // draft.send().then(message => {
+      //     console.log(`${message.id} was sent`);
+    // });
+       
 module.exports = router;
