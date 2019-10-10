@@ -2838,11 +2838,12 @@ margin-left:-20px;
 }
 .index-h3{
     color:#353535 !important;
-    font-size:2rem;
+    font-size:1.4rem;
     font-weight:500;
     /* margin-top: -9px !important; */
     padding-top: 5px !important;
     padding-bottom: 10px !important;
+    font-style:italic;
 }
 
 .post-header{

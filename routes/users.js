@@ -221,5 +221,5 @@ router.put('/:id',function(req,res){
         });
 
         
-  
+ reset 
 module.exports = router;

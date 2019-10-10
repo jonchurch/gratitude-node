@@ -84,3 +84,46 @@ $("#createUserForm").submit(function(event) {
 
        
      });
+$("#sendRestForm").submit(function(event) {
+       
+        // Prevent the form from submitting via the browser.
+        event.preventDefault();
+        var email = $("#resetemail").val();
+        
+        
+        console.log("email: "+email);
+        if( email != "" && password != "" ){
+            $.ajax({
+                url: '/users/reset',
+                type: "POST",
+                dataType: "json",
+                data: {
+                    email: email
+                
+                },
+                /**
+                * A function to be called if the request succeeds.
+                */
+                success: function(data, textStatus, jqXHR) {
+                    //success - email user with instructions
+                    const nylas = Nylas.with('yCe3ohYdcfoCOqbA8vR0ZOFDTkAFvB');
+
+                                    const draft = nylas.drafts.build({
+                                        //from: 'GratitudeToday.io',
+                                        subject: 'Reset your password',
+                                        body:`Instructions to reset password  ` ,
+                                        to: [{ name: 'GratitudeToday.io', email: 'adriannadeau.art@gmail.com' }]
+                                    });
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    $(".alert").html('Error);
+                    $(".alert").show();
+                }
+            });
+        }
+    
+
+       
+     });
+
+     

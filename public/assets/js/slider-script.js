@@ -1,6 +1,6 @@
 $(document).ready(function () {
     //rotation speed and timer
-    var speed = 4000;
+    var speed = 5000;
     
     var run = setInterval(rotate, speed);
     var slides = $('.slide');
