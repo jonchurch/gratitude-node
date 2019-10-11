@@ -1,7 +1,14 @@
 
-$('.alert').hide();
+// $('.alert').hide();
 $('.login-alert').hide();
 $('.pass-err-msg').hide();
+
+$('.alert-signup').hide();
+$('.alert-signin').hide();
+$('.alert-reset').hide();
+$('.alert-success').hide();
+
+
 
 $("#createUserForm").submit(function(event) {
     // Prevent the form from submitting via the browser.
@@ -33,16 +40,16 @@ $("#createUserForm").submit(function(event) {
              window.location.assign("/info/?id="+customer._id);
          },
          error : function(error) {
-            
+            $(".alert-signin").hide();
              if(error.status==410){
                 
-                $(".alert").html("Email already in use. Try again");
-                $(".alert").show();
+                $(".alert-signup").html("Email already in use. Try again");
+                $(".alert-signup").show();
                 
              }
              else{
-                $(".alert").html("Error registering. Please try again later.");
-                $(".alert").show();
+                $(".alert-signup").html("Error registering. Please try again later.");
+                $(".alert-signup").show();
                 
              }
          }
@@ -75,8 +82,9 @@ $("#createUserForm").submit(function(event) {
                     window.location.assign("/profile/?id="+data._id);
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
-                    $(".alert").html('Error logging in, please confirm username and password are correct');
-                    $(".alert").show();
+                    $(".alert-signon").hide();
+                    $(".alert-signin").html('Error logging in, please confirm username and password are correct');
+                    $(".alert-signin").show();
                 }
             });
         }
@@ -89,7 +97,6 @@ $("#sendRestForm").submit(function(event) {
         // Prevent the form from submitting via the browser.
         event.preventDefault();
         var email = $("#resetEmail").val();
-         console.log("email: "+email);
         
             $.ajax({
                 url: '/users/reset',
@@ -103,25 +110,29 @@ $("#sendRestForm").submit(function(event) {
                 * A function to be called if the request succeeds.
                 */
                 success: function(data, textStatus, jqXHR) {
+                    $(".alert-success").html('Check your inbox for instructions');
+                    $(".alert-success").show();
                     
                     //success - email user with instructions
-                    const nylas = Nylas.with('yCe3ohYdcfoCOqbA8vR0ZOFDTkAFvB');
+                    // const nylas = Nylas.with('yCe3ohYdcfoCOqbA8vR0ZOFDTkAFvB');
 
-                                    const draft = nylas.drafts.build({
-                                        //from: 'GratitudeToday.io',
-                                        subject: 'Reset your password',
-                                        body:`Instructions to reset password  ` ,
-                                        to: [{ name: 'GratitudeToday.io', email: 'adriannadeau.art@gmail.com' }]
-                                    });
+                    //                 const draft = nylas.drafts.build({
+                    //                     //from: 'GratitudeToday.io',
+                    //                     subject: 'Reset your password',
+                    //                     body:`Instructions to reset password  ` ,
+                    //                     to: [{ name: 'GratitudeToday.io', email: 'adriannadeau.art@gmail.com' }]
+                    //                 });
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
-                    
-                    $(".alert").html('Error');
-                    $(".alert").show();
+                    $(".alert-reset").hide();
+                    $(".alert-reset").html('Email not found, please try another');
+                    $(".alert-reset").show();
+                    $(".resetEmail").html('');
+
                 }
                 
             });
-            console.log("past ajax");
+           
         
     
 

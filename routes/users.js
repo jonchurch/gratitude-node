@@ -4,8 +4,11 @@ var express = require('express'),
     logger = require('../logger/logger'),
     router = express.Router(),
     User = require("../models/UserModel"),
-    bcrypt = require('bcrypt');
-    nodeMailer = require('nodeMailer');
+    ResetGUID= require("../models/UserResetGUID"),
+    bcrypt = require('bcrypt'),
+    Mailgun = require('mailgun-js'),
+    uuidv1 = require('uuid/v1');
+    
 
     
 
@@ -156,11 +159,12 @@ router.post('/',function(req,res){
                         });
                           user.save(function (error, user) {
                               if (error){ 
-                                console.log("err:"+error);
+                                logger.error("Error saving user");
                                 res.send(error.message);
-                              //send email
+                               
                               }
                               else{
+                                 //send email
                                     // const nylas = Nylas.with('yCe3ohYdcfoCOqbA8vR0ZOFDTkAFvB');
 
                                     // const draft = nylas.drafts.build({
@@ -228,43 +232,94 @@ router.put('/:id',function(req,res){
 ////////////////////
 router.post('/reset',function(req,res){
   var emailAddress=req.body.email;
-  logger.debug("send email to reset email:"+req.body.email+"get request now...");
+ 
   
   //console.log("session: " + JSON.stringify(req));
   User.findOne({ email:req.body.email}, function (error, user) {
-  if(user){
-
-    //create guid to send to user with id in url
-    let transporter = nodeMailer.createTransport({
-        host: 'smtp.gmail.com',
-        port: 465,
-        secure: true,
-        auth: {
-            user: 'adriannadeau.artgmail.com',
-            pass: 'Asialouie!123'
-        }
-    });
-    logger.info("transporter"+transporter);
-    let mailOptions = {
-        from: '"Adrian Nadeau" <adrian@adriannadeau.com>', // sender address
-        to: "adrian@adriannadeau.com", // list of receivers
-        subject: "hey", // Subject line
-        text: "hey text", // plain text body
-        html: '<b>NodeJS Email Tutorial</b>' // html body
-    };
-    logger.info("options"+mailOptions);
-    transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-            return console.log(error);
-        }
-        console.log('Message %s sent: %s', info.messageId, info.response);
-            //res.render('index');
-    });
-  }else{
-    logger.log("Email not found, no user?");
-  }
+    if(user){
+      var uuid1 = uuidv1();
+      logger.debug("GUID"+uuid1);
+      var resetguid =  ResetGUID ({
+        userid:user._id,
+        guid :uuid1
+       
+      });
+      
+      resetguid.save(function (error, guid) {
+          if (error){ 
+            //logger.error("error saving guid");
+            logger.error("error: "+error.message);
+            res.send(error.message);
+            
+          
+          }
+          else{
+            logger.debug("user found, confirm message");
+            res.send(resetguid);
+          }
+      });
+    }
   });
 });
+module.exports = router;
+    //email user
+    // logger.debug("Found user");
+    //  //We pass the api_key and domain to the wrapper, or it won't be able to identify + send emails
+    //  var mailgun = new Mailgun({apiKey: 'c690fbb47220c9f80e63b4e9777feb0f-9949a98f-70271fcc', domain: 'www.gratitudetoday.io'});
+    //  var data = {
+    //  //Specify email data
+    //    from: 'adrian@adriannadeau.com',
+    //  //The email to contact
+    //    to: emailAddress,
+    //  //Subject and text data  
+    //    subject: 'Hello from Mailgun',
+    //    html: 'Hello, This is not a plain-text email, I wanted to test some spicy Mailgun sauce in NodeJS! <a href="http://0.0.0.0:3030/validate?' + emailAddress + '">Click here to add your email address to a mailing list</a>'
+    //  }
+    //  mailgun.messages().send(data, function (err, body) {
+    //   //If there is an error, render the error page
+    //   if (err) {
+    //      logger.error("Error sending email", err);
+    //       res.render('error', { error : err});
+    //       console.log("got an error: ", err);
+    //   }
+    //   //Else we can greet    and leave
+    //   else {
+    //       //Here "submitted.jade" is the view file for this landing page 
+    //       //We pass the variable "email" from the url parameter in an object rendered by Jade
+    //       res.render('submitted', { email : req.params.mail });
+    //       console.log(body);
+    //   }
+  
+    //create guid to send to user with id in url
+    // let transporter = nodeMailer.createTransport({
+    //     host: 'smtp.gmail.com',
+    //     port: 465,
+    //     secure: true,
+    //     auth: {
+    //         user: 'adriannadeau.artgmail.com',
+    //         pass: 'Asialouie!123'
+    //     }
+    // });
+    // logger.info("transporter"+transporter);
+    // let mailOptions = {
+    //     from: '"Adrian Nadeau" <adrian@adriannadeau.com>', // sender address
+    //     to: "adrian@adriannadeau.com", // list of receivers
+    //     subject: "hey", // Subject line
+    //     text: "hey text", // plain text body
+    //     html: '<b>NodeJS Email Tutorial</b>' // html body
+    // };
+    // logger.info("options"+mailOptions);
+    // transporter.sendMail(mailOptions, (error, info) => {
+    //     if (error) {
+    //         return console.log(error);
+    //     }
+    //     console.log('Message %s sent: %s', info.messageId, info.response);
+    //         //res.render('index');
+    // });
+  // }else{
+  //   logger.log("Email not found, no user?");
+  // }
+
         
       // const nylas = Nylas.with('yCe3ohYdcfoCOqbA8vR0ZOFDTkAFvB');
       // const draft = nylas.drafts.build({
@@ -277,4 +332,3 @@ router.post('/reset',function(req,res){
       //     console.log(`${message.id} was sent`);
     // });
        
-module.exports = router;
