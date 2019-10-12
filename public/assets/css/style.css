@@ -2768,7 +2768,7 @@ article img.pull-right, article .align-right {
   font-weight: 600;
   color:red;
 }
-#bio, #location, #postMsg{
+.custom-input-width{
   width:90% !important;
 }
 .btn-info {

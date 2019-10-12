@@ -40,10 +40,10 @@ function getUserInfo(page){
                        
                         $("avatar").html('<img src="/assets/img/avatar.png>');
                       }
-                      else{
-                        //show uploaded avatar
-                       $("#avatar-img").attr("src",data.avatar);
-                      }
+                    //   else{
+                    //     //show uploaded avatar
+                    //    $("#avatar-img").attr("src",data.avatar);
+                    //   }
                         
                       emailAddress= data.email;
 
@@ -53,6 +53,10 @@ function getUserInfo(page){
                       var dateFormat = $.datepicker.formatDate('MM dd, yy', new Date(dateFormat));
                       //alert(dateFormat);
                       $("#reg-date").html(dateFormat);
+                   }
+                   else if(page="resetpassword"){
+
+
                    }
                         
                         

@@ -8,9 +8,9 @@ var express = require('express'),
     bcrypt = require('bcrypt'),
     Mailgun = require('mailgun-js'),
     uuidv1 = require('uuid/v1');
-    
-
-    
+    var DOMAIN = 'gratitudetoday.io';
+    var api_key = '344470aad27d953af9c982f6fdc8f0fa';
+//var mailgun = require('mailgun-js')({ apiKey: api_key, domain: DOMAIN });
 
 router.use(express.json());
 
@@ -36,7 +36,7 @@ router.get('/', function(req, res) {
 //// GET 1 USER ////
 ////////////////////
 router.get('/:id', function(req, res) {
-    logger.info("get user info: "+req.params.id);
+    logger.info("get single user: "+req.params.id);
     User.findById(req.params.id, function (err, user) {
 
     if (err){ 
@@ -241,13 +241,13 @@ router.post('/reset',function(req,res){
       logger.debug("GUID"+uuid1);
       var resetguid =  ResetGUID ({
         userid:user._id,
-        guid :uuid1
+        GUID :uuid1
        
       });
       
       resetguid.save(function (error, guid) {
           if (error){ 
-            //logger.error("error saving guid");
+            logger.error("error saving guid");
             logger.error("error: "+error.message);
             res.send(error.message);
             
@@ -255,12 +255,76 @@ router.post('/reset',function(req,res){
           }
           else{
             logger.debug("user found, confirm message");
-            res.send(resetguid);
+            res.send(resetguid); 
           }
       });
     }
   });
 });
+ //////////////////////////////////////////
+////Check and send to reset password form//
+///////////////////////////////////////////
+router.get('/resetForm/', function(req, res) {
+    logger.info("Get User ID");
+    var pwd = req.body.password;
+    
+    if (err){ 
+      
+      logger.error("err:"+err);
+      res.send(err.message);
+      //next();  
+    }
+    res.send("yes");
+ }); 
+    // ResetGUID.findById(req.params.id, function (error, resetguid) {
+    //     if (err){ 
+    //         logger.error("Error: "+err.message);
+    //         res.send(err.message);
+    //         //next();  
+    //     }else{
+    //         logger.info("Return User");
+    //         res.send(user);
+    //     }
+    
+    // });          
+  
+
+
+router.post('/testEmail',function(req,res){
+  
+    const mailjet = require ('node-mailjet').connect('344470aad27d953af9c982f6fdc8f0fa', 'ea7a6f8f78dfde8e7532a1b71e254b88');
+    const request = mailjet
+    .post("send", {'version': 'v3.1'})
+    .request({
+        "Messages":[
+                {
+                        "From": {
+                                "Email": "pilot@mailjet.com",
+                                "Name": "Mailjet Pilot"
+                        },
+                        "To": [
+                                {
+                                        "Email": "adriannadeau.art@gmail.com",
+                                        "Name": "passenger 1"
+                                }
+                        ],
+                        "Subject": "Your email flight plan!",
+                        "TextPart": "Dear passenger 1, welcome to Mailjet! May the delivery force be with you!",
+                        "HTMLPart": "<h3>Dear passenger 1, welcome to <a href='https://www.mailjet.com/'>Mailjet</a>!</h3><br />May the delivery force be with you!"
+                }
+        ]
+    })
+request
+    .then((result) => {
+        console.log(result.body)
+    })
+    .catch((err) => {
+        console.log("error:"+err.statusCode)
+
+    })
+
+});
+
 module.exports = router;
     //email user
     // logger.debug("Found user");
