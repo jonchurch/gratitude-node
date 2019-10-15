@@ -6,11 +6,14 @@ var express = require('express'),
     User = require("../models/UserModel"),
     ResetGUID= require("../models/UserResetGUID"),
     bcrypt = require('bcrypt'),
-    Mailgun = require('mailgun-js'),
-    uuidv1 = require('uuid/v1');
-    var DOMAIN = 'gratitudetoday.io';
-    var api_key = '344470aad27d953af9c982f6fdc8f0fa';
-//var mailgun = require('mailgun-js')({ apiKey: api_key, domain: DOMAIN });
+
+    uuidv1 = require('uuid/v1'),
+    fs = require('fs'),
+    path = require('path'),
+    replaceString = require('replace-string'),
+    var chalk = require( "chalk" );
+    emailer = require('../emailtemplates/emailer.js');
+
 
 router.use(express.json());
 
@@ -124,6 +127,8 @@ router.post('/',function(req,res){
           //save user  
           
           var pwd = req.body.password;
+          var userEmail = req.body.email;
+          var name = req.body.firstname+" "+req.body.lastname;
          
           bcrypt.genSalt(10, function(err, salt) {
               if (err) {
@@ -148,7 +153,7 @@ router.post('/',function(req,res){
                             
                           firstname:req.body.firstname,
                           lastname :req.body.lastname,
-                          email :req.body.email,
+                          email :userEmail,
                           password : hash,
                           public:1,
                           admin: false,
@@ -164,7 +169,70 @@ router.post('/',function(req,res){
                                
                               }
                               else{
-                                 //send email
+                                //get registration template
+                                
+                                
+                                
+                                // const emailRegTpl = path.join(__dirname, '..', 'config', 'dev', 'foobar.json');
+                                // const emailRegTpl = require("path").join("/emailtemplates", "../emailtemplates/email-reg.txt")
+                                
+                                
+                                // fs.readFile('/emailtemplates/email-reg.txt', (err, data) => {
+                                // if (err) {
+                                //     console.error(err)
+                                //     return
+                                // }
+                                // console.log(data)
+                                // })
+                                
+                                //console.log("filePath"+filePath);
+                                    //read in template file for email
+                                    
+                                    const mailjet = require ('node-mailjet').connect(global.gConfig.mailjet_api_key, global.gConfig.mailjet_private_key);
+                                    //process.env.MJ_APIKEY_PUBLIC, process.env.MJ_APIKEY_PRIVATE
+                                    const request = mailjet
+                                    .post("send", {'version': 'v3.1'})
+                                    .request({
+                                        "Messages":[
+                                                {
+                                                        "From": {
+                                                                "Email": "adrian@adriannadeau.com",
+                                                                "Name": "GratitudeToday"
+                                                        },
+                                                        "To": [
+                                                                {
+                                                                        //"Email": userEmail,
+                                                                        "Email": 'adriannadeau.art@gmail.com',
+                                                                        "Name": name
+                                                                }
+                                                        ],
+                                                        "Subject": "Confirm your email",
+                                                        //"TextPart": "Thank you for registering with GratitudeToday.io|Dear passenger 1, welcome to Mailjet! May the delivery force be with you!",
+                                                        "HTMLPart": "<h3>Hey "+name+", Welcome to <a href='https://www.gratitudetoday.io'GratitudeToday.io</a>!</h3><br />Click the link below to activate your account"
+                                                }
+                                        ]
+                                    })
+                                    request
+                                    .then((result) => {
+                                        console.log(result.body);
+                                        res.send(user);
+                                    })
+                                    .catch((err) => {
+                                        console.log("error:"+err.statusCode)
+                                        logger.error("Error sending activation email");
+                                        res.send(error.message);
+                                    });
+                              }
+                          });
+                      }
+                  });
+              }
+          });
+         
+    }
+        
+  });
+ });   
                                     // const nylas = Nylas.with('yCe3ohYdcfoCOqbA8vR0ZOFDTkAFvB');
 
                                     // const draft = nylas.drafts.build({
@@ -176,21 +244,11 @@ router.post('/',function(req,res){
                                     // draft.send().then(message => {
                                     //     console.log(`${message.id} was sent`);
                                     // });
-                               res.send(user)
-                            }
+                            //    res.send(user)
+                            // }
                           
                              
-                              
-                          });
-                      }
-                  });
-              }
-          });
-         
-    }
-        
-  });
- });   
+                         
  ////////////////////
 ////NEW USER REG////
 ////////////////////
@@ -232,7 +290,7 @@ router.put('/:id',function(req,res){
 ////////////////////
 router.post('/reset',function(req,res){
   var emailAddress=req.body.email;
- 
+ logger.debug("Send reset email");
   
   //console.log("session: " + JSON.stringify(req));
   User.findOne({ email:req.body.email}, function (error, user) {
@@ -291,15 +349,39 @@ router.get('/resetForm/', function(req, res) {
 
 
 router.post('/testEmail',function(req,res){
-  
+// const Email = require('email-templates');
+//  const email = new Email({
+//   message: {
+//     from: 'niftylettuce@gmail.com'
+//   },
+//   // uncomment below to send emails in development/test env:
+//     send: true,
+//   transport: {
+//     jsonTransport: true
+//   }
+// });
+ 
+// email
+//   .send({
+//     template: 'mars',
+//     message: {
+//       to: 'adriannadeau.art@gmail.com'
+//     },
+//     locals: {
+//       name: 'Elon'
+//     }
+//   })
+//   .then(console.log)
+//   .catch(console.error)y;
     const mailjet = require ('node-mailjet').connect('344470aad27d953af9c982f6fdc8f0fa', 'ea7a6f8f78dfde8e7532a1b71e254b88');
+    //process.env.MJ_APIKEY_PUBLIC, process.env.MJ_APIKEY_PRIVATE
     const request = mailjet
     .post("send", {'version': 'v3.1'})
     .request({
         "Messages":[
                 {
                         "From": {
-                                "Email": "pilot@mailjet.com",
+                                "Email": "adrian@adriannadeau.com",
                                 "Name": "Mailjet Pilot"
                         },
                         "To": [
@@ -309,7 +391,7 @@ router.post('/testEmail',function(req,res){
                                 }
                         ],
                         "Subject": "Your email flight plan!",
-                        "TextPart": "Dear passenger 1, welcome to Mailjet! May the delivery force be with you!",
+                        // "TextPart": "Dear passenger 1, welcome to Mailjet! May the delivery force be with you!",
                         "HTMLPart": "<h3>Dear passenger 1, welcome to <a href='https://www.mailjet.com/'>Mailjet</a>!</h3><br />May the delivery force be with you!"
                 }
         ]
@@ -326,73 +408,4 @@ request
 });
 
 module.exports = router;
-    //email user
-    // logger.debug("Found user");
-    //  //We pass the api_key and domain to the wrapper, or it won't be able to identify + send emails
-    //  var mailgun = new Mailgun({apiKey: 'c690fbb47220c9f80e63b4e9777feb0f-9949a98f-70271fcc', domain: 'www.gratitudetoday.io'});
-    //  var data = {
-    //  //Specify email data
-    //    from: 'adrian@adriannadeau.com',
-    //  //The email to contact
-    //    to: emailAddress,
-    //  //Subject and text data  
-    //    subject: 'Hello from Mailgun',
-    //    html: 'Hello, This is not a plain-text email, I wanted to test some spicy Mailgun sauce in NodeJS! <a href="http://0.0.0.0:3030/validate?' + emailAddress + '">Click here to add your email address to a mailing list</a>'
-    //  }
-    //  mailgun.messages().send(data, function (err, body) {
-    //   //If there is an error, render the error page
-    //   if (err) {
-    //      logger.error("Error sending email", err);
-    //       res.render('error', { error : err});
-    //       console.log("got an error: ", err);
-    //   }
-    //   //Else we can greet    and leave
-    //   else {
-    //       //Here "submitted.jade" is the view file for this landing page 
-    //       //We pass the variable "email" from the url parameter in an object rendered by Jade
-    //       res.render('submitted', { email : req.params.mail });
-    //       console.log(body);
-    //   }
   
-    //create guid to send to user with id in url
-    // let transporter = nodeMailer.createTransport({
-    //     host: 'smtp.gmail.com',
-    //     port: 465,
-    //     secure: true,
-    //     auth: {
-    //         user: 'adriannadeau.artgmail.com',
-    //         pass: 'Asialouie!123'
-    //     }
-    // });
-    // logger.info("transporter"+transporter);
-    // let mailOptions = {
-    //     from: '"Adrian Nadeau" <adrian@adriannadeau.com>', // sender address
-    //     to: "adrian@adriannadeau.com", // list of receivers
-    //     subject: "hey", // Subject line
-    //     text: "hey text", // plain text body
-    //     html: '<b>NodeJS Email Tutorial</b>' // html body
-    // };
-    // logger.info("options"+mailOptions);
-    // transporter.sendMail(mailOptions, (error, info) => {
-    //     if (error) {
-    //         return console.log(error);
-    //     }
-    //     console.log('Message %s sent: %s', info.messageId, info.response);
-    //         //res.render('index');
-    // });
-  // }else{
-  //   logger.log("Email not found, no user?");
-  // }
-
-        
-      // const nylas = Nylas.with('yCe3ohYdcfoCOqbA8vR0ZOFDTkAFvB');
-      // const draft = nylas.drafts.build({
-      //   //from: 'GratitudeToday.io',
-      //   subject: 'GratitudeToday.io password reset',
-      //   body:`Click the following link to reset your password. ` ,
-      //   to: [{ name: 'GratitudeToday.io', email: 'adriannadeau.art@gmail.com' }]
-      // });
-      // draft.send().then(message => {
-      //     console.log(`${message.id} was sent`);
-    // });
-       

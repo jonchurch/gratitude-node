@@ -79,7 +79,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
+// console.log(global.gConfig.mailjet_api_key);
 app.listen(global.gConfig.node_port, () => {
     console.log(`${global.gConfig.app_name} listening on port ${global.gConfig.node_port}`);
 });
