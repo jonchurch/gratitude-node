@@ -161,56 +161,56 @@ router.post('/',function(req,res){
                               //send email
                               }
                               else{
-    //                                 const mailjet = require ('node-mailjet').connect("344470aad27d953af9c982f6fdc8f0fa", "ea7a6f8f78dfde8e7532a1b71e254b88")
-    //   const request = mailjet
-    //   .post("send", {'version': 'v3.1'})
-    //   .request({
-    //     "Messages":[
-    //             {
-    //                     "From": {
-    //                             "Email": "adrian@adriannadeau.com",
-    //                             "Name": "Adrian Nadeau"
-    //                     },
-    //                     "To": [
-    //                             {
-    //                                     "Email": "adriannadeau.art@gmail.com",
-    //                                     "Name": "passenger 1"
-    //                             }
-    //                     ],
-    //                     "Subject": "Confirm email to activate your account.",
-    //                     // "TextPart": "Dear passenger 1, welcome to Mailjet! May the delivery force be with you!",
-    //                     "HTMLPart": "<html>"+
-    //                     "<body>"+
-    //                     "<table width='100%'>"+
-    //                         "<tr width='100%'><td style='background-color:#cb1103;'><a href='http://www.gratitudetoday.io'><img src='https://www.adriannadeau.com/images/logo-horizontal.png'></img></a></td></tr>"+
-	//                         "<tr style='width='100%'<td>"+
-	// 		                    "<br/><br/>"+
-	// 		                    "<font face='arial'>Hey ,<br/><br/>"+
-	// 		                    "<font face='arial'>Welcome to <a href='https://www.gratitudetoday.io'>GratitudeToday.io</a>!</font>"+
-	// 		                    "<br /><br/><font face='arial'>Click the link below to activate your account</font><br/><br/>"+
+                                    const mailjet = require ('node-mailjet').connect("344470aad27d953af9c982f6fdc8f0fa", "ea7a6f8f78dfde8e7532a1b71e254b88")
+      const request = mailjet
+      .post("send", {'version': 'v3.1'})
+      .request({
+        "Messages":[
+                {
+                        "From": {
+                                "Email": "adrian@adriannadeau.com",
+                                "Name": "Adrian Nadeau"
+                        },
+                        "To": [
+                                {
+                                        "Email": "adriannadeau.art@gmail.com",
+                                        "Name": "passenger 1"
+                                }
+                        ],
+                        "Subject": "Confirm email to activate your account.",
+                        // "TextPart": "Dear passenger 1, welcome to Mailjet! May the delivery force be with you!",
+                        "HTMLPart": "<html>"+
+                        "<body>"+
+                        "<table width='100%'>"+
+                            "<tr width='100%'><td style='background-color:#cb1103;'><a href='http://www.gratitudetoday.io'><img src='https://www.adriannadeau.com/images/logo-horizontal.png'></img></a></td></tr>"+
+	                        "<tr style='width='100%'<td>"+
+			                    "<br/><br/>"+
+			                    "<span style='color:#000;font-family: arial;font-size:20px;'>Hey ,</span><br/><br/>"+
+			                    "<font face='arial'>Welcome to <a href='https://www.gratitudetoday.io'>GratitudeToday.io</a>!</font>"+
+			                    "<br /><br/><font face='arial'>Click the link below to activate your account</font><br/><br/>"+
 			 
-	// 		                    "<button type='submit' onClick='window.location.href='http://localhost:3000/resetForm/'>Activate Account</button>"+
+			                    "<button type='submit' onClick='window.location.href='http://localhost:3000/resetForm/'>Activate Account</button>"+
 			
 			
-    //                             "</td>"+
+                                "</td>"+
                                 
-    //                         "</tr>"+
+                            "</tr>"+
 
-    //                     "</table>"+
+                        "</table>"+
                                 
-    //                     "</body>"+
-    //                     "</html>"
-    //             }
-    //     ]
-    //   })
-    //   request
-    //   .then((result) => {
-    //       console.log(result.body)
-    //   })
-    //   .catch((err) => {
+                        "</body>"+
+                        "</html>"
+                }
+        ]
+      })
+      request
+      .then((result) => {
+          console.log(result.body)
+      })
+      .catch((err) => {
         
-    //       console.log(err.statusCode)
-    //   })
+          console.log(err.statusCode)
+      })
 
                                res.send(user)
                             }
