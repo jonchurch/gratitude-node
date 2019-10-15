@@ -10,9 +10,8 @@ var express = require('express'),
     uuidv1 = require('uuid/v1'),
     fs = require('fs'),
     path = require('path'),
-    replaceString = require('replace-string'),
-    var chalk = require( "chalk" );
-    emailer = require('../emailtemplates/emailer.js');
+    replaceString = require('replace-string');
+    
 
 
 router.use(express.json());
@@ -349,40 +348,46 @@ router.get('/resetForm/', function(req, res) {
 
 
 router.post('/testEmail',function(req,res){
-// const Email = require('email-templates');
-//  const email = new Email({
-//   message: {
-//     from: 'niftylettuce@gmail.com'
-//   },
-//   // uncomment below to send emails in development/test env:
-//     send: true,
-//   transport: {
-//     jsonTransport: true
-//   }
-// });
- 
-// email
-//   .send({
-//     template: 'mars',
-//     message: {
-//       to: 'adriannadeau.art@gmail.com'
-//     },
-//     locals: {
-//       name: 'Elon'
-//     }
-//   })
-//   .then(console.log)
-//   .catch(console.error)y;
-    const mailjet = require ('node-mailjet').connect('344470aad27d953af9c982f6fdc8f0fa', 'ea7a6f8f78dfde8e7532a1b71e254b88');
-    //process.env.MJ_APIKEY_PUBLIC, process.env.MJ_APIKEY_PRIVATE
-    const request = mailjet
-    .post("send", {'version': 'v3.1'})
-    .request({
+
+  // var tplFile = path.join(__dirname, '..', 'emails','emailreg.tpl');
+  // console.log(tplFile);
+  // fileSystem.readFile(tplFile, (err, data) => {
+  // if (err) throw err;
+  //   console.log(data);
+    
+  // });
+  try{
+    //var jsonPath = path.join(__dirname, '..', 'emails','emailreg.txt');
+    var tplFile = path.join(__dirname, '..', 'emails','emailreg.txt');
+    console.log(tplFile);
+    let emailContents = "";
+    fs.readFile(tplFile, 'utf8', function(err, data) {
+      if (err) throw err;
+      console.log('OK: ' + tplFile);
+      //console.log("DATA: "+ data);
+      emailContents=data;
+    });
+    console.log(emailContents);
+    // fs.readFile(jsonPath, (err, data) => {
+    // if (err) throw err;
+    //   let tpl = data;
+    //   console.log(tpl);
+    // });
+  }catch(error) {
+      console.error(error);
+      // expected output: ReferenceError: nonExistentFunction is not defined
+      // Note - error messages will vary depending on browser
+    }
+    
+      const mailjet = require ('node-mailjet').connect("344470aad27d953af9c982f6fdc8f0fa", "ea7a6f8f78dfde8e7532a1b71e254b88")
+      const request = mailjet
+      .post("send", {'version': 'v3.1'})
+      .request({
         "Messages":[
                 {
                         "From": {
                                 "Email": "adrian@adriannadeau.com",
-                                "Name": "Mailjet Pilot"
+                                "Name": "Adrian Nadeau"
                         },
                         "To": [
                                 {
@@ -392,18 +397,18 @@ router.post('/testEmail',function(req,res){
                         ],
                         "Subject": "Your email flight plan!",
                         // "TextPart": "Dear passenger 1, welcome to Mailjet! May the delivery force be with you!",
-                        "HTMLPart": "<h3>Dear passenger 1, welcome to <a href='https://www.mailjet.com/'>Mailjet</a>!</h3><br />May the delivery force be with you!"
+                        "HTMLPart": "Your email flight plan!"
                 }
         ]
-    })
-request
-    .then((result) => {
-        console.log(result.body)
-    })
-    .catch((err) => {
-        console.log("error:"+err.statusCode)
-
-    })
+      })
+      request
+      .then((result) => {
+          console.log(result.body)
+      })
+      .catch((err) => {
+        
+          console.log(err.statusCode)
+      })
 
 });
 
