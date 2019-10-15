@@ -42,6 +42,7 @@ $("#createUserForm").submit(function(event) {
              window.location.assign("/info/?id="+customer._id);
          },
          error : function(error) {
+              
             $(".alert-signin").hide();
              if(error.status==410){
                 
