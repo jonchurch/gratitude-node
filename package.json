@@ -6,6 +6,7 @@
     "start": "nodemon app.js"
   },
   "dependencies": {
+    "assert": "^2.0.0",
     "bcrypt": "^3.0.6",
     "boom": "^7.3.0",
     "chalk": "^2.4.2",

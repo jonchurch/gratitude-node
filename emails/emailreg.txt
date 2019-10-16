@@ -10,11 +10,11 @@
 	<tr style='width='100%'>
 		<td>
 			 <br/><br/>
-			 <font face='arial'>Hey @name@,<br/><br/>
-			 <font face='arial'>Welcome to <a href='https://www.gratitudetoday.io'>GratitudeToday.io</a>!</font>
-			 <br /><br/><font face='arial'>Click the link below to activate your account</font><br/><br/>
+			 <h3>Hey Adrian,<br/><h3/>
+			<p>Welcome to <a href='https://www.gratitudetoday.io'>GratitudeToday.io</a>!</p>
+			 <br /><br/><font face='arial'>Click the link below to activate your account</p><br/><br/>
 			 
-			 <button type='submit' onClick='window.location.href='http://localhost:3000/resetForm/''>Activate Account</button>
+			 <button type='submit'  onClick='window.location.href='http://localhost:3000/resetForm/''>Activate Account</button>
 			
 			
 		</td>
