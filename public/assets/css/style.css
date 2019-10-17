@@ -1746,7 +1746,7 @@ aside {
 }
 
 aside .widget {
-  margin-bottom: 40px;
+  margin-bottom: 10px;
 }
 
 ul.cat, ul.recent, ul.folio-detail, ul.contact-info {
@@ -2848,4 +2848,8 @@ margin-left:-20px;
 
 .post-header{
   width: 75%;
+}
+.dropdown-custom{
+  background-color:#e6e6e6;
+  
 }

@@ -25,16 +25,19 @@
              <div class="span4">
             <aside class="right-sidebar">
                 <div class="widget">
-                 
+                <div></div>
                 <h5 class="widgetheading" style="padding-top:30px;" id="name"></h5>
+                <% include partials/profile-dropdown %>
+                
                 <span id="Avatar" style="padding-top:20px;"><img id="avatar-img" src="/assets/img/avatar.png" style="padding-bottom: 10px;"></span><br/>
                 
                 <span id="email"></span><br/>
                 <span id="url"></span><br/>
+                <span id="location"></span><br/>
                 Joined: <span id="reg-date"></span>
                 </div>
-             
-              
+               
+               
               <div class="widget">
                 <h5 class="widgetheading">Bio</h5>
                 <p id="bio">
@@ -79,7 +82,7 @@
     </section>
  <% include partials/footer %>
   </div>
-  <a href="#" class="scrollup"><i class="icon-chevron-up icon-square icon-32 active"></i></a>
+  
   <% include partials/scripts %>
   <script  src="/assets/js/postFunctions.js"></script>
 

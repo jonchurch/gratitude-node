@@ -1,205 +1,137 @@
 <!DOCTYPE html>
-<html>
-   <head>
-        <% include partials/head %>
-    </head>
-   <body>
-      <section class="pb_cover_v3 cover-bg-opacity text-left pb_gradient_v1">
-         <div class="container">
-            <div class="row align-items-center justify-content-center">
-              
-               
-               <div class="col-md-6 relative align-self-center join-today-index">
-                  <div class="text-center err-msg">Message</div>
-                  <div class="panel panel-default">
-                     <div class="panel-heading">
-                        <h3 class="panel-title text-center">My Account.</h3>
-                     </div>
-                     <div class="panel-body">
-                         <form class="needs-validation" id="createUserForm" novalidate>
-                        
-                           <div class="form-row">
-                              <div class="col-md-6 mb-3">
-                                 <label for="firstname">First name</label>
-                                 <input type="text" class="form-control" id="firstname" required>
-                                 <div class="invalid-feedback">
-                                    Please enter your firstname.
-                                 </div>
-                              </div>
-                              <div class="col-md-6 mb-3">
-                                 <label for="lastname">Last name</label>
-                                 <input type="text" class="form-control" id="lastname" required>
-                                 <div class="invalid-feedback">
-                                    Please enter your lastname.
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="form-row">
-                              <div class="col-md-12 mb-3">
-                                 <label for="email">Email</label>
-                                 <div class="input-group">
-                                    <div class="input-group-prepend">
-                                    </div>
-                                    <input type="email" class="form-control" id="email" required>
-                                    <div class="invalid-feedback">
-                                       Please enter a valid email.
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="form-row">
-                              <div class="col-md-12 mb-3">
-                                 <label for="email">Password</label>
-                                 <div class="input-group">
-                                    <input type="password" class="form-control" id="password" value="password" required>
-                                    <div class="invalid-feedback">
-                                       Please enter a valid password.
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="form-row">
-                              <div class="col-md-12 mb-3">
-                                 <label for="email">Confirm Password</label>
-                                 <div class="input-group">
-                                    <input type="password" class="form-control" id="confirmpassword" value="password"  required>
-                                    <div class="invalid-feedback">
-                                       Please enter a valid password.
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                     </div>
-                     <div class="form-row">
-                              <div class="col-md-12 mb-3">
-                                
-                                 <div class="input-group">
-                                    <div class="input-group-prepend">
-                                    </div>
-                                    <div class="form-group shadow-textarea">
-                                    <label for="exampleFormControlTextarea6"></label>
-                                    <textarea class="form-control z-depth-1" id="exampleFormControlTextarea6" rows="5" placeholder="Let us know a little about you..."></textarea>
-                                    </div>
-                                    
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="form-row">
-                              <div class="col-md-12 mb-3">
-                                 
-                                 <div class="input-group">
-                                    <input type="text" class="form-control" id="address" placeholder="Address...">
-                                    
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="form-row">
-                              <div class="col-md-12 mb-3">
-                                 
-                               
-                                <img src="/images/coverphotos/profile.jpg" class="rounded-circle z-depth-1-half avatar-pic" alt="example placeholder avatar">
-                                
-                               </div>     
-                                <div class="btn btn-mdb-color btn-rounded float-left">
-                                
-                                <input type="file">
-                            </div>
-                            <p></p>
-                           </div>
-                           <div class="col-md-12 mb-3">
-                               <div class="col-md-6"><button class="btn btn-primary btn-lg btn-block pb_btn-pill  btn-shadow-blue text-center" id="btn_skip">Skip</button></div>
-                               <div class="col-md-6"><button class="btn btn-primary btn-lg btn-block pb_btn-pill  btn-shadow-blue text-center" id="btn_save" type="submit">Save</button></div>
-                            
-                           
-                            </div>
-                        </div>
-                     </div>
-                 </div>
-                  </form>
-                  
-                  
-               </div>
-            </div>
-         </div>
-         </div>
-      </section>
-      <% include partials/footer %>
-       <% include partials/scripts %>
-      
-    </body>
-   <script type="text/javascript">
-      $( document ).ready(function() {
-         // Handler for .ready() called. 
-         $(".err-msg").hide();
-         
-      });
-         (function() {
-             'use strict';
-             window.addEventListener('load', function() {
-                 // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                 var forms = document.getElementsByClassName('needs-validation');
-                 // Loop over them and prevent submission
-                 var validation = Array.prototype.filter.call(forms, function(form) {
-                 form.addEventListener('submit', function(event) {
-                 if (form.checkValidity() === false) {
-                    event.preventDefault();
-                     
-                 }
-                 else{
-                     event.preventDefault();
-                     var email = $("#email").val();
-                     console.log(email);
-                     var password = $("#password").val();
-                     
-                    if( email != "" && password != "" ){
-                        $.ajax({
-                              url: '/users/login',
-                              type: "POST",
-                              dataType: "json",
-                              data: {
-                              email: email,
-                              password: password
-                              },
+<html lang="en">
 
+<head>
+ <% include partials/head %>
+</head>
 
-                               /**
-                               * A function to be called if the request succeeds.
-                               */
-                               success: function(data, textStatus, jqXHR) {
-                                console.log("id : "+data._id);
-                                 window.location.assign("/profile/?id="+data._id);
-                                 
-                                //var url = "http://localhost:3000/users/profile/?id="+data.result._id;
-                                 
-                               },
-                              /**
-                               * A function to be called if the request fails. 
-                               */
-                              error: function(jqXHR, textStatus, errorThrown) {
-                                  $(".err-msg").html('Error logging in, please confirm username and password are correct');
-                                  $(".err-msg").show();
-                                 //alert('An error occurred');
-                            
-                              }
-
-                             
-                        });
-                     }
+<body>
+  <div id="wrapper">
     
-
-
-
-///////////////////////////////////////////////////////////
-
-               }
-                 
-              form.classList.add('was-validated');
-             }, false);
-         });
-         }, false);
-         })();
-        
+    
+    <section id="inner-headline">
+      <div class="container">
+        <div class="row">
+          <div class="span12">
+              <% include partials/logo %>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+    <section id="content">
+      <div class="container">
+        <div class="row">
+             <div class="span4">
+            <aside class="right-sidebar">
+                <div class="widget">
+                <div></div>
+                <h5 class="widgetheading" style="padding-top:30px;" id="name"></h5>
+                <% include partials/profile-dropdown %>
+                
+                <span id="Avatar" style="padding-top:20px;"><img id="avatar-img" src="/assets/img/avatar.png" style="padding-bottom: 10px;"></span><br/>
+                
+                <span id="email"></span><br/>
+                <span id="url"></span><br/>
+                <span id="location"></span><br/>
+                Joined: <span id="reg-date"></span>
+                </div>
+               
+               
+              <div class="widget">
+                <h5 class="widgetheading">Bio</h5>
+                <p id="bio">
+                  
+                </p>
+              </div>
+            </aside>
+          </div>
+          <div class="span8">
+            <article>
+              <div class="top-wrapper">
+                <div class="post-heading">
+                    
+                     <h4 class="post-header">Update Profile</h4>
+                     <a href="#">Change Password</a>|<a href="#">Change Avatar</a>
+                     <form class="form-horizontal" id="updateProfile" >
+                           <input type="hidden" id="id-hidden" value=""></input>
+                           <div class="controls">
+                                 
+                                 <strong>Email</strong><br/>
+                                 <input type="email" class="form-control custom-input-width" id="email" >
+                               
+                             </div>
+                             <br/>
+                           <div class="controls">
+                                 
+                                 <strong>First Name</strong><br/><input type="text" class="form-control custom-input-width" id="firstname" >
+                               
+                             </div>
+                             <br/>
+                             <div class="controls">
+                                 
+                                 <strong>Last Name</strong><br/><input type="text" class="form-control custom-input-width" id="lastname" >
+                               
+                             </div>
+                             <br/>
+                             <div class="controls">
+                                 
+                                 <strong>Address</strong><br/><input type="text" class="form-control custom-input-width" id="location" >
+                               
+                             </div>
+                             <br/>
+                             <div class="controls">
+                                 <strong>Website</strong><br/>
+                                 <input type="url" class="form-control custom-input-width"  class="custom-input-width" id="url">
+                                 <!-- <strong></stron>Website</strong><input type="url" class="form-control" id="website" > -->
+                               
+                             </div>
+                             <br/>
+                             <div class="controls">
+                                 <strong>Bio</strong><br/>
+                                 <textarea class="custom-input-width" rows="3" type="text" id="bio"></textarea>
+                                 <!-- <strong></stron>Website</strong><input type="url" class="form-control" id="website" > -->
+                               
+                             </div>
+                            
+                            
+                             
+                           <div class="control-group">
+                             <div class="controls">
+                                <br/>
+                              <input type="submit" class="btn btn-success"value="Update">
+                              
+                             </div>
+                           </form>
+                </div>
+               
+              </div>
+             
+            </article>
+          </div>
          
+        </div>
+      </div>
+    </section>
+ <% include partials/footer %>
+  </div>
+  
+  <% include partials/scripts %>
+  <script  src="/assets/js/postFunctions.js"></script>
 
-      </script>
+  <script>
+  $(document).ready(function() {
+        // $(".alert").hide();
+        getUserInfo('profile');
+  });
+  
+  
+  
+  </script>
+
+
+   
+
+</body>
+
 </html>

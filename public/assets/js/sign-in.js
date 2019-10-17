@@ -8,7 +8,7 @@ $('.alert-signin').hide();
 $('.alert-reset').hide();
 $('.alert-success').hide();
 
-// $('.alert-danger').hide();
+ $('.alert-danger').hide();
 
 
 
@@ -119,12 +119,11 @@ $("#updateUserInfo").submit(function(event) {
                 * A function to be called if the request succeeds.
                 */
                 success: function(data, textStatus, jqXHR) {
-                    console.log("forward to profile")
-                    window.location.assign("/profile/?id="+data._id);
+                   window.location.assign("/profile/?id="+data._id);
                     
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
-                   
+                    
                     $(".alert-danger").html('Error updating information. Please try again from your profile.');
                     $(".alert-danger").show();
                     
@@ -157,14 +156,7 @@ $("#sendRestForm").submit(function(event) {
                     $(".alert-reset").hide(); 
                     
                     //success - email user with instructions
-                    // const nylas = Nylas.with('yCe3ohYdcfoCOqbA8vR0ZOFDTkAFvB');
-
-                    //                 const draft = nylas.drafts.build({
-                    //                     //from: 'GratitudeToday.io',
-                    //                     subject: 'Reset your password',
-                    //                     body:`Instructions to reset password  ` ,
-                    //                     to: [{ name: 'GratitudeToday.io', email: 'adriannadeau.art@gmail.com' }]
-                    //                 });
+                    
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                     $(".alert-reset").hide();

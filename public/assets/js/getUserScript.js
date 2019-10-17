@@ -9,18 +9,25 @@ function getUserInfo(page){
           data: {id: _id},
             success: function(data, textStatus, jqXHR) {
                    //set data for specifice page
+                  //  HTML Values
+                  $("#name").html(data.firstname+" "+data.lastname);
+                   $("#website").html(data.website);
                    $("#id").html(data._id); 
                    $("#uid").html(data._id); 
-                   $("#id-hidden").val(data._id);
+                   
+                  // input values
+                  $("#id-hidden").val(data._id);
+                  $("#avatar").attr("src","../"+data.avatar);
+                  $("#bio").val(data.bio);
+                  $("#url").val(data.url);
+                  $("#firstname").val(data.firstname);
+                  $("#lastname").val(data.lastname);
+                  $("#email").val(data.email);
+                  //$("#location").val(data.location);
+                  $("#location").html(data.location);
 
-                   $("#avatar").attr("src","../"+data.avatar);
-                      $("#bio").val(data.bio);
-                      $("#location").val(data.location);
-                      $("#url").val(data.url);
+                  console.log('loc'+data.location)
                    
-                   
-                   $("#name").html(data.firstname+" "+data.lastname);
-                   $("#website").html(data.website);
                    if(page=='page'){
                          $("#name").html(data.firstname+" "+data.lastname);
                         $("#bio").html(data.bio);
@@ -40,6 +47,7 @@ function getUserInfo(page){
                       
                       $("#url").html(data.url);
                       $("#bio").html(data.bio);
+                      $("#location").html(data.location);
                       if(data.avatar==null){
                         //user default avatar
                        

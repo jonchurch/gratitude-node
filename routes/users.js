@@ -35,7 +35,7 @@ router.get('/', function(req, res) {
 //// GET 1 USER ////
 ////////////////////
 router.get('/:id', function(req, res) {
-    logger.info("get user info: "+req.params.id);
+    
     User.findById(req.params.id, function (err, user) {
 
     if (err){ 
@@ -43,7 +43,7 @@ router.get('/:id', function(req, res) {
       res.send(err.message);
       //next();  
     }
-    logger.info("Return User");
+    
     res.send(user);
    
     
@@ -254,6 +254,7 @@ router.post('/updateAccount/', async function(req,res){
         console.log("Something wrong when updating data!");
     }
     console.log(doc);
+    res.send(JSON.stringify(doc))
   });
 });
   // User.findOneAndUpdate(
