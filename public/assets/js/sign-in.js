@@ -9,6 +9,7 @@ $('.alert-reset').hide();
 $('.alert-success').hide();
 
  $('.alert-danger').hide();
+ 
 
 
 
@@ -137,20 +138,21 @@ $("#sendRestForm").submit(function(event) {
        
         // Prevent the form from submitting via the browser.
         event.preventDefault();
-        var password = $("#password").val();
-        var confirmpassword = $("#confirmpassword").val();
+        var resetEmail = $("#resetEmail").val();
+        console.log("SEND TO: "+resetEmail);
         
             $.ajax({
-                url: '/users/resetPassword',
+                url: '/users/sendReset/',
                 type: "POST",
                 dataType: "json",
                 data: {
-                    password:  $("#password").val()
+                    email:  resetEmail
                 },
                 /**
                 * A function to be called if the request succeeds.
                 */
                 success: function(data, textStatus, jqXHR) {
+                    
                     $(".alert-success").html('Check your inbox for instructions');
                     $(".alert-success").show();
                     $(".alert-reset").hide(); 
@@ -183,38 +185,32 @@ $("#updateUserPassword").submit(function(event) {
 
      }
      else{
-        //register user
+        //update password
         
+        var id = $("#id-hidden").val()
+        console.log(id);
         $.ajax({
          type : "POST",
+         url : "/users/resetPassword",
          data: {
-                firstname: $("#firstname").val(),
-                lastname: $("#lastname").val(),
-                email :  $("#email").val(),
-                password : $("#password").val(),
-                location :  "",
-                 bio: "",
-                 avatar: ""
-                },
+                id: $("#id-hidden").val(),
+                password: $("#password").val()
+                
+        },
          
-         url : "/users/",
+         
          success : function(customer) {
-             
-             window.location.assign("/info/?id="+customer._id);
+            
+            $(".alert-password-change").html("Password updated successfully. <a href='#'>Login</a>");
+            $(".alert-password-change").show();
+             //window.location.assign("/info/?id="+customer._id);
          },
          error : function(error) {
             $(".alert-signin").hide();
-             if(error.status==410){
+            $(".alert-signup").html("Error updating password. Please try again later.");
+            $(".alert-signup").show();
                 
-                $(".alert-signup").html("Email already in use. Try again");
-                $(".alert-signup").show();
-                
-             }
-             else{
-                $(".alert-signup").html("Error registering. Please try again later.");
-                $(".alert-signup").show();
-                
-             }
+             
          }
          
       });

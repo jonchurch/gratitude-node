@@ -8,6 +8,7 @@ var express = require('express'),
     bcrypt = require('bcrypt'),
     assert = require('assert')
     
+    
 
     
 
@@ -257,163 +258,106 @@ router.post('/updateAccount/', async function(req,res){
     res.send(JSON.stringify(doc))
   });
 });
-  // User.findOneAndUpdate(
-  //         {_id: mongoose.Types.ObjectId(req.body.id)},
-  //         {$set: {bio: req.body.bio, location: req.body.location, url:req.body.url}}, {new: true}, (err, doc) => {
-  //       );
-  //    logger.debug("update account info");
-     //kick off update
-     
-//     var query = User.findOneAndUpdate(
-//       {_id: mongoose.Types.ObjectId(req.body.id)},
-//       {$set: {bio: req.body.bio, location: req.body.location, url:req.body.url}}
-//     );
-//     //console.log(query);
-//     assert.ok(!(query instanceof Promise));
-
-// // A query is not a fully-fledged promise, but it does have a `.then()`.
-//     query.then(function (doc) {
-//       //console.log(query);
-      
-//       res.send("success");
-
-// });
-    
-
-  // try{
-  //   var doc = User.findOneAndUpdate(
-  //           {_id: mongoose.Types.ObjectId(req.body.id)},
-  //           {$set: {bio: req.body.bio, location: req.body.location, url:req.body.url}}
-         
-  //     )
-  //     .then(() => logger.debug("need to send updated doc back: "+JSON.stringify(doc)));
-        
-      
-  //   }
-  //    catch(err) {
-  //     logger.error("error : "+err.message);
-  // }   
-    
-// }, (e) => {
-//     res.status(400).send(e);
-// });
-  
-
-  // try{
-  //   logger.debug("update account info");
-  //   await User.findOneAndUpdate(
-  //       {_id: mongoose.Types.ObjectId(req.body.id)},
-  //       {$set: {bio: req.body.bio, location: req.body.location, url:req.body.url}},
-  //       function(err, doc) {
-  //             // logger.error("error : "+err);
-  //              logger.debug("doc : "+doc);
-              
-          
-  //   });
-  // }
-  // catch(err) {
-  //   logger.error("error : "+err.message);
-  // }
-  // res.send(doc);
- 
-  //   logger.debug("update account info");
-  //   logger.info("input : "+req.body.id);
-  //   logger.info("bio : "+req.body.bio);
-  //   logger.info("loc : "+req.body.location);
-  //   try{
-  //     const filter = { _id: req.body.id };
-  //     const update = { bio: req.body.bio};
-  //     logger.debug("getting and updating user info");
-  //     let user = await User.findOneAndUpdate(filter, update, {
-  //       //new: true
-  //     });
-  //     logger.debug("do this doc thing");
-  //     user.bio;
-  //   }
-  //  catch(err) {
-  //   logger.error("error : "+err.message);
-  //  }
-  
-  // } // 'Jean-Luc Picard'
-  // doc.location; // 59
-  // doc.url;
-  
-
-// router.post('/updateAccount/',function(req,res){
-//   logger.info("update account info");
- 
-  
-//   var _id="5da7205eda5ac83ae03f64d2"
-//   logger.info("bio : "+req.body.bio);
-//   logger.info("loc : "+req.body.location);
-//   logger.info("url : "+req.body.url);
-   
-
-//   User.findOneAndUpdate(
-//     {_id: mongoose.Types.ObjectId(req.body.id)},
-//     {$set: {bio: req.body.bio, location: req.body.location, url:req.body.url}},
-//     function(err, doc) {
-//           logger.error("error : "+err);
-//           logger.error("doc : "+doc);
-      
-// });
-
-   
 
         
-//  reset 
+
  ////////////////////
 ////SEND EMAIL Reset//
 ////////////////////
-router.post('/reset',function(req,res){
+router.post('/sendReset/',function(req,res){
   var emailAddress=req.body.email;
-  logger.debug("send email to reset email:"+req.body.email+"get request now...");
-  
   //console.log("session: " + JSON.stringify(req));
-  User.findOne({ email:req.body.email}, function (error, user) {
+  User.findOne({ email:emailAddress}, function (error, user) {
   if(user){
+  //create guid to send to user with id in url
+    logger.debug("user exists");
+      const mailjet = require ('node-mailjet')
+      .connect(`${global.gConfig.mailjet_api_key}`, `${global.gConfig.mailjet_secret_key}`);
+      logger.debug("send email...");
+      const request = mailjet
+      .post("send", {'version': 'v3.1'})
+      .request({
+          "Messages":[
+                  {
+                          "From": {
+                                  "Email": "adrian@gratitudetoday.io",
+                                  "Name": "GratitudeToday.io"
+                          },
+                          "To": [
+                                  {
+                                          "Email":emailAddress,
+                                          "Name": user.firstname+ " "+ user.lastname
+                                  }
+                          ],
+                          "Subject": "Reset Your Password",
+                          //"TextPart": "Dear "+user.firstname+", welcome to GratitudeToday! May the delivery force be with you!",
+                          // "HTMLPart": "<h3>Dear "+user.firstname+", Click the link below to reset your password.<br/><br/>"+
+                          // "<a href='https://gratitudetoday.io/users/resetForm/'>Reset Password</a>"
+                          "HTMLPart": "<table width='100%'><tr width='100%'><td style='background-color:#cb1103;'><a href='http://www.gratitudetoday.io'><img src='https://www.gratitudetoday.io/logo-gratitudetoday-red.png'></img></a></td></tr>"+
+                            "<tr style='width='100%'>"+
+                            "<td>"+
+                            
+                            "<h3>Hey Adrian,<h3/>"+
+                            
+                            " <p>Click the link below to activate your account</p>"+
+                                "<a href='http://localhost:3000/resetForm/?id="+user._id+"'>Reset Password</a>"+
+                                
+                                
+                              "</td>"+
+                              
+                            "</tr>"+
 
-    //create guid to send to user with id in url
-    let transporter = nodeMailer.createTransport({
-        host: 'smtp.gmail.com',
-        port: 465,
-        secure: true,
-        auth: {
-            user: 'adriannadeau.artgmail.com',
-            pass: 'Asialouie!123'
-        }
-    });
-    logger.info("transporter"+transporter);
-    let mailOptions = {
-        from: '"Adrian Nadeau" <adrian@adriannadeau.com>', // sender address
-        to: "adrian@adriannadeau.com", // list of receivers
-        subject: "hey", // Subject line
-        text: "hey text", // plain text body
-        html: '<b>NodeJS Email Tutorial</b>' // html body
-    };
-    logger.info("options"+mailOptions);
-    transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-            return console.log(error);
-        }
-        console.log('Message %s sent: %s', info.messageId, info.response);
-            //res.render('index');
-    });
+                          "</table>"
+		
+
+                  }
+          ]
+      })
+      request
+      .then((result) => {
+          console.log(result.body);
+          res.send(result.body);
+      })
+      .catch((err) => {
+          console.log(err.statusCode)
+          res.send(err.statusCode);
+      })
+      
+    
   }else{
-    logger.log("Email not found, no user?");
+    
+    res.send("Email not found, no user");
   }
   });
 });
-        
-      // const nylas = Nylas.with('yCe3ohYdcfoCOqbA8vR0ZOFDTkAFvB');
-      // const draft = nylas.drafts.build({
-      //   //from: 'GratitudeToday.io',
-      //   subject: 'GratitudeToday.io password reset',
-      //   body:`Click the following link to reset your password. ` ,
-      //   to: [{ name: 'GratitudeToday.io', email: 'adriannadeau.art@gmail.com' }]
-      // });
-      // draft.send().then(message => {
-      //     console.log(`${message.id} was sent`);
-    // });
+router.post('/resetPassword/', async function(req,res){
+  logger.debug("Id:"+req.body.id);
+  // logger.debug("password: "+req.body.password);
+  var pwd = req.body.password;
+  
+  bcrypt.genSalt(10, function(err, salt) {
+    if (err) {
+      logger.error("BCrype issue");
+      const error = new Error("Unable to reset password.");
+      //throw new Error('User email account already exists.');
+      res.status(420);
+      res.send(JSON.stringify(error.message));
+
+    }
+    //console.log('Salt: ' + salt);
+    bcrypt.hash(pwd, salt, function (err, hash) {
+      User.findOneAndUpdate({_id: mongoose.Types.ObjectId(req.body.id)}, {$set: {password: pwd}}, {new: true}, (err, doc) => {
+        if (err) {
+            logger.error("Something wrong updating password");
+            res.send(JSON.stringify(err.message));
+        }
+        // console.log(doc);
+        res.send(JSON.stringify(pwd));
+     });
+    });
+  }); 
+  
+});          
+ 
        
 module.exports = router;
