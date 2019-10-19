@@ -10,9 +10,6 @@ $('.alert-success').hide();
 
  $('.alert-danger').hide();
  
-
-
-
 $("#createUserForm").submit(function(event) {
     // Prevent the form from submitting via the browser.
     event.preventDefault();
@@ -28,13 +25,18 @@ $("#createUserForm").submit(function(event) {
         $.ajax({
          type : "POST",
          data: {
-                firstname: $("#firstname").val(),
-                lastname: $("#lastname").val(),
+                
                 email :  $("#email").val(),
                 password : $("#password").val(),
+                firstname: "",
+                lastname: "",
                 location :  "",
+                public:1,
+                admin: false,
                  bio: "",
-                 avatar: ""
+                 avatar: "",
+                 url: "",
+                 activated: "n"
                 },
          
          url : "/users/",
@@ -97,13 +99,12 @@ $("#updateUserInfo").submit(function(event) {
         // Prevent the form from submitting via the browser.
         event.preventDefault();
         var id = $("#id-hidden").val();
-        var bio = $("#bio").val();
+        var firstname = $("#firstname").val();
+        var lastname = $("#lastname").val();
         var location = $("#location").val();
         var url = $("#url").val();
-        console.log("id: "+id);
-        console.log("bio: "+bio);
-        console.log("location: "+location);
-        console.log("url: "+url);
+        var bio = $("#bio").val();
+       
         
             $.ajax({
                 url: '/users/updateAccount',
@@ -111,16 +112,19 @@ $("#updateUserInfo").submit(function(event) {
                 dataType: "json",
                 data: {
                     id:id,
-                    bio: bio,
+                    firstname: firstname,
+                    lastname: lastname,
                     location: location,
-                    url:url
-
+                    url:url,
+                    bio: bio
                 },
                 /**
                 * A function to be called if the request succeeds.
                 */
                 success: function(data, textStatus, jqXHR) {
-                   window.location.assign("/profile/?id="+data._id);
+                   //window.location.assign("/profile/?id="+data._id);
+                   
+                    $(".alert-success").show();
                     
                 },
                 error: function(jqXHR, textStatus, errorThrown) {

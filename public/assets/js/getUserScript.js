@@ -23,10 +23,12 @@ function getUserInfo(page){
                   $("#firstname").val(data.firstname);
                   $("#lastname").val(data.lastname);
                   $("#email").val(data.email);
-                  //$("#location").val(data.location);
+                  $("#email").html(data.email);
+                  $("#visit-profile").attr("href","/profile/?id="+_id);
                   $("#location").html(data.location);
+                  $("#location").val(data.location);
 
-                  console.log('loc'+data.location)
+                  
                    
                    if(page=='page'){
                          $("#name").html(data.firstname+" "+data.lastname);
@@ -36,11 +38,9 @@ function getUserInfo(page){
                         $("id").val(data._id);
                    }else if(page=='profile'){
                       $("#firstname").html(data.firstname)
+                      
                       $("#lastname").html(data.lastname)
                       $("#email").html(data.email);
-                      
-                      
-                      
                       $("#account-link").attr("href","/account/?id="+_id);
                       $("#support-link").attr("href","/support/?id="+_id);
                       $("#journal-link").attr("href","/journal/?id="+_id);
@@ -62,16 +62,7 @@ function getUserInfo(page){
                       var dateFormat = $.datepicker.formatDate('MM dd, yy', new Date(dateFormat));
                       //alert(dateFormat);
                       $("#reg-date").html(dateFormat);
-                   }
-                   else if(page="resetpassword"){
-
-
-                   }
-                        
-                        
-                    
-                   
-                   
+                   }          
             },
             error: function(jqXHR, textStatus, errorThrown) {
                     console.log('Error occurred');

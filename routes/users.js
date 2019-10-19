@@ -5,14 +5,10 @@ var express = require('express'),
     router = express.Router(),
     User = require("../models/UserModel"),
     mongoose=require('mongoose'),
-    bcrypt = require('bcrypt'),
-    assert = require('assert')
+    bcrypt = require('bcrypt');
+    // assert = require('assert')
     
-    
-
-    
-
-router.use(express.json());
+    router.use(express.json());
 
 ///////////////////////
 //// GET ALL USERS ////
@@ -60,7 +56,7 @@ router.get('/:id', function(req, res) {
 router.post('/login', function(req, res) {
    // bcrypt.compare(password, user.password);
    
-    User.findOne({ email:req.body.email}, function (err, user) {
+    User.findOne({ email:req.body.email,activated:"y"}, function (err, user) {
     
     if (!user){ 
          //not there
@@ -113,14 +109,14 @@ router.get('/profile/:id', function(req, res) {
 router.post('/',function(req,res){
     logger.info("email: "+req.body.email);
     User.findOne({ email:req.body.email}, function (error, user) {
-      if(user){
-        console.log("user exists");
-        const error = new Error('User email account already exists.');
-        res.status(410);
-        res.send(JSON.stringify(error.message));
-        
-    }
-    else{
+        if(user){
+            console.log("user exists");
+            const error = new Error('User email account already exists.');
+            res.status(410);
+            res.send(JSON.stringify(error.message));
+            
+        }
+        else{
           //save user  
           
           var pwd = req.body.password;
@@ -146,8 +142,8 @@ router.post('/',function(req,res){
                         
                         var user = new User({
                             
-                          firstname:req.body.firstname,
-                          lastname :req.body.lastname,
+                          firstname:"",
+                          lastname :"",
                           email :req.body.email,
                           password : hash,
                           public:1,
@@ -155,73 +151,72 @@ router.post('/',function(req,res){
                           bio : "",
                           location : "",
                           avatar: "",
-                          url: ""
+                          url: "",
+                          activated:"n"
                         });
                           user.save(function (error, user) {
                               if (error){ 
                                 console.log("err:"+error);
                                 res.send(error.message);
                               //send email
-                              }
-                              else{
-      //                               const mailjet = require ('node-mailjet').connect("344470aad27d953af9c982f6fdc8f0fa", "ea7a6f8f78dfde8e7532a1b71e254b88")
-      // const request = mailjet
-      // .post("send", {'version': 'v3.1'})
-      // .request({
-      //   "Messages":[
-      //           {
-      //                   "From": {
-      //                           "Email": "adrian@adriannadeau.com",
-      //                           "Name": "Adrian Nadeau"
-      //                   },
-      //                   "To": [
-      //                           {
-      //                                   "Email": "adriannadeau.art@gmail.com",
-      //                                   "Name": "passenger 1"
-      //                           }
-      //                   ],
-      //                   "Subject": "Confirm email to activate your account.",
-      //                   // "TextPart": "Dear passenger 1, welcome to Mailjet! May the delivery force be with you!",
-      //                   "HTMLPart": "<html>"+
-      //                   "<body>"+
-      //                   "<table width='100%'>"+
-      //                       "<tr width='100%'><td style='background-color:#cb1103;'><a href='http://www.gratitudetoday.io'><img src='https://www.adriannadeau.com/images/logo-horizontal.png'></img></a></td></tr>"+
-	    //                     "<tr style='width='100%'<td>"+
-			//                     "<br/><br/>"+
-			//                     "<h3>Hey, Adrian</h3><br/><br/>"+
-			//                     "<font face='arial'>Welcome to <a href='https://www.gratitudetoday.io'>GratitudeToday.io</a>!</font>"+
-			//                     "<br /><br/><font face='arial'>Click the link below to activate your account</font><br/><br/>"+
-			 
-			//                     "<button type='submit' onClick='window.location.href='http://localhost:3000/resetForm/'>Activate Account</button>"+
-			
-			
-      //                           "</td>"+
-                                
-      //                       "</tr>"+
-
-      //                   "</table>"+
-                                
-      //                   "</body>"+
-      //                   "</html>"
-      //           }
-      //   ]
-      // })
-      // request
-      // .then((result) => {
-      //     console.log(result.body)
-      // })
-      // .catch((err) => {
-        
-      //     console.log(err.statusCode)
-      // })
-
-                               res.send(user)
-                            }
-                          
-                             
                               
-                          });
-                      }
+                              }
+                              const mailjet = require ('node-mailjet')
+                                .connect(`${global.gConfig.mailjet_api_key}`, `${global.gConfig.mailjet_secret_key}`);
+                                logger.debug("send email...");
+                                const request = mailjet
+                                .post("send", {'version': 'v3.1'})
+                                .request({
+                                    "Messages":[
+                  {
+                                                    "From": {
+                                                            "Email": "adrian@adriannadeau.com",
+                                                            "Name": "GratitudeToday.io"
+                                                    },
+                                                    "To": [
+                                                            {
+                                                                    "Email":"adriannadeau.art@gmail.com",
+                                                                    "Name": "Adrian"
+                                                            }
+                                                    ],
+                                                    "Subject": "Activate Your Account",
+                                                    //"TextPart": "Dear "+user.firstname+", welcome to GratitudeToday! May the delivery force be with you!",
+                                                    // "HTMLPart": "<h3>Dear "+user.firstname+", Click the link below to reset your password.<br/><br/>"+
+                                                    // "<a href='https://gratitudetoday.io/users/resetForm/'>Reset Password</a>"
+                                                    "HTMLPart": "<table width='100%'><tr width='100%'><td style='background-color:#cb1103;'><a href='http://www.gratitudetoday.io'><img src='https://www.gratitudetoday.io/logo-gratitudetoday-red.png'></img></a></td></tr>"+
+                                                        "<tr style='width='100%'>"+
+                                                        "<td>"+
+                                                        
+                                                        "<h3>Hey Friend,<h3/>"+
+                                                        
+                                                        " <p>Click the link below to activate your account</p>"+
+                                                            "<a href='"+`${global.gConfig.host}`+"/users/info/?id="+user._id+"'>Activate Acccount</a>"+
+                                                            
+                                                            
+                                                        "</td>"+
+                                                        
+                                                        "</tr>"+
+
+                                                    "</table>"
+                                    
+
+                                            }
+                                    ]
+                                });
+                                request
+                                    .then((result) => {
+                                        console.log(result.body);
+                                        logger.debug("send user back:"+user);
+                                        res.send(user)
+                                    })
+                                    .catch((err) => {
+                                        logger.debug(err.statusCode);
+                                        res.send(err.statusCode);
+
+                                    })
+
+                          });    
+                        }
                   });
               }
           });
@@ -250,7 +245,7 @@ router.get('/info/:id', function(req, res) {
 
 router.post('/updateAccount/', async function(req,res){
 
-  User.findOneAndUpdate({_id: mongoose.Types.ObjectId(req.body.id)}, {$set: {bio: req.body.bio, location: req.body.location, url:req.body.url}}, {new: true}, (err, doc) => {
+  User.findOneAndUpdate({_id: mongoose.Types.ObjectId(req.body.id)}, {$set: {firstname: req.body.firstname, lastname: req.body.lastname, bio: req.body.bio, location: req.body.location, url:req.body.url}}, {new: true}, (err, doc) => {
     if (err) {
         console.log("Something wrong when updating data!");
     }
@@ -315,17 +310,17 @@ router.post('/sendReset/',function(req,res){
       })
       request
       .then((result) => {
-          console.log(result.body);
+          
           res.send(result.body);
       })
       .catch((err) => {
-          console.log(err.statusCode)
+          logger.error(err.statusCode)
           res.send(err.statusCode);
       })
       
     
   }else{
-    
+    logger.error("User not found!");
     res.send("Email not found, no user");
   }
   });
@@ -357,7 +352,20 @@ router.post('/resetPassword/', async function(req,res){
     });
   }); 
   
-});          
+}); 
+router.get('/activateAccount/:id', function(req, res) {
+    logger.debug(req.params.id);
+    //update
+    User.findOneAndUpdate({_id: mongoose.Types.ObjectId(req.body.id)}, {$set: {activated:"y"}}, {new: true}, (err, doc) => {
+    if (err) {
+        logger.error(err.message);
+        res.send(err.message);
+    }
+    console.log(doc);
+        logger.debug(req.params.id);
+        res.send(JSON.stringify(doc));
+    });
+});    
  
        
 module.exports = router;

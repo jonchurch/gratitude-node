@@ -13,6 +13,7 @@ var mongoose = require('mongoose');
         bio: String,
         avatar: String,
         url: String,
+        activated: String,
         createDate: {
             type: Date,
             default: Date.now

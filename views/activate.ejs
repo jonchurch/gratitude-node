@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <% include partials/head %>
+</head>
+
+<body>
+  <div id="wrapper">
+    
+    <!-- end header -->
+    <section id="inner-headline">
+      <div class="container">
+        <div class="row">
+          <div class="span12">
+            <div class="inner-heading">
+                <% include partials/logo %>
+              &nbsp;
+            </div>
+          </div>
+          
+      </div>
+    </section>
+    <section id="content">
+      <div class="container">
+        <div class="row">
+          <div class="span12">
+              
+            <h4>Activate <strong>Account.</strong></h4>
+            <!-- id: <span id="id"></span> -->
+            <p>
+                        An email was sent to <strong><span id="email"></span></strong> with a link to activate your account.<br/>
+                        You may have to check your spam folder if you don't see it in your inbox.
+                        
+                    </p>
+                    <br/><br/>
+          </div></div>
+         
+       
+    </section>
+    <% include partials/footer %>
+  
+
+  </div>
+  
+  <% include partials/scripts %>
+  <script src="/assets/js/sign-in.js"></script>
+
+  <script>
+  $(document).ready(function() {
+        getUserInfo('info');
+  });
+  </script>
+</body>
+
+</html>

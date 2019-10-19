@@ -34,6 +34,14 @@ router.get('/journal', function(req, res) {
 router.get('/support', function(req, res) {
     res.render('support');
 });
+router.get('/activate', function(req, res) {
+    res.render('activate');
+});
+// router.get('/activateAccount', function(req, res) {
+//     res.render('info');
+// });
+
+
 
 
 router.get('/ajaxtest', function(req, res) {
