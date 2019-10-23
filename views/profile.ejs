@@ -23,6 +23,8 @@
       <div class="container">
         <div class="row">
              <div class="span4">
+               
+                
             <aside class="right-sidebar">
                 <div class="widget">
                 <div></div>
@@ -52,13 +54,13 @@
                 <div class="post-heading">
                     
                     <form class="form-horizontal" id="postMsgForm" > 
-                        <div class="alert alert-success text-center hidden" style="width:85%;" role="alert">This is a success alert—check it out!</div>
-                        <div class="alert alert-danger text-center hidden" style="width:85%;" role="alert">Eror posting, please try again.</div>
-                        <input type="hidden" id="id" value="">
+                        <div class="alert alert-success alert-post-success text-center" style="width:85%;" role="alert">Post Successfully Submitted!</div>
+                        <div class="alert alert-danger  alert-post-danger text-center" style="width:85%;" role="alert">Error occured, please try again.</div>
+                        <input type="hidden" id="id-hidden" value=""></input>
                         <h4 class="post-header">What are you grateful for today...</h4><textarea rows="3" class="custom-input-width" type="text" id="postMsg" required></textarea>
                    
                         <br/><br/>
-                          <input type="submit" class="btn btn-success" value="Post">
+                        <button type="submit" class="btn btn-green">Post</button>
                           
                     </form>
                     <h4>Recent Posts</h4>
@@ -84,10 +86,13 @@
   </div>
   
   <% include partials/scripts %>
-  <script  src="/assets/js/postFunctions.js"></script>
+  <script src="/assets/js/sign-in.js"></script>
+  <script src="/assets/js/postFunctions.js"></script>
 
   <script>
   $(document).ready(function() {
+     
+    
         // $(".alert").hide();
         getUserInfo('profile');
   });

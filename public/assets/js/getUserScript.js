@@ -10,13 +10,16 @@ function getUserInfo(page){
             success: function(data, textStatus, jqXHR) {
                    //set data for specifice page
                   //  HTML Values
-                  
-                  $("#name").html(data.firstname+" "+data.lastname);
+                 
+
+                    $("#name").html(data.firstname+" "+data.lastname);
+                    
                    $("#website").html(data.website);
                    $("#id").html(data._id); 
                    $("#uid").html(data._id); 
                    
                   // input values
+                  $("#id").val(data._id);
                   $("#id-hidden").val(data._id);
                   $("#avatar").attr("src","../"+data.avatar);
                   $("#bio").val(data.bio);
@@ -32,15 +35,15 @@ function getUserInfo(page){
                   $("#info-link").attr("href","/info/?id="+_id);
                   
                    
-                   if(page=='page'){
-                         $("#name").html(data.firstname+" "+data.lastname);
-                        $("#bio").html(data.bio);
+                   if(page=='info'){
+                        // $("#name").html(data.firstname+" "+data.lastname);
+                        // $("#bio").html(data.bio);
                         
-                        $("#location").val(data.location);
+                        // $("#location").val(data.location);
                         $("id").val(data._id);
                    }else if(page=='profile'){
+                     
                       $("#firstname").html(data.firstname)
-                      
                       $("#lastname").html(data.lastname)
                       $("#email").html(data.email);
                       $("#account-link").attr("href","/account/?id="+_id);

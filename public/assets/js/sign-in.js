@@ -73,7 +73,7 @@ $("#createUserForm").submit(function(event) {
         console.log("password: "+password);
         console.log("email: "+email);
         $.ajax({
-                url: '/users/updateAccount',
+                url: '/users/login',
                 type: "POST",
                 dataType: "json",
                 data: {
@@ -84,6 +84,7 @@ $("#createUserForm").submit(function(event) {
                 * A function to be called if the request succeeds.
                 */
                 success: function(data, textStatus, jqXHR) {
+                    
                     window.location.assign("/profile/?id="+data._id);
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
@@ -99,11 +100,11 @@ $("#updateUserInfo").submit(function(event) {
         // Prevent the form from submitting via the browser.
         event.preventDefault();
         var id = $("#id-hidden").val();
-        var firstname = $("#firstname").val();
-        var lastname = $("#lastname").val();
-        var location = $("#location").val();
-        var url = $("#url").val();
-        var bio = $("#bio").val();
+        var firstname = $("#info-firstname").val();
+        var lastname = $("#info-lastname").val();
+        var location = $("#info-location").val();
+        var url = $("#info-url").val();
+        var bio = $("#info-bio").val();
        
         
             $.ajax({
@@ -274,7 +275,7 @@ $("#updateUserPassword").submit(function(event) {
           
       },
       error : function(error) {
-          alert("failed");
+          
           $(".alert-signin").hide();
           if(error.status==410){
               

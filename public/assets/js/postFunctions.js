@@ -1,28 +1,33 @@
-
-$("#postMsgForm").submit(function(event) {
+$(".alert").hide();
+    $(".alert-success").hide();
+    $(".alert-post-success").hide();
+   $("#postMsgForm").submit(function(event) {
     
     // Prevent the form from submitting via the browser.
     event.preventDefault();
-//    console.log("try to post:  "+$("#id").val());
-    
+      var id = $("#id-hidden").val();
+      
         //create post
         $.ajax({
+         url : "/posts/",
          type : "POST",
          data: {
-            userid: "5d9e52459896ba2f680a37a4",
+            userid:id,
             postMsg: $("#postMsg").val(),
             postMediaType :  "",
             postMedia :   ""
          },
          
-         url : "/posts/",
+         
          success : function(customer) {
-            $(".alert-success").html("Post submitted successfully, click here to view your Journal!");
-            $(".alert-success").show();
+            $(".alert-post-success").show();
+            $("#postMsg").val('');
+            
+            
          },
          error : function(error) {
-             $(".alert-danger").html("Error Submitting Post");
-            $(".alert-danger").show();
+           
+            $(".alert-post-danger").show();
                 
              
          }

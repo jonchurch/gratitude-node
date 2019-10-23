@@ -1,12 +1,10 @@
 var express = require('express'),
     router = express.Router(),
-    express = require('express'),
     logger = require('../logger/logger'),
-    router = express.Router(),
     User = require("../models/UserModel"),
     mongoose=require('mongoose'),
     bcrypt = require('bcrypt');
-    // assert = require('assert')
+  
     
     router.use(express.json());
 
@@ -14,7 +12,7 @@ var express = require('express'),
 //// GET ALL USERS ////
 ///////////////////////
 router.get('/', function(req, res) {
-  //get all users and return for admin
+  //get all users and return for admin 
  
   User.find({}, function (err, users) {
     
@@ -32,16 +30,16 @@ router.get('/', function(req, res) {
 //// GET 1 USER ////
 ////////////////////
 router.get('/:id', function(req, res) {
-    
+  logger.debug("Get ID: "+req.params.id);
     // logger.debug("param : "+req.params.id);
-    User.findById(req.params.id, function (err, user) {
+    const user= User.findById(req.params.id, function (err, user) {
       if (err){ 
       logger.error("Get User Error: "+err.message);
         res.send(err.message);
         next();  
       }
       
-      res.send(user._id);
+      res.send(user);
     
     
    });        
@@ -142,8 +140,8 @@ router.post('/',function(req,res){
                         
                         var user = new User({
                             
-                          firstname:"",
-                          lastname :"",
+                          firstname:"Welcome",
+                          lastname :req.body.email,
                           email :req.body.email,
                           password : hash,
                           public:1,
@@ -268,12 +266,12 @@ router.post('/updateAccount/', async function(req,res){
 });
 
 router.get('/info/:id', function(req, res) {
-    
-  console.log(req.params.id);
+    logger.debug(req.params.id);
+  
   if (err){ 
-    console.log("err:"+err);
+    logger.error(err.message);
     res.send("info error:"+err.message);
-    next();  
+    //next();  
   }
   res.send(req.params.id);
 });        

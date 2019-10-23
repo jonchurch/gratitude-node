@@ -41,9 +41,6 @@ router.get('/activateAccount', function(req, res) {
     res.render('activated');
 });
 
-
-
-
 router.get('/ajaxtest', function(req, res) {
   res.render('ajaxtest');
 });
