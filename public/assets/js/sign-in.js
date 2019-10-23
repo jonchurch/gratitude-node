@@ -42,7 +42,7 @@ $("#createUserForm").submit(function(event) {
          url : "/users/",
          success : function(customer) {
              
-             window.location.assign("/info/?id="+customer._id);
+             window.location.assign("/activate/?id="+customer._id);
          },
          error : function(error) {
               
@@ -136,6 +136,41 @@ $("#updateUserInfo").submit(function(event) {
             });
       
 });
+$("#acvitateUser").submit(function(event) {
+       
+    // Prevent the form from submitting via the browser.
+    event.preventDefault();
+    var url_string = window.location.href; //window.location.href
+    var url = new URL(url_string);
+    var id = url.searchParams.get("id");
+    console.log(id);
+   
+        // $.ajax({
+        //     url: '/users/activateAccount',
+        //     type: "POST",
+        //     dataType: "json",
+        //     data: {
+        //         id:id,
+        //         activated: "y"
+        //     },
+        //     /**
+        //     * A function to be called if the request succeeds.
+        //     */
+        //     success: function(data, textStatus, jqXHR) {
+        //        //window.location.assign("/profile/?id="+data._id);
+               
+        //         $(".alert-success").show();
+                
+        //     },
+        //     error: function(jqXHR, textStatus, errorThrown) {
+                
+        //         $(".alert-danger").html('Error updating information. Please try again from your profile.');
+        //         $(".alert-danger").show();
+                
+        //     }
+        // });
+  
+});
 
      
 $("#sendRestForm").submit(function(event) {
@@ -221,4 +256,40 @@ $("#updateUserPassword").submit(function(event) {
         
      }
  });
+ function activateUser() {
+   //update to activated
+  var _id= getUrlParameter("id");
+  console.log("id: "+_id);
+  $.ajax({ 
+      url: '/users/activateAccount',
+      type : "POST",
+      data: {
+          _id:_id,
+          activated: "y"
+      },
+      success : function(user) {
+            
+            $("#info-url").hide();
+            //window.location.assign("/info/?id="+user._id);
+          
+      },
+      error : function(error) {
+          alert("failed");
+          $(".alert-signin").hide();
+          if(error.status==410){
+              
+              $(".alert-signup").html("Email already in use. Try again");
+              $(".alert-signup").show();
+              
+          }
+          else{
+              $(".alert-signup").html("Error registering. Please try again later.");
+              $(".alert-signup").show();
+              
+          }
+      }
+  });
+  
+  }
+ 
      

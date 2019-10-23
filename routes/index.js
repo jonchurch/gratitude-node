@@ -37,9 +37,9 @@ router.get('/support', function(req, res) {
 router.get('/activate', function(req, res) {
     res.render('activate');
 });
-// router.get('/activateAccount', function(req, res) {
-//     res.render('info');
-// });
+router.get('/activateAccount', function(req, res) {
+    res.render('activated');
+});
 
 
 

@@ -1,7 +1,7 @@
 function getUserInfo(page){
     
     var _id= getUrlParameter("id");
-     var passId=_id;
+     
       $.ajax({
           url: '/users/'+_id,
           type: "GET",
@@ -10,6 +10,7 @@ function getUserInfo(page){
             success: function(data, textStatus, jqXHR) {
                    //set data for specifice page
                   //  HTML Values
+                  
                   $("#name").html(data.firstname+" "+data.lastname);
                    $("#website").html(data.website);
                    $("#id").html(data._id); 
@@ -28,6 +29,7 @@ function getUserInfo(page){
                   $("#location").html(data.location);
                   $("#location").val(data.location);
 
+                  $("#info-link").attr("href","/info/?id="+_id);
                   
                    
                    if(page=='page'){
