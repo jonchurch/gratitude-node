@@ -1,14 +1,16 @@
 
-// $('.alert').hide();
+$('.alert-danger').hide();
+$('.alert-success').hide();
+
 $('.login-alert').hide();
 $('.pass-err-msg').hide();
-
 $('.alert-signup').hide();
 $('.alert-signin').hide();
 $('.alert-reset').hide();
-$('.alert-success').hide();
 
- $('.alert-danger').hide();
+
+
+ 
  
 $("#createUserForm").submit(function(event) {
     // Prevent the form from submitting via the browser.

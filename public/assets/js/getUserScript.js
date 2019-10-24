@@ -1,7 +1,7 @@
 function getUserInfo(page){
     
     var _id= getUrlParameter("id");
-     
+      
       $.ajax({
           url: '/users/'+_id,
           type: "GET",
@@ -16,8 +16,7 @@ function getUserInfo(page){
                     
                    $("#website").html(data.website);
                    $("#id").html(data._id); 
-                   $("#uid").html(data._id); 
-                   
+                   $("#uid").html(data._id);               
                   // input values
                   $("#id").val(data._id);
                   $("#id-hidden").val(data._id);
@@ -59,8 +58,13 @@ function getUserInfo(page){
                         $("avatar").html('<img src="/assets/img/avatar.png>');
                       }
                   
-                      emailAddress= data.email;
-
+                      
+                      $("#info-email").val(data.email);
+                      $("#info-firstname").val(data.firstname);
+                      $("#info-lastname").val(data.lastname);
+                      $("#info-location").val(data.location);
+                      $("#info-bio").val(data.bio);
+                      $("#info-url").val(data.url);
 
                       //jquery datepicker plugin
                       var dateFormat = data.createDate;
@@ -78,6 +82,11 @@ function getUserInfo(page){
             event.preventDefault();
             window.location.assign("/profile/?id="+ _id);
             
+        });
+        $("#btn-cancel").click(function() {
+          event.preventDefault();
+          window.location.assign("/profile/?id="+ _id);
+          
         });
 }
         

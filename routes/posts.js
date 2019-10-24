@@ -2,6 +2,7 @@ var express = require('express'),
     router = express.Router(),
     logger = require('../logger/logger'),
     Post = require("../models/PostModel"),
+    User = require("../models/UserModel"),
     mongoose=require('mongoose');
 
 
@@ -32,22 +33,17 @@ router.get('/', function(req, res) {
         res.send(err.message);
       }
 });
-                
-// router.get('/', function(req, res) {
-//   //get all posts and return for admin
-//   // Post.find({}).sort('-date').exec(function(err, docs) {  });
-//   logger.info("get all posts");
-//     posts = Post.sort('createDate').exec(function(err, docs) {
-//       logger.debug(posts);
-//     if (err){ 
-//         console.log("err:"+err);
-//         res.send(err.message);
-         
-//     }
-//     res.json(posts);
-          
-//   });        
-// });
+
+router.post('/updateProfileAccount/', async function(req,res){
+  logger.debug("update user account: "+req.body.id);
+  User.findOneAndUpdate({_id: mongoose.Types.ObjectId(req.body.id)}, {$set: {firstname: req.body.firstname, lastname: req.body.lastname, bio: req.body.bio, location: req.body.location, url:req.body.url}}, {new: true}, (err, doc) => {
+    if (err) {
+        console.log("Something wrong when updating data!");
+    }
+    console.log(doc);
+    res.send(JSON.stringify(doc))
+  });
+});
 
 ///////////////////////
 //// CREATE POST////

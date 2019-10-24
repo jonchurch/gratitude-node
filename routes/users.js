@@ -250,12 +250,8 @@ router.post('/activateAccount/', function(req, res) {
  ////////////////////
 ////UPDATE DETAILS//
 ////////////////////
-
-
-
-
 router.post('/updateAccount/', async function(req,res){
-
+  logger.debug("update user account: "+req.body.id);
   User.findOneAndUpdate({_id: mongoose.Types.ObjectId(req.body.id)}, {$set: {firstname: req.body.firstname, lastname: req.body.lastname, bio: req.body.bio, location: req.body.location, url:req.body.url}}, {new: true}, (err, doc) => {
     if (err) {
         console.log("Something wrong when updating data!");
@@ -264,6 +260,7 @@ router.post('/updateAccount/', async function(req,res){
     res.send(JSON.stringify(doc))
   });
 });
+
 
 router.get('/info/:id', function(req, res) {
     logger.debug(req.params.id);

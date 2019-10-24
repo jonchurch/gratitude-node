@@ -1,11 +1,15 @@
 $(".alert").hide();
-    $(".alert-success").hide();
-    $(".alert-post-success").hide();
-   $("#postMsgForm").submit(function(event) {
+$(".alert-success").hide();
+$(".alert-post-success").hide();
+$('.alert-success-account').hide();
+$('.alert-danger-account').hide();
+
+var id = $("#id-hidden").val();
+$("#postMsgForm").submit(function(event) {
     
     // Prevent the form from submitting via the browser.
     event.preventDefault();
-      var id = $("#id-hidden").val();
+      
       
         //create post
         $.ajax({
@@ -28,11 +32,74 @@ $(".alert").hide();
          error : function(error) {
            
             $(".alert-post-danger").show();
+            $("#postMsg").val('');
                 
              
          }
          
       });
-        
-     
- });
+
+
+});
+
+
+
+
+$("#updateProfile").submit(function(event) {
+   event.preventDefault();
+       var id = $("#id-hidden").val();
+         var email = $("#info-email").val();
+         console.log("email: "+email);
+         var firstname = $("#info-firstname").val();
+         var lastname = $("#info-lastname").val();
+         var location = $("#info-location").val();
+         var url = $("#info-url").val();
+         var bio = $("#info-bio").val();
+         console.log("in profile update: "+id);
+         // Prevent the form from submitting via the browser.
+         
+   
+  
+   
+       $.ajax({
+           url: '/posts/updateProfileAccount',
+           type: "POST",
+           dataType: "json",
+           data: {
+               id:id,
+               email:email,
+               firstname: firstname,
+               lastname: lastname,
+               location: location,
+               url:url,
+               bio: bio
+           },
+           /**
+           * A function to be called if the request succeeds.
+           */
+           success: function(data, textStatus, jqXHR) {
+              //window.location.assign("/profile/?id="+data._id);
+              
+               $(".alert-success").show();
+               
+           },
+           error: function(jqXHR, textStatus, errorThrown) {
+               
+               $(".alert-danger").html('Error updating information. Please try again from your profile.');
+               $(".alert-danger").show();
+               
+           }
+       });
+ 
+});
+               
+//            },
+//            error: function(jqXHR, textStatus, errorThrown) {
+               
+               
+//                $(".alert-danger").show();
+               
+//            }
+//        });
+ 
+// });
