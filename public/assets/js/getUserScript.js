@@ -37,8 +37,8 @@ function getUserInfo(page){
                    if(page=='info'){
                       $("#info-bio").val(data.bio);
                       $("#info-url").val(data.url);
-                      $("#info-firstname").val(data.firstname);
-                      $("#info-lastname").val(data.lastname);
+                      $("#info-firstname").val('');
+                      $("#info-lastname").val('');
                       $("#info-location").val(data.location);
                       $("id").val(data._id);
                    }else if(page=='profile'){

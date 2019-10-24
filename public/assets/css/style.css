@@ -2759,8 +2759,9 @@ article img.pull-right, article .align-right {
   background:green !important;
 }
 .small-text {
-  font-size: 1em;
+  font-size: .5em;
   font-weight: 600;
+  
 }
 
 .pass-err-msg{
@@ -2796,7 +2797,7 @@ form{
   margin:0px;
 }
 .alert {
-    
+    margin-bottom: 10px;
     border-radius: 6px !important;
     font-weight: 700;
 }

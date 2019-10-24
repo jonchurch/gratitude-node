@@ -102,12 +102,27 @@ function loadPosts() {
         * A function to be called if the request succeeds.
         */
         success: function(data, textStatus, jqXHR) {
-            alert("Posts:"+data);
             
-           //window.location.assign("/profile/?id="+data._id);
-        //    console.log("reload profile page")
-        //    window.location.assign("/profile/?id="+data._id);
+        
+            var postsHTML="";
+            var dateFormat;
+           
+            $.each( data, function( key, value ) {
+                var dateFormat = value.createDate;
+                dateFormat = $.datepicker.formatDate('MM dd, yy', new Date(dateFormat));
+                postsHTML += "<p>"+value.postMsg+
+                "<ul class=\"meta-post\">"+
+                "<li><i class=\"icon-calendar\"></i> "+dateFormat+"</a></li>"+
+                "<li><i class=\"icon-user\"></i> Adrian Nadeau</a></li>"+
+                        
+                "</ul></p><br/><hr/>" ;
+                // alert("concated: "+postsHTML);
+                
+            });
             
+            $("#recent-posts-list").html(postsHTML);
+
+       
         },
         error: function(jqXHR, textStatus, errorThrown) {
             

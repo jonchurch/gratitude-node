@@ -23,12 +23,12 @@
                                 <!-- <a href="#" class="scrollup">-->
                               <ul class="nav topnav">
                                 <li class="dropdown">
-                                  <a href="#mySignup" class="signup-2 nav-sign-up" data-toggle="modal"><i class="icon-user"></i>Sign Up</i></a>
+                                  <a href="#mySignup" class="signup-2 nav-sign-up" id="signup-link" data-toggle="modal"><i class="icon-user"></i>Sign Up</i></a>
                                   
                                 </li>
                                
                                 <li class="dropdown">
-                                  <a href="#mySignin" class="signin-2 nav-sign-up" data-toggle="modal">Sign in</a></a>
+                                  <a href="#mySignin" class="signin-2 nav-sign-up" id="signin-link" data-toggle="modal">Sign in</a></a>
                                 
                                 </li>
                                 
@@ -166,8 +166,9 @@
 <div id="mySignup" class="modal styled hide fade" tabindex="-1" role="dialog" aria-labelledby="mySignupModalLabel" aria-hidden="true">
     
         <div class="modal-header">
-            <div class="alert alert-danger text-center alert-signup" role="alert"></div>
+            
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <div class="alert alert-danger text-center alert-signup" role="alert"></div>
           <h4 id="mySignupModalLabel">Create an <strong>account</strong></h4>
         </div>
         <div class="modal-body">
@@ -178,27 +179,11 @@
                       <input type="email" id="email"  required>
                   </div>
                 </div>
-              <!-- <div class="control-group">
-                  <label class="control-label" for="inputFirst">First Name</label>
-                  <div class="controls">
-                    <input type="text" id="firstname" required>
-                   
-                  </div>
-                  
-              </div>
-              <div class="control-group">
-                  <label class="control-label" for="inputLast">Last Name</label>
-                  <div class="controls">
-                    <input type="text" id="lastname" required>
-                  </div>
-                  
-              </div>
-             -->
+             
             <div class="control-group">
               <label class="control-label" for="inputSignupPassword">Password</label>
               <div class="controls">
                 <input type="password" id="password" required minlength="6"><br/>
-                
                 <span class="small-text text-center">Must be at least 6 chars</span>
               </div>
               
@@ -222,12 +207,12 @@
             </div>
             <div class="control-group">
               <div class="controls text-center">
-                <input type="button" class="btn btn-default" data-dismiss="modal" aria-hidden="true" value="No Thanks">&nbsp;&nbsp;<input type="submit" class="btn btn-green" value="Sign up">
+                <input type="button" class="btn btn-default" data-dismiss="modal" aria-hidden="true" value="No Thanks">&nbsp;&nbsp;<input type="submit" class="btn btn-green" id="button-signup" value="Sign up">
                   <!-- <button type="submit" class="btn btn-success">Sign up</button> -->
                 
               </div>
               <p class="aligncenter margintop20">
-                  <span class="small-text">Already have an account?</span> <a href="#mySignin" data-dismiss="modal" aria-hidden="true" id="signin-open"  data-toggle="modal">Sign in</a>
+                  <span class="small-text">Already have an account?</span> <a href="#mySignin" data-dismiss="modal" aria-hidden="true" id="signin-link"  data-toggle="modal">Sign in</a>
               </p>
             </div>
           </form>
@@ -237,9 +222,10 @@
       <!-- Sign in Modal -->
       <div id="mySignin" class="modal styled hide fade" tabindex="-1" role="dialog" aria-labelledby="mySigninModalLabel" aria-hidden="true">
         <div class="modal-header">
-            <div class="alert alert-danger text-center alert-signin" role="alert"></div>
+            
             
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <div class="alert alert-danger text-center alert-signin" role="alert"></div>
           <h4 id="mySigninModalLabel">Login to your <strong>account</strong></h4>
         </div>
         <div class="modal-body">
@@ -258,14 +244,14 @@
             </div>
             <div class="control-group">
               <div class="controls text-center">
-                  <button type="submit" class="btn btn-green">Sign in</button>
+                  <button type="submit" id = "button-signin" class="btn btn-green">Sign in</button>
                 
               </div>
               <p class="aligncenter margintop20">
                   Don't have an account? <a href="#mySignup" data-dismiss="modal" aria-hidden="true" id="signup-open" data-toggle="modal">Sign up</a>
                 </p>
               <p class="aligncenter margintop20">
-                Forgot password? <a href="#myReset" data-dismiss="modal" aria-hidden="true" id="reset-open" data-toggle="modal">Reset</a>
+                Forgot password? <a href="#myReset" data-dismiss="modal" aria-hidden="true" id="reset-link" data-toggle="modal">Reset</a>
               </p>
             </div>
           </form>
@@ -275,9 +261,10 @@
       <!-- Reset Modal -->
       <div id="myReset" class="modal styled hide fade" tabindex="-1" role="dialog" aria-labelledby="myResetModalLabel" aria-hidden="true">
         <div class="modal-header">
-            <div class="alert alert-danger text-center alert-reset" role="alert"></div>
-            <div class="alert alert-success text-center" role="alert"></div>
+            
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <div class="alert alert-danger text-center alert-reset" role="alert"></div>
+            <div class="alert alert-success text-center" role="alert"></div>
           <h4 id="myResetModalLabel">Reset your <strong>password</strong></h4>
         </div>
         <div class="modal-body">
@@ -290,7 +277,7 @@
             </div>
             <div class="control-group text-center">
               <div class="controls">
-                  <button type="submit" class="btn btn-green">Reset password</button>
+                  <button type="submit" class="btn btn-green" id="button-reset">Reset password</button>
                 
               </div>
               <p class="aligncenter margintop20">
@@ -308,7 +295,26 @@
       
 <script>
       $(document).ready(function(){
-        //   $('#reset-open').click();
+        
+        $( "#signup-link" ).click(function() {
+          //hide reset and signup
+          
+          $(".alert-success").hide();
+          $(".alert-danger").hide();
+          
+          
+      });
+      $( "#signin-link" ).click(function() {
+          //hide reset and signup
+          $(".alert-success").hide();
+          $(".alert-danger").hide();
+          $("#loginemail").val('');
+          $("#loginpassword").val('');
+      });
+      $( "#reset-link" ).click(function() {
+        $(".alert-success").hide();
+        $(".alert-danger").hide();
+      });
         
     });
    

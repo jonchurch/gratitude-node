@@ -1,14 +1,14 @@
 
-$('.alert-danger').hide();
-$('.alert-success').hide();
+// $('.alert-danger').hide();
+// $('.alert-success').hide();
 
-$('.login-alert').hide();
-$('.pass-err-msg').hide();
-$('.alert-signup').hide();
-$('.alert-signin').hide();
-$('.alert-reset').hide();
+// $('.login-alert').hide();
+ $('.pass-err-msg').hide();
+// $('.alert-signup').hide();
+// $('.alert-signin').hide();
+// $('.alert-reset').hide();
 
-var bioMaxLength = 255;
+
 
  
  
@@ -53,6 +53,10 @@ $("#createUserForm").submit(function(event) {
                 
                 $(".alert-signup").html("Email already in use. Try again");
                 $(".alert-signup").show();
+                $("#email").val('');
+                $("#password").val('');
+                $("#confirmpassword").val('');
+                
                 
              }
              else{
@@ -90,7 +94,9 @@ $("#createUserForm").submit(function(event) {
                     window.location.assign("/profile/?id="+data._id);
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
-                    $(".alert-signon").hide();
+                    $("#loginemail").val('');
+                    $("#loginpassword").val('');
+                    
                     $(".alert-signin").html('Error logging in, please confirm username and password are correct');
                     $(".alert-signin").show();
                 }
@@ -203,10 +209,10 @@ $("#sendRestForm").submit(function(event) {
                     
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
-                    $(".alert-reset").hide();
+                    
                     $(".alert-reset").html('Email not found, please try another');
                     $(".alert-reset").show();
-                    $(".resetEmail").html('');
+                    $(".resetEmail").val('');
 
                 }
                 

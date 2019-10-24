@@ -57,36 +57,37 @@
                         <div class="alert alert-success alert-post-success text-center" style="width:85%;" role="alert">Post Successfully Submitted!</div>
                         <div class="alert alert-danger  alert-post-danger text-center" style="width:85%;" role="alert">Error occured, please try again.</div>
                         <input type="hidden" id="id-hidden" value=""></input>
-                        <h4 class="post-header">What are you grateful for today...</h4><textarea rows="3" class="custom-input-width" type="text" id="postMsg" required></textarea>
+                        <h4 class="post-header">What are you grateful for today...</h4><textarea rows="3" class="custom-input-width" type="text" id="postMsg" maxLength="255" required></textarea>
                    
-                        <br/><br/>
+                        <br/>No more than 255 characters. <strong><span id="chars">255</span> characters remaining.</strong><br/>
                         <button type="submit" class="btn btn-green">Post</button>
                           
                     </form>
                     <h4>Recent Posts</h4>
-                    <span id ="posts"></span>
+                   
                 </div>
                
               </div>
+
               <div id="recent-posts-list">
-              <p>
-                Qui ut ceteros comprehensam. Cu eos sale sanctus eligendi, id ius elitr saperet, ocurreret pertinacia pri an. No mei nibh consectetuer, semper laoreet perfecto ad qui, est rebum nulla argumentum ei. Fierent adipisci iracundia est ei, usu timeam persius
-                ea. Usu ea justo malis, pri quando everti electram ei, ex homero omittam salutatus sed.
-                <ul class="meta-post">
-                      <li><i class="icon-calendar"></i> Mar 13, 2019</a></li>
-                      <li><i class="icon-user"></i> Adrian Nadeau</a></li>
-                      
-                    </ul>
-              </p>
-              <p>
-                Qui ut ceteros comprehensam. Cu eos sale sanctus eligendi, id ius elitr saperet, ocurreret pertinacia pri an. No mei nibh consectetuer, semper laoreet perfecto ad qui, est rebum nulla argumentum ei. Fierent adipisci iracundia est ei, usu timeam persius
-                ea. Usu ea justo malis, pri quando everti electram ei, ex homero omittam salutatus sed.
-                <ul class="meta-post">
-                      <li><i class="icon-calendar"></i> Mar 13, 2019</a></li>
-                      <li><i class="icon-user"></i> Adrian Nadeau</a></li>
-                      
-                    </ul>
-              </p>
+                <!-- <p>
+                  Qui ut ceteros comprehensam. Cu eos sale sanctus eligendi, id ius elitr saperet, ocurreret pertinacia pri an. No mei nibh consectetuer, semper laoreet perfecto ad qui, est rebum nulla argumentum ei. Fierent adipisci iracundia est ei, usu timeam persius
+                  ea. Usu ea justo malis, pri quando everti electram ei, ex homero omittam salutatus sed.
+                  <ul class="meta-post">
+                        <li><i class="icon-calendar"></i> Mar 13, 2019</a></li>
+                        <li><i class="icon-user"></i> Adrian Nadeau</a></li>
+                        
+                      </ul>
+                </p>
+                <p>
+                  Qui ut ceteros comprehensam. Cu eos sale sanctus eligendi, id ius elitr saperet, ocurreret pertinacia pri an. No mei nibh consectetuer, semper laoreet perfecto ad qui, est rebum nulla argumentum ei. Fierent adipisci iracundia est ei, usu timeam persius
+                  ea. Usu ea justo malis, pri quando everti electram ei, ex homero omittam salutatus sed.
+                  <ul class="meta-post">
+                        <li><i class="icon-calendar"></i> Mar 13, 2019</a></li>
+                        <li><i class="icon-user"></i> Adrian Nadeau</a></li>
+                        
+                      </ul>
+                </p> -->
             </div>
             </article>
           </div>
@@ -100,12 +101,22 @@
   <% include partials/scripts %>
   <script src="/assets/js/sign-in.js"></script>
   <script src="/assets/js/postFunctions.js"></script>
+  <script src="/assets/js/jquery-custom.js"></script>
 
   <script>
   $(document).ready(function() {
       
         getUserInfo('profile');
         loadPosts();
+       //load posts by user
+      //  function getUserWithPosts(username){
+      //   alert("try this");
+      //   return User.findOne({ username: username })
+      //     .populate('posts').exec((err, posts) => {
+      //       console.log("Populated User " + posts);
+      //     })
+      // }
+       
   });
   
   
