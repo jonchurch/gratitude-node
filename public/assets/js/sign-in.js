@@ -8,7 +8,7 @@ $('.alert-signup').hide();
 $('.alert-signin').hide();
 $('.alert-reset').hide();
 
-
+var bioMaxLength = 255;
 
  
  
@@ -98,7 +98,7 @@ $("#createUserForm").submit(function(event) {
         
 });
 $("#updateUserInfo").submit(function(event) {
-       
+    //bioMaxLength
         // Prevent the form from submitting via the browser.
         event.preventDefault();
         var id = $("#id-hidden").val();

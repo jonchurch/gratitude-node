@@ -52,10 +52,11 @@
                   <div class="controls">
                       <strong>Website</strong><br/><input type="url" class="form-control custom-input-width"  class="custom-input-width" id="info-url">
                       <!-- <strong></stron>Website</strong><input type="url" class="form-control" id="website" > -->
-                    <br/>
+                    <br/><br/>
                   </div>
                       <div class="controls">
-                          <strong>Tell us a little more about you</strong><textarea class="custom-input-width" rows="3" type="text" id="info-bio"></textarea>
+                          <strong>Tell us a little more about you</strong><textarea class="custom-input-width" rows="3" type="text" id="info-bio" maxlength="255"></textarea><br/>
+                          No more than 255 characters. <strong><span id="chars">255</span> characters remaining.</strong>
                       </div>
                     </div>
 
@@ -86,6 +87,8 @@
   
   <% include partials/scripts %>
   <script src="/assets/js/sign-in.js"></script>
+  <script src="/assets/js/jquery-custom.js"></script>
+ 
 
   <script>
   $(document).ready(function() {

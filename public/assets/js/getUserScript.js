@@ -35,11 +35,12 @@ function getUserInfo(page){
                   
                    
                    if(page=='info'){
-                        // $("#name").html(data.firstname+" "+data.lastname);
-                        // $("#bio").html(data.bio);
-                        
-                        // $("#location").val(data.location);
-                        $("id").val(data._id);
+                      $("#info-bio").val(data.bio);
+                      $("#info-url").val(data.url);
+                      $("#info-firstname").val(data.firstname);
+                      $("#info-lastname").val(data.lastname);
+                      $("#info-location").val(data.location);
+                      $("id").val(data._id);
                    }else if(page=='profile'){
                      
                       $("#firstname").html(data.firstname)

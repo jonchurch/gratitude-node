@@ -57,10 +57,7 @@ $("#updateProfile").submit(function(event) {
          var bio = $("#info-bio").val();
          console.log("in profile update: "+id);
          // Prevent the form from submitting via the browser.
-         
-   
-  
-   
+        
        $.ajax({
            url: '/posts/updateProfileAccount',
            type: "POST",
@@ -79,8 +76,8 @@ $("#updateProfile").submit(function(event) {
            */
            success: function(data, textStatus, jqXHR) {
               //window.location.assign("/profile/?id="+data._id);
-              
-               $(".alert-success").show();
+              console.log("reload profile page")
+              window.location.assign("/profile/?id="+data._id);
                
            },
            error: function(jqXHR, textStatus, errorThrown) {
@@ -92,14 +89,32 @@ $("#updateProfile").submit(function(event) {
        });
  
 });
-               
-//            },
-//            error: function(jqXHR, textStatus, errorThrown) {
-               
-               
-//                $(".alert-danger").show();
-               
-//            }
-//        });
- 
-// });
+function loadPosts() {
+    
+    $.ajax({
+        url: '/posts/',
+        type: "GET",
+        dataType: "json",
+        data: {
+            
+        },
+        /**
+        * A function to be called if the request succeeds.
+        */
+        success: function(data, textStatus, jqXHR) {
+            alert("Posts:"+data);
+            
+           //window.location.assign("/profile/?id="+data._id);
+        //    console.log("reload profile page")
+        //    window.location.assign("/profile/?id="+data._id);
+            
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            
+            // $(".alert-danger").html('Error updating information. Please try again from your profile.');
+            // $(".alert-danger").show();
+            
+        }
+    });
+
+}

@@ -11,27 +11,16 @@ var express = require('express'),
 //// GET ALL POSTS ////
 ///////////////////////
 router.get('/', function(req, res) {
-  try{
-    logger.debug("get posts");
-    var dateDesc = {createDate: 1};
-
-        const posts = Post.find({}, function (err, results) {
-
-            if (err) {
-              logger.error(err.message);  
-              res.send(err.message);
-                
-
-            }
-
-        }).sort(dateDesc);
-        
-        res.send(posts);
-      }
-      catch(err) {
-        logger.error("Error posts");  
+  Post.find({}, function (err, posts) {
+    
+    if (err){ 
+        logger.error("Could not get all posts");
         res.send(err.message);
-      }
+        next();  
+    }
+    res.json(posts);
+          
+  });        
 });
 
 router.post('/updateProfileAccount/', async function(req,res){

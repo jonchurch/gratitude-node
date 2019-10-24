@@ -41,7 +41,7 @@
                
                
               <div class="widget">
-                <h5 class="widgetheading">Bio</h5>
+                <h5 class="widgetheading">About</h5>
                 <p id="bio">
                   
                 </p>
@@ -64,9 +64,11 @@
                           
                     </form>
                     <h4>Recent Posts</h4>
+                    <span id ="posts"></span>
                 </div>
                
               </div>
+              <div id="recent-posts-list">
               <p>
                 Qui ut ceteros comprehensam. Cu eos sale sanctus eligendi, id ius elitr saperet, ocurreret pertinacia pri an. No mei nibh consectetuer, semper laoreet perfecto ad qui, est rebum nulla argumentum ei. Fierent adipisci iracundia est ei, usu timeam persius
                 ea. Usu ea justo malis, pri quando everti electram ei, ex homero omittam salutatus sed.
@@ -76,6 +78,16 @@
                       
                     </ul>
               </p>
+              <p>
+                Qui ut ceteros comprehensam. Cu eos sale sanctus eligendi, id ius elitr saperet, ocurreret pertinacia pri an. No mei nibh consectetuer, semper laoreet perfecto ad qui, est rebum nulla argumentum ei. Fierent adipisci iracundia est ei, usu timeam persius
+                ea. Usu ea justo malis, pri quando everti electram ei, ex homero omittam salutatus sed.
+                <ul class="meta-post">
+                      <li><i class="icon-calendar"></i> Mar 13, 2019</a></li>
+                      <li><i class="icon-user"></i> Adrian Nadeau</a></li>
+                      
+                    </ul>
+              </p>
+            </div>
             </article>
           </div>
          
@@ -91,10 +103,9 @@
 
   <script>
   $(document).ready(function() {
-     
-    
-        // $(".alert").hide();
+      
         getUserInfo('profile');
+        loadPosts();
   });
   
   
