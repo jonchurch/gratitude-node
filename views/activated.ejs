@@ -28,8 +28,9 @@
               
             <h4>Account <strong>Activated.</strong></h4>
             <!-- id: <span id="id"></span> -->
+            <div class="alert alert-danger text-center alert-activate" role="alert">Error activated your account. Please try again later.</div>
             <p>
-                        Thank you for activated your account.<br/><strong>We are very GRATEFUL to have you as part of the community!</strong><br/><br/>
+                        Your account has been activated.<br/><strong>We are very GRATEFUL to have you as part of the community!</strong><br/><br/>
                         If you aren't directed to the next page, <a id="info-link" href="#">click here.</a><br/>
                         
                         
@@ -51,16 +52,37 @@
 
   <script>
   $(document).ready(function() {
-        getUserInfo('info');
-        activateUser();
-        
-        //set time then forward to info
-        setTimeout(function(){
-            alert("in time function");
+   
+    getUserInfo('info');
+    
+    var _id= getUrlParameter("id");
+    
+    $.ajax({ 
+      url: '/users/activateAccount/'+_id,
+      type : "POST",
+      data: {
+          _id:_id,
+          activated: "y"
+      },
+      success : function(user) {
             
-            alert($('#info-link').attr('action'));
-            
-        }, 3000);
+        $("#info-link").attr("href",'/info/?id='+_id);
+           
+          
+      },
+      error : function(error) {
+       
+        $(".alert-signup").show();
+              
+          
+      }
+  });
+  //set time then forward to info
+  setTimeout(function(){
+    var _id= getUrlParameter("id");
+  window.location.assign("/info/?id="+_id);
+          // $("#info-link").attr("href",'/info/?id='+_id);
+  }, 4000);
 });
 
   </script>

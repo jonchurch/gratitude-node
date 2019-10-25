@@ -1,6 +1,7 @@
 function getUserInfo(page){
-    
+   
     var _id= getUrlParameter("id");
+   
       
       $.ajax({
           url: '/users/'+_id,
@@ -10,13 +11,11 @@ function getUserInfo(page){
             success: function(data, textStatus, jqXHR) {
                    //set data for specifice page
                   //  HTML Values
-                 
-
-                    $("#name").html(data.firstname+" "+data.lastname);
+                  $("#name").html(data.firstname+" "+data.lastname);
                     
-                   $("#website").html(data.website);
-                   $("#id").html(data._id); 
-                   $("#uid").html(data._id);               
+                  $("#website").html(data.website);
+                  $("#id").html(data._id); 
+                  $("#uid").html(data._id);               
                   // input values
                   $("#id").val(data._id);
                   $("#id-hidden").val(data._id);
@@ -72,6 +71,9 @@ function getUserInfo(page){
                       var dateFormat = $.datepicker.formatDate('MM dd, yy', new Date(dateFormat));
                       //alert(dateFormat);
                       $("#reg-date").html(dateFormat);
+                      //check here for welcome
+                      $("#postedBy").val(data.firstname+" "+data.lastname);
+                      
                    }          
             },
             error: function(jqXHR, textStatus, errorThrown) {

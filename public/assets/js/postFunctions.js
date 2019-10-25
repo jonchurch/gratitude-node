@@ -1,15 +1,17 @@
 $(".alert").hide();
 $(".alert-success").hide();
 $(".alert-post-success").hide();
+$(".alert-post-danger").hide();
 $('.alert-success-account').hide();
 $('.alert-danger-account').hide();
 
-var id = $("#id-hidden").val();
+
 $("#postMsgForm").submit(function(event) {
-    
+    var id = $("#id-hidden").val();
+   
     // Prevent the form from submitting via the browser.
     event.preventDefault();
-      
+      console.log("poster: "+$("#postedBy").val());
       
         //create post
         $.ajax({
@@ -17,6 +19,7 @@ $("#postMsgForm").submit(function(event) {
          type : "POST",
          data: {
             userid:id,
+            postedBy: $("#postedBy").val(),
             postMsg: $("#postMsg").val(),
             postMediaType :  "",
             postMedia :   ""
@@ -25,16 +28,15 @@ $("#postMsgForm").submit(function(event) {
          
          success : function(customer) {
             $(".alert-post-success").show();
+            $(".alert-post-danger").hide();
             $("#postMsg").val('');
             
             
          },
          error : function(error) {
-           
+            $(".alert-post-success").hide();
             $(".alert-post-danger").show();
-            $("#postMsg").val('');
-                
-             
+         
          }
          
       });
@@ -89,6 +91,7 @@ $("#updateProfile").submit(function(event) {
        });
  
 });
+
 function loadPosts() {
     
     $.ajax({
@@ -102,21 +105,23 @@ function loadPosts() {
         * A function to be called if the request succeeds.
         */
         success: function(data, textStatus, jqXHR) {
-            
+            $(".alert-post-danger").hide();
         
             var postsHTML="";
-            var dateFormat;
+            
            
             $.each( data, function( key, value ) {
                 var dateFormat = value.createDate;
+                var postedName=value.postedBy;
+                name = postedName.replace("Welcome","");
+                
                 dateFormat = $.datepicker.formatDate('MM dd, yy', new Date(dateFormat));
                 postsHTML += "<p>"+value.postMsg+
                 "<ul class=\"meta-post\">"+
                 "<li><i class=\"icon-calendar\"></i> "+dateFormat+"</a></li>"+
-                "<li><i class=\"icon-user\"></i> Adrian Nadeau</a></li>"+
-                        
+                 "<li><i class=\"icon-user\"></i>"+name+"</a></li>"+
                 "</ul></p><br/><hr/>" ;
-                // alert("concated: "+postsHTML);
+                
                 
             });
             
@@ -125,9 +130,8 @@ function loadPosts() {
        
         },
         error: function(jqXHR, textStatus, errorThrown) {
+              $(".alert-post-success").show();
             
-            // $(".alert-danger").html('Error updating information. Please try again from your profile.');
-            // $(".alert-danger").show();
             
         }
     });

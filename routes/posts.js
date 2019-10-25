@@ -11,16 +11,18 @@ var express = require('express'),
 //// GET ALL POSTS ////
 ///////////////////////
 router.get('/', function(req, res) {
-  Post.find({}, function (err, posts) {
-    
-    if (err){ 
-        logger.error("Could not get all posts");
-        res.send(err.message);
-        next();  
-    }
-    res.json(posts);
-          
-  });        
+  logger.debug("get all posts");
+  var q = Post.find({}).sort({'createDate': 1});
+    q.exec(function(err, posts) {
+      if (err){ 
+              logger.error("Could not get all posts");
+              res.send(err.message);
+              next();  
+      }
+      //logger.debug(posts);
+      res.json(posts);
+    });
+ 
 });
 
 router.post('/updateProfileAccount/', async function(req,res){
@@ -42,8 +44,9 @@ router.post('/',function(req,res){
     // logger.debug("user ID: "+req.body.userid);
     
   
-    var post = new Post({
+      var post = new Post({
             userid: req.body.userid,
+            postedBy:req.body.postedBy,
             postMsg: req.body.postMsg,
             postMediaType :  "",
             postMedia :   ""
@@ -60,9 +63,9 @@ router.post('/',function(req,res){
               res.send(error.message);
              
             }
-           
+            res.send(post)
           }); 
-          res.send(post)
+          
       }); 
         
 });

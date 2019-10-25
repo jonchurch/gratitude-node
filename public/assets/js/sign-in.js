@@ -268,40 +268,40 @@ $("#updateUserPassword").submit(function(event) {
         
      }
  });
- function activateUser() {
-   //update to activated
-  var _id= getUrlParameter("id");
-  console.log("id: "+_id);
-  $.ajax({ 
-      url: '/users/activateAccount',
-      type : "POST",
-      data: {
-          _id:_id,
-          activated: "y"
-      },
-      success : function(user) {
+//  function activateUser() {
+//    //update to activated
+//   var _id= getUrlParameter("id");
+//   alert("id: "+_id);
+//   $.ajax({ 
+//       url: '/users/activateAccount/'+_id,
+//       type : "POST",
+//       data: {
+//           _id:_id,
+//           activated: "y"
+//       },
+//       success : function(user) {
             
-            $("#info-url").hide();
-            //window.location.assign("/info/?id="+user._id);
+//             $("#info-url").hide();
+//             //window.location.assign("/info/?id="+user._id);
           
-      },
-      error : function(error) {
+//       },
+//       error : function(error) {
           
-          $(".alert-signin").hide();
-          if(error.status==410){
+//           $(".alert-signin").hide();
+//           if(error.status==410){
               
-              $(".alert-signup").html("Email already in use. Try again");
-              $(".alert-signup").show();
+//               $(".alert-signup").html("Email already in use. Try again");
+//               $(".alert-signup").show();
               
-          }
-          else{
-              $(".alert-signup").html("Error registering. Please try again later.");
-              $(".alert-signup").show();
+//           }
+//           else{
+//               $(".alert-signup").html("Error registering. Please try again later.");
+//               $(".alert-signup").show();
               
-          }
-      }
-  });
+//           }
+//       }
+//   });
   
-  }
+//   }
  
      
