@@ -1,12 +1,12 @@
 
-// $('.alert-danger').hide();
-// $('.alert-success').hide();
+$('.alert-danger').hide();
+$('.alert-success').hide();
 
-// $('.login-alert').hide();
+$('.login-alert').hide();
  $('.pass-err-msg').hide();
-// $('.alert-signup').hide();
-// $('.alert-signin').hide();
-// $('.alert-reset').hide();
+$('.alert-signup').hide();
+$('.alert-signin').hide();
+$('.alert-reset').hide();
 
 
 
@@ -72,6 +72,7 @@ $("#createUserForm").submit(function(event) {
  });
  $("#loginUserForm").submit(function(event) {
        
+
         // Prevent the form from submitting via the browser.
         event.preventDefault();
         var email = $("#loginemail").val();
@@ -91,13 +92,15 @@ $("#createUserForm").submit(function(event) {
                 */
                 success: function(data, textStatus, jqXHR) {
                     
+                    
                     window.location.assign("/profile/?id="+data._id);
                 },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    $("#loginemail").val('');
-                    $("#loginpassword").val('');
+                error : function(error) {
                     
-                    $(".alert-signin").html('Error logging in, please confirm username and password are correct');
+                    // $("#loginemail").val('');
+                    // $("#loginpassword").val('');
+                    
+                    //$(".alert-signin").html(error.message);
                     $(".alert-signin").show();
                 }
         });

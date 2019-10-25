@@ -14,10 +14,10 @@ var mongoose = require('mongoose');
         avatar: String,
         url: String,
         activated: String,
-        posts: [{
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Post'
-          }],
+        // posts: [{
+        //     type: mongoose.Schema.Types.ObjectId,
+        //     ref: 'Post'
+        //   }],
         createDate: {
             type: Date,
             default: Date.now

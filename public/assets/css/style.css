@@ -2798,6 +2798,7 @@ form{
 }
 .alert {
     margin-bottom: 10px;
+    margin-top: 10px;
     border-radius: 6px !important;
     font-weight: 700;
 }

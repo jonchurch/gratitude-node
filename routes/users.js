@@ -61,7 +61,7 @@ router.post('/login', function(req, res) {
             
             const error = new Error('Login Failed. Cofirm Email and Password are correct.');
             res.status(500);
-            logger.error("User not found");
+            
             res.send(JSON.stringify(error.message));
        
     }else{
@@ -84,6 +84,7 @@ router.post('/login', function(req, res) {
     } 
 });        
 });
+
 
 ////////////////////
 ////USER Profile////

@@ -7,10 +7,10 @@ var mongoose = require('mongoose');
         postMsg: { type: String, required: true },
         postMediaType: {type: String},
         postMedia: {type: String},
-        user: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'User'
-          },
+        // user: {
+        //     type: mongoose.Schema.Types.ObjectId,
+        //     ref: 'User'
+        //   },
         createDate: {
             type: Date,
             default: Date.now
