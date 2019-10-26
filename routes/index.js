@@ -23,6 +23,10 @@ router.get('/resetForm', function(req, res) {
   res.render('resetpassword');
 });
 
+router.get('/resetProfileForm', function(req, res) {
+  res.render('profileresetpassword');
+});
+
 router.get('/account', function(req, res) {
     res.render('account');
 });

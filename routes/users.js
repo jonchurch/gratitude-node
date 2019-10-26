@@ -304,11 +304,12 @@ const host = `${global.gConfig.host}`
      let email = "adriannadeau.art@gmail.com";
     let emailname = "Adrian Nadeau";
     if(!host.includes('localhost')){
+        logger.info('host does not include localhost');
         email=user.email;
         emailname=user.firstname+" "+user.lastname;
     }
-    logger.debug("email: "+email);
-    logger.debug("name: "+emailname);
+        logger.debug("email: "+email);
+        logger.debug("name: "+emailname);
       const mailjet = require ('node-mailjet')
       .connect(`${global.gConfig.mailjet_api_key}`, `${global.gConfig.mailjet_secret_key}`);
       logger.debug("send email...");
@@ -368,10 +369,10 @@ const host = `${global.gConfig.host}`
   });
 });
 router.post('/resetPassword/', async function(req,res){
-  logger.debug("Id:"+req.body.id);
+  logger.debug("reset password Id:"+req.body.id);
   // logger.debug("password: "+req.body.password);
   var pwd = req.body.password;
-  
+  logger.debug("new pass:"+pwd);
   bcrypt.genSalt(10, function(err, salt) {
     if (err) {
       logger.error("BCrype issue");
@@ -383,7 +384,7 @@ router.post('/resetPassword/', async function(req,res){
     }
     //console.log('Salt: ' + salt);
     bcrypt.hash(pwd, salt, function (err, hash) {
-      User.findOneAndUpdate({_id: mongoose.Types.ObjectId(req.body.id)}, {$set: {password: pwd}}, {new: true}, (err, doc) => {
+      User.findOneAndUpdate({_id: mongoose.Types.ObjectId(req.body.id)}, {$set: {password: hash}}, {new: true}, (err, doc) => {
         if (err) {
             logger.error("Something wrong updating password");
             res.send(JSON.stringify(err.message));
