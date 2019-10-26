@@ -163,6 +163,15 @@ router.post('/',function(req,res){
                               
                               const host = `${global.gConfig.host}`
                               logger.info ("host: " +host);
+                              let email = "adriannadeau.art@gmail.com";
+                              let emailname = "Adrian Nadeau";
+                              if(!host.includes('localhost')){
+                                  email=user.email;
+                                  emailname=user.firstname+" "+user.lastname;
+                              }
+                              logger.debug("email: "+email);
+                              logger.debug("name: "+emailname);
+
                               
                               const mailjet = require ('node-mailjet')
                                 .connect(`${global.gConfig.mailjet_api_key}`, `${global.gConfig.mailjet_secret_key}`);
@@ -178,8 +187,8 @@ router.post('/',function(req,res){
                                                     },
                                                     "To": [
                                                             {
-                                                                    "Email":"adriannadeau.art@gmail.com",
-                                                                    "Name": "Adrian"
+                                                                    "Email":email,
+                                                                    "Name": emailname
                                                             }
                                                     ],
                                                     "Subject": "Activate Your Account",
@@ -193,7 +202,7 @@ router.post('/',function(req,res){
                                                         "<h3>Hey Friend,<h3/>"+
                                                         
                                                         " <p>Click the link below to activate your account</p>"+
-                                                            "<a href='"+host+"/activateAccount/"+user._id+"'>Activate Acccount</a>"+
+                                                            "<a href='"+host+"/activateAccount/?id="+user._id+"'>Activate Acccount</a>"+
                                                             
                                                             
                                                         "</td>"+
@@ -241,7 +250,7 @@ router.post('/activateAccount/:id', function(req, res) {
         logger.error("err:"+err.message);
         res.send(err.message);
       }
-      console.log(user);
+    //   console.log(user);
       res.send(JSON.stringify(doc));
       
   });
@@ -290,60 +299,68 @@ router.post('/sendReset/',function(req,res){
   if(user){
   //create guid to send to user with id in url
     logger.debug("user exists");
-    logger.info("Send Reset Password Email");
-      // const mailjet = require ('node-mailjet')
-      // .connect(`${global.gConfig.mailjet_api_key}`, `${global.gConfig.mailjet_secret_key}`);
-      // logger.debug("send email...");
-      // const request = mailjet
-      // .post("send", {'version': 'v3.1'})
-      // .request({
-      //     "Messages":[
-      //             {
-      //                     "From": {
-      //                             "Email": "adrian@gratitudetoday.io",
-      //                             "Name": "GratitudeToday.io"
-      //                     },
-      //                     "To": [
-      //                             {
-      //                                     "Email":emailAddress,
-      //                                     "Name": user.firstname+ " "+ user.lastname
-      //                             }
-      //                     ],
-      //                     "Subject": "Reset Your Password",
-      //                     //"TextPart": "Dear "+user.firstname+", welcome to GratitudeToday! May the delivery force be with you!",
-      //                     // "HTMLPart": "<h3>Dear "+user.firstname+", Click the link below to reset your password.<br/><br/>"+
-      //                     // "<a href='https://gratitudetoday.io/users/resetForm/'>Reset Password</a>"
-      //                     "HTMLPart": "<table width='100%'><tr width='100%'><td style='background-color:#cb1103;'><a href='http://www.gratitudetoday.io'><img src='https://www.gratitudetoday.io/logo-gratitudetoday-red.png'></img></a></td></tr>"+
-      //                       "<tr style='width='100%'>"+
-      //                       "<td>"+
-                            
-      //                       "<h3>Hey Adrian,<h3/>"+
-                            
-      //                       " <p>Click the link below to activate your account</p>"+
-      //                           "<a href='http://localhost:3000/resetForm/?id="+user._id+"'>Reset Password</a>"+
-                                
-                                
-      //                         "</td>"+
-                              
-      //                       "</tr>"+
 
-      //                     "</table>"
+const host = `${global.gConfig.host}`
+     let email = "adriannadeau.art@gmail.com";
+    let emailname = "Adrian Nadeau";
+    if(!host.includes('localhost')){
+        email=user.email;
+        emailname=user.firstname+" "+user.lastname;
+    }
+    logger.debug("email: "+email);
+    logger.debug("name: "+emailname);
+      const mailjet = require ('node-mailjet')
+      .connect(`${global.gConfig.mailjet_api_key}`, `${global.gConfig.mailjet_secret_key}`);
+      logger.debug("send email...");
+      const request = mailjet
+      .post("send", {'version': 'v3.1'})
+      .request({
+          "Messages":[
+                  {
+                          "From": {
+                                  "Email": "adrian@gratitudetoday.io",
+                                  "Name": "GratitudeToday.io"
+                          },
+                          "To": [
+                                  {
+                                          "Email":emailAddress,
+                                          "Name": emailname
+                                  }
+                          ],
+                          "Subject": "Reset Your Password",
+                          
+                          "HTMLPart": "<table width='100%'><tr width='100%'><td style='background-color:#cb1103;'><a href='http://www.gratitudetoday.io'><img src='https://www.gratitudetoday.io/logo-gratitudetoday-red.png'></img></a></td></tr>"+
+                            "<tr style='width='100%'>"+
+                            "<td>"+
+                            
+                            "<h3>Hey Adrian,<h3/>"+
+                            
+                            " <p>Click the link below to activate your account</p>"+
+                                "<a href='"+host+"/resetForm/?id="+user._id+"'>Reset Password</a>"+
+                                
+                                
+                              "</td>"+
+                              
+                            "</tr>"+
+
+                          "</table>"
 		
 
-      //             }
-      //     ]
-      // })
-      // request
-      // .then((result) => {
-          
-      //     res.send(result.body);
-      // })
-      // .catch((err) => {
-      //     logger.error(err.statusCode)
-      //     res.send(err.statusCode);
-      // })
-      res.send(result.body);
-    
+                  }
+          ]
+      })
+      request
+        .then((result) => {
+        // console.log(result.body);
+        // logger.debug("send user back:"+user);
+        res.send(user)
+        })
+        .catch((err) => {
+            logger.error(err.message);
+            res.send(err.statusCode);
+
+        })
+        
   }else{
     logger.error("User not found!");
     res.send("Email not found, no user");
