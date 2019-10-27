@@ -44,6 +44,9 @@ router.get('/activate', function(req, res) {
 router.get('/activateAccount', function(req, res) {
     res.render('activated');
 });
+router.get('/register', function(req, res) {
+    res.render('register');
+});
 
 router.get('/ajaxtest', function(req, res) {
   res.render('ajaxtest');

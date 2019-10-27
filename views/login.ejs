@@ -2,130 +2,71 @@
 <html lang="en">
 
 <head>
-    <% include partials/head %>
+  <% include partials/head %>
 </head>
 
 <body>
-    <header></header>
-  <!-- <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
-    <source src="mp4/bg.mp4" type="video/mp4">
-  </video> -->
-
-  <div class="masthead-sub">
-    <div class="masthead-bg"></div>
-    <div class="container h-100">
-      <div class="row h-100">
-          <div class="col-3"></div>
-        <div class="col-6">
-          <div class="masthead-content sub-title-font py-5 py-md-0">
-            <h1 class="mb-3" style="padding-top:15px;">GratitudeToday.io</h1>
-            
-            <div class="alert alert-danger text-center err-container">
-                    <span class="err-msg"></span>
-                </div>
-			       <p>Login.</p>
-            <form action="#" class="needs-validation " id="createUserForm" novalidate >
-               <div class="input-group input-group-newsletter">
-                    <input type="email" class="form-control" placeholder="Email Address..." id="email" aria-label="Enter First Name..." aria-describedby="basic-addon">
-                <div class="invalid-feedback">
-                      Please enter your Email Address.
-                  </div>
-                </div>
-                <div class="input-group ">
-                    <input type="password" class="form-control" placeholder="Enter Password" id="password" aria-label="Enter password..." aria-describedby="basic-addon">
-                <div class="invalid-feedback">
-                      Please enter your lastname.
-                  </div>
-                </div>
-                
-                <div class="input-group">
-                    <input type="submit" class="btn btn-success" value="Login">
-                    <p><span class="small-text"> Not a member?</span> <a href="/login/">Register here</a></p>
-                <!-- <button type="submit" id="createUserForm" class="btn btn-success">Register</button> -->
-                
-                </div>
-           </form>     
-		  </div>
-      <div class="col-3"></div>
-      <div class="row col-12 font-family: 'Roboto', sans-serif text-center quote-text">“Gratitude is a powerful catalyst for happiness. It’s the spark that lights a fire of joy in your soul.” – Amy Collette</div>
+  <div id="wrapper">
+    
+    <!-- end header -->
+    <section id="inner-headline">
+      <div class="container">
+        <div class="row">
+          <div class="span12">
+            <div class="inner-heading">
+                <% include partials/logo %>
+              &nbsp;
+            </div>
+          </div>
+          
       </div>
-    </div>
-  </div>
+    </section>
+    <section id="content">
+      <div class="container">
+        <div class="row">
+            <div class="span3"></div>
+            <div class="span6">
+            <h4><strong>Login</strong></h4>
+            <div class="alert alert-danger text-center alert-signup" role="alert"></div>
+            <form class="form-horizontal" id="loginUserForm" >
+                <div class="control-group" id="login-form">
+                    <div class="controls">
+                      
+                      <strong>Email</strong><br/><input type="email" class="form-control custom-input-width" minlength="6" id="login-email" required>
+                    
+                  </div>
+                  <div class="controls">
+                      
+                      <strong>Password</strong><br/><input type="password" class="form-control custom-input-width" minlength="6" id="login-password" required>
+                    
+                  </div>
+                   
+                    <div class="control-group">
+                  <div class="controls text-center">
+                      <br/>
+                      <input type="submit" class="btn btn-green" id="button-signup" value="Sign in">
+                      <br/><p class="aligncenter"><br/>
+                  Don't have an account? <a href="/register" >Sign up</a>
+                  <br/>Forgot password? <a href="/resetForm">Reset</a>
+                </p>
+             
+               
+                </div>
+          </form>
+            <div class="span3"></div>
+          </div>
+        </div>
+    </section>      
+    <% include partials/footer %>
   
+
+  </div>
+  <a href="#" class="scrollup"><i class="icon-chevron-up icon-square icon-32 active"></i></a>
   <% include partials/scripts %>
+  <script src="/assets/js/sign-in.js"></script>
+
+   
 </body>
-<script type="text/javascript">
-      
-   $( document ).ready(function() {
-      // Handler for .ready() called. 
-       $(".err-msg").hide();
-       $(".err-container").hide();
-      
-      
-   });
-      (function() {
-          'use strict';
-          window.addEventListener('load', function() {
-              // Fetch all the forms we want to apply custom Bootstrap validation styles to
-              var forms = document.getElementsByClassName('needs-validation');
-              // Loop over them and prevent submission
-              var validation = Array.prototype.filter.call(forms, function(form) {
-              form.addEventListener('submit', function(event) {
-              if (form.checkValidity() === false) {
-                 event.preventDefault();
-                  
-              }
-              else{
-                  event.preventDefault();
-                  var email = $("#email").val();
-                  console.log(email);
-                  var password = $("#password").val();
-                  console.log(password);
-                 if( email != "" && password != "" ){
-                     $.ajax({
-                           url: '/users/login',
-                           type: "POST",
-                           dataType: "json",
-                           data: {
-                           email: email,
-                           password: password
-                           },
-
-
-                            /**
-                            * A function to be called if the request succeeds.
-                            */
-                            success: function(data, textStatus, jqXHR) {
-                                
-                                 console.log("id : "+data._id);
-                              window.location.assign("/profile/?id="+data._id);
-                              
-                            
-                              
-                            },
-                           /**
-                            * A function to be called if the request fails. 
-                            */
-                           error : function(error) {
-                             
-                             console.log(error);
-                             if(error.status==500){
-                               $(".err-msg").html("Login failed, confirm username and password.");
-                                $(".err-msg").show(); 
-                                $(".err-container").show();
-                             }
-                         }
-
-                          
-                     });
-                  }
-            }
-              
-           form.classList.add('was-validated');
-          }, false);
-      });
-      }, false);
-      })();
-</script>
+<% include partials/cookie-msg %>
 
 </html>

@@ -26,20 +26,27 @@
         <div class="row">
             <div class="span3"></div>
             <div class="span6">
-           
-           
-           <h4>Reset<strong> Password.</strong></h4>
-            <form class="form-horizontal" id="updateUserPassword" >
-                <input type="hidden" id="id-hidden" value=""></input>
-                  
+            <h4>Create<strong> Account.</strong></h4>
+            <div class="alert alert-danger text-center alert-signup" role="alert"></div>
+            <form class="form-horizontal" id="createUserForm" >
+                
+                  <div class="controls">
+                      
+                      <strong>Email</strong><br/><input type="email" class="form-control custom-input-width" minlength="6" id="email" required>
+                    
+                  </div>
                   <div class="controls">
                       
                       <strong>Password</strong><br/><input type="password" class="form-control custom-input-width" minlength="6" id="password" required>
                     
                   </div>
                   <div class="controls">
-                       <strong>Password</strong><br/><input type="password" class="form-control custom-input-width" minlength="6" id="password" required>
+                      <strong>Confirm Password</strong><br/><input type="password" class="form-control custom-input-width" minlength="6" id="confirmpassword" required>
                       <!-- <strong></stron>Website</strong><input type="url" class="form-control" id="website" > -->
+                    
+                  </div>
+                  <div class="controls">
+                      <input type="checkbox" id="invalidCheck" required checked>&nbsp;<span class="small-text">Agree to terms and conditions</span>
                     
                   </div>
                 
@@ -48,16 +55,18 @@
                 <div class="control-group">
                   <div class="controls text-center">
                       <br/>
-                      <button type="submit" class="btn btn-green">Reset Password</button>
-                      
+                      <input type="submit" class="btn btn-green" id="button-signup" value="Sign up">&nbsp;&nbsp;<input type="button" id="no-thanks-btn" class="btn btn-default" value="No Thanks">
+                      <p class="aligncenter">
+                  Already have an account? <a href="/login" >Sign in</a>
+                </p>
+              
                    
                   </div>
                 </form>
             <div class="span3"></div>
           </div>
         </div>
-    </section>
-          
+    </section>      
     <% include partials/footer %>
   
 
@@ -66,11 +75,7 @@
   <% include partials/scripts %>
   <script src="/assets/js/sign-in.js"></script>
 
-   <script>
-  $(document).ready(function() {
-        getUserInfo('resetpassword');
-  });
-  </script>
+   
 </body>
 <% include partials/cookie-msg %>
 
