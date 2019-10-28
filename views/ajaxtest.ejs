@@ -1,12 +1,107 @@
-<script>
-    Post = require("../models/PostModel"),
-    User = require("../models/UserModel"),
-function getUserWithPosts(username){
-  alert("try this");
-  return User.findOne({ username: username })
-    .populate('posts').exec((err, posts) => {
-      console.log("Populated User " + posts);
-    })
-}
-getUserWithPosts();
-</script>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <% include partials/head %>
+</head>
+
+<body>
+  <div id="wrapper">
+    
+    
+    <section id="inner-headline">
+      <div class="container">
+        <div class="row">
+          <div class="span12">
+              <% include partials/logo %>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+    <section id="content" style="background-color: #ffcccc;">
+      <div class="container">
+        <div class="row">
+             <div class="span3">
+               
+                
+            <aside class="right-sidebar">
+                <div class="widget">
+                <div></div>
+                <h5 class="widgetheading" style="padding-top:30px;font-size:1rem;font-weight:600;" id="name"></h5>
+                <% include partials/profile-dropdown %>
+                
+                <span id="Avatar" style="padding-top:20px;"><img id="avatar-img" src="/assets/img/avatar.png" style="padding-bottom: 10px;"></span><br/>
+                
+                <span id="email"></span><br/>
+                <span id="url"></span><br/>
+                <span id="location"></span><br/>
+                Joined: <span id="reg-date"></span>
+                </div>
+               
+               
+              <div class="widget">
+                <h5 class="widgetheading">About</h5>
+                <p id="bio">
+                  
+                </p>
+              </div>
+            </aside>
+          </div>
+          <div class="span1" style="background-color:#e6ecf0"></div>
+          <div class="span8" style="background-color:aliceblue;padding-left:20px;">
+            <article>
+              <div class="top-wrapper">
+                <div class="post-heading">
+                    
+                    <form class="form-horizontal" id="postMsgForm" > 
+                        <div class="alert alert-success alert-post-success text-center" style="width:85%;" role="alert">Post Successfully Submitted!</div>
+                        <div class="alert alert-danger  alert-post-danger text-center" style="width:85%;" role="alert">Error occured, please try again.</div>
+                        <input type="hidden" id="id-hidden" value=""></input>
+                        <input type="hidden" id="postedBy" value=""></input>
+                        <h4 class="post-header">What are you grateful for today...</h4><textarea rows="3" class="custom-input-width" type="text" id="postMsg" maxLength="255" required></textarea>
+                   
+                        <br/>No more than 255 characters. <strong><span id="chars">255</span> characters remaining.</strong><br/>
+                        <button type="submit" class="btn btn-green">Post</button>
+                          
+                    </form>
+                    <h4>Recent Posts</h4>
+                   
+                </div>
+               
+              </div>
+
+              <div id="recent-posts-list">
+               
+            </div>
+            </article>
+          </div>
+         
+        </div>
+      </div>
+    </section>
+ <% include partials/footer %>
+  </div>
+  
+  <% include partials/scripts %>
+  <script src="/assets/js/sign-in.js"></script>
+  <script src="/assets/js/postFunctions.js"></script>
+  <script src="/assets/js/jquery-custom.js"></script>
+
+  <script>
+  $(document).ready(function() {
+      
+        getUserInfo('profile');
+        loadPosts();
+    
+  });
+  
+  
+  
+  </script>
+
+</body>
+
+<% include partials/cookie-msg %>
+
+</html>
