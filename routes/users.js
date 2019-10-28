@@ -61,6 +61,7 @@ router.post('/login', function(req, res) {
    var pwd = req.body.password;
          
   	bcrypt.genSalt(10, function(err, salt) {
+      logger.info("Login user....");
          if (err) {
                 logger.error("BCrype issue");
                 const error = new Error("Unable to register, please try again.");
@@ -150,8 +151,8 @@ router.post('/',function(req,res){
                         
                         var user = new User({
                             
-                          firstname:"Welcome",
-                          lastname :req.body.email,
+                          firstname:req.body.firstname,
+                          lastname :req.body.lastname,
                           email :req.body.email,
                           password : hash,
                           public:1,
@@ -172,12 +173,9 @@ router.post('/',function(req,res){
                               
                               const host = `${global.gConfig.host}`
                               logger.info ("host: " +host);
-                              let email = "adriannadeau.art@gmail.com";
-                              let emailname = "Adrian Nadeau";
-                              if(!host.includes('localhost')){
-                                  email=user.email;
-                                  emailname=user.firstname+" "+user.lastname;
-                              }
+                              const email=user.email;
+                              const emailname=user.firstname+" "+user.lastname;
+                              
                               logger.debug("email: "+email);
                               logger.debug("name: "+emailname);
 
@@ -208,7 +206,7 @@ router.post('/',function(req,res){
                                                         "<tr style='width='100%'>"+
                                                         "<td>"+
                                                         
-                                                        "<h3>Hey Friend,<h3/>"+
+                                                        "<h3>Hey "+user.firstname+",<h3/>"+
                                                         
                                                         " <p>Click the link below to activate your account</p>"+
                                                             "<a href='"+host+"/activateAccount/?id="+user._id+"'>Activate Acccount</a>"+

@@ -34,29 +34,14 @@ function getUserInfo(page){
                   
                    
                    if(page=='info'){
-                      $("#info-bio").val(data.bio);
-                      $("#info-url").val(data.url);
-                      $("#info-firstname").val('');
-                      $("#info-lastname").val('');
-                      $("#info-location").val(data.location);
-                      $("id").val(data._id);
-                      let first="",last="";
-                   }else if(page=='profile'){
-                       
-                    if(data.firstname.includes('Welcome')){
-                         
-                         first="";
-                         last="";
-                    }
-                    else{
-                       
-                        first=data.firstname;
-                        last=data.lastname;
-                    }
-                       
-                      $("#firstname").html(first);
                       
-                      $("#lastname").html(last);
+                      $("id").val(data._id);
+                      
+                   }else if(page=='profile'){
+                    
+                      $("#name").html(data.firstname+" "+data.lastname );
+                      
+                      //$("#lastname").html(data.lastname);
                       
                       $("#email").html(data.email);
                       $("#account-link").attr("href","/account/?id="+_id);
@@ -74,12 +59,12 @@ function getUserInfo(page){
                   
                       
                       $("#info-email").val(data.email);
-                      $("#info-firstname").val(first);
-                      $("#info-lastname").val(last);
+                      $("#info-firstname").val(data.firstname);
+                      $("#info-lastname").val(data.lastname);
                       $("#info-location").val(data.location);
                       $("#info-bio").val(data.bio);
                       $("#info-url").val(data.url);
-
+                      
                       //jquery datepicker plugin
                       var dateFormat = data.createDate;
                       var dateFormat = $.datepicker.formatDate('MM dd, yy', new Date(dateFormat));
@@ -94,6 +79,7 @@ function getUserInfo(page){
                     console.log('Error occurred');
                     
             }
+            
         }); 
         $("#btn_skip").click(function() {
             event.preventDefault();
