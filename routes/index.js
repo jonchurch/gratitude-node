@@ -19,6 +19,10 @@ router.get('/info', function(req, res) {
   res.render('info');
 });
 
+router.get('/sendRestForm', function(req, res) {
+  res.render('resetemail');
+});
+
 router.get('/resetForm', function(req, res) {
   res.render('resetpassword');
 });
@@ -49,7 +53,7 @@ router.get('/register', function(req, res) {
 });
 
 router.get('/ajaxtest', function(req, res) {
-  res.render('ajaxtest');
+  res.render('/profile/ajaxtest');
 });
 
 

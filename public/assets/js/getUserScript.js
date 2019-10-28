@@ -12,7 +12,7 @@ function getUserInfo(page){
                    //set data for specifice page
                   //  HTML Values
                   $("#name").html(data.firstname+" "+data.lastname);
-                    
+                
                   $("#website").html(data.website);
                   $("#id").html(data._id); 
                   $("#uid").html(data._id);               
@@ -40,10 +40,24 @@ function getUserInfo(page){
                       $("#info-lastname").val('');
                       $("#info-location").val(data.location);
                       $("id").val(data._id);
+                      let first="",last="";
                    }else if(page=='profile'){
-                     
-                      $("#firstname").html(data.firstname)
-                      $("#lastname").html(data.lastname)
+                       
+                    if(data.firstname.includes('Welcome')){
+                         
+                         first="";
+                         last="";
+                    }
+                    else{
+                       
+                        first=data.firstname;
+                        last=data.lastname;
+                    }
+                       
+                      $("#firstname").html(first);
+                      
+                      $("#lastname").html(last);
+                      
                       $("#email").html(data.email);
                       $("#account-link").attr("href","/account/?id="+_id);
                       $("#support-link").attr("href","/support/?id="+_id);
@@ -60,8 +74,8 @@ function getUserInfo(page){
                   
                       
                       $("#info-email").val(data.email);
-                      $("#info-firstname").val(data.firstname);
-                      $("#info-lastname").val(data.lastname);
+                      $("#info-firstname").val(first);
+                      $("#info-lastname").val(last);
                       $("#info-location").val(data.location);
                       $("#info-bio").val(data.bio);
                       $("#info-url").val(data.url);

@@ -67,14 +67,11 @@ $("#createUserForm").submit(function(event) {
      }
  });
  $("#loginUserForm").submit(function(event) {
-       
-
-        // Prevent the form from submitting via the browser.
+       // Prevent the form from submitting via the browser.
         event.preventDefault();
-        var email = $("#loginemail").val();
-        var password = $("#loginpassword").val();
-        console.log("password: "+password);
-        console.log("email: "+email);
+        var email = $("#login-email").val();
+        var password = $("#login-password").val();
+       
         $.ajax({
                 url: '/users/login',
                 type: "POST",
@@ -225,6 +222,7 @@ $("#sendRestForm").submit(function(event) {
 $("#updateUserPassword").submit(function(event) {
     // Prevent the form from submitting via the browser.
     event.preventDefault();
+    console.log("change password");
    
     if($("#password").val()!= $("#confirmpassword").val()){
          $(".alert-danger").html('Password and Confirm Password must be same.');
@@ -248,14 +246,14 @@ $("#updateUserPassword").submit(function(event) {
          
          success : function(customer) {
             
-            $(".alert-password-change").html("Password updated successfully. <a href='#'>Login</a>");
-            $(".alert-password-change").show();
-             //window.location.assign("/info/?id="+customer._id);
+            $(".alert-password-success").html("Password updated successfully. <a href='/login/'>Login</a>");
+            $(".alert-password-success").show();
+             
          },
          error : function(error) {
-            $(".alert-signin").hide();
-            $(".alert-signup").html("Error updating password. Please try again later.");
-            $(".alert-signup").show();
+            $(".alert-password-success").hide();
+            $(".alert-password-danger").html("Error updating password. Please try again later.");
+            $(".alert-password-danger").show();
                 
              
          }

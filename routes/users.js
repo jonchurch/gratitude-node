@@ -52,38 +52,47 @@ router.get('/:id', function(req, res) {
 ////LOGIN USER////
 //////////////////
 router.post('/login', function(req, res) {
-   // bcrypt.compare(password, user.password);
-   
-    User.findOne({ email:req.body.email,activated:"y"}, function (err, user) {
-    
-    if (!user){ 
-         //not there
-            
-            const error = new Error('Login Failed. Cofirm Email and Password are correct.');
-            res.status(500);
-            
-            res.send(JSON.stringify(error.message));
-       
-    }else{
-      
-      bcrypt.compare(req.body.password, user.password, function (err, result) {
-        if (result == true) {
-          
-          res.send(user);
-        } else {
-            
-            const error = new Error('Login Failed. Cofirm Email and Password are correct.');
+   logger.debug("log user in : "+req.body.email);
+   const email=req.body.email;
+   logger.debug("email: "+email);
+   let pwd=req.body.password;
+   logger.debug("pass: "+pwd);
 
-            res.status(500);
-            logger.debug("User not found");
-            res.send(JSON.stringify(error.message));
-          
-        }
-      });
-       
-    } 
-});        
-});
+   var pwd = req.body.password;
+         
+  	bcrypt.genSalt(10, function(err, salt) {
+         if (err) {
+                logger.error("BCrype issue");
+                const error = new Error("Unable to register, please try again.");
+                //throw new Error('User email account already exists.');
+                res.status(420);
+                res.send(JSON.stringify(error.message));
+        
+              } else {
+              
+                  bcrypt.hash(pwd, salt, function (err, hash) {
+                      if (err) {
+                        logger.error("ERROR! users bcrypt");
+                        const error = new Error("Unable to register, please try again.");
+                        
+                        res.status(420);
+                        res.send(JSON.stringify(error.message));
+                      } else {
+                      	logger.debug("hash: " +hash)
+                        User.findOne({ email:req.body.email,password:hash,activated:"y"}, function (err, user) {
+                            if (!user){ 
+                                //not there
+                                logger.error("User Not found");
+                                res.send("User Not found");
+                            }
+                            res.send(user); 
+                        });
+                     }
+                  });
+               }
+              
+     });
+ });
 
 
 ////////////////////
@@ -300,7 +309,7 @@ router.post('/sendReset/',function(req,res){
   //create guid to send to user with id in url
     logger.debug("user exists");
 
-const host = `${global.gConfig.host}`
+    const host = `${global.gConfig.host}`
      let email = "adriannadeau.art@gmail.com";
     let emailname = "Adrian Nadeau";
     if(!host.includes('localhost')){

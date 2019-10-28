@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <% include partials/head %>
+</head>
+
+<body>
+  <div id="wrapper">
+    
+    <!-- end header -->
+    <section id="inner-headline">
+      <div class="container">
+        <div class="row">
+          <div class="span12">
+            <div class="inner-heading">
+                <% include partials/logo %>
+              &nbsp;
+            </div>
+          </div>
+          
+      </div>
+    </section>
+    <section id="content">
+      <div class="container">
+        <div class="row">
+            <div class="span3"></div>
+            <div class="span6">
+           
+           
+           <h4>Reset<strong> Password.</strong></h4>
+            <form class="form-horizontal" id="sendRestForm" >
+            <div class="alert alert-danger text-center alert-password-success" role="alert"></div>
+            <div class="alert alert-success text-center alert-password-danger" role="alert"></div>
+            <div class="control-group">
+              <div class="controls">
+                      
+                      <strong>Email</strong><br/><input type="email" class="form-control custom-input-width" id="resetEmail" required>
+                    
+                  </div>
+              
+              
+            <div class="control-group text-center">
+              <div class="controls"><br/>
+                  <button type="submit" class="btn btn-green" id="button-reset">Reset password</button>
+                
+              </div>
+              <p class="aligncenter"><br/>
+                We will send instructions on how to reset your password to your inbox
+              </p>
+            </div>
+          </form>
+            <div class="span3"></div>
+          </div>
+        </div>
+    </section>
+          
+    <% include partials/footer %>
+  
+
+  </div>
+  <a href="#" class="scrollup"><i class="icon-chevron-up icon-square icon-32 active"></i></a>
+  <% include partials/scripts %>
+  <script src="/assets/js/sign-in.js"></script>
+
+
+</body>
+<% include partials/cookie-msg %>
+
+</html>
