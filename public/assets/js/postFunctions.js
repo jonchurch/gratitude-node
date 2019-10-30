@@ -1,6 +1,6 @@
 $(".alert").hide();
 $(".alert-success").hide();
-$(".alert-post-success").hide();
+// $(".alert-post-success").hide();
 $(".alert-post-danger").hide();
 $('.alert-success-account').hide();
 $('.alert-danger-account').hide();

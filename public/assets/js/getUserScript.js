@@ -38,8 +38,9 @@ function getUserInfo(page){
                       $("id").val(data._id);
                       
                    }else if(page=='profile'){
-                    
+                      console.log('in profile');
                       $("#name").html(data.firstname+" "+data.lastname );
+                      $("#profile-name").html(data.firstname+" "+data.lastname );
                       
                       //$("#lastname").html(data.lastname);
                       

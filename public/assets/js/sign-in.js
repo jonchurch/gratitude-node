@@ -72,6 +72,8 @@ $("#createUserForm").submit(function(event) {
         event.preventDefault();
         const email = $("#login-email").val();
         const password = $("#login-password").val();
+        console.log("email: "+email);
+        console.log("pass: "+password);
         
         
        
