@@ -70,13 +70,14 @@ $("#createUserForm").submit(function(event) {
        // Prevent the form from submitting via the browser.
        
         event.preventDefault();
+       try{
         const email = $("#login-email").val();
         const password = $("#login-password").val();
         console.log("email: "+email);
         console.log("pass: "+password);
         
         
-       
+        console.log("run ajax script");
         $.ajax({
                 url: '/users/login',
                 type: "POST",
@@ -98,6 +99,11 @@ $("#createUserForm").submit(function(event) {
                     $(".alert-signin").show();
                 }
         });
+       }
+       catch(err) {
+        console.log("err: "+err.message);
+      }
+      console.log("past ajax script");
         
 });
 $("#updateUserInfo").submit(function(event) {
