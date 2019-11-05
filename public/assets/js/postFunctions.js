@@ -5,13 +5,15 @@ $(".alert-post-danger").hide();
 $('.alert-success-account').hide();
 $('.alert-danger-account').hide();
 
+console.log('in postfunctions')
+
 
 $("#postMsgForm").submit(function(event) {
     var id = $("#id-hidden").val();
    
     // Prevent the form from submitting via the browser.
     event.preventDefault();
-      console.log("poster: "+$("#postedBy").val());
+      
       
         //create post
         $.ajax({
@@ -51,13 +53,13 @@ $("#updateProfile").submit(function(event) {
    event.preventDefault();
        var id = $("#id-hidden").val();
          var email = $("#info-email").val();
-         console.log("email: "+email);
+        
          var firstname = $("#info-firstname").val();
          var lastname = $("#info-lastname").val();
          var location = $("#info-location").val();
          var url = $("#info-url").val();
          var bio = $("#info-bio").val();
-         console.log("in profile update: "+id);
+         
          // Prevent the form from submitting via the browser.
         
        $.ajax({
@@ -78,7 +80,7 @@ $("#updateProfile").submit(function(event) {
            */
            success: function(data, textStatus, jqXHR) {
               //window.location.assign("/profile/?id="+data._id);
-              console.log("reload profile page")
+              
               window.location.assign("/profile/?id="+data._id);
                
            },
@@ -107,25 +109,57 @@ function loadPosts() {
         success: function(data, textStatus, jqXHR) {
             $(".alert-post-danger").hide();
         
-            var postsHTML="";
+            let recentPostsHTML=$("#recentPosts");
             
            
             $.each( data, function( key, value ) {
-                var dateFormat = value.createDate;
-                var postedName=value.postedBy;
-                name = postedName.replace("Welcome","");
+                    recentPostsHTML+="<div class='cardbox'>"+
+		 
+                    "<div class='cardbox-heading'>"+
+                    
+                    "<div class='dropdown pull-right'>"+
+                    "<button class='btn btn-secondary btn-flat btn-flat-icon' type='button' data-toggle='dropdown' aria-expanded='false'>"+
+                    "<em class='fa fa-ellipsis-h'></em>"+
+                    "</button>"+
+                    "<div class='dropdown-menu dropdown-scale dropdown-menu-right' role='menu' style='position: absolute; transform: translate3d(-136px, 28px, 0px); top: 0px; left: 0px; will-change: transform;'>"+
+                    "<a class='dropdown-item' href='#'>Like</a>"+
+                    "<a class='dropdown-item' href='#'>Re-Post</a>"+
+                    "<a class='dropdown-item' href='#'>Report</a>"+
+                    "</div>"+
+                    "</div>"+
+                 
                 
-                dateFormat = $.datepicker.formatDate('MM dd, yy', new Date(dateFormat));
-                postsHTML += "<p>"+value.postMsg+
-                "<ul class=\"meta-post\">"+
-                "<li><i class=\"icon-calendar\"></i> "+dateFormat+"</a></li>"+
-                 "<li><i class=\"icon-user\"></i>"+name+"</a></li>"+
-                "</ul></p><br/><hr/>" ;
-                
-                
-            });
+                    "<div class='media m-0'>"+
+                    "<div class='d-flex mr-3'>"+
+                    "<a href='#'><img class='img-responsive img-circle' src='assets/img/users/18.jpg' alt='User'/></a></div>"+
+                    "<div class='media-body'>"+
+                    "<p class='m-0'>Benjamin Robinson</p>"+
+                    "<small><span>10 hours ago</span></small>"+
+                    "</div>"+
+                    "</div>"+
+                    "</div>"+
+                    "</div>";
+                 
+                });
+                $("#recentPosts").html(recentPostsHTML);
             
-            $("#recent-posts-list").html(postsHTML);
+           
+           
+                // var dateFormat = value.createDate;
+                // var postedName=value.postedBy;
+                // name = postedName.replace("Welcome","");
+                
+                // dateFormat = $.datepicker.formatDate('MM dd, yy', new Date(dateFormat));
+                // postsHTML += "<p>"+value.postMsg+
+                // "<ul class=\"meta-post\">"+
+                // "<li><i class=\"icon-calendar\"></i> "+dateFormat+"</a></li>"+
+                //  "<li><i class=\"icon-user\"></i>"+name+"</a></li>"+
+                // "</ul></p><br/><hr/>" ;
+                
+                
+           
+            
+            // $("#recent-posts-list").html(postsHTML);
 
        
         },

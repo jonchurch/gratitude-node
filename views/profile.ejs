@@ -126,8 +126,10 @@
 		</div><!--/ col-lg-3 -->
 	    <div class="col-lg-6">
 		<div class="cardbox">
-						<div class="alert alert-success alert-post-success text-center" style="width:85%;" role="alert">Post Successfully Submitted!</div>
-                        <div class="alert alert-danger  alert-post-danger text-center" style="width:85%;" role="alert">Error occured, please try again.</div>
+				<form class="form-horizontal" id="postMsgForm" > 
+						<input type="hidden" id="id-hidden" value=""></input>
+						<div class="alert alert-success alert-post-success text-center" style="width:100%;" role="alert">Post Successfully Submitted!</div>
+                        <div class="alert alert-danger  alert-post-danger text-center" style="width:100%;" role="alert">Error occured, please try again.</div>
                         <input type="hidden" id="id-hidden" value=""></input>
                         <input type="hidden" id="postedBy" value=""></input>
 						<div class="cardbox-heading">
@@ -137,6 +139,7 @@
 							<br/>No more than 255 characters. <strong><span id="chars">255</span> characters remaining.</strong><br/>
 							<button type="submit" class="btn btn-success">Post</button><br/><br/>
 						</div>
+					</form>
 				</div>
 				<div class="cardbox-heading">
 						<p class="m-0" style="padding-left:15px;">Recent Posts</p>
@@ -152,7 +155,8 @@
             <div class="dropdown-menu dropdown-scale dropdown-menu-right" role="menu" style="position: absolute; transform: translate3d(-136px, 28px, 0px); top: 0px; left: 0px; will-change: transform;">
 				<% include partials/profilepostdropdown %>
             </div>
-           </div><!--/ dropdown -->
+		   </div><!--/ dropdown -->
+		   
            <!-- END dropdown-->
            <div class="media m-0">
             <div class="d-flex mr-3">
@@ -175,11 +179,12 @@
           </div><!--/ cardbox-like -->			  
                 
 		 </div><!--/ cardbox -->	
-		
-       
-     
-		
-       
+		<!-- loop through posts -->
+		<div id="recentPosts">
+
+
+		</div>
+		 
 		
 		</div><!--/ col-lg-6 -->
 

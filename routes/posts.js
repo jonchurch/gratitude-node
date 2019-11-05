@@ -42,7 +42,7 @@ router.post('/updateProfileAccount/', async function(req,res){
 router.post('/',function(req,res){      
     // logger.debug("MSG: "+req.body.postMsg);
     // logger.debug("user ID: "+req.body.userid);
-    
+    logger.debug("add post...");
   
       var post = new Post({
             userid: req.body.userid,

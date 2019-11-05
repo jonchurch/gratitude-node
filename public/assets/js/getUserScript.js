@@ -73,6 +73,7 @@ function getUserInfo(page){
                       $("#reg-date").html(dateFormat);
                       //check here for welcome
                       $("#postedBy").val(data.firstname+" "+data.lastname);
+                      console.log("posted By:"+data.firstname+" "+data.lastname);
                       
                    }          
             },

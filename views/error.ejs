@@ -1,53 +1,50 @@
 <!DOCTYPE html>
-<html>
-   <head>
-        <% include partials/head %>
-    </head>
-   <body>
-      <section class="pb_cover_v3 cover-bg-opacity text-left pb_gradient_v1">
-         <div class="container">
-            <div class="row align-items-center justify-content-center">
-              
-               
-               <div class="col-md-6 relative align-self-center join-today-index">
-                 
-                  <div class="panel panel-default">
-                     <div class="panel-heading">
-                        <h3 class="panel-title text-center">Sorry!</h3>
-                     </div>
-                     <div class="panel-body">
-                        <form class="needs-validation" novalidate>
-                           
-                              
-                              
-                           <div class="form-row text-center">
-                              <div class="col-md-12 mb-3 text-center">
-                                  <h3>OOPPS! Looks like you found a page that is missing or wasn't typed in properly.</h3>
-                                 
+<html lang="en">
 
-                                 <h4>Please for give us and return home by <a href="/">clicking here.</a></h3>
-                              </div>
-                                 
-                           </div>
-                           
-                     </div>
-                     
-                     
-                     </div>
-                     </div>
-                 </div>
-                  </form>
-                  
-                  
-               </div>
+<head>
+  <% include partials/head %>
+</head>
+
+<body>
+  <div id="wrapper">
+    
+    <!-- end header -->
+    <section id="inner-headline">
+      <div class="container">
+        <div class="row">
+          <div class="span12">
+            <div class="inner-heading">
+                <% include partials/logo %>
+              &nbsp;
             </div>
-         </div>
-         </div>
-      </section>
-      <% include partials/footer %>
-       <% include partials/scripts %>
-      
+          </div>
+          
+      </div>
+    </section>
+    <section id="content">
+      <div class="container">
+        <div class="row">
+            <div class="span3"></div>
+            <div class="span6 text-center">
+            <h4 style="color:black !important;"><strong>OOPPS! Looks like you found a page that is missing or was mistyped.</strong></h4>
+           <img src="/assets/img/not-found-alien.png"</img>
+                                 
+
+            <p><a href="/">Click Here.</a> to return home.</p><br/><br/>
+            <div class="span3"></div>
+          </div>
+        </div>
+    </section>      
+    <% include partials/footer %>
+  
+
+  </div>
+  <a href="#" class="scrollup"><i class="icon-chevron-up icon-square icon-32 active"></i></a>
+  <% include partials/scripts %>
+  <script src="/assets/js/sign-in.js"></script>
+
    
+</body>
+<% include partials/cookie-msg %>
+
 </html>
-
-
