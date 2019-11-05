@@ -8,6 +8,8 @@ $('.alert-danger-account').hide();
 console.log('in postfunctions')
 
 
+
+
 $("#postMsgForm").submit(function(event) {
     var id = $("#id-hidden").val();
    
@@ -110,9 +112,10 @@ function loadPosts() {
             $(".alert-post-danger").hide();
         
             let recentPostsHTML=$("#recentPosts");
-            
+            // console.table(data);
            
             $.each( data, function( key, value ) {
+                
                     recentPostsHTML+="<div class='cardbox'>"+
 		 
                     "<div class='cardbox-heading'>"+

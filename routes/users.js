@@ -165,7 +165,7 @@ router.post('/',function(req,res){
                         });
                           user.save(function (error, user) {
                               if (error){ 
-                                console.log("err:"+error);
+                                //console.log("err:"+error);
                                 res.send(error.message);
                               //send email
                               
@@ -275,9 +275,9 @@ router.post('/updateAccount/', async function(req,res){
   logger.debug("update user account: "+req.body.id);
   User.findOneAndUpdate({_id: mongoose.Types.ObjectId(req.body.id)}, {$set: {firstname: req.body.firstname, lastname: req.body.lastname, bio: req.body.bio, location: req.body.location, url:req.body.url}}, {new: true}, (err, doc) => {
     if (err) {
-        console.log("Something wrong when updating data!");
+        //console.log("Something wrong when updating data!");
     }
-    console.log(doc);
+    //console.log(doc);
     res.send(JSON.stringify(doc))
   });
 });
@@ -411,7 +411,7 @@ router.get('/activateAccount/:id', function(req, res) {
         logger.error(err.message);
         res.send(err.message);
     }
-    console.log(doc);
+    //console.log(doc);
         logger.debug(req.params.id);
         res.send(JSON.stringify(doc));
     });

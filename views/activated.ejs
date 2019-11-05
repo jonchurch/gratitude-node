@@ -49,40 +49,17 @@
   
   <% include partials/scripts %>
   <script src="/assets/js/sign-in.js"></script>
-
-  <script>
+<script>
   $(document).ready(function() {
-   
-    getUserInfo('info');
-    
-    var _id= getUrlParameter("id");
-    
-    $.ajax({ 
-      url: '/users/activateAccount/'+_id,
-      type : "POST",
-      data: {
-          _id:_id,
-          activated: "y"
-      },
-      success : function(user) {
-            
-        $("#info-link").attr("href",'/info/?id='+_id);
-           
-          
-      },
-      error : function(error) {
-       
-        $(".alert-signup").show();
-              
-          
-      }
-  });
-  //set time then forward to info
-  setTimeout(function(){
-    var _id= getUrlParameter("id");
-  window.location.assign("/info/?id="+_id);
+   const id=$.urlParam('id');
+   //set time then forward to info
+   setTimeout(function(){
+     window.location.assign("/info/?id="+id);
           // $("#info-link").attr("href",'/info/?id='+_id);
-  }, 4000);
+    }, 4000);
+    $("#info-link").attr("href",'/info/?id='+id);
+  
+ 
 });
 
   </script>

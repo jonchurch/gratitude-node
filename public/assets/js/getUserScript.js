@@ -1,6 +1,7 @@
 function getUserInfo(page){
    
-    var _id= getUrlParameter("id");
+  const _id=$.urlParam('id');
+  console.log(_id);
    
       
       $.ajax({
