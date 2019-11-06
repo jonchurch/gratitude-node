@@ -76,8 +76,6 @@ $("#createUserForm").submit(function(event) {
         console.log("email: "+email);
         console.log("pass: "+password);
         
-        
-        console.log("run ajax script");
         $.ajax({
                 url: '/users/login',
                 type: "POST",
@@ -95,6 +93,7 @@ $("#createUserForm").submit(function(event) {
                     window.location.assign("/profile/?id="+data._id);
                 },
                 error : function(error) {
+                    alert(error.name + ': ' + error.message);
                     
                     $(".alert-signin").show();
                 }
@@ -103,7 +102,7 @@ $("#createUserForm").submit(function(event) {
        catch(err) {
         console.log("err: "+err.message);
       }
-      console.log("past ajax script");
+      
         
 });
 $("#updateUserInfo").submit(function(event) {
