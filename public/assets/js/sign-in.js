@@ -68,22 +68,21 @@ $("#createUserForm").submit(function(event) {
  });
  $("#loginUserForm").submit(function(event) {
        // Prevent the form from submitting via the browser.
-       
-        event.preventDefault();
-       try{
+     event.preventDefault();
+    try{
         const email = $("#login-email").val();
         const password = $("#login-password").val();
         console.log("email: "+email);
         console.log("pass: "+password);
+        var data = {};
+			data.email =email;
+			data.message =password;
         
         $.ajax({
-                url: '/users/login',
-                type: "POST",
-                dataType: "json",
-                data: {
-                    email: email,
-                    password: password
-                },
+                url: '/users/loginUser',
+                type: 'POST',
+				data: JSON.stringify(data),
+				contentType: 'application/json',
                 /**
                 * A function to be called if the request succeeds.
                 */
@@ -93,8 +92,8 @@ $("#createUserForm").submit(function(event) {
                     window.location.assign("/profile/?id="+data._id);
                 },
                 error : function(error) {
-                    alert(error.name + ': ' + error.message);
-                    
+                    //alert(error.name + ': ' + error.message);
+                    console.log(error);
                     $(".alert-signin").show();
                 }
         });
@@ -147,41 +146,41 @@ $("#updateUserInfo").submit(function(event) {
             });
       
 });
-$("#acvitateUser").submit(function(event) {
+// $("#acvitateUser").submit(function(event) {
        
-    // Prevent the form from submitting via the browser.
-    event.preventDefault();
-    var url_string = window.location.href; //window.location.href
-    var url = new URL(url_string);
-    var id = url.searchParams.get("id");
-    console.log(id);
+//     // Prevent the form from submitting via the browser.
+//     event.preventDefault();
+//     var url_string = window.location.href; //window.location.href
+//     var url = new URL(url_string);
+//     var id = url.searchParams.get("id");
+//     console.log(id);
    
-        // $.ajax({
-        //     url: '/users/activateAccount',
-        //     type: "POST",
-        //     dataType: "json",
-        //     data: {
-        //         id:id,
-        //         activated: "y"
-        //     },
-        //     /**
-        //     * A function to be called if the request succeeds.
-        //     */
-        //     success: function(data, textStatus, jqXHR) {
-        //        //window.location.assign("/profile/?id="+data._id);
+//         // $.ajax({
+//         //     url: '/users/activateAccount',
+//         //     type: "POST",
+//         //     dataType: "json",
+//         //     data: {
+//         //         id:id,
+//         //         activated: "y"
+//         //     },
+//         //     /**
+//         //     * A function to be called if the request succeeds.
+//         //     */
+//         //     success: function(data, textStatus, jqXHR) {
+//         //        //window.location.assign("/profile/?id="+data._id);
                
-        //         $(".alert-success").show();
+//         //         $(".alert-success").show();
                 
-        //     },
-        //     error: function(jqXHR, textStatus, errorThrown) {
+//         //     },
+//         //     error: function(jqXHR, textStatus, errorThrown) {
                 
-        //         $(".alert-danger").html('Error updating information. Please try again from your profile.');
-        //         $(".alert-danger").show();
+//         //         $(".alert-danger").html('Error updating information. Please try again from your profile.');
+//         //         $(".alert-danger").show();
                 
-        //     }
-        // });
+//         //     }
+//         // });
   
-});
+// });
 
      
 $("#sendRestForm").submit(function(event) {
@@ -269,7 +268,6 @@ $("#updateUserPassword").submit(function(event) {
      }
  });
  $( "#no-thanks-btn" ).click(function() {
-     alert("home");
+   
     window.location.assign("/");
 });
- 

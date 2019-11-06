@@ -53,7 +53,7 @@ router.get('/register', function(req, res) {
 });
 
 router.get('/ajaxtest', function(req, res) {
-  res.render('/profile/ajaxtest');
+  res.render('ajaxtest');
 });
 
 

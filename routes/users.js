@@ -51,7 +51,9 @@ router.get('/:id', function(req, res) {
 //////////////////
 ////LOGIN USER////
 //////////////////
-router.post('/login', function(req, res) {
+router.post('/loginUser', function(req, res) {
+  logger.debug("IN LOGIN USER");
+
    logger.debug("log user in : "+req.body.email);
    const email=req.body.email;
    logger.debug("email: "+email);
