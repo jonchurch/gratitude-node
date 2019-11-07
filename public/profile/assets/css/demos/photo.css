@@ -1016,7 +1016,7 @@ a.navbar-brand:hover {
 }
 .story-body h4{
   font-family: 'Abhaya Libre', serif;
-  font-size: 14px;
+  font-size: 1.5em;
   color: #fff;  
   line-height: 1;
 }
@@ -2388,6 +2388,13 @@ a.navbar-brand:hover {
 }
 .profile-link{
   color: #cb1103 !important;
+}
+.profile-text{
+  font-size: 1em !important;
+  overflow-wrap: break-word !important;
+  /* text-align:left !important; */
+  
+
 }
 
 

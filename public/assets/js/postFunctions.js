@@ -5,10 +5,6 @@ $(".alert-post-danger").hide();
 $('.alert-success-account').hide();
 $('.alert-danger-account').hide();
 
-console.log('in postfunctions')
-
-
-
 
 $("#postMsgForm").submit(function(event) {
     var id = $("#id-hidden").val();
@@ -30,7 +26,8 @@ $("#postMsgForm").submit(function(event) {
          },
          
          
-         success : function(customer) {
+         success : function(posts) {
+            
             $(".alert-post-success").show();
             $(".alert-post-danger").hide();
             $("#postMsg").val('');
@@ -110,34 +107,32 @@ function loadPosts() {
         */
         success: function(data, textStatus, jqXHR) {
             $(".alert-post-danger").hide();
-        
-            let recentPostsHTML=$("#recentPosts");
+            console.table(data);
+            let recentPostsHTML="";
             // console.table(data);
            
+            // $( "li" ).each(function( index ) {
+            //     console.log( index + ": " + $( this ).text() );
+            //   });
             $.each( data, function( key, value ) {
-                
+                    var dateFormat = value.createDate;
+                    
+                    dateFormat = $.datepicker.formatDate('MM dd, yy', new Date(value.createDate));
                     recentPostsHTML+="<div class='cardbox'>"+
 		 
                     "<div class='cardbox-heading'>"+
                     
-                    "<div class='dropdown pull-right'>"+
-                    "<button class='btn btn-secondary btn-flat btn-flat-icon' type='button' data-toggle='dropdown' aria-expanded='false'>"+
-                    "<em class='fa fa-ellipsis-h'></em>"+
-                    "</button>"+
-                    "<div class='dropdown-menu dropdown-scale dropdown-menu-right' role='menu' style='position: absolute; transform: translate3d(-136px, 28px, 0px); top: 0px; left: 0px; will-change: transform;'>"+
-                    "<a class='dropdown-item' href='#'>Like</a>"+
-                    "<a class='dropdown-item' href='#'>Re-Post</a>"+
-                    "<a class='dropdown-item' href='#'>Report</a>"+
-                    "</div>"+
-                    "</div>"+
+                    
                  
                 
                     "<div class='media m-0'>"+
                     "<div class='d-flex mr-3'>"+
                     "<a href='#'><img class='img-responsive img-circle' src='assets/img/users/18.jpg' alt='User'/></a></div>"+
                     "<div class='media-body'>"+
-                    "<p class='m-0'>Benjamin Robinson</p>"+
-                    "<small><span>10 hours ago</span></small>"+
+                    "<p class='m-0'>"+this.postedBy+"</p>"+
+                    "<small><span>"+dateFormat+"</span></small><br/><br/>"+
+                    this.postMsg+
+                   "<br/>Heart, Report, Re-Post"+
                     "</div>"+
                     "</div>"+
                     "</div>"+
