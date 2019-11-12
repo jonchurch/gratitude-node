@@ -68,6 +68,7 @@ $("#createUserForm").submit(function(event) {
  });
  $("#loginUserForm").submit(function(event) {
        // Prevent the form from submitting via the browser.
+       
      event.preventDefault();
     try{
         const email = $("#login-email").val();

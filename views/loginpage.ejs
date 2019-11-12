@@ -29,6 +29,32 @@
             <h4><strong>Login</strong></h4>
             <div class="alert alert-danger text-center alert-signin" role="alert">Error logging in. Confirm you email and password are correct and your account is activated.</div>
             <form class="form-horizontal" id="loginUserForm" >
+              <div class="control-group" id="login-form">
+                <label class="control-label" for="inputText">Email Address </label>
+                <div class="controls">
+                  <input type="email"  id = "login-email" required>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" for="inputSigninPassword">Password</label>
+                <div class="controls">
+                  <input type="password" id="login-password"" minlength="6" required>
+                </div>
+              </div>
+              <div class="control-group">
+                <div class="controls text-center">
+                    <button type="submit" class="btn btn-green">Sign in</button>
+                  
+                </div>
+                <p class="aligncenter margintop20">
+                    Don't have an account? <a href="#mySignup" data-dismiss="modal" aria-hidden="true" id="signup-open" data-toggle="modal">Sign up</a>
+                  </p>
+                <p class="aligncenter margintop20">
+                  Forgot password? <a href="#myReset" data-dismiss="modal" aria-hidden="true" id="reset-open" data-toggle="modal">Reset</a>
+                </p>
+              </div>
+            </form>
+            <!-- <form class="form-horizontal" id="loginUserForm" >
                 
                     <div class="controls">
                       
@@ -53,7 +79,7 @@
              
                
                 </div>
-          </form>
+          </form> -->
             <div class="span3"></div>
           </div>
         </div>
