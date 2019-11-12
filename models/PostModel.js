@@ -4,7 +4,6 @@ var mongoose = require('mongoose');
 
     var PostSchema = new Schema({
         userid: { type: String, required: true },
-        postedBy: { type: String},
         postMsg: { type: String, required: true },
         postMediaType: {type: String},
         postMedia: {type: String},

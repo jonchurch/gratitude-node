@@ -80,10 +80,13 @@ $("#createUserForm").submit(function(event) {
 			data.message =password;
         
         $.ajax({
-                url: '/users/loginUser',
-                type: 'POST',
-				data: JSON.stringify(data),
-				contentType: 'application/json',
+                url: '/users/login',
+                type: "POST",
+                dataType: "json",
+                data: {
+                    email: email,
+                    password: password
+                },
                 /**
                 * A function to be called if the request succeeds.
                 */
