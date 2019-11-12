@@ -13,7 +13,7 @@ var express = require('express'),
 ///////////////////////
 router.get('/', function(req, res) {
   //get all users and return for admin 
-  logger.debug("GET ALL USERS...");
+ 
   User.find({}, function (err, users) {
     
     if (err){ 
@@ -30,8 +30,7 @@ router.get('/', function(req, res) {
 //// GET 1 USER ////
 ////////////////////
 router.get('/:id', function(req, res) {
-  logger.debug("GET USER..."+req.params.id);
-  
+  logger.debug("Get ID: "+req.params.id);
     // logger.debug("param : "+req.params.id);
     const user= User.findById(req.params.id, function (err, user) {
       if (err){ 
@@ -52,50 +51,31 @@ router.get('/:id', function(req, res) {
 //////////////////
 ////LOGIN USER////
 //////////////////
-router.post('/loginUser', function(req, res) {
-    logger.debug("LOGIN USER...");
-
-   
+router.post('/login', function(req, res) {
+   logger.debug("log user in : "+req.body.email);
    const email=req.body.email;
    logger.debug("email: "+email);
    let pwd=req.body.password;
    logger.debug("pass: "+pwd);
 
-   var pwd = req.body.password;
-         
-  	bcrypt.genSalt(10, function(err, salt) {
-      logger.info("Login user....");
-         if (err) {
-                logger.error("BCrype issue");
-                const error = new Error("Unable to register, please try again.");
-                //throw new Error('User email account already exists.');
-                res.status(420);
-                res.send(JSON.stringify(error.message));
-        
-              } else {
-              
-                  bcrypt.hash(pwd, salt, function (err, hash) {
-                      if (err) {
-                        logger.error("ERROR! users bcrypt");
-                        const error = new Error("Unable to register, please try again.");
-                        
-                        res.status(420);
-                        res.send(JSON.stringify(error.message));
-                      } else {
-                      	logger.debug("hash: " +hash)
-                        User.findOne({ email:req.body.email,password:hash,activated:"y"}, function (err, user) {
-                            if (!user){ 
-                                //not there
-                                logger.error("User Not found");
-                                res.send("User Not found");
-                            }
-                            res.send(user); 
-                        });
-                     }
-                  });
-               }
-              
-     });
+  let query = {email: email, activated: 'y'};
+    User.findOne(query, function(err, user){
+        if(err) throw err;
+        if(!user){
+            res.send("User Not found");
+        }
+
+        // Match Password
+        bcrypt.compare(pwd, user.password, function(err, isMatch){
+            if(err) throw err;
+            if(isMatch){
+            res.send(user);
+            } else {
+            res.send("Wrong password");
+            }
+        });
+    });      
+
  });
 
 
@@ -103,7 +83,7 @@ router.post('/loginUser', function(req, res) {
 ////USER Profile////
 ////////////////////
 router.get('/profile/:id', function(req, res) {
-  logger.debug("LOAD PROFILE");
+    logger.info("Load profile page");
     logger.info(req.params.id);
     if (err){ 
       
@@ -119,7 +99,6 @@ router.get('/profile/:id', function(req, res) {
 ///////////////////////
 
 router.post('/',function(req,res){
-  logger.debug("CREATE USER...");
     logger.info("email: "+req.body.email);
     User.findOne({ email:req.body.email}, function (error, user) {
         if(user){
@@ -169,7 +148,7 @@ router.post('/',function(req,res){
                         });
                           user.save(function (error, user) {
                               if (error){ 
-                                //console.log("err:"+error);
+                                console.log("err:"+error);
                                 res.send(error.message);
                               //send email
                               
@@ -253,7 +232,6 @@ router.post('/',function(req,res){
 ////ACTIVATE USER////
 ////////////////////
 router.post('/activateAccount/:id', function(req, res) {
-  logger.debug("ACTIVATE USER...");
   
   try {
     
@@ -277,20 +255,20 @@ router.post('/activateAccount/:id', function(req, res) {
 ////UPDATE DETAILS//
 ////////////////////
 router.post('/updateAccount/', async function(req,res){
-  logger.debug("UPDATE USER..."+req.body.id);
+  logger.debug("update user account: "+req.body.id);
   User.findOneAndUpdate({_id: mongoose.Types.ObjectId(req.body.id)}, {$set: {firstname: req.body.firstname, lastname: req.body.lastname, bio: req.body.bio, location: req.body.location, url:req.body.url}}, {new: true}, (err, doc) => {
     if (err) {
-        //console.log("Something wrong when updating data!");
+        console.log("Something wrong when updating data!");
     }
-    //console.log(doc);
+    console.log(doc);
     res.send(JSON.stringify(doc))
   });
 });
 
 
 router.get('/info/:id', function(req, res) {
-  logger.debug("GET USER INFO.."+req.params.id);
-   
+    logger.debug(req.params.id);
+  
   if (err){ 
     logger.error(err.message);
     res.send("info error:"+err.message);
@@ -305,7 +283,6 @@ router.get('/info/:id', function(req, res) {
 ////SEND EMAIL Reset//
 ////////////////////
 router.post('/sendReset/',function(req,res){
-  logger.debug("SEND RESET PASSWORD..."+req.body.emai);
   var emailAddress=req.body.email;
   //console.log("session: " + JSON.stringify(req));
   User.findOne({ email:emailAddress}, function (error, user) {
@@ -382,7 +359,6 @@ router.post('/sendReset/',function(req,res){
   });
 });
 router.post('/resetPassword/', async function(req,res){
-  req.body.emai
   logger.debug("reset password Id:"+req.body.id);
   // logger.debug("password: "+req.body.password);
   var pwd = req.body.password;
@@ -418,7 +394,7 @@ router.get('/activateAccount/:id', function(req, res) {
         logger.error(err.message);
         res.send(err.message);
     }
-    //console.log(doc);
+    console.log(doc);
         logger.debug(req.params.id);
         res.send(JSON.stringify(doc));
     });

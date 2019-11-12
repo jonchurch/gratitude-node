@@ -12,7 +12,7 @@ var express = require('express'),
 ///////////////////////
 router.get('/', function(req, res) {
   logger.debug("get all posts");
-  var q = Post.find({}).sort({'createDate': 1});
+  var q = Post.find({}).sort({'createDate': -1});
     q.exec(function(err, posts) {
       if (err){ 
               logger.error("Could not get all posts");
@@ -42,7 +42,7 @@ router.post('/updateProfileAccount/', async function(req,res){
 router.post('/',function(req,res){      
     // logger.debug("MSG: "+req.body.postMsg);
     // logger.debug("user ID: "+req.body.userid);
-    logger.debug("add post...");
+    logger.debug("add post...:" +req.body.postedBy);
   
       var post = new Post({
             userid: req.body.userid,

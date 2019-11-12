@@ -12,7 +12,7 @@ $("#postMsgForm").submit(function(event) {
     // Prevent the form from submitting via the browser.
     event.preventDefault();
       
-      
+        console.log($("#postedBy").val());
         //create post
         $.ajax({
          url : "/posts/",
@@ -30,7 +30,7 @@ $("#postMsgForm").submit(function(event) {
             
             $(".alert-post-success").show();
             $(".alert-post-danger").hide();
-            $("#postMsg").val('');
+            window.location.assign("/profile/?id="+posts.userid);
             
             
          },
@@ -121,10 +121,6 @@ function loadPosts() {
                     recentPostsHTML+="<div class='cardbox'>"+
 		 
                     "<div class='cardbox-heading'>"+
-                    
-                    
-                 
-                
                     "<div class='media m-0'>"+
                     "<div class='d-flex mr-3'>"+
                     "<a href='#'><img class='img-responsive img-circle' src='assets/img/users/18.jpg' alt='User'/></a></div>"+
