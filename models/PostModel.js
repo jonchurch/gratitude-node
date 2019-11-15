@@ -1,21 +1,19 @@
 var mongoose = require('mongoose');
+User = require('./UserModel');
 
-    var Schema = mongoose.Schema;
+    
 
-    var PostSchema = new Schema({
-        userid: { type: String, required: true },
-        postedBy: { type: String, required: true },
+    var PostSchema = new mongoose.Schema({
+        // userid: { type: String, required: true },
+        // postedBy: { type: String, required: true },
         postMsg: { type: String, required: true },
         postMediaType: {type: String},
         postMedia: {type: String},
-        // postedBy: {
-        //     type: mongoose.Schema.Types.ObjectId,
-        //     ref: 'User'
-        // },
+        _user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
         createDate: {
             type: Date,
             default: Date.now
         }
     });
 
-    module.exports = mongoose.model('posts', PostSchema);
+    module.exports = mongoose.model('Posts', PostSchema);

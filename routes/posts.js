@@ -42,11 +42,12 @@ router.post('/updateProfileAccount/', async function(req,res){
 router.post('/',function(req,res){      
     // logger.debug("MSG: "+req.body.postMsg);
     // logger.debug("user ID: "+req.body.userid);
-    logger.debug("add post...:" +req.body.postedBy);
+    logger.debug("add post...:" +req.body.userid);
   
       var post = new Post({
-            userid: req.body.userid,
-            postedBy:req.body.postedBy,
+            // userid: req.body.userid,
+            // postedBy:req.body.postedBy,
+            user: req.body.userid,
             postMsg: req.body.postMsg,
             postMediaType :  "",
             postMedia :   ""
