@@ -92,7 +92,9 @@ $("#updateProfile").submit(function(event) {
        });
  
 });
-
+function reloadProfile() {
+    alert("reload page");
+}
 function loadPosts() {
     
     $.ajax({
@@ -135,6 +137,7 @@ function loadPosts() {
                     "</div>";
                  
                 });
+                console.log(recentPostsHTML);
                 $("#recentPosts").html(recentPostsHTML);
             
            

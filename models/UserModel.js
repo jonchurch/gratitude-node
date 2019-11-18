@@ -1,9 +1,9 @@
-var mongoose = require('mongoose'),
-Post = require('./PostModel');
+var mongoose = require('mongoose');
+//Post = require('./PostModel');
 
-var AvatarImage = new mongoose.Schema({
-    url: String
-});
+// var AvatarImage = new mongoose.Schema({
+//     url: String
+// });
 
 var UserSchema = new mongoose.Schema({
     email: { type: String, required: true, unique: true },
@@ -14,10 +14,9 @@ var UserSchema = new mongoose.Schema({
     admin: Boolean,
     location: String,
     bio: String,
-    avatar: [AvatarImage],
+    //avatar: [AvatarImage],
     url: String,
     activated: String,
-    _post: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Post' }],
     createDate: {
         type: Date,
         default: Date.now

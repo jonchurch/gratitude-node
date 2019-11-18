@@ -10,8 +10,9 @@ var express = require('express'),
 ///////////////////////
 //// GET ALL POSTS ////
 ///////////////////////
+
 router.get('/', function(req, res) {
-  logger.debug("get all posts");
+  
   var q = Post.find({}).sort({'createDate': -1});
     q.exec(function(err, posts) {
       if (err){ 
@@ -19,11 +20,45 @@ router.get('/', function(req, res) {
               res.send(err.message);
               next();  
       }
-      //logger.debug(posts);
+
+      for (var i = 0; i < posts.length; i++) {
+        //user find for user data
+        console.log(posts[i]);
+        User.findById(posts[i].userid, function (err, user) {
+          
+          console.log(user.firstname);
+          Array.prototype.push.apply(posts, user.firstname);
+          // console.log("userid: "+posts[i].userid);
+          // console.log("found user: "+user.firstname);
+          
+         // Array.prototype.push.apply(posts[i], user.firstname);
+          
+          // console.log('added?')
+                
+              
+              
+        });
+        
+        //Array.prototype.push.apply(posts, userVals);
+      
+        // User.findById(posts[i].userid, function (err, user) {
+          
+        //       name=user.firstname+" "+user.lastname;
+        //       posts[i].push('name');
+              
+            
+            
+        // });
+    
+      }
+      
       res.json(posts);
     });
  
 });
+// var getUser = function (propertyName) {
+//   return obj[];
+// };
 
 router.post('/updateProfileAccount/', async function(req,res){
   logger.debug("update user account: "+req.body.id);
@@ -43,11 +78,10 @@ router.post('/',function(req,res){
     // logger.debug("MSG: "+req.body.postMsg);
     // logger.debug("user ID: "+req.body.userid);
     logger.debug("add post...:" +req.body.userid);
-  
+    //get user value and put into post values for each post
       var post = new Post({
-            // userid: req.body.userid,
-            // postedBy:req.body.postedBy,
-            user: req.body.userid,
+           
+            userid: req.body.userid,
             postMsg: req.body.postMsg,
             postMediaType :  "",
             postMedia :   ""
