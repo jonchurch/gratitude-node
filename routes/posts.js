@@ -12,8 +12,8 @@ var express = require('express'),
 ///////////////////////
 
 router.get('/', function(req, res) {
-  
-  var q = Post.find({}).sort({'createDate': -1});
+
+  var q = Post.find({}).populate('user').sort({'createDate': -1});
     q.exec(function(err, posts) {
       if (err){ 
               logger.error("Could not get all posts");
@@ -21,13 +21,17 @@ router.get('/', function(req, res) {
               next();  
       }
 
-      for (var i = 0; i < posts.length; i++) {
+      // for (var i = 0; i < posts.length; i++) {
         //user find for user data
-        console.log(posts[i]);
-        User.findById(posts[i].userid, function (err, user) {
+        console.log(posts);
+        console.log(posts[0].user)
+        // User.findById(posts[i].userid, function (err, user) {
           
-          console.log(user.firstname);
-          Array.prototype.push.apply(posts, user.firstname);
+        //   console.log(user.firstname);
+          // Array.prototype.push.apply(posts, user.firstname);
+          
+
+
           // console.log("userid: "+posts[i].userid);
           // console.log("found user: "+user.firstname);
           
@@ -37,7 +41,7 @@ router.get('/', function(req, res) {
                 
               
               
-        });
+        // });
         
         //Array.prototype.push.apply(posts, userVals);
       
@@ -50,12 +54,11 @@ router.get('/', function(req, res) {
             
         // });
     
-      }
-      
       res.json(posts);
+      })
+      
     });
  
-});
 // var getUser = function (propertyName) {
 //   return obj[];
 // };
