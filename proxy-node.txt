@@ -1,0 +1,1 @@
+npm config set proxy http://fastweb.int.bell.ca:8083/
