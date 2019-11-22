@@ -1,7 +1,7 @@
 function getUserInfo(page){
    
   const _id=$.urlParam('id');
-  console.log(_id);
+  
    
       
       $.ajax({
@@ -39,7 +39,7 @@ function getUserInfo(page){
                       $("id").val(data._id);
                       
                    }else if(page=='profile'){
-                      console.log('in profile');
+                      
                       $("#name").html(data.firstname+" "+data.lastname );
                       $("#profile-name").html(data.firstname+" "+data.lastname );
                       
@@ -52,10 +52,10 @@ function getUserInfo(page){
                       $("#url").html(data.url);
                       $("#bio").html(data.bio);
                       $("#location").html(data.location);
-                      console.log('check avatar:'+ data.avatar);
+                      
                       if(data.avatar===null){
                           console.log("avatar is null");
-                          $("#profile-avatar").attr("src", "/profile/assets/img/avatars/me.jpg");
+                          $("#profile-avatar").attr("src", "/profile/assets/img/avatars/gratitudetoday-avatar.png");
                       }
                       else{
                         $("#profile-avatar").attr("src", data.avatar);
@@ -76,12 +76,12 @@ function getUserInfo(page){
                       $("#reg-date").html(dateFormat);
                       //check here for welcome
                       $("#postedBy").val(data.firstname+" "+data.lastname);
-                      console.log("posted By:"+data.firstname+" "+data.lastname);
+                      
                       
                    }          
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                    console.log('Error occurred');
+                    console.log('Error occurred... carry on.');
                     
             }
             

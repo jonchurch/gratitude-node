@@ -124,7 +124,7 @@ function loadPosts() {
                         "<p class='m-0'>"+this.user.firstname+ ' '+this.user.lastname+"</p>"+
                         "<small><span>"+dateFormat+"</span></small><br/><br/>"+
                         this.postMsg+
-                         "<br/>Heart, Report, Re-Post"+
+                        
                         "</div>"+
                         "</div>"+
                         "</div>"+
