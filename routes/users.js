@@ -142,7 +142,7 @@ router.post('/',function(req,res){
                           admin: false,
                           bio : "",
                           location : "",
-                          avatar: "",
+                          avatar: '/public/profile/assets/',
                           url: "",
                           activated:"n"
                         });

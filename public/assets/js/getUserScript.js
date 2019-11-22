@@ -43,7 +43,6 @@ function getUserInfo(page){
                       $("#name").html(data.firstname+" "+data.lastname );
                       $("#profile-name").html(data.firstname+" "+data.lastname );
                       
-                      //$("#lastname").html(data.lastname);
                       
                       $("#email").html(data.email);
                       $("#account-link").attr("href","/account/?id="+_id);
@@ -53,12 +52,15 @@ function getUserInfo(page){
                       $("#url").html(data.url);
                       $("#bio").html(data.bio);
                       $("#location").html(data.location);
-                      if(data.avatar==null){
-                        //user default avatar
-                       
-                        $("avatar").html('<img src="/assets/img/avatar.png>');
+                      console.log('check avatar:'+ data.avatar);
+                      if(data.avatar===null){
+                          console.log("avatar is null");
+                          $("#profile-avatar").attr("src", "/profile/assets/img/avatars/me.jpg");
                       }
-                  
+                      else{
+                        $("#profile-avatar").attr("src", data.avatar);
+                         
+                      }
                       
                       $("#info-email").val(data.email);
                       $("#info-firstname").val(data.firstname);

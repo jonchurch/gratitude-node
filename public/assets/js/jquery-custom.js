@@ -1,6 +1,6 @@
 
 
-var bioMaxLength = 255;
+var bioMaxLength = 500;
 $('#bio').keyup(function() {
   var length = $(this).val().length;
   var length = bioMaxLength-length;

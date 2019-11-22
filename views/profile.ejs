@@ -46,41 +46,9 @@
 			</div><!-- /.container -->
 		   </nav><!-- /.navbar -->
 	 </header><!-- Page Header --> </header><!-- Page Header --> 
-	 <!-- ==============================================
-	 Navbar Second Section
-	 =============================================== -->
-	<!-- <section class="nav-sec">
-	  <div class="d-flex justify-content-between">
-	   <div class="p-2 nav-icon-lg mint-green">
-	   <a class="nav-icon" href="photo_home.html"><em class="fa fa-home"></em>
-		<span>Home</span>
-	   </a>
-	   </div>
-	   <div class="p-2 nav-icon-lg clean-black">
-	   <a class="nav-icon" href="photo_explore.html"><em class="fa fa-crosshairs"></em>
-		<span>Explore</span>
-	   </a>
-	   </div>
-	   <div class="p-2 nav-icon-lg dark-black">
-	   <a class="nav-icon" href="photo_upload.html"><em class="fab fa-instagram"></em>
-		<span>Upload</span>
-	   </a>
-	   </div>
-	   <div class="p-2 nav-icon-lg clean-black">
-	   <a class="nav-icon" href="photo_stories.html"><em class="fa fa-align-left"></em>
-		<span>Stories</span>
-	   </a>
-	   </div>
-	   <div class="p-2 nav-icon-lg dark-black">
-	   <a class="nav-icon" href="photo_profile.html"><em class="fa fa-user"></em>
-		<span>Profile</span>
-	   </a>
-	   </div>
-	  </div>
-	</section>	 -->
-  
+	
   <!-- ==============================================
-	 News Feed Section
+	 PROFILE AREA
 	 =============================================== --> 
 	 <section class="newsfeed">
 		<div class="container-fluid">
@@ -96,7 +64,7 @@
 					-moz-background-size: cover;
 					-o-background-size: cover;">
 			<div class="story-body text-center">
-			  <div class=""><img class="img-circle" src="assets/img/users/6.jpg" alt="user"></div>
+			  <div class=""><img class="img-circle" id="profile-avatar" src="" alt="user"></div>
 			  <h4 id="profile-name"></h4>
 					<p class="profile-text" >
 						<span id="email"></span><br/>
@@ -128,7 +96,7 @@
 		  </div><!--/ col-lg-3 -->
 		  <div class="col-lg-6">
 		  <div class="cardbox">
-				  <form class="form-horizontal" id="postMsgForm" > 
+				  <form method="post" class="form-horizontal" id="postMsgForm" > 
 						  <input type="hidden" id="id-hidden" value=""></input>
 						  <div class="alert alert-success alert-post-success text-center" style="width:100%;" role="alert">Post Successfully Submitted!</div>
 						  <div class="alert alert-danger  alert-post-danger text-center" style="width:100%;" role="alert">Error occured, please try again.</div>
@@ -137,8 +105,8 @@
 						  <div class="cardbox-heading">
 								  <p class="m-0">What are you grateful for today?</p>
 						  </div>
-						  <div style="padding-left:15px;"><textarea rows="3" class="custom-input-width" type="text" id="postMsg" maxLength="255" required></textarea>
-							  <br/>No more than 255 characters. <strong><span id="chars">255</span> characters remaining.</strong><br/>
+						  <div style="padding-left:15px;"><textarea rows="3" class="custom-input-width" type="text" id="postMsg" maxLength="500" required></textarea>
+							  <br/>No more than 500 characters. <strong><span id="chars">500</span> characters remaining.</strong><br/>
 							  <button type="submit" class="btn btn-success">Post</button><br/><br/>
 						  </div>
 					  </form>
@@ -346,7 +314,7 @@
 		   
 			 getUserInfo('profile');
 			 loadPosts();
-			 reloadUser('profile');
+			 //reloadUser('profile');
 		 
 	   });
 	   

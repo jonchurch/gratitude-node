@@ -12,56 +12,29 @@ var express = require('express'),
 ///////////////////////
 
 router.get('/', function(req, res) {
-
-  var q = Post.find({}).populate('user').sort({'createDate': -1});
-    q.exec(function(err, posts) {
-      if (err){ 
-              logger.error("Could not get all posts");
-              res.send(err.message);
-              next();  
-      }
-
-      // for (var i = 0; i < posts.length; i++) {
-        //user find for user data
-        console.log(posts);
-        console.log(posts[0].user)
-        // User.findById(posts[i].userid, function (err, user) {
-          
-        //   console.log(user.firstname);
-          // Array.prototype.push.apply(posts, user.firstname);
-          
-
-
-          // console.log("userid: "+posts[i].userid);
-          // console.log("found user: "+user.firstname);
-          
-         // Array.prototype.push.apply(posts[i], user.firstname);
-          
-          // console.log('added?')
-                
-              
-              
-        // });
-        
-        //Array.prototype.push.apply(posts, userVals);
-      
-        // User.findById(posts[i].userid, function (err, user) {
-          
-        //       name=user.firstname+" "+user.lastname;
-        //       posts[i].push('name');
-              
-            
-            
-        // });
-    
-      res.json(posts);
+  logger.debug('get all posts...');
+  try{
+      var q = Post.find({}).populate('user').sort({'createDate': -1});
+      q.exec(function(err, posts) {
+        if (err){ 
+                  logger.error('Could not get all posts');
+                  res.send(err.message);
+                  next();  
+        }
+        res.json(posts);
       })
-      
-    });
- 
-// var getUser = function (propertyName) {
-//   return obj[];
-// };
+  }
+  catch(err){
+    //no posts yet, load page anyway
+    logger.debug('no posts');
+    
+  }
+});
+  
+  // });
+  // var getUser = function (propertyName) {
+  //   return obj[];
+  // };
 
 router.post('/updateProfileAccount/', async function(req,res){
   logger.debug("update user account: "+req.body.id);
@@ -84,7 +57,7 @@ router.post('/',function(req,res){
     //get user value and put into post values for each post
       var post = new Post({
            
-            userid: req.body.userid,
+            user: req.body.userid,
             postMsg: req.body.postMsg,
             postMediaType :  "",
             postMedia :   ""
@@ -95,16 +68,21 @@ router.post('/',function(req,res){
             res.send(error.message);
             
           }
-          post.save(function (error, user) {
-            if (error){ 
-              console.log("err:"+error);
-              res.send(error.message);
-             
-            }
-            res.send(post)
-          }); 
-          
+          res.send(post)
       }); 
-        
 });
+//route to get user data by user id
+//left hand profile, etc
+router.get('/userInfo/:id', function(req, res) {
+  logger.debug("Get UserInfo: "+req.params.id);
+  const user= User.findById(req.params.id, function (err, user) {
+    if (err){ 
+    logger.error("Get User Error: "+err.message);
+      res.send(err.message);
+      next();  
+    }
+    
+    res.send(user);
+  });
+});  
 module.exports = router;
