@@ -31,11 +31,6 @@ router.get('/', function(req, res) {
   }
 });
   
-  // });
-  // var getUser = function (propertyName) {
-  //   return obj[];
-  // };
-
 router.post('/updateProfileAccount/', async function(req,res){
   logger.debug("update user account: "+req.body.id);
   User.findOneAndUpdate({_id: mongoose.Types.ObjectId(req.body.id)}, {$set: {firstname: req.body.firstname, lastname: req.body.lastname, bio: req.body.bio, location: req.body.location, url:req.body.url}}, {new: true}, (err, doc) => {
@@ -51,8 +46,7 @@ router.post('/updateProfileAccount/', async function(req,res){
 //// CREATE POST////
 ///////////////////////
 router.post('/',function(req,res){      
-    // logger.debug("MSG: "+req.body.postMsg);
-    // logger.debug("user ID: "+req.body.userid);
+    
     logger.debug("add post...:" +req.body.userid);
     //get user value and put into post values for each post
       var post = new Post({
@@ -73,16 +67,16 @@ router.post('/',function(req,res){
 });
 //route to get user data by user id
 //left hand profile, etc
-router.get('/userInfo/:id', function(req, res) {
-  logger.debug("Get UserInfo: "+req.params.id);
-  const user= User.findById(req.params.id, function (err, user) {
-    if (err){ 
-    logger.error("Get User Error: "+err.message);
-      res.send(err.message);
-      next();  
-    }
+// router.get('/userInfo/:id', function(req, res) {
+//   logger.debug("Get UserInfo: "+req.params.id);
+//   const user= User.findById(req.params.id, function (err, user) {
+//     if (err){ 
+//     logger.error("Get User Error: "+err.message);
+//       res.send(err.message);
+//       next();  
+//     }
     
-    res.send(user);
-  });
-});  
+//     res.send(user);
+//   });
+// });  
 module.exports = router;

@@ -31,7 +31,7 @@ router.get('/', function(req, res) {
 ////////////////////
 router.get('/:id', function(req, res) {
   logger.debug("Get ID: "+req.params.id);
-    // logger.debug("param : "+req.params.id);
+     logger.debug("param : "+req.params.id);
     const user= User.findById(req.params.id, function (err, user) {
       if (err){ 
       logger.error("Get User Error: "+err.message);

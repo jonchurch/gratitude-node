@@ -52,13 +52,13 @@ function getUserInfo(page){
                       $("#url").html(data.url);
                       $("#bio").html(data.bio);
                       $("#location").html(data.location);
-                      
-                      if(data.avatar===null){
-                          console.log("avatar is null");
-                          $("#profile-avatar").attr("src", "/profile/assets/img/avatars/gratitudetoday-avatar.png");
+                      console.log("ava:"+data.avatar);
+                      if(data.avatar==null){
+                         
+                            $("#profile-avatar").attr("src", '/profile/assets/img/avatars/gratitudetoday-avatar.png');
                       }
                       else{
-                        $("#profile-avatar").attr("src", data.avatar);
+                            $("#profile-avatar").attr("src", data.avatar);
                          
                       }
                       
