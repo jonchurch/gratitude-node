@@ -260,7 +260,7 @@ router.post('/updateAccount/', async function(req,res){
     if (err) {
         console.log("Something wrong when updating data!");
     }
-    console.log(doc);
+    //console.log(doc);
     res.send(JSON.stringify(doc))
   });
 });
