@@ -48,6 +48,8 @@ function getUserInfo(page){
                       $("#account-link").attr("href","/account/?id="+_id);
                       $("#support-link").attr("href","/support/?id="+_id);
                       $("#journal-link").attr("href","/journal/?id="+_id);
+                      $("#password-link").attr("href","/resetProfileForm/?id="+_id);
+                      
                       
                       $("#url").html(data.url);
                       $("#bio").html(data.bio);

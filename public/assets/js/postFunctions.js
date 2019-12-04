@@ -77,18 +77,18 @@ $("#updateProfile").submit(function(event) {
            /**
            * A function to be called if the request succeeds.
            */
-           success: function(data, textStatus, jqXHR) {
-              //window.location.assign("/profile/?id="+data._id);
-              
-              window.location.assign("/profile/?id="+data._id);
-               
-           },
-           error: function(jqXHR, textStatus, errorThrown) {
-               
-               $(".alert-danger").html('Error updating information. Please try again from your profile.');
-               $(".alert-danger").show();
-               
-           }
+          success: function(data, textStatus, jqXHR) {
+            //window.location.assign("/profile/?id="+data._id);
+            
+             $(".alert-success").show();
+             
+         },
+         error: function(jqXHR, textStatus, errorThrown) {
+             
+             $(".alert-danger").html('Error updating information. Please try again from your profile.');
+             $(".alert-danger").show();
+             
+         }
        });
  
 });

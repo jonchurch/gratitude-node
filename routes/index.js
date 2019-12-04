@@ -30,6 +30,9 @@ router.get('/resetForm', function(req, res) {
 router.get('/resetProfileForm', function(req, res) {
   res.render('profileresetpassword');
 });
+router.get('/resetAvatarForm', function(req, res) {
+  res.render('profileresetavatar');
+});
 
 router.get('/account', function(req, res) {
     res.render('account');
