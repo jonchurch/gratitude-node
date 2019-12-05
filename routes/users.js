@@ -99,18 +99,13 @@ router.get('/profile/:id', function(req, res) {
 ///////////////////////
 
 router.post('/',function(req,res){
-    logger.info("email: "+req.body.email);
-    User.findOne({ email:req.body.email}, function (error, user) {
-        if(user){
-            console.log("user exists");
-            const error = new Error('User email account already exists.');
-            res.status(410);
-            res.send(JSON.stringify(error.message));
-            
-        }
-        else{
+  let query = { email:req.body.email};
+  User.findOne(query, function(err, user){
+      if(err) throw err;
+      if(!user){
+          res.send("User Not found");
+      }
           //save user  
-          
           var pwd = req.body.password;
          
           bcrypt.genSalt(10, function(err, salt) {
@@ -223,7 +218,7 @@ router.post('/',function(req,res){
               }
           });
          
-    }
+    
         
   });
  });   
@@ -362,27 +357,35 @@ router.post('/resetPassword/', async function(req,res){
   logger.debug("reset password Id:"+req.body.id);
   // logger.debug("password: "+req.body.password);
   var pwd = req.body.password;
-  logger.debug("new pass:"+pwd);
+  //logger.debug("new pass:"+pwd);
   bcrypt.genSalt(10, function(err, salt) {
     if (err) {
       logger.error("BCrype issue");
-      const error = new Error("Unable to reset password.");
+      const error = new Error("Unable to reset password, please try again.");
       //throw new Error('User email account already exists.');
       res.status(420);
       res.send(JSON.stringify(error.message));
-
+  
     }
     //console.log('Salt: ' + salt);
-    bcrypt.hash(pwd, salt, function (err, hash) {
-      User.findOneAndUpdate({_id: mongoose.Types.ObjectId(req.body.id)}, {$set: {password: hash}}, {new: true}, (err, doc) => {
-        if (err) {
-            logger.error("Something wrong updating password");
-            res.send(JSON.stringify(err.message));
-        }
-        // console.log(doc);
-        res.send(JSON.stringify(pwd));
-     });
-    });
+    bcrypt.hash(pwd, salt, function(err, hash) {
+      if (err) {
+        logger.error("ERROR! users bcrypt");
+        const error = new Error("Unable to reset password, please try again.");
+        res.status(420);
+        res.send(JSON.stringify(error.message));
+      }
+      bcrypt.hash(pwd, salt, function(err, hash) {
+        User.findOneAndUpdate({_id: mongoose.Types.ObjectId(req.body.id)}, {$set: {password: hash}}, {new: true}, (err, doc) => {
+            if (err) {
+                logger.error("Something wrong updating password");
+                res.send(JSON.stringify(err.message));
+              }
+              res.send(JSON.stringify(pwd));
+        });
+                          
+      });
+    });          
   }); 
   
 }); 
