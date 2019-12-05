@@ -3,7 +3,8 @@ var express = require('express'),
     logger = require('../logger/logger'),
     User = require("../models/UserModel"),
     mongoose=require('mongoose'),
-    bcrypt = require('bcrypt');
+    bcrypt = require('bcrypt'),
+    multer = require('multer');
   
     
     router.use(express.json());
@@ -31,7 +32,7 @@ router.get('/', function(req, res) {
 ////////////////////
 router.get('/:id', function(req, res) {
   logger.debug("Get ID: "+req.params.id);
-     logger.debug("param : "+req.params.id);
+    // logger.debug("param : "+req.params.id);
     const user= User.findById(req.params.id, function (err, user) {
       if (err){ 
       logger.error("Get User Error: "+err.message);
@@ -52,31 +53,32 @@ router.get('/:id', function(req, res) {
 ////LOGIN USER////
 //////////////////
 router.post('/login', function(req, res) {
-  logger.debug("log user in : "+req.body.email);
-  const email=req.body.email;
-  logger.debug("email: "+email);
-  let pwd=req.body.password;
-  logger.debug("pass: "+pwd);
+   logger.debug("log user in : "+req.body.email);
+   const email=req.body.email;
+   logger.debug("email: "+email);
+   let pwd=req.body.password;
+   logger.debug("pass: "+pwd);
 
- let query = {email: email, activated: 'y'};
-   User.findOne(query, function(err, user){
-       if(err) throw err;
-       if(!user){
-           res.send("User Not found");
-       }
+  let query = {email: email, activated: 'y'};
+    User.findOne(query, function(err, user){
+        if(err) throw err;
+        if(!user){
+            res.send("User Not found");
+        }
 
-       // Match Password
-       bcrypt.compare(pwd, user.password, function(err, isMatch){
-           if(err) throw err;
-           if(isMatch){
-           res.send(user);
-           } else {
-           res.send("Wrong password");
-           }
-       });
-   });      
+        // Match Password
+        bcrypt.compare(pwd, user.password, function(err, isMatch){
+            if(err) throw err;
+            if(isMatch){
+            res.send(user);
+            } else {
+            res.send("Wrong password");
+            }
+        });
+    });      
 
-});
+ });
+
 
 ////////////////////
 ////USER Profile////
@@ -98,13 +100,18 @@ router.get('/profile/:id', function(req, res) {
 ///////////////////////
 
 router.post('/',function(req,res){
-  let query = { email:req.body.email};
-  User.findOne(query, function(err, user){
-      if(err) throw err;
-      if(!user){
-          res.send("User Not found");
-      }
+    logger.info("email: "+req.body.email);
+    User.findOne({ email:req.body.email}, function (error, user) {
+        if(user){
+            console.log("user exists");
+            const error = new Error('User email account already exists.');
+            res.status(410);
+            res.send(JSON.stringify(error.message));
+            
+        }
+        else{
           //save user  
+          
           var pwd = req.body.password;
          
           bcrypt.genSalt(10, function(err, salt) {
@@ -136,7 +143,7 @@ router.post('/',function(req,res){
                           admin: false,
                           bio : "",
                           location : "",
-                          avatar: '/public/profile/assets/img/gratitudetoday-avatar.png',
+                          avatar: "",
                           url: "",
                           activated:"n"
                         });
@@ -217,7 +224,7 @@ router.post('/',function(req,res){
               }
           });
          
-    
+    }
         
   });
  });   
@@ -254,7 +261,7 @@ router.post('/updateAccount/', async function(req,res){
     if (err) {
         console.log("Something wrong when updating data!");
     }
-    //console.log(doc);
+    console.log(doc);
     res.send(JSON.stringify(doc))
   });
 });
@@ -352,42 +359,37 @@ router.post('/sendReset/',function(req,res){
   }
   });
 });
+
 router.post('/resetPassword/', async function(req,res){
-  logger.debug("reset password Id:"+req.body.id);
-  // logger.debug("password: "+req.body.password);
-  var pwd = req.body.password;
-  //logger.debug("new pass:"+pwd);
-  bcrypt.genSalt(10, function(err, salt) {
-    if (err) {
-      logger.error("BCrype issue");
-      const error = new Error("Unable to reset password, please try again.");
-      //throw new Error('User email account already exists.');
-      res.status(420);
-      res.send(JSON.stringify(error.message));
   
+  logger.debug("log user in : "+req.body.email);
+  const email=req.body.email;
+  let pwd=req.body.password;
+  logger.debug("new pass:"+pwd);
+
+  bcrypt.genSalt(10, function(err, salt){
+    logger.debug("salt - :"+salt);
+    if (err) {
+      res.send(err.message);
     }
-    //console.log('Salt: ' + salt);
-    bcrypt.hash(pwd, salt, function(err, hash) {
-      if (err) {
-        logger.error("ERROR! users bcrypt");
-        const error = new Error("Unable to reset password, please try again.");
-        res.status(420);
-        res.send(JSON.stringify(error.message));
-      }
-      bcrypt.hash(pwd, salt, function(err, hash) {
-        User.findOneAndUpdate({_id: mongoose.Types.ObjectId(req.body.id)}, {$set: {password: hash}}, {new: true}, (err, doc) => {
+    logger.debug("carry on");
+    bcrypt.hash(pwd, salt, function (err, hash) {
+          User.findOneAndUpdate({_id: mongoose.Types.ObjectId(req.body.id)}, {$set: {password: hash}}, {new: true}, (err, doc) => {
             if (err) {
+              
                 logger.error("Something wrong updating password");
                 res.send(JSON.stringify(err.message));
-              }
-              res.send(JSON.stringify(pwd));
-        });
-                          
+            }
+            // console.log(doc);
+            logger.debug("password reset");
+            res.send(JSON.stringify(pwd));
+         });
       });
-    });          
   }); 
-  
 }); 
+
+
+//ACTIVATE ACCOUNT
 router.get('/activateAccount/:id', function(req, res) {
     logger.debug(req.params.id);
     //update
@@ -400,7 +402,18 @@ router.get('/activateAccount/:id', function(req, res) {
         logger.debug(req.params.id);
         res.send(JSON.stringify(doc));
     });
-});    
- 
+});  
+////UPLOAD NEW AVATAR  
+
+const upload = multer({dest: __dirname + '../public/profile/img/avatars'});
+router.post('/upload', upload.single('avatar'), (req, res) => {
+  logger.debug("dir: "+__dirname);
+  
+//logger.debug("dir: "+upload.dest);
+  if(req.file) {
+      res.json(req.file);
+  }
+  else throw 'error';
+});
        
 module.exports = router;

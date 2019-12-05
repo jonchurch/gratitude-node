@@ -7,7 +7,9 @@ var createError = require('http-errors'),
   path=require('path'),
   mongoose=require('mongoose'),
   
-  indexRouter = require('./routes/index'),
+
+
+indexRouter = require('./routes/index'),
   usersRouter = require('./routes/users'),
   postsRouter = require('./routes/posts');
 
@@ -38,6 +40,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use('/', express.static(__dirname + '/public'));
+
+
+//app route to upload avatar and other images
 
 
 app.use('/', indexRouter);

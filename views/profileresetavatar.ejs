@@ -55,7 +55,7 @@
          <div class="cardbox">
 		 
           <div class="cardbox-heading">
-						<p class="m-0" style="padding-left:15px;">Change Password</p>
+						<p class="m-0" style="padding-left:15px;">Upload New Profile Image</p>
 				</div>
         
         
@@ -63,65 +63,32 @@
           </div><!--/ cardbox-heading -->
           <div style="padding-left:15px">
                   
-           
-                            <a href="/account/?id=5dd7edf1a6721237f4109736" class="password-link">Update Profile</a>&nbsp;|&nbsp; <a href="/resetAvatar" class="avatar-link">Change Profile Image</a>
-                            <!-- |<a href="#">Change Avatar</a> -->
-                            
-                            <form class="form-horizontal" id="updateProfile">
                                 
-                                <input type="hidden" id="id-hidden" value=""></input>
-                                  <div class="controls">
-                                        
-                                        <strong>Email</strong><br/> 
-                                        <input type="email" class="form-control custom-input-width" id="info-email" readonly >
-                                      
-                                    </div>
-                                    <br/>
-                                  <div class="controls">
-                                        
-                                        <strong>First Name</strong><br/><input type="text" class="form-control custom-input-width" id="info-firstname" >
-                                      
-                                    </div>
-                                    <br/>
-                                    <div class="controls">
-                                        
-                                        <strong>Last Name</strong><br/><input type="text" class="form-control custom-input-width" id="info-lastname" >
-                                      
-                                    </div>
-                                    <br/>
-                                    <div class="controls">
-                                        
-                                        <strong>Address</strong><br/><input type="text" class="form-control custom-input-width" id="info-location" >
-                                      
-                                    </div>
-                                    <br/>
-                                    <div class="controls">
-                                        <strong>Website</strong><br/>
-                                        <input type="url" class="form-control custom-input-width"  class="custom-input-width" id="info-url">
-                                        <!-- <strong></stron>Website</strong><input type="url" class="form-control" id="website" > -->
-                                      
-                                    </div>
-                                    <br/>
-                                    <div class="controls">
-                                        <strong>About You</strong><br/>
-                                        <textarea class="custom-input-width" rows="3" type="text" id="info-bio" maxlength="500"></textarea><br/>
-                                        No more than 500 characters. <strong><span id="chars">500</span> characters remaining.</strong>
-                                      
-                                    </div>
-                                    
-                                    <div class="alert alert-danger text-center hidden" role="alert"></div>
-                                    <div class="alert alert-success text-center" role="alert hidden">Information updated successfully. <a href="#" id="visit-profile">Visit Profile</a></div>
-                                    
-                                  <div class="control-group">
-                                    <div class="controls">
+                            <a href="#" id="account-link" class="account-link">Back to Account</a>&nbsp;|&nbsp; <a href="/resetAvatarForm/?id=5dd7edf1a6721237f4109736" class="avatar-link">Profile Home</a>
+                            <!-- |<a href="#">Change Avatar</a> -->
+                            <!--<form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" accept="image/*" name="photo" >
+        <input type="submit" value="upload">
+</form>-->
+                            <div class="alert alert-password-danger text-center" role="alert"></div>
+                            <div class="alert alert-password-success text-center" role="alert"></div>
+                            <form class="form-horizontal" action="/users/upload" method="post" enctype="multipart/form-data" >
+                              <input type="hidden" id="id-hidden" value=""></input>
+                              <input type="file" name="avatar" />
+                              <input type="submit" value="upload">
+                              
+                              
+								  
+								              <!-- <div class="controls">
                                         <br/>
-                                        <input type="submit" class="btn btn-success" id ="updateProfile" value="Save Changes">
+                                        <input type="submit" class="btn btn-success" id ="updateProfile" value="Reset Password">
                                     
-                                      <input type="submit" class="btn btn-default" id="btn-cancel" value="Cancel">
+                                      <input type="button" class="btn btn-default" id="btn-cancel" value="Cancel">
                                       
-                                    </div>
-                                  </form>
-              
+								          	</div> -->
+							        </form>
+								
+							  
                 
                   
                         
@@ -149,7 +116,7 @@
 
   <script>
   $(document).ready(function() {
-    
+    $('#info-email').attr('readonly', true);
         getUserInfo('profile');
         
   });
@@ -160,3 +127,4 @@
 
   </body>
 </html>
+

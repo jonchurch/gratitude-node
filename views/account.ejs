@@ -73,7 +73,7 @@
                                   <div class="controls">
                                         
                                         <strong>Email</strong><br/> 
-                                        <input type="email" class="form-control custom-input-width" id="info-email" readonly >
+                                        <input type="email" class="form-control custom-input-width" id="info-email" >
                                       
                                     </div>
                                     <br/>
@@ -149,7 +149,7 @@
 
   <script>
   $(document).ready(function() {
-    
+    $('#info-email').attr('readonly', true);
         getUserInfo('profile');
         
   });

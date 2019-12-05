@@ -7,6 +7,11 @@ $('.login-alert').hide();
 $('.alert-signup').hide();
 $('.alert-signin').hide();
 $('.alert-reset').hide();
+$('.alert-password-danger').hide();
+$('.alert-password-success').hide();
+
+
+
 
 $("#createUserForm").submit(function(event) {
     // Prevent the form from submitting via the browser.
@@ -150,42 +155,6 @@ $("#updateUserInfo").submit(function(event) {
             });
       
 });
-// $("#acvitateUser").submit(function(event) {
-       
-//     // Prevent the form from submitting via the browser.
-//     event.preventDefault();
-//     var url_string = window.location.href; //window.location.href
-//     var url = new URL(url_string);
-//     var id = url.searchParams.get("id");
-//     console.log(id);
-   
-//         // $.ajax({
-//         //     url: '/users/activateAccount',
-//         //     type: "POST",
-//         //     dataType: "json",
-//         //     data: {
-//         //         id:id,
-//         //         activated: "y"
-//         //     },
-//         //     /**
-//         //     * A function to be called if the request succeeds.
-//         //     */
-//         //     success: function(data, textStatus, jqXHR) {
-//         //        //window.location.assign("/profile/?id="+data._id);
-               
-//         //         $(".alert-success").show();
-                
-//         //     },
-//         //     error: function(jqXHR, textStatus, errorThrown) {
-                
-//         //         $(".alert-danger").html('Error updating information. Please try again from your profile.');
-//         //         $(".alert-danger").show();
-                
-//         //     }
-//         // });
-  
-// });
-
      
 $("#sendRestForm").submit(function(event) {
        
@@ -255,6 +224,7 @@ $("#updateUserPassword").submit(function(event) {
          
          success : function(customer) {
             
+            $(".alert-password-danger").hide();
             $(".alert-password-success").html("Password updated successfully. <a href='/login/'>Login</a>");
             $(".alert-password-success").show();
              
@@ -275,3 +245,8 @@ $("#updateUserPassword").submit(function(event) {
    
     window.location.assign("/");
 });
+$( "#btn_home" ).click(function() {
+   
+    window.location.assign("/");
+});
+

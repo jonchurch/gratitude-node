@@ -55,6 +55,7 @@ router.get('/register', function(req, res) {
     res.render('register');
 });
 
+
 router.get('/ajaxtest', function(req, res) {
   res.render('ajaxtest');
 });
