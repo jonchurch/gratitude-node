@@ -54,9 +54,9 @@ router.get('/:id', function(req, res) {
 router.post('/login', function(req, res) {
    logger.debug("log user in : "+req.body.email);
    const email=req.body.email;
-   logger.debug("email: "+email);
+   //logger.debug("email: "+email);
    let pwd=req.body.password;
-   logger.debug("pass: "+pwd);
+   //logger.debug("pass: "+pwd);
 
   let query = {email: email, activated: 'y'};
     User.findOne(query, function(err, user){
