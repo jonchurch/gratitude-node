@@ -142,7 +142,7 @@ router.post('/',function(req,res){
                           admin: false,
                           bio : "",
                           location : "",
-                          avatar: '/public/profile/assets/img/gratitudetoday-avatar.png',
+                          avatar: '/avatars/gratitudetoday-avatar.png',
                           url: "",
                           activated:"n"
                         });

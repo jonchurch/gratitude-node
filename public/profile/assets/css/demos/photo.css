@@ -1009,8 +1009,8 @@ a.navbar-brand:hover {
   text-align: center;
 }
 .story-body img{
-  width: 42px;
-  height: 42px;  
+  width: 75px;
+    height: 75px;
   float: center !important;
   border: 2px dotted #fff;
 }
