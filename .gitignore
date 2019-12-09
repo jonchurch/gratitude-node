@@ -8,9 +8,9 @@
 # dependencies
 /node_modules
 
-#config
-/config/config.json
-/config/config.js
+# #config
+# /config/config.json
+# /config/config.js
 
 #package json
 
