@@ -250,3 +250,4 @@ $( "#btn_home" ).click(function() {
     window.location.assign("/");
 });
 
+

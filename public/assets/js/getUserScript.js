@@ -95,7 +95,7 @@ function getUserInfo(page){
         });
         $("#btn-cancel").click(function() {
           event.preventDefault();
-          window.location.assign("/profile/?id="+ _id);
+          window.location.assign("/account/?id="+ _id);
           
         });
 }
