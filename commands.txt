@@ -1,3 +1,6 @@
 set DEBUG=myapp:* & npm start
 npm config set proxy http://fastweb.int.bell.ca:8083/
 npm uninstall <name>
+
+Heroku
+set HTTP_PROXY=http://fastweb.int.bell.ca:8083

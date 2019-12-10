@@ -23,7 +23,7 @@ process.env.NODE_ENV = 'development';
 const config = require('./config/config.js');
 var app = express();
 
-
+//get connection from .env file
    mongoose.connect(`${global.gConfig.database}`, { useNewUrlParser: true });
   var db = mongoose.connection;
    logger.info("DB Running server on from port:::::::" + `${global.gConfig.db_port}`);
