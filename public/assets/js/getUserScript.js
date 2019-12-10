@@ -1,4 +1,4 @@
-function getUserInfo(page){
+function getUserInfo(page, _id){
    
   const _id=$.urlParam('id');
   

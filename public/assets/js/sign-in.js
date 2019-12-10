@@ -1,17 +1,12 @@
-
 $('.alert-danger').hide();
 $('.alert-success').hide();
-
 $('.login-alert').hide();
- $('.pass-err-msg').hide();
+$('.pass-err-msg').hide();
 $('.alert-signup').hide();
 $('.alert-signin').hide();
 $('.alert-reset').hide();
 $('.alert-password-danger').hide();
 $('.alert-password-success').hide();
-
-
-
 
 $("#createUserForm").submit(function(event) {
     // Prevent the form from submitting via the browser.
@@ -98,7 +93,8 @@ $("#createUserForm").submit(function(event) {
                 success: function(data, textStatus, jqXHR) {
                     
                     
-                    window.location.assign("/profile/?id="+data._id);
+                    //window.location.assign("/profile/?id="+data._id);
+                    window.location.assign("/profile/");
                 },
                 error : function(error) {
                     //alert(error.name + ': ' + error.message);

@@ -4,16 +4,16 @@ var express = require('express'),
     User = require("../models/UserModel"),
     mongoose=require('mongoose'),
     bcrypt = require('bcrypt');
-  
-    
     router.use(express.json());
+    
 
 ///////////////////////
 //// GET ALL USERS ////
 ///////////////////////
+var sess;
 router.get('/', function(req, res) {
   //get all users and return for admin 
- 
+  
   User.find({}, function (err, users) {
     
     if (err){ 
@@ -30,9 +30,8 @@ router.get('/', function(req, res) {
 //// GET 1 USER ////
 ////////////////////
 router.get('/:id', function(req, res) {
-  logger.debug("Get ID: "+req.params.id);
-     logger.debug("param : "+req.params.id);
-    const user= User.findById(req.params.id, function (err, user) {
+  logger.debug("session ID:"+sess.sess_id);
+  const user= User.findById(sess.sess_id, function (err, user) {
       if (err){ 
       logger.error("Get User Error: "+err.message);
         res.send(err.message);
@@ -52,13 +51,15 @@ router.get('/:id', function(req, res) {
 ////LOGIN USER////
 //////////////////
 router.post('/login', function(req, res) {
-   logger.debug("log user in : "+req.body.email);
+   
    const email=req.body.email;
-   //logger.debug("email: "+email);
+   
    let pwd=req.body.password;
    //logger.debug("pass: "+pwd);
+   
 
   let query = {email: email, activated: 'y'};
+  
     User.findOne(query, function(err, user){
         if(err) throw err;
         if(!user){
@@ -69,6 +70,9 @@ router.post('/login', function(req, res) {
         bcrypt.compare(pwd, user.password, function(err, isMatch){
             if(err) throw err;
             if(isMatch){
+              sess=req.session;
+              sess.sess_id = user._id;
+              return res.redirect('/profile/');
             res.send(user);
             } else {
             res.send("Wrong password");
@@ -154,17 +158,15 @@ router.post('/',function(req,res){
                               
                               }
                               
-                              const host = `${global.gConfig.host}`
+                             
+                              const host = process.env.HOST;
                               logger.info ("host: " +host);
                               const email=user.email;
                               const emailname=user.firstname+" "+user.lastname;
                               
-                              logger.debug("email: "+email);
-                              logger.debug("name: "+emailname);
-
                               
                               const mailjet = require ('node-mailjet')
-                                .connect(`${global.gConfig.mailjet_api_key}`, `${global.gConfig.mailjet_secret_key}`);
+                              .connect(process.env.MAILJET_API_KEY, process.env.MAILJET_SECRET_KEY);
                                 logger.debug("send email...");
                                 const request = mailjet
                                 .post("send", {'version': 'v3.1'})
@@ -192,7 +194,7 @@ router.post('/',function(req,res){
                                                         "<h3>Hey "+user.firstname+",<h3/>"+
                                                         
                                                         " <p>Click the link below to activate your account</p>"+
-                                                            "<a href='"+host+"/activateAccount/?id="+user._id+"'>Activate Acccount</a>"+
+                                                            "<a href='"+process.env.HOST+"/activateAccount/?id="+user._id+"'>Activate Acccount</a>"+
                                                             
                                                             
                                                         "</td>"+
@@ -207,8 +209,9 @@ router.post('/',function(req,res){
                                 });
                                 request
                                     .then((result) => {
-                                        // console.log(result.body);
-                                        // logger.debug("send user back:"+user);
+                                      loreq.session.user = user.dataValues;
+                                      res.redirect('/info/');
+                              
                                         res.send(user)
                                     })
                                     .catch((err) => {
@@ -216,6 +219,8 @@ router.post('/',function(req,res){
                                         res.send(err.statusCode);
 
                                     })
+                                    req.session.user = user.dataValues;
+                                    res.redirect('/info');
                               res.send(user)
                           });    
                         }
@@ -241,6 +246,8 @@ router.post('/activateAccount/:id', function(req, res) {
         res.send(err.message);
       }
     //   console.log(user);
+      req.session.user = user.dataValues;
+      res.redirect('/info');
       res.send(JSON.stringify(doc));
       
   });
@@ -293,7 +300,7 @@ router.post('/sendReset/',function(req,res){
     const host = `${global.gConfig.host}`
      let email = "adriannadeau.art@gmail.com";
     let emailname = "Adrian Nadeau";
-    if(!host.includes('localhost')){
+    if(process.env.HOST=="localhost"){
         logger.info('host does not include localhost');
         email=user.email;
         emailname=user.firstname+" "+user.lastname;
@@ -301,7 +308,7 @@ router.post('/sendReset/',function(req,res){
         logger.debug("email: "+email);
         logger.debug("name: "+emailname);
       const mailjet = require ('node-mailjet')
-      .connect(`${global.gConfig.mailjet_api_key}`, `${global.gConfig.mailjet_secret_key}`);
+      .connect(process.env.MAILJET_API_KEY, process.env.MAILJET_SECRET_KEY);
       logger.debug("send email...");
       const request = mailjet
       .post("send", {'version': 'v3.1'})
@@ -327,7 +334,7 @@ router.post('/sendReset/',function(req,res){
                             "<h3>Hey Adrian,<h3/>"+
                             
                             " <p>Click the link below to activate your account</p>"+
-                                "<a href='"+host+"/resetForm/?id="+user._id+"'>Reset Password</a>"+
+                                "<a href="+process.env.HOST+"/resetForm/?id="+user._id+"'>Reset Password</a>"+
                                 
                                 
                               "</td>"+
@@ -358,11 +365,13 @@ router.post('/sendReset/',function(req,res){
   }
   });
 });
+
+//reset password
 router.post('/resetPassword/', async function(req,res){
   logger.debug("reset password Id:"+req.body.id);
   // logger.debug("password: "+req.body.password);
   var pwd = req.body.password;
-  logger.debug("new pass:"+pwd);
+  
   bcrypt.genSalt(10, function(err, salt) {
     if (err) {
       logger.error("BCrype issue");
@@ -398,7 +407,17 @@ router.get('/activateAccount/:id', function(req, res) {
         logger.debug(req.params.id);
         res.send(JSON.stringify(doc));
     });
-});    
+}); 
+
+//logout clear session
+router.post('/logout/', async function(req,res){
+  if (req.session.user && req.cookies.user_sid) {
+    res.clearCookie('user_sid');
+    res.redirect('/');
+} else {
+    res.redirect('/login');
+}
+});
  
        
 module.exports = router;

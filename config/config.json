@@ -18,7 +18,7 @@
         "node_port": 3887,
         "json_indentation": 4,
         "db_port": 27017,
-        "database": "mongodb+srv://anadeau:Asialouie%21123@cluster0-2yxie.mongodb.net/test",
+        "database": "mongodb+srv://GratitudeToday:gratitudetoday@cluster0-vffbw.mongodb.net/gratitude-apps?retryWrites=true&w=majority",
         "mailjet_api_key":"344470aad27d953af9c982f6fdc8f0fa",
         "mailjet_secret_key":"ea7a6f8f78dfde8e7532a1b71e254b88",
         "host": "http://wwww.gratitude.io"

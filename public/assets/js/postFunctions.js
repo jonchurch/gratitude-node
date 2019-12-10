@@ -44,10 +44,6 @@ $("#postMsgForm").submit(function(event) {
 
 
 });
-
-
-
-
 $("#updateProfile").submit(function(event) {
    event.preventDefault();
        var id = $("#id-hidden").val();
@@ -148,3 +144,9 @@ function loadPosts() {
    }
 
 }
+$( "btn-return-profile" ).click(function() {
+   
+    window.location.assign("/");
+});
+
+
